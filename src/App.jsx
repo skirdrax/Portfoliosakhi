@@ -1,7 +1,20 @@
+import { useEffect } from 'react';
 import DataImage from '../data';
 import { listTools, listProyek } from '../data';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 function App() {
+  useEffect(() => {
+    AOS.init({
+      once: true,
+      duration: 800,
+      easing: 'ease-in-out',
+    });
+
+    // 🔑 penting untuk production / Vercel
+    AOS.refresh();
+  }, []);
   return (
     <>
       <div className="hero grid md:grid-cols-2 items-center pt-10 xl:gap-0 gap-6 grid-cols-1">
