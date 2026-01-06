@@ -18,7 +18,9 @@ function App() {
   return (
     <>
       <div className="hero grid md:grid-cols-2 items-center pt-10 xl:gap-0 gap-6 grid-cols-1">
-        <div className="animate__animated animate__fadeInUp">
+        <div
+          className="animate__animated animate__fadeInUp"
+          data-aos="flip-left">
           <div className="flex items-center gap-3 mb-6 bg-zinc-800 w-fit p-4 rounded-2xl">
             <img
               src={DataImage.HeroImage}
@@ -54,6 +56,7 @@ function App() {
           src={DataImage.HeroImage}
           alt="Hero Image"
           className="w-[500px] ml-auto animate__animated animate__fadeInUp animate__delay-1s"
+          data-aos="fade-up"
         />
       </div>
 
@@ -86,13 +89,13 @@ function App() {
             <div className="flex items-center gap-6">
               <div>
                 <h1 className="text-4xl mb-1">
-                  45 <span className="text-violet-500">+</span>
+                  5 <span className="text-violet-500">+</span>
                 </h1>
                 <p>Proyek Selesai</p>
               </div>
               <div>
                 <h1 className="text-4xl mb-1">
-                  4 <span className="text-violet-500">+</span>
+                  2 <span className="text-violet-500">+</span>
                 </h1>
                 <p>Tahun Pengalaman</p>
               </div>
