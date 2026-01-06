@@ -41,12 +41,14 @@ function App() {
           <div className="flex items-center gap-4">
             <a
               href="https://drive.google.com/file/d/12f8kaSLI7tDLWrg7p2RalbZbAz7XPDzj/view?usp=drive_link"
-              className="bg-violet-700 p-4 rounded-2xl hover:bg-violet-600">
+              className="bg-violet-700 p-4 rounded-2xl hover:bg-violet-600"
+              data-aos="fade-up">
               Lihat CV Sakhi Ardra
             </a>
             <a
               href="#proyek"
-              className="bg-zinc-700 p-4 rounded-2xl hover:bg-zinc-600">
+              className="bg-zinc-700 p-4 rounded-2xl hover:bg-zinc-600"
+              data-aos="fade-up">
               Lihat Proyek
             </a>
           </div>
