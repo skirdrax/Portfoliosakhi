@@ -174,9 +174,14 @@ function App() {
                 </div>
                 <div className="mt-8 text-center">
                   <a
-                    href="#"
-                    className="bg-violet-700 p-3 rounded-lg block border border-zinc-600 hover:bg-violet-600">
-                    Lihat Website
+                    href={proyek.link || '#'}
+                    onClick={(e) => !proyek.link && e.preventDefault()}
+                    className={`p-3 rounded-lg block border border-zinc-600 ${
+                      proyek.link
+                        ? 'bg-violet-700 hover:bg-violet-600'
+                        : 'bg-gray-500 cursor-not-allowed'
+                    }`}>
+                    {proyek.link ? 'Lihat Website/Prototipe' : 'Coming Soon'}
                   </a>
                 </div>
               </div>
