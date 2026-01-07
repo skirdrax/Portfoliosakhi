@@ -109,19 +109,20 @@ function App() {
         </div>
 
         {/* pendidikan */}
-        <section className="education-section mt-20">
+        <section className="education-section mt-30">
           <div className="flex flex-col items-center mb-10">
             <h1
               className="text-4xl/snug font-bold text-white"
               data-aos="zoom-out-down">
               Pendidikan
             </h1>
-            <div className="mt-2 w-20 h-1 bg-blue-500 rounded-full"></div>
           </div>
           <div className="flex flex-wrap justify-center gap-6 p-4">
             <a
               href="https://polindra.ac.id/"
-              className="group flex items-center gap-4 w-full max-w-md p-4 bg-transparent border border-gray-700 rounded-xl transition-all duration-300 hover:bg-gray-800/50 hover:border-gray-500 hover:shadow-lg hover:-translate-y-1">
+              className="group flex items-center gap-4 w-full max-w-md p-4 bg-transparent border border-gray-700 rounded-xl transition-all duration-300 hover:bg-gray-800/50 hover:border-gray-500 hover:shadow-lg hover:-translate-y-1"
+              data-aos="flip-left"
+              data-aos-easing="ease-out-cubic">
               <div className="flex items-center justify-center w-16 h-16 bg-white rounded-lg overflow-hidden p-2">
                 <img
                   src="public/assets/polindra.png"
@@ -146,7 +147,9 @@ function App() {
 
             <a
               href="https://smait.sekolahbunayya.sch.id/"
-              className="group flex items-center gap-4 w-full max-w-md p-4 bg-transparent border border-gray-700 rounded-xl transition-all duration-300 hover:bg-gray-800/50 hover:border-gray-500 hover:shadow-lg hover:-translate-y-1">
+              className="group flex items-center gap-4 w-full max-w-md p-4 bg-transparent border border-gray-700 rounded-xl transition-all duration-300 hover:bg-gray-800/50 hover:border-gray-500 hover:shadow-lg hover:-translate-y-1"
+              data-aos="flip-left"
+              data-aos-easing="ease-out-cubic">
               <div className="flex items-center justify-center w-16 h-16 bg-white rounded-lg overflow-hidden p-2">
                 <img
                   src="public/assets/bunayya.png"
