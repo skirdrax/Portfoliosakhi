@@ -186,7 +186,7 @@ function App() {
       <div className="kontak mt-32 sm:p-10 p-0" id="kontak" data-aos="fade-up">
         <h1 className="text-4xl mb-2 font-bold text-center">Kontak</h1>
         <p className="text-base/loose text-center mb-10 opacity-50">
-          Pesan otomatis akan terkirim ke email saya
+          Pesan otomatis akan terkirim ke email saya ( Sakhi Ardra)
         </p>
         <form
           action="https://formsubmit.co/ardrasakhi390@gmail.com"
