@@ -107,6 +107,68 @@ function App() {
             </div>
           </div>
         </div>
+
+        {/* pendidikan */}
+        <section className="education-section mt-20">
+          <div className="flex flex-col items-center mb-10">
+            <h1
+              className="text-4xl/snug font-bold text-white"
+              data-aos="zoom-out-down">
+              Pendidikan
+            </h1>
+            <div className="mt-2 w-20 h-1 bg-blue-500 rounded-full"></div>
+          </div>
+          <div className="flex flex-wrap justify-center gap-6 p-4">
+            <a
+              href="https://polindra.ac.id/"
+              className="group flex items-center gap-4 w-full max-w-md p-4 bg-transparent border border-gray-700 rounded-xl transition-all duration-300 hover:bg-gray-800/50 hover:border-gray-500 hover:shadow-lg hover:-translate-y-1">
+              <div className="flex items-center justify-center w-16 h-16 bg-white rounded-lg overflow-hidden p-2">
+                <img
+                  src="public/assets/polindra.png"
+                  alt="University Icon"
+                  className="w-full h-full object-contain"
+                />
+              </div>
+
+              <div>
+                <h3 className="text-white font-bold text-lg leading-tight group-hover:text-blue-400 transition-colors">
+                  Politeknik Negeri Indramayu
+                </h3>
+                <p className="text-gray-400 text-sm mt-1 font-bold">
+                  Teknik Informatika
+                </p>
+                <p className="text-gray-400 text-sm mt-1">
+                  D4 Rekayasa Perangkat Lunak
+                </p>
+                <p className="text-gray-500 text-xs mt-1">2024 - Sekarang</p>
+              </div>
+            </a>
+
+            <a
+              href="https://smait.sekolahbunayya.sch.id/"
+              className="group flex items-center gap-4 w-full max-w-md p-4 bg-transparent border border-gray-700 rounded-xl transition-all duration-300 hover:bg-gray-800/50 hover:border-gray-500 hover:shadow-lg hover:-translate-y-1">
+              <div className="flex items-center justify-center w-16 h-16 bg-white rounded-lg overflow-hidden p-2">
+                <img
+                  src="public/assets/bunayya.png"
+                  alt="School Icon"
+                  className="w-full h-full object-contain"
+                />
+              </div>
+
+              <div>
+                <h3 className="text-white font-bold text-lg leading-tight group-hover:text-blue-400 transition-colors">
+                  SMAIT BUNAYYA
+                </h3>
+                <p className="text-gray-400 text-sm mt-1">
+                  Ilmu Pengetahuan Alam (IPA)
+                </p>
+                <p className="text-gray-500 text-xs mt-1">2021 - 2024</p>
+              </div>
+            </a>
+          </div>
+        </section>
+
+        {/* tools */}
         <div className="tools mt-32">
           <h1 className="text-4xl/snug font-bold mb-4" data-aos="zoom-out-down">
             Tools yang dipakai
