@@ -207,7 +207,7 @@ function App() {
               <input
                 type="text"
                 name="nama"
-                placeholder="Masukan nama anda..."
+                placeholder="Masukan nama / samaran..."
                 className="border border-zinc-500 p-2 rounded-md"
                 required
               />
