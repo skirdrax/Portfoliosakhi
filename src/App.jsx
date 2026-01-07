@@ -203,7 +203,7 @@ function App() {
           autoComplete="off">
           <div className="flex flex-col gap-6">
             <div className="flex flex-col gap-2">
-              <label className="font-semibold">Nama Anda</label>
+              <label className="font-semibold">Nama Anda / Samaran</label>
               <input
                 type="text"
                 name="nama"
