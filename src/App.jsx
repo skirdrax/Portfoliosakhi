@@ -125,7 +125,7 @@ function App() {
               data-aos-easing="ease-out-cubic">
               <div className="flex items-center justify-center w-16 h-16 bg-white rounded-lg overflow-hidden p-2">
                 <img
-                  src="public/assets/polindra.png"
+                  src="/assets/polindra.png"
                   alt="University Icon"
                   className="w-full h-full object-contain"
                 />
@@ -152,7 +152,7 @@ function App() {
               data-aos-easing="ease-out-cubic">
               <div className="flex items-center justify-center w-16 h-16 bg-white rounded-lg overflow-hidden p-2">
                 <img
-                  src="public/assets/bunayya.png"
+                  src="/assets/bunayya.png"
                   alt="School Icon"
                   className="w-full h-full object-contain"
                 />
