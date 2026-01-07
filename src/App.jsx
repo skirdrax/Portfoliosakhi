@@ -63,6 +63,13 @@ function App() {
 
       {/*tentang  */}
       <div className="tentang mt-32 py-10" id="tentang">
+        <div className="flex flex-col items-center mb-10">
+          <h1
+            className="text-4xl/snug font-bold text-white"
+            data-aos="zoom-out-down">
+            Tentang Saya
+          </h1>
+        </div>
         <div
           className="xl:w-2/3 lg:w-3/4 w-full mx-auto p-7  bg-zinc-800 rounded-lg"
           data-aos="fade-up">
@@ -71,7 +78,7 @@ function App() {
             alt="Image"
             className="w-12 rounded-mb mb-10 sm:hidden"
           />
-          <p className="text-base/loose mb-10">
+          <p className="text-base/loose mb-10" data-aos="fade-up">
             Hi, perkenalkan saya Sakhi Ardra Handaru, Mahasiswa aktif D4
             Rekayasa Perangkat Lunak, Teknik Informatika, Politeknik Negeri
             Indramayu, dengan fokus pada Web Development, Database Management,
@@ -227,7 +234,9 @@ function App() {
               <img src={proyek.gambar} alt="Proyek Image" />
               <div>
                 <h1 className="text-2xl font-bold my-4">{proyek.nama}</h1>
-                <p className="text-base/loose mb-4">{proyek.desk}</p>
+                <p className="text-base/loose mb-4" data-aos="fade-up">
+                  {proyek.desk}
+                </p>
                 <div className="flex flex-wrap gap-2" data-aos="flip-up">
                   {proyek.tools.map((tool, index) => (
                     <p
@@ -268,7 +277,10 @@ function App() {
           className="bg-zinc-800 p-10 sm:w-fit w-full mx-auto rounded-md"
           autoComplete="off">
           <div className="flex flex-col gap-6">
-            <div className="flex flex-col gap-2">
+            <div
+              className="flex flex-col gap-2"
+              data-aos="flip-left"
+              data-aos-easing="ease-out-cubic">
               <label className="font-semibold">Nama Anda / Samaran</label>
               <input
                 type="text"
@@ -279,7 +291,10 @@ function App() {
               />
             </div>
 
-            <div className="flex flex-col gap-2">
+            <div
+              className="flex flex-col gap-2"
+              data-aos="flip-left"
+              data-aos-easing="ease-out-cubic">
               <label className="font-semibold">Pesan</label>
               <textarea
                 name="pesan"
@@ -290,7 +305,7 @@ function App() {
                 className="border border-zinc-500 p-2 rounded-md"
                 required></textarea>
             </div>
-            <div className="text-center ">
+            <div className="text-center" data-aos="fade-up">
               <button
                 type="submit"
                 className="bg-violet-700 p-3 rounded-lg w-full cursor-pointer  border border-zinc-600 hover:bg-violet-600">
