@@ -204,16 +204,7 @@ function App() {
                 required
               />
             </div>
-            <div className="flex flex-col gap-2">
-              <label className="font-semibold">Email</label>
-              <input
-                type="email"
-                name="email"
-                placeholder="Masukan email anda..."
-                className="border border-zinc-500 p-2 rounded-md"
-                required
-              />
-            </div>
+
             <div className="flex flex-col gap-2">
               <label className="font-semibold">Pesan</label>
               <textarea
