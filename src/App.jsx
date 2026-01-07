@@ -33,14 +33,13 @@ function App() {
             Hai, Saya Sakhi Ardra
           </h1>
           <p className="text-base/loose mb-6 opacity-50">
-            Saya Mempunyai ketertarikan dalam bidang programing dan designer,
-            terutama dalam pembuatan website dan dan desain seperti poster dan
-            pamflet ,ketertarikan pada bidang ini berlangsung lebih dari 1 tahun
-            untuk semua bidang.
+            Saya Mempunyai ketertarikan dalam bidang programing, desain web, dan
+            pengembangan aplikasi. Saya senang menciptakan solusi digital yang
+            inovatif dan efisien untuk memenuhi kebutuhan pengguna.
           </p>
           <div className="flex items-center gap-4">
             <a
-              href="https://drive.google.com/file/d/12f8kaSLI7tDLWrg7p2RalbZbAz7XPDzj/view?usp=drive_link"
+              href="https://drive.google.com/file/d/1F_1Iwh0pbo0IgktGh6WwyvgX64Z3htNK/view?usp=drive_link"
               className="bg-violet-700 p-4 rounded-2xl hover:bg-violet-600"
               data-aos="fade-up">
               Lihat CV Sakhi Ardra
@@ -73,12 +72,16 @@ function App() {
             className="w-12 rounded-mb mb-10 sm:hidden"
           />
           <p className="text-base/loose mb-10">
-            Hi, perkenalkan saya Sakhi Ardra Handaru, seorang junior Web
-            Developer dan Designer untuk UI/UX Design maupun Product Digital,
-            Saya percaya bahwa desain dan fungsionalitas harus berjalan
-            beriringan, sehingga setiap proyek yang saya kembangkan tidak hanya
-            terlihat menarik tetapi juga memberikan pengalaman pengguna yang
-            optimal.
+            Hi, perkenalkan saya Sakhi Ardra Handaru, Mahasiswa aktif D4
+            Rekayasa Perangkat Lunak, Teknik Informatika, Politeknik Negeri
+            Indramayu, dengan fokus pada Web Development, Database Management,
+            UI/UX Design, SEO, Jaringan Komputer, dan Internet of Things (IoT).
+            Terbiasa mengembangkan solusi digital yang efisien, user-oriented,
+            dan berorientasi performa, serta berpengalaman bekerja kolaboratif
+            dan terstruktur. Siap berkontribusi secara profesional di industri
+            maupun instansi pemerintahan. sehingga setiap proyek yang saya
+            kembangkan tidak hanya terlihat menarik tetapi juga memberikan
+            pengalaman pengguna yang optimal.
           </p>
           <div
             className="flex items-center justify-between"
