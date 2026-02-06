@@ -113,7 +113,7 @@ export const listProyek = [
     desk: 'Website resmi dari event Softcomp (Software Competition) yang diselenggarakan oleh HIMA RPL Politeknik Negeri Indramayu.',
     tools: ['HTML', 'CSS', 'Javascript', 'PHP', 'SQL'],
     dad: '200',
-    link: 'sakhi-hostcicd.infinityfreeapp.com',
+    link: 'https://sakhi-hostcicd.infinityfreeapp.com/frontend/index.php',
   },
   {
     id: 2,
