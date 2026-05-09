@@ -70,6 +70,11 @@ export default function App() {
   const [isDeleting, setIsDeleting] = useState(false);
   const fullText = 'Sakhi Ardra';
 
+  // Modal states
+  const [showModal, setShowModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
+  const [isSuccess, setIsSuccess] = useState(false);
+
   useScrollReveal(filter);
   useCursor();
 
@@ -91,11 +96,10 @@ export default function App() {
       );
     }
     return () => clearTimeout(timeout);
-  }, [displayText, isDeleting]);
+  }, [displayText, isDeleting, fullText]);
 
-  // Expose darkMode ke parent lewat event (buat Navbar)
+  // Update body background
   useEffect(() => {
-    window.dispatchEvent(new CustomEvent('themeChange', { detail: darkMode }));
     document.body.style.background = darkMode ? '#09090b' : '#f4f4f9';
   }, [darkMode]);
 
@@ -143,6 +147,8 @@ export default function App() {
         @keyframes shimmer { from{background-position:-500px 0} to{background-position:500px 0} }
         @keyframes gridMove { from{background-position:0 0} to{background-position:40px 40px} }
         @keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(124,58,237,.4)} 70%{box-shadow:0 0 0 10px rgba(124,58,237,0)} 100%{box-shadow:0 0 0 0 rgba(124,58,237,0)} }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
         .reveal { opacity:0;transform:translateY(28px);transition:opacity .65s cubic-bezier(.22,1,.36,1),transform .65s cubic-bezier(.22,1,.36,1) }
         .reveal.revealed { opacity:1;transform:none }
@@ -151,23 +157,94 @@ export default function App() {
         .grid-bg { position:absolute;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(${t.gridLine} 1px,transparent 1px),linear-gradient(90deg,${t.gridLine} 1px,transparent 1px);background-size:40px 40px;animation:gridMove 10s linear infinite;mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,black 30%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,black 30%,transparent 100%); }
         .glow { position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:700px;height:280px;background:radial-gradient(ellipse at center,${t.glow} 0%,transparent 65%);pointer-events:none;z-index:0; }
 
-        .hero-name { font-size:clamp(44px,7vw,70px);font-weight:800;line-height:1.04;letter-spacing:-.035em;margin-bottom:20px; }
+        .hero-name { font-size:clamp(44px,7vw,70px);font-weight:800;line-height:1.04;letter-spacing:-.035em;margin-bottom:20px;color:${t.textPrimary}; }
         .accent { background:linear-gradient(130deg,#c4b5fd 0%,#7c3aed 45%,#a78bfa 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
         .cursor-blink { display:inline-block;width:3px;height:.88em;background:#7c3aed;margin-left:3px;vertical-align:-1px;animation:blink 1.1s step-end infinite; }
         .badge { display:inline-flex;align-items:center;gap:8px;background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.25);padding:7px 16px;border-radius:999px;margin-bottom:28px;font-size:13px;color:#c4b5fd; }
         .badge-dot { width:7px;height:7px;background:#7c3aed;border-radius:50%;flex-shrink:0;animation:pulse 2s infinite; }
 
         /* Theme toggle */
-        .theme-toggle { position:fixed;top:100px;right:20px;width:44px;height:44px;border-radius:50%;background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.3);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;z-index:9997;transition:all .3s; }
+        .theme-toggle { position:fixed;top:100px;right:20px;width:44px;height:44px;border-radius:50%;background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.3);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;z-index:9997;transition:all .3s;cursor:pointer; }
         .theme-toggle:hover { background:rgba(124,58,237,.28);transform:scale(1.07); }
         @media(max-width:768px){ .theme-toggle{top:auto;bottom:80px;right:16px} }
 
-        .btn-p { display:inline-flex;align-items:center;gap:8px;background:#7c3aed;color:#fff;padding:13px 28px;border-radius:10px;font-weight:700;font-size:14px;letter-spacing:.02em;text-decoration:none;position:relative;overflow:hidden;transition:background .2s,transform .18s,box-shadow .2s; }
+        /* Modal Popup */
+        .modal-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: rgba(0,0,0,0.7);
+          backdrop-filter: blur(4px);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 10000;
+          animation: fadeIn 0.2s ease;
+        }
+        .modal-content {
+          background: ${darkMode ? '#1f1f2e' : '#ffffff'};
+          border-radius: 20px;
+          padding: 32px;
+          max-width: 400px;
+          width: 90%;
+          text-align: center;
+          box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+          animation: slideUp 0.3s ease;
+          border: 1px solid ${darkMode ? 'rgba(255,255,255,.1)' : 'rgba(0,0,0,.1)'};
+        }
+        .modal-icon {
+          width: 64px;
+          height: 64px;
+          margin: 0 auto 20px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 32px;
+        }
+        .modal-icon.success {
+          background: rgba(34,197,94,0.15);
+          color: #22c55e;
+        }
+        .modal-icon.error {
+          background: rgba(239,68,68,0.15);
+          color: #ef4444;
+        }
+        .modal-title {
+          font-size: 24px;
+          font-weight: 700;
+          margin-bottom: 12px;
+          color: ${darkMode ? '#fff' : '#18181b'};
+        }
+        .modal-message {
+          font-size: 14px;
+          color: ${darkMode ? '#a1a1aa' : '#52525b'};
+          margin-bottom: 24px;
+          line-height: 1.6;
+        }
+        .modal-close {
+          background: #7c3aed;
+          color: white;
+          border: none;
+          padding: 10px 24px;
+          border-radius: 10px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.2s;
+        }
+        .modal-close:hover {
+          background: #6d28d9;
+          transform: scale(1.02);
+        }
+
+        .btn-p { display:inline-flex;align-items:center;gap:8px;background:#7c3aed;color:#fff;padding:13px 28px;border-radius:10px;font-weight:700;font-size:14px;letter-spacing:.02em;text-decoration:none;position:relative;overflow:hidden;transition:background .2s,transform .18s,box-shadow .2s;cursor:pointer; }
         .btn-p::after { content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.13),transparent);transition:left .4s; }
         .btn-p:hover::after { left:150% }
         .btn-p:hover { background:#6d28d9;transform:translateY(-2px);box-shadow:0 10px 28px rgba(109,40,217,.4) }
 
-        .btn-g { display:inline-flex;align-items:center;gap:8px;background:transparent;padding:13px 24px;border-radius:10px;font-weight:600;font-size:14px;border:1px solid ${t.border};text-decoration:none;transition:all .2s;color:${t.textSecondary}; }
+        .btn-g { display:inline-flex;align-items:center;gap:8px;background:transparent;padding:13px 24px;border-radius:10px;font-weight:600;font-size:14px;border:1px solid ${t.border};text-decoration:none;transition:all .2s;color:${t.textSecondary};cursor:pointer; }
         .btn-g:hover { background:rgba(124,58,237,.1);border-color:rgba(124,58,237,.3);transform:translateY(-2px);color:${t.textPrimary}; }
 
         .img-wrap { display:inline-block;position:relative;animation:float 7s ease-in-out infinite; }
@@ -199,13 +276,13 @@ export default function App() {
         .divider::before,.divider::after { content:'';flex:1;height:1px;background:${t.border} }
         .d-dot { width:5px;height:5px;background:rgba(124,58,237,.5);border-radius:50% }
 
-        .tool-card { background:${t.bgCard};border:1px solid ${t.borderLight};border-radius:12px;padding:14px 15px;display:flex;align-items:center;gap:12px;position:relative;overflow:hidden;transition:all .22s cubic-bezier(.22,1,.36,1); }
+        .tool-card { background:${t.bgCard};border:1px solid ${t.borderLight};border-radius:12px;padding:14px 15px;display:flex;align-items:center;gap:12px;position:relative;overflow:hidden;transition:all .22s cubic-bezier(.22,1,.36,1);cursor:pointer; }
         .tool-card::after { content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(124,58,237,.09) 0%,transparent 55%);opacity:0;transition:opacity .3s; }
         .tool-card:hover { border-color:rgba(124,58,237,.4);transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.2) }
         .tool-card:hover::after { opacity:1 }
         .tool-img { width:38px;height:38px;object-fit:contain;background:rgba(255,255,255,.08);border-radius:8px;padding:6px;flex-shrink:0;position:relative;z-index:1 }
 
-        .proyek-card { background:${t.bgCard};border:1px solid ${t.borderLight};border-radius:18px;overflow:hidden;position:relative;transition:all .3s cubic-bezier(.22,1,.36,1); }
+        .proyek-card { background:${t.bgCard};border:1px solid ${t.borderLight};border-radius:18px;overflow:hidden;position:relative;transition:all .3s cubic-bezier(.22,1,.36,1);cursor:pointer; }
         .proyek-card::before { content:'';position:absolute;inset:0;pointer-events:none;z-index:1;background:linear-gradient(135deg,rgba(124,58,237,.08),transparent 55%);opacity:0;transition:opacity .3s; }
         .proyek-card:hover { border-color:rgba(124,58,237,.45);transform:translateY(-6px);box-shadow:0 24px 48px rgba(0,0,0,.3),0 0 0 1px rgba(124,58,237,.2) }
         .proyek-card:hover::before { opacity:1 }
@@ -218,7 +295,7 @@ export default function App() {
         .contact-input { width:100%;box-sizing:border-box;background:${t.inputBg};border:1px solid ${t.borderLight};border-radius:12px;padding:13px 16px;font-size:14px;outline:none;font-family:inherit;transition:border-color .2s,background .2s,box-shadow .2s;color:${t.textPrimary}; }
         .contact-input:focus { border-color:rgba(124,58,237,.6);background:rgba(124,58,237,.05);box-shadow:0 0 0 3px rgba(124,58,237,.12) }
         .contact-input::placeholder { color:${darkMode ? 'rgba(255,255,255,.2)' : 'rgba(0,0,0,.2)'} }
-        .send-btn { width:100%;padding:14px;background:#7c3aed;color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:700;letter-spacing:.02em;transition:all .2s;position:relative;overflow:hidden; }
+        .send-btn { width:100%;padding:14px;background:#7c3aed;color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:700;letter-spacing:.02em;transition:all .2s;position:relative;overflow:hidden;cursor:pointer; }
         .send-btn:hover { background:#6d28d9;transform:translateY(-2px);box-shadow:0 12px 30px rgba(109,40,217,.45) }
 
         .container { max-width:1200px;margin:0 auto;padding:0 24px; }
@@ -284,12 +361,10 @@ export default function App() {
                 <span className="badge-dot" />
                 Portfolio Sakhi Ardra Handaru
               </div>
-              <h1
-                className="hero-name reveal d1"
-                style={{ color: t.textPrimary }}>
+              <h1 className="hero-name reveal d1">
                 Hai, Saya
                 <br />
-                <span className="accent">{displayText || 'S'}</span>
+                <span className="accent">{displayText || fullText}</span>
                 <span className="cursor-blink" />
               </h1>
               <p
@@ -580,6 +655,7 @@ export default function App() {
                   backgroundColor: filter === cat ? '#7c3aed' : t.inputBg,
                   borderColor: filter === cat ? '#7c3aed' : t.borderLight,
                   color: filter === cat ? '#fff' : t.textSecondary,
+                  cursor: 'pointer',
                 }}>
                 {cat}
               </button>
@@ -714,12 +790,69 @@ export default function App() {
               Isi form — pesan langsung terkirim ke email saya.
             </p>
           </div>
+
           <form
-            action="https://formsubmit.co/ardrasakhi390@gmail.com"
+            id="contactForm"
+            action="https://api.web3forms.com/submit"
             method="POST"
-            autoComplete="off"
             style={{ width: '100%', maxWidth: '520px', textAlign: 'left' }}
-            className="reveal d2">
+            className="reveal d2"
+            onSubmit={(e) => {
+              e.preventDefault();
+
+              const form = e.target;
+              const formData = new FormData(form);
+
+              fetch(form.action, {
+                method: 'POST',
+                body: formData,
+              })
+                .then((response) => response.json())
+                .then((data) => {
+                  if (data.success) {
+                    setIsSuccess(true);
+                    setModalMessage(
+                      'Pesan Anda berhasil terkirim! Terima kasih, saya akan membalas segera.',
+                    );
+                    setShowModal(true);
+                    form.reset();
+                  } else {
+                    setIsSuccess(false);
+                    setModalMessage('Gagal mengirim pesan. Silakan coba lagi.');
+                    setShowModal(true);
+                  }
+                })
+                .catch((error) => {
+                  console.error('Error:', error);
+                  setIsSuccess(false);
+                  setModalMessage(
+                    'Terjadi kesalahan jaringan. Silakan coba lagi nanti.',
+                  );
+                  setShowModal(true);
+                });
+            }}>
+            <input
+              type="hidden"
+              name="access_key"
+              value="e837d397-cc77-4bde-bf95-77579f2b0d35"
+            />
+            <input
+              type="hidden"
+              name="subject"
+              value="Pesan Baru dari Portfolio Sakhi Ardra"
+            />
+            <input
+              type="hidden"
+              name="to_email"
+              value="ardrasakhi390@gmail.com"
+            />
+            <input type="hidden" name="from_name" value="Portfolio Website" />
+            <input
+              type="checkbox"
+              name="botcheck"
+              style={{ display: 'none' }}
+            />
+
             <div
               style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
               <div>
@@ -737,7 +870,7 @@ export default function App() {
                 </label>
                 <input
                   type="text"
-                  name="nama"
+                  name="name"
                   placeholder="Masukkan nama atau samaran..."
                   className="contact-input"
                   required
@@ -754,10 +887,30 @@ export default function App() {
                     textTransform: 'uppercase',
                     marginBottom: '8px',
                   }}>
+                  Email (opsional)
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="email@contoh.com (agar bisa saya balas)"
+                  className="contact-input"
+                />
+              </div>
+              <div>
+                <label
+                  style={{
+                    display: 'block',
+                    color: t.textMuted,
+                    fontSize: '11px',
+                    fontWeight: 700,
+                    letterSpacing: '.1em',
+                    textTransform: 'uppercase',
+                    marginBottom: '8px',
+                  }}>
                   Pesan
                 </label>
                 <textarea
-                  name="pesan"
+                  name="message"
                   rows="6"
                   placeholder="Tulis pesanmu di sini..."
                   className="contact-input"
@@ -772,6 +925,24 @@ export default function App() {
           </form>
         </section>
       </div>
+
+      {/* Modal Popup */}
+      {showModal && (
+        <div className="modal-overlay" onClick={() => setShowModal(false)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <div className={`modal-icon ${isSuccess ? 'success' : 'error'}`}>
+              {isSuccess ? '✓' : '✗'}
+            </div>
+            <h3 className="modal-title">
+              {isSuccess ? 'Berhasil!' : 'Gagal!'}
+            </h3>
+            <p className="modal-message">{modalMessage}</p>
+            <button className="modal-close" onClick={() => setShowModal(false)}>
+              Tutup
+            </button>
+          </div>
+        </div>
+      )}
     </>
   );
 }
