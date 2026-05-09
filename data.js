@@ -131,7 +131,7 @@ export const listProyek = [
     gambar: Proyek3,
     nama: 'UI/UX Design App Clean Air ID',
     kategori: 'UI/UX',
-    desk: 'Prototipe Aplikasi Pemantauan Polusi Udara secara real-time untuk meningkatkan kesadaran dan tindakan proaktif terhadap kualitas udara.',
+    desk: 'Prototipe Aplikasi Pemantauan Polusi Udara secara real-time untuk meningkatkan kesadaran terhadap kualitas udara.',
     tools: ['Figma', 'Canva', 'Adobe Illustrator'],
     dad: '400',
     link: 'https://www.figma.com/proto/RAXVQlX3wvvRfqQNtzyzG6/KICAU-MANIA?node-id=1-2&p=f&t=tBaBTfnE43D9xTBQ-0&scaling=scale-down&content-scaling=fixed&starting-point-node-id=115%3A108',

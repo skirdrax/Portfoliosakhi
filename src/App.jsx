@@ -211,7 +211,7 @@ export default function App() {
 
         .theme-toggle {
           position: fixed;
-          top: 20px;
+          top: 100px;
           right: 20px;
           width: 48px;
           height: 48px;
@@ -459,7 +459,7 @@ export default function App() {
             <div>
               <div className="badge reveal">
                 <span className="badge-dot" />
-                Tersedia untuk kolaborasi
+                Portfolio Sakhi Ardra Handaru
               </div>
               <h1
                 className="hero-name reveal d1"
@@ -856,7 +856,7 @@ export default function App() {
                           textAlign: 'center',
                           width: '100%',
                         }}>
-                        Lihat Hasil→
+                        Lihat Hasil →
                       </a>
                     ) : (
                       <div
@@ -939,7 +939,7 @@ export default function App() {
                     textTransform: 'uppercase',
                     marginBottom: '8px',
                   }}>
-                  Nama / Samaran
+                  Nama /Anda
                 </label>
                 <input
                   type="text"
