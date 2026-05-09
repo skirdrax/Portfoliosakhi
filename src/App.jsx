@@ -79,6 +79,31 @@ export default function App() {
     setDarkMode(!darkMode);
   };
 
+  // Typing effect state
+  const [displayText, setDisplayText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+  const fullText = 'Sakhi Ardra';
+
+  useEffect(() => {
+    let timeout;
+    if (!isDeleting && displayText === fullText) {
+      timeout = setTimeout(() => setIsDeleting(true), 2000);
+    } else if (isDeleting && displayText === '') {
+      setIsDeleting(false);
+      timeout = setTimeout(() => {}, 500);
+    } else {
+      timeout = setTimeout(
+        () => {
+          setDisplayText((prev) =>
+            isDeleting ? prev.slice(0, -1) : fullText.slice(0, prev.length + 1),
+          );
+        },
+        isDeleting ? 80 : 120,
+      );
+    }
+    return () => clearTimeout(timeout);
+  }, [displayText, isDeleting, fullText]);
+
   // Theme variables
   const theme = darkMode
     ? {
@@ -239,6 +264,14 @@ export default function App() {
           transform: rotate(15deg);
         }
 
+        @media (max-width: 768px) {
+          .theme-toggle {
+            top: auto;
+            bottom: 80px;
+            right: 20px;
+          }
+        }
+
         .btn-p {
           display: inline-flex; align-items: center; gap: 8px;
           background: #7c3aed; color: #fff;
@@ -263,8 +296,9 @@ export default function App() {
           font-weight: 600; font-size: 14px;
           border: 1px solid ${theme.border};
           text-decoration: none; transition: all .2s;
+          color: ${theme.textSecondary};
         }
-        .btn-g:hover { background: rgba(124,58,237,.1); border-color: rgba(124,58,237,.3); transform: translateY(-2px) }
+        .btn-g:hover { background: rgba(124,58,237,.1); border-color: rgba(124,58,237,.3); transform: translateY(-2px); color: ${theme.textPrimary}; }
 
         .img-wrap {
           display: inline-block; position: relative;
@@ -310,7 +344,7 @@ export default function App() {
           text-align: center; transition: all .25s;
         }
         .stat-card:hover { background: rgba(124,58,237,.12); border-color: rgba(124,58,237,.4); transform: translateY(-3px) }
-        .stat-n { font-size: 38px; font-weight: 800; line-height: 1 }
+        .stat-n { font-size: 38px; font-weight: 800; line-height: 1; color: ${theme.textPrimary}; }
         .stat-n span { color: #7c3aed }
 
         .edu-card {
@@ -372,6 +406,7 @@ export default function App() {
           font-size: 14px;
           outline: none; font-family: inherit;
           transition: border-color .2s, background .2s, box-shadow .2s;
+          color: ${theme.textPrimary};
         }
         .contact-input:focus { border-color: rgba(124,58,237,.6); background: rgba(124,58,237,.05); box-shadow: 0 0 0 3px rgba(124,58,237,.12) }
         .contact-input::placeholder { color: ${darkMode ? 'rgba(255,255,255,.2)' : 'rgba(0,0,0,.2)'} }
@@ -466,7 +501,7 @@ export default function App() {
                 style={{ color: theme.textPrimary }}>
                 Hai, Saya
                 <br />
-                <span className="accent">Sakhi Ardra</span>
+                <span className="accent">{displayText || 'Sakhi Ardra'}</span>
                 <span className="cursor-blink" />
               </h1>
               <p
@@ -500,10 +535,7 @@ export default function App() {
                     <path d="M7 17L17 7M17 7H7M17 7v10" />
                   </svg>
                 </a>
-                <a
-                  href="#proyek"
-                  className="btn-g"
-                  style={{ color: theme.textSecondary }}>
+                <a href="#proyek" className="btn-g">
                   Proyek
                   <svg
                     width="14"
@@ -577,12 +609,7 @@ export default function App() {
                 <div
                   key={i}
                   className={`stat-card ${i === 2 ? 'col-span-2 sm:col-span-1' : ''}`}>
-                  <p
-                    className="stat-n"
-                    style={{
-                      fontSize: i === 2 ? '28px' : '38px',
-                      color: theme.textPrimary,
-                    }}>
+                  <p className="stat-n">
                     {n.includes('+') ? (
                       <>
                         {n.split('+')[0]}
@@ -939,14 +966,13 @@ export default function App() {
                     textTransform: 'uppercase',
                     marginBottom: '8px',
                   }}>
-                  Nama /Anda
+                  Nama / Anda
                 </label>
                 <input
                   type="text"
                   name="nama"
                   placeholder="Masukkan nama atau samaran..."
                   className="contact-input"
-                  style={{ color: theme.textPrimary }}
                   required
                 />
               </div>
@@ -968,7 +994,7 @@ export default function App() {
                   rows="6"
                   placeholder="Tulis pesanmu di sini..."
                   className="contact-input"
-                  style={{ resize: 'vertical', color: theme.textPrimary }}
+                  style={{ resize: 'vertical' }}
                   required
                 />
               </div>
