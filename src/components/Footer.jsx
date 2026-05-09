@@ -51,7 +51,7 @@ export default function Footer() {
       <div className="footer-line" />
       <footer className="footer">
         <a href="#beranda" className="f-logo">
-          sakhi<span>.</span>
+          sakhi<span>Ardra</span>
         </a>
         <p className="f-copy">© 2025 Sakhi Ardra Handaru</p>
         <div className="social-row">
