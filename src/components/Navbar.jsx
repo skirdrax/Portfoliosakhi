@@ -113,7 +113,7 @@ export default function Navbar() {
             style={{ marginTop: '10px', width: 'fit-content' }}
             target="_blank"
             rel="noopener noreferrer">
-            Lihat CV ↗
+            Lihat CVq ↗
           </a>
         </div>
       </nav>
