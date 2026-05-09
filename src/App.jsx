@@ -969,7 +969,7 @@ export default function App() {
                 <input
                   type="text"
                   name="name"
-                  placeholder="Masukkan nama atau samaran..."
+                  placeholder="Masukkan nama anda"
                   className="contact-input"
                   required
                 />
@@ -990,7 +990,7 @@ export default function App() {
                 <input
                   type="email"
                   name="email"
-                  placeholder="email@contoh.com (agar bisa saya balas)"
+                  placeholder="email@contoh.com (supaya saya bisa balas)"
                   className="contact-input"
                 />
               </div>
