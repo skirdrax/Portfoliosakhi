@@ -1,320 +1,483 @@
 import { useEffect } from 'react';
 import DataImage from '../data';
 import { listTools, listProyek } from '../data';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+
+// Simple intersection observer hook for scroll animations
+function useScrollReveal() {
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -60px 0px' },
+    );
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+}
 
 function App() {
-  useEffect(() => {
-    AOS.init({
-      once: true,
-      duration: 800,
-      easing: 'ease-in-out',
-    });
+  useScrollReveal();
 
-    // 🔑 penting untuk production / Vercel
-    AOS.refresh();
-  }, []);
   return (
     <>
-      <div className="hero grid md:grid-cols-2 items-center pt-10 xl:gap-0 gap-6 grid-cols-1">
-        <div
-          className="animate__animated animate__fadeInUp"
-          data-aos="flip-left">
-          <div className="flex items-center gap-3 mb-6 bg-zinc-800 w-fit p-4 rounded-2xl">
+      <style>{`
+        .reveal {
+          opacity: 0;
+          transform: translateY(28px);
+          transition: opacity 0.6s cubic-bezier(.4,0,.2,1), transform 0.6s cubic-bezier(.4,0,.2,1);
+        }
+        .reveal.revealed { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+
+        .hero-badge {
+          border: 1px solid rgba(139,92,246,0.3);
+          background: rgba(139,92,246,0.08);
+          backdrop-filter: blur(8px);
+        }
+        .tag-chip {
+          font-size: 11px;
+          letter-spacing: 0.04em;
+          background: rgba(139,92,246,0.12);
+          color: #a78bfa;
+          border: 1px solid rgba(139,92,246,0.25);
+          padding: 3px 10px;
+          border-radius: 999px;
+          font-weight: 600;
+        }
+        .btn-primary {
+          background: #7c3aed;
+          color: #fff;
+          padding: 12px 24px;
+          border-radius: 10px;
+          font-weight: 600;
+          font-size: 14px;
+          transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+          display: inline-block;
+          letter-spacing: 0.01em;
+        }
+        .btn-primary:hover {
+          background: #6d28d9;
+          transform: translateY(-2px);
+          box-shadow: 0 8px 24px rgba(109,40,217,0.35);
+        }
+        .btn-secondary {
+          background: transparent;
+          color: #d4d4d8;
+          padding: 12px 24px;
+          border-radius: 10px;
+          font-weight: 600;
+          font-size: 14px;
+          border: 1px solid rgba(255,255,255,0.12);
+          transition: background 0.2s, transform 0.15s, border-color 0.2s;
+          display: inline-block;
+        }
+        .btn-secondary:hover {
+          background: rgba(255,255,255,0.06);
+          border-color: rgba(255,255,255,0.22);
+          transform: translateY(-2px);
+        }
+        .section-label {
+          font-size: 12px;
+          font-weight: 700;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          color: #7c3aed;
+          margin-bottom: 10px;
+        }
+        .card-glass {
+          background: rgba(255,255,255,0.03);
+          border: 1px solid rgba(255,255,255,0.08);
+          border-radius: 16px;
+          transition: border-color 0.25s, background 0.25s, transform 0.25s;
+        }
+        .card-glass:hover {
+          background: rgba(255,255,255,0.06);
+          border-color: rgba(139,92,246,0.35);
+          transform: translateY(-3px);
+        }
+        .tool-card {
+          background: rgba(255,255,255,0.02);
+          border: 1px solid rgba(255,255,255,0.07);
+          border-radius: 12px;
+          padding: 14px;
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          transition: all 0.22s cubic-bezier(.4,0,.2,1);
+          cursor: default;
+        }
+        .tool-card:hover {
+          background: rgba(139,92,246,0.08);
+          border-color: rgba(139,92,246,0.3);
+          transform: translateY(-2px);
+        }
+        .tool-img {
+          width: 40px;
+          height: 40px;
+          object-fit: contain;
+          background: rgba(255,255,255,0.05);
+          border-radius: 8px;
+          padding: 6px;
+          flex-shrink: 0;
+        }
+        .proyek-card {
+          background: rgba(255,255,255,0.02);
+          border: 1px solid rgba(255,255,255,0.07);
+          border-radius: 16px;
+          overflow: hidden;
+          transition: all 0.28s cubic-bezier(.4,0,.2,1);
+        }
+        .proyek-card:hover {
+          border-color: rgba(139,92,246,0.35);
+          transform: translateY(-4px);
+          box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+        .proyek-card img {
+          width: 100%;
+          height: 180px;
+          object-fit: cover;
+          transition: transform 0.4s ease;
+        }
+        .proyek-card:hover img { transform: scale(1.04); }
+        .proyek-img-wrap { overflow: hidden; }
+        .edu-card {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+          padding: 20px;
+          border: 1px solid rgba(255,255,255,0.08);
+          border-radius: 14px;
+          transition: all 0.25s;
+          background: rgba(255,255,255,0.02);
+          text-decoration: none;
+          color: inherit;
+        }
+        .edu-card:hover {
+          border-color: rgba(139,92,246,0.35);
+          background: rgba(139,92,246,0.06);
+          transform: translateY(-2px);
+        }
+        .edu-logo {
+          width: 56px;
+          height: 56px;
+          background: #fff;
+          border-radius: 10px;
+          padding: 8px;
+          flex-shrink: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .divider {
+          height: 1px;
+          background: rgba(255,255,255,0.06);
+          margin: 80px 0;
+        }
+        .stat-num {
+          font-size: 36px;
+          font-weight: 700;
+          color: #fff;
+          line-height: 1;
+        }
+        .stat-num span { color: #7c3aed; }
+        .contact-input {
+          width: 100%;
+          background: rgba(255,255,255,0.04);
+          border: 1px solid rgba(255,255,255,0.1);
+          border-radius: 10px;
+          padding: 12px 14px;
+          color: #fff;
+          font-size: 14px;
+          transition: border-color 0.2s, background 0.2s;
+          outline: none;
+          font-family: inherit;
+        }
+        .contact-input:focus {
+          border-color: rgba(139,92,246,0.6);
+          background: rgba(139,92,246,0.06);
+        }
+        .contact-input::placeholder { color: rgba(255,255,255,0.25); }
+        .hero-img {
+          border-radius: 24px;
+          box-shadow: 0 32px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06);
+        }
+      `}</style>
+
+      {/* ── HERO ── */}
+      <section className="hero grid md:grid-cols-2 items-center gap-12 pt-20 pb-4">
+        <div>
+          <div className="hero-badge flex items-center gap-3 w-fit px-4 py-2.5 rounded-2xl mb-7 reveal">
             <img
               src={DataImage.HeroImage}
-              alt="Hero Image"
-              className="w-10 rounded-md"
+              alt=""
+              className="w-7 h-7 rounded-md object-cover"
             />
-            <q>Kode yang indah,lahir dari ketekunan😁</q>
+            <span className="text-sm text-zinc-300 italic">
+              "Kode yang indah, lahir dari ketekunan 😁"
+            </span>
           </div>
-          <h1 className="text-5xl/tight font-bold mb-6">
-            Hai, Saya Sakhi Ardra
+          <h1 className="text-5xl font-bold leading-tight mb-5 reveal reveal-delay-1">
+            Hai, Saya
+            <br />
+            <span style={{ color: '#a78bfa' }}>Sakhi Ardra</span>
           </h1>
-          <p className="text-base/loose mb-6 opacity-50">
-            Saya Mempunyai ketertarikan dalam bidang programing, desain web, dan
-            pengembangan aplikasi. Saya senang menciptakan solusi digital yang
-            inovatif dan efisien untuk memenuhi kebutuhan pengguna.
+          <p className="text-zinc-400 text-base leading-relaxed mb-8 max-w-lg reveal reveal-delay-2">
+            Mahasiswa D4 Rekayasa Perangkat Lunak dengan ketertarikan di bidang
+            Web Development, UI/UX Design, dan pengembangan aplikasi digital
+            yang efisien dan user-friendly.
           </p>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 flex-wrap reveal reveal-delay-3">
             <a
               href="https://drive.google.com/file/d/1F_1Iwh0pbo0IgktGh6WwyvgX64Z3htNK/view?usp=drive_link"
-              className="bg-violet-700 p-4 rounded-2xl hover:bg-violet-600"
-              data-aos="fade-up">
-              Lihat CV Sakhi Ardra
+              className="btn-primary">
+              Lihat CV
             </a>
-            <a
-              href="#proyek"
-              className="bg-zinc-700 p-4 rounded-2xl hover:bg-zinc-600"
-              data-aos="fade-up">
-              Lihat Proyek
+            <a href="#proyek" className="btn-secondary">
+              Lihat Proyek →
             </a>
           </div>
         </div>
-
-        <img
-          src={DataImage.HeroImage}
-          alt="Hero Image"
-          className="w-[500px] ml-auto animate__animated animate__fadeInUp animate__delay-1s"
-          data-aos="fade-up"
-        />
-      </div>
-
-      {/*tentang  */}
-      <div className="tentang mt-32 py-10" id="tentang">
-        <div className="flex flex-col items-center mb-10">
-          <h1
-            className="text-4xl/snug font-bold text-white"
-            data-aos="zoom-out-down">
-            Tentang Saya
-          </h1>
-        </div>
-        <div
-          className="xl:w-2/3 lg:w-3/4 w-full mx-auto p-7  bg-zinc-800 rounded-lg"
-          data-aos="fade-up">
+        <div className="flex justify-center md:justify-end reveal reveal-delay-2">
           <img
             src={DataImage.HeroImage}
-            alt="Image"
-            className="w-12 rounded-mb mb-10 sm:hidden"
+            alt="Sakhi Ardra"
+            className="hero-img w-full max-w-sm"
           />
-          <p className="text-base/loose mb-10" data-aos="fade-up">
-            Hi, perkenalkan saya Sakhi Ardra Handaru, Mahasiswa aktif D4
-            Rekayasa Perangkat Lunak, Teknik Informatika, Politeknik Negeri
-            Indramayu, dengan fokus pada Web Development, Database Management,
-            UI/UX Design, SEO, Jaringan Komputer, dan Internet of Things (IoT).
-            Terbiasa mengembangkan solusi digital yang efisien, user-oriented,
-            dan berorientasi performa, serta berpengalaman bekerja kolaboratif
-            dan terstruktur. Siap berkontribusi secara profesional di industri
-            maupun instansi pemerintahan. sehingga setiap proyek yang saya
-            kembangkan tidak hanya terlihat menarik tetapi juga memberikan
-            pengalaman pengguna yang optimal.
+        </div>
+      </section>
+
+      <div className="divider" />
+
+      {/* ── TENTANG ── */}
+      <section id="tentang">
+        <p className="section-label reveal">Tentang</p>
+        <h2 className="text-3xl font-bold mb-8 reveal reveal-delay-1">
+          Tentang Saya
+        </h2>
+
+        <div className="card-glass p-8 reveal reveal-delay-2">
+          <p className="text-zinc-300 text-base leading-relaxed mb-8">
+            Hi! Saya <strong className="text-white">Sakhi Ardra Handaru</strong>
+            , Mahasiswa aktif D4 Rekayasa Perangkat Lunak, Teknik Informatika,
+            Politeknik Negeri Indramayu. Fokus saya di Web Development, Database
+            Management, UI/UX Design, SEO, Jaringan Komputer, dan Internet of
+            Things (IoT). Saya terbiasa mengembangkan solusi digital yang
+            efisien, user-oriented, dan berorientasi performa — siap
+            berkontribusi secara profesional di industri maupun instansi
+            pemerintahan.
           </p>
-          <div
-            className="flex items-center justify-between"
-            data-aos="flip-left">
+          <div className="flex items-center justify-between flex-wrap gap-6">
             <img
               src={DataImage.HeroImage}
-              alt="Image"
-              className="w-12 rounded-md sm:block hidden"
+              alt=""
+              className="w-12 h-12 rounded-xl object-cover hidden sm:block"
             />
-            <div className="flex items-center gap-6">
+            <div className="flex gap-10">
               <div>
-                <h1 className="text-4xl mb-1">
-                  3 <span className="text-violet-500">+</span>
-                </h1>
-                <p>Proyek Selesai</p>
+                <p className="stat-num">
+                  3 <span>+</span>
+                </p>
+                <p className="text-zinc-400 text-sm mt-1">Proyek Selesai</p>
               </div>
               <div>
-                <h1 className="text-4xl mb-1">
-                  1 <span className="text-violet-500">+</span>
-                </h1>
-                <p>Tahun Pengalaman</p>
+                <p className="stat-num">
+                  1 <span>+</span>
+                </p>
+                <p className="text-zinc-400 text-sm mt-1">Tahun Pengalaman</p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* pendidikan */}
-        <section className="education-section mt-30">
-          <div className="flex flex-col items-center mb-10">
-            <h1
-              className="text-4xl/snug font-bold text-white"
-              data-aos="zoom-out-down">
-              Pendidikan
-            </h1>
-          </div>
-          <div className="flex flex-wrap justify-center gap-6 p-4">
+        {/* Pendidikan */}
+        <div className="mt-14">
+          <p className="section-label reveal">Riwayat</p>
+          <h3 className="text-2xl font-bold mb-6 reveal reveal-delay-1">
+            Pendidikan
+          </h3>
+          <div className="flex flex-col gap-4 max-w-xl">
             <a
               href="https://polindra.ac.id/"
-              className="group flex items-center gap-4 w-full max-w-md p-4 bg-transparent border border-gray-700 rounded-xl transition-all duration-300 hover:bg-gray-800/50 hover:border-gray-500 hover:shadow-lg hover:-translate-y-1"
-              data-aos="flip-left"
-              data-aos-easing="ease-out-cubic">
-              <div className="flex items-center justify-center w-16 h-16 bg-white rounded-lg overflow-hidden p-2">
+              className="edu-card reveal reveal-delay-2">
+              <div className="edu-logo">
                 <img
                   src="/assets/polindra.png"
-                  alt="University Icon"
+                  alt="Polindra"
                   className="w-full h-full object-contain"
                 />
               </div>
-
               <div>
-                <h3 className="text-white font-bold text-lg leading-tight group-hover:text-blue-400 transition-colors">
+                <h4 className="text-white font-bold text-base mb-0.5">
                   Politeknik Negeri Indramayu
-                </h3>
-                <p className="text-gray-400 text-sm mt-1 font-bold">
-                  Teknik Informatika
+                </h4>
+                <p className="text-zinc-400 text-sm">
+                  Teknik Informatika · D4 Rekayasa Perangkat Lunak
                 </p>
-                <p className="text-gray-400 text-sm mt-1">
-                  D4 Rekayasa Perangkat Lunak
-                </p>
-                <p className="text-gray-500 text-xs mt-1">2024 - Sekarang</p>
+                <p className="text-zinc-500 text-xs mt-1">2024 – Sekarang</p>
               </div>
             </a>
-
             <a
               href="https://smait.sekolahbunayya.sch.id/"
-              className="group flex items-center gap-4 w-full max-w-md p-4 bg-transparent border border-gray-700 rounded-xl transition-all duration-300 hover:bg-gray-800/50 hover:border-gray-500 hover:shadow-lg hover:-translate-y-1"
-              data-aos="flip-left"
-              data-aos-easing="ease-out-cubic">
-              <div className="flex items-center justify-center w-16 h-16 bg-white rounded-lg overflow-hidden p-2">
+              className="edu-card reveal reveal-delay-3">
+              <div className="edu-logo">
                 <img
                   src="/assets/bunayya.png"
-                  alt="School Icon"
+                  alt="SMAIT Bunayya"
                   className="w-full h-full object-contain"
                 />
               </div>
-
               <div>
-                <h3 className="text-white font-bold text-lg leading-tight group-hover:text-blue-400 transition-colors">
+                <h4 className="text-white font-bold text-base mb-0.5">
                   SMAIT BUNAYYA
-                </h3>
-                <p className="text-gray-400 text-sm mt-1">
+                </h4>
+                <p className="text-zinc-400 text-sm">
                   Ilmu Pengetahuan Alam (IPA)
                 </p>
-                <p className="text-gray-500 text-xs mt-1">2021 - 2024</p>
+                <p className="text-zinc-500 text-xs mt-1">2021 – 2024</p>
               </div>
             </a>
           </div>
-        </section>
+        </div>
 
-        {/* tools */}
-        <div className="tools mt-32">
-          <h1 className="text-4xl/snug font-bold mb-4" data-aos="zoom-out-down">
-            Tools yang dipakai
-          </h1>
-          <p
-            className="xl:w-2/5 lg:w-2/4 md:w-2/3 sm:w-3/4 w-full text-base/loose opacity-50"
-            data-aos="zoom-out-down">
-            Berikut ini beberapa tools yang saya pakai untuk pembuatan website
-            ataupun desain
+        {/* Tools */}
+        <div className="mt-16">
+          <p className="section-label reveal">Stack</p>
+          <h3 className="text-2xl font-bold mb-2 reveal reveal-delay-1">
+            Tools yang Dipakai
+          </h3>
+          <p className="text-zinc-400 text-sm mb-8 reveal reveal-delay-2">
+            Teknologi dan tools yang saya gunakan dalam pengembangan web dan
+            desain.
           </p>
-          <div className="tools-box mt-14 grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
-            {listTools.map((tool) => (
+          <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-3">
+            {listTools.map((tool, i) => (
               <div
-                className="flex items-center gap-2 p-3 border border-zinc-600 rounded-md hover:bg-zinc-800 group "
-                data-aos="flip-left"
-                data-aos-easing="ease-out-cubic"
-                key={tool.id}>
-                <img
-                  src={tool.gambar}
-                  alt="Tools Image"
-                  className="w-14 bg-zinc-800 p-1 group-hover:bg-zinc-900"
-                />
+                key={tool.id}
+                className={`tool-card reveal reveal-delay-${(i % 4) + 1}`}>
+                <img src={tool.gambar} alt={tool.nama} className="tool-img" />
                 <div>
-                  <h4 className="font-bold">{tool.nama}</h4>
-                  <p className="opacity-50">{tool.ket}</p>
+                  <p className="text-white font-semibold text-sm">
+                    {tool.nama}
+                  </p>
+                  <p className="text-zinc-500 text-xs">{tool.ket}</p>
                 </div>
               </div>
             ))}
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Proyek */}
-      <div className="proyek mt-32 py-10" id="proyek">
-        <h1
-          className="text-center text-4xl font-bold mb-2"
-          data-aos="fade-up"
-          data-aos-anchor-placement="top-bottom">
+      <div className="divider" />
+
+      {/* ── PROYEK ── */}
+      <section id="proyek">
+        <p className="section-label reveal">Portofolio</p>
+        <h2 className="text-3xl font-bold mb-2 reveal reveal-delay-1">
           Proyek
-        </h1>
-        <p
-          className="text-base/loose text-center opacity-50"
-          data-aos="fade-up"
-          data-aos-anchor-placement="top-bottom">
-          Berikut ini beberapa proyek yang saya buat
+        </h2>
+        <p className="text-zinc-400 text-sm mb-10 reveal reveal-delay-2">
+          Beberapa proyek yang telah saya kerjakan.
         </p>
-        <div
-          className="proyek-box mt-14 grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4"
-          data-aos="fade-up"
-          data-aos-duration="3000">
-          {listProyek.map((proyek) => (
-            <div key={proyek.id} className="p-4 bg-zinc-800 rounded-md">
-              <img src={proyek.gambar} alt="Proyek Image" />
-              <div>
-                <h1 className="text-2xl font-bold my-4">{proyek.nama}</h1>
-                <p className="text-base/loose mb-4" data-aos="fade-up">
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
+          {listProyek.map((proyek, i) => (
+            <div
+              key={proyek.id}
+              className={`proyek-card reveal reveal-delay-${(i % 3) + 1}`}>
+              <div className="proyek-img-wrap">
+                <img src={proyek.gambar} alt={proyek.nama} />
+              </div>
+              <div className="p-5">
+                <h3 className="text-white font-bold text-lg mb-2">
+                  {proyek.nama}
+                </h3>
+                <p className="text-zinc-400 text-sm leading-relaxed mb-4">
                   {proyek.desk}
                 </p>
-                <div className="flex flex-wrap gap-2" data-aos="flip-up">
-                  {proyek.tools.map((tool, index) => (
-                    <p
-                      className="py-1 px-3 border border-zinc-500 bg-zinc-600 rounded-md font-semibold"
-                      key={index}>
+                <div className="flex flex-wrap gap-1.5 mb-5">
+                  {proyek.tools.map((tool, idx) => (
+                    <span className="tag-chip" key={idx}>
                       {tool}
-                    </p>
+                    </span>
                   ))}
                 </div>
-                <div className="mt-8 text-center">
-                  <a
-                    href={proyek.link || '#'}
-                    onClick={(e) => !proyek.link && e.preventDefault()}
-                    className={`p-3 rounded-lg block border border-zinc-600 ${
-                      proyek.link
-                        ? 'bg-violet-700 hover:bg-violet-600'
-                        : 'bg-gray-500 cursor-not-allowed'
-                    }`}>
-                    {proyek.link ? 'Lihat Website/Prototipe' : 'Coming Soon'}
-                  </a>
-                </div>
+                <a
+                  href={proyek.link || '#'}
+                  onClick={(e) => !proyek.link && e.preventDefault()}
+                  className={`block text-center py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 ${
+                    proyek.link
+                      ? 'btn-primary'
+                      : 'bg-zinc-700 text-zinc-400 cursor-not-allowed'
+                  }`}
+                  style={
+                    proyek.link ? {} : { transform: 'none', boxShadow: 'none' }
+                  }>
+                  {proyek.link ? 'Lihat Website / Prototipe →' : 'Coming Soon'}
+                </a>
               </div>
             </div>
           ))}
         </div>
-      </div>
+      </section>
 
-      {/* kontak */}
-      <div className="kontak mt-32 sm:p-10 p-0" id="kontak" data-aos="fade-up">
-        <h1 className="text-4xl mb-2 font-bold text-center">Kontak</h1>
-        <p className="text-base/loose text-center mb-10 opacity-50">
-          Silahkan isi Pesan, Pesan otomatis akan terkirim ke email saya ( Sakhi
-          Ardra)
+      <div className="divider" />
+
+      {/* ── KONTAK ── */}
+      <section id="kontak" className="pb-20">
+        <p className="section-label reveal">Hubungi</p>
+        <h2 className="text-3xl font-bold mb-2 reveal reveal-delay-1">
+          Kontak
+        </h2>
+        <p className="text-zinc-400 text-sm mb-10 reveal reveal-delay-2">
+          Isi form di bawah — pesan akan langsung terkirim ke email saya.
         </p>
+
         <form
           action="https://formsubmit.co/ardrasakhi390@gmail.com"
           method="POST"
-          className="bg-zinc-800 p-10 sm:w-fit w-full mx-auto rounded-md"
-          autoComplete="off">
-          <div className="flex flex-col gap-6">
-            <div
-              className="flex flex-col gap-2"
-              data-aos="flip-left"
-              data-aos-easing="ease-out-cubic">
-              <label className="font-semibold">Nama Anda / Samaran</label>
+          autoComplete="off"
+          className="max-w-lg reveal reveal-delay-2">
+          <div className="flex flex-col gap-5">
+            <div>
+              <label className="block text-zinc-300 text-sm font-semibold mb-2">
+                Nama / Samaran
+              </label>
               <input
                 type="text"
                 name="nama"
-                placeholder="Masukan nama / samaran..."
-                className="border border-zinc-500 p-2 rounded-md"
+                placeholder="Masukkan nama atau samaran..."
+                className="contact-input"
                 required
               />
             </div>
-
-            <div
-              className="flex flex-col gap-2"
-              data-aos="flip-left"
-              data-aos-easing="ease-out-cubic">
-              <label className="font-semibold">Pesan</label>
+            <div>
+              <label className="block text-zinc-300 text-sm font-semibold mb-2">
+                Pesan
+              </label>
               <textarea
                 name="pesan"
-                id="pesan"
-                cols="45"
-                rows="7"
-                placeholder="pesan..."
-                className="border border-zinc-500 p-2 rounded-md"
-                required></textarea>
+                rows="6"
+                placeholder="Tulis pesanmu di sini..."
+                className="contact-input"
+                style={{ resize: 'vertical' }}
+                required
+              />
             </div>
-            <div className="text-center" data-aos="fade-up">
-              <button
-                type="submit"
-                className="bg-violet-700 p-3 rounded-lg w-full cursor-pointer  border border-zinc-600 hover:bg-violet-600">
-                Kirim Pesan
-              </button>
-            </div>
+            <button
+              type="submit"
+              className="btn-primary w-full text-center cursor-pointer">
+              Kirim Pesan
+            </button>
           </div>
         </form>
-      </div>
+      </section>
     </>
   );
 }
