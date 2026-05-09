@@ -141,6 +141,13 @@ export default function App() {
         #cur-dot.hide { opacity:0 }
         #cur-ring { position:fixed;width:38px;height:38px;border:1.5px solid rgba(167,139,250,.5);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .25s,height .25s,border-color .25s; }
         #cur-ring.big { width:58px;height:58px;border-color:rgba(167,139,250,.85) }
+        .modal-overlay,
+        .modal-overlay * {
+          cursor: auto !important;
+        }
+        .modal-close {
+          cursor: pointer !important;
+        }
 
         @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-14px)} }
         @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
@@ -239,6 +246,93 @@ export default function App() {
           transform: scale(1.02);
         }
 
+        //4 hover
+        .filter-btn {
+        padding: 8px 20px;
+        border-radius: 99px;
+        font-size: 13px;
+        font-weight: 600;
+        transition: all 0.25s ease;
+        border: 1px solid;
+        cursor: pointer;
+      }
+
+      .filter-btn:hover {
+        transform: translateY(-2px);
+        background: rgba(124, 58, 237, 0.15) !important;
+        border-color: rgba(124, 58, 237, 0.5) !important;
+        color: ${t.textPrimary} !important;
+      }
+
+      /* Active/selected state */
+      .filter-btn.active {
+        background: #7c3aed !important;
+        border-color: #7c3aed !important;
+        color: #fff !important;
+      } 
+
+      /* Filter Button Styles */
+      .filter-wrapper {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 32px;
+        flex-wrap: wrap;
+        margin-top: 20px;
+        justify-content: center;
+      }
+
+      .filter-btn {
+        padding: 10px 28px;
+        border-radius: 40px;
+        font-size: 13px;
+        font-weight: 600;
+        transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+        border: 1.5px solid;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        backdrop-filter: blur(4px);
+        letter-spacing: 0.3px;
+      }
+
+      .filter-btn::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(124, 58, 237, 0.2);
+        transform: translate(-50%, -50%);
+        transition: width 0.5s, height 0.5s;
+      }
+
+      .filter-btn:hover::before {
+        width: 200px;
+        height: 200px;
+      }
+
+      .filter-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(124, 58, 237, 0.25);
+      }
+
+      .filter-btn.active {
+        background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%);
+        border-color: transparent;
+        color: white;
+        box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
+      }
+
+      .filter-btn.active:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(124, 58, 237, 0.5);
+      }
+
+      .filter-btn:active {
+        transform: translateY(0px);
+      }
         .btn-p { display:inline-flex;align-items:center;gap:8px;background:#7c3aed;color:#fff;padding:13px 28px;border-radius:10px;font-weight:700;font-size:14px;letter-spacing:.02em;text-decoration:none;position:relative;overflow:hidden;transition:background .2s,transform .18s,box-shadow .2s;cursor:pointer; }
         .btn-p::after { content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.13),transparent);transition:left .4s; }
         .btn-p:hover::after { left:150% }
@@ -263,7 +357,6 @@ export default function App() {
         .about-card::before { content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(124,58,237,.6),transparent); }
         .about-card:hover { border-color:rgba(124,58,237,.4) }
 
-        .stat-card { padding:20px;background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.2);border-radius:14px;text-align:center;transition:all .25s; }
         .stat-card:hover { background:rgba(124,58,237,.12);border-color:rgba(124,58,237,.4);transform:translateY(-3px) }
         .stat-n { font-size:38px;font-weight:800;line-height:1;color:${t.textPrimary}; }
         .stat-n span { color:#7c3aed }
@@ -632,32 +725,37 @@ export default function App() {
             }}>
             Proyek Pilihan
           </h2>
-          <div
-            className="reveal d2"
-            style={{
-              display: 'flex',
-              gap: '10px',
-              marginBottom: '32px',
-              flexWrap: 'wrap',
-              marginTop: '20px',
-            }}>
+
+          {/* Filter Proyek */}
+          <div className="filter-wrapper reveal d2">
             {['Semua', 'Website', 'UI/UX', 'Mobile'].map((cat) => (
               <button
                 key={cat}
                 onClick={() => setFilter(cat)}
+                className={`filter-btn ${filter === cat ? 'active' : ''}`}
                 style={{
-                  padding: '8px 20px',
-                  borderRadius: '99px',
-                  fontSize: '13px',
-                  fontWeight: 600,
-                  transition: 'all .25s',
-                  border: '1px solid',
-                  backgroundColor: filter === cat ? '#7c3aed' : t.inputBg,
-                  borderColor: filter === cat ? '#7c3aed' : t.borderLight,
+                  background:
+                    filter === cat
+                      ? 'linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%)'
+                      : 'transparent',
+                  borderColor: filter === cat ? 'transparent' : t.borderLight,
                   color: filter === cat ? '#fff' : t.textSecondary,
-                  cursor: 'pointer',
                 }}>
                 {cat}
+                {filter === cat && (
+                  <span
+                    style={{
+                      position: 'absolute',
+                      right: '-4px',
+                      top: '-4px',
+                      width: '10px',
+                      height: '10px',
+                      background: '#22c55e',
+                      borderRadius: '50%',
+                      border: `2px solid ${t.bg}`,
+                    }}
+                  />
+                )}
               </button>
             ))}
           </div>
