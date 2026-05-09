@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
 import DataImage from '../data';
 import { listTools, listProyek } from '../data';
+import { useEffect, useState } from 'react';
 
 function useScrollReveal() {
   useEffect(() => {
@@ -64,6 +64,8 @@ function useCursor() {
 }
 
 export default function App() {
+  const [filter, setFilter] = useState('Semua');
+
   useScrollReveal();
   useCursor();
 
@@ -405,7 +407,6 @@ export default function App() {
             {[
               ['3 +', 'Proyek Selesai'],
               ['1 +', 'Tahun Pengalaman'],
-              ['∞', 'Semangat Belajar'],
             ].map(([n, l], i) => (
               <div
                 key={i}
@@ -439,13 +440,15 @@ export default function App() {
         <div style={{ marginTop: '52px' }}>
           <p className="section-tag reveal">Pendidikan</p>
           <div
+            className="reveal d1"
             style={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '12px',
-              maxWidth: '520px',
-            }}
-            className="reveal d1">
+              display: 'grid' /* Ubah dari flex menjadi grid */,
+              gridTemplateColumns:
+                'repeat(auto-fit, minmax(300px, 1fr))' /* Otomatis sejajar jika layar cukup lebar */,
+              gap: '20px' /* Jarak antar kartu */,
+              width: '100%' /* Gunakan lebar penuh agar bisa sejajar */,
+              maxWidth: '1000px' /* Tingkatkan max-width agar tidak sempit */,
+            }}>
             {[
               {
                 href: 'https://polindra.ac.id/',
@@ -464,7 +467,14 @@ export default function App() {
                 year: '2021 — 2024',
               },
             ].map((e) => (
-              <a key={e.href} href={e.href} className="edu-card">
+              <a
+                key={e.href}
+                href={e.href}
+                className="edu-card"
+                style={{
+                  margin: 0,
+                }} /* Pastikan tidak ada margin tambahan yang merusak grid */
+              >
                 <div className="edu-logo">
                   <img
                     src={e.img}
@@ -573,114 +583,174 @@ export default function App() {
           }}>
           Proyek Pilihan
         </h2>
-        <p
+
+        {/* Navbar Filter Proyek */}
+        <div
           className="reveal d2"
-          style={{ color: '#3f3f46', fontSize: '13px', marginBottom: '32px' }}>
-          Beberapa karya yang telah saya kerjakan.
-        </p>
+          style={{
+            display: 'flex',
+            gap: '10px',
+            marginBottom: '32px',
+            flexWrap: 'wrap',
+            marginTop: '20px',
+          }}>
+          {['Semua', 'Website', 'UI/UX', 'Mobile'].map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setFilter(cat)}
+              style={{
+                padding: '8px 20px',
+                borderRadius: '99px',
+                fontSize: '13px',
+                fontWeight: 600,
+                cursor: 'pointer',
+                transition: 'all .25s',
+                border: '1px solid',
+                backgroundColor:
+                  filter === cat ? '#7c3aed' : 'rgba(255,255,255,.03)',
+                borderColor:
+                  filter === cat ? '#7c3aed' : 'rgba(255,255,255,.08)',
+                color: filter === cat ? '#fff' : '#a1a1aa',
+              }}>
+              {cat}
+            </button>
+          ))}
+        </div>
 
         <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
-          {listProyek.map((p, i) => (
-            <div key={p.id} className={`proyek-card reveal d${(i % 3) + 1}`}>
-              <div className="pimg-wrap">
-                <img src={p.gambar} alt={p.nama} />
-              </div>
-              <div style={{ padding: '20px' }}>
-                <h3
-                  style={{
-                    color: '#fff',
-                    fontWeight: 700,
-                    fontSize: '15px',
-                    marginBottom: '7px',
-                  }}>
-                  {p.nama}
-                </h3>
-                <p
-                  style={{
-                    color: '#71717a',
-                    fontSize: '13px',
-                    lineHeight: 1.7,
-                    marginBottom: '14px',
-                  }}>
-                  {p.desk}
-                </p>
-                <div
-                  style={{
-                    display: 'flex',
-                    flexWrap: 'wrap',
-                    gap: '6px',
-                    marginBottom: '18px',
-                  }}>
-                  {p.tools.map((t, idx) => (
-                    <span key={idx} className="tag-chip">
-                      {t}
-                    </span>
-                  ))}
+          {listProyek
+            .filter((p) => filter === 'Semua' || p.kategori === filter) // Pastikan di data.js ada property kategori
+            .map((p, i) => (
+              <div key={p.id} className={`proyek-card reveal d${(i % 3) + 1}`}>
+                <div className="pimg-wrap">
+                  <img src={p.gambar} alt={p.nama} />
                 </div>
-                {p.link ? (
-                  <a
-                    href={p.link}
-                    className="btn-p"
-                    style={{
-                      display: 'block',
-                      textAlign: 'center',
-                      width: '100%',
-                    }}>
-                    Lihat Website / Prototipe →
-                  </a>
-                ) : (
+                <div style={{ padding: '20px' }}>
                   <div
                     style={{
-                      display: 'block',
-                      textAlign: 'center',
-                      padding: '10px',
-                      background: 'rgba(255,255,255,.03)',
-                      border: '1px solid rgba(255,255,255,.06)',
-                      borderRadius: '10px',
-                      color: '#3f3f46',
-                      fontSize: '13px',
-                      fontWeight: 600,
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                      marginBottom: '7px',
                     }}>
-                    Coming Soon
+                    <h3
+                      style={{
+                        color: '#fff',
+                        fontWeight: 700,
+                        fontSize: '15px',
+                        margin: 0,
+                      }}>
+                      {p.nama}
+                    </h3>
+                    <span
+                      style={{
+                        fontSize: '10px',
+                        color: '#7c3aed',
+                        fontWeight: 700,
+                      }}>
+                      {p.kategori}
+                    </span>
                   </div>
-                )}
+                  <p
+                    style={{
+                      color: '#71717a',
+                      fontSize: '13px',
+                      lineHeight: 1.7,
+                      marginBottom: '14px',
+                    }}>
+                    {p.desk}
+                  </p>
+                  <div
+                    style={{
+                      display: 'flex',
+                      flexWrap: 'wrap',
+                      gap: '6px',
+                      marginBottom: '18px',
+                    }}>
+                    {p.tools.map((t, idx) => (
+                      <span key={idx} className="tag-chip">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                  {p.link ? (
+                    <a
+                      href={p.link}
+                      className="btn-p"
+                      style={{
+                        display: 'block',
+                        textAlign: 'center',
+                        width: '100%',
+                      }}>
+                      Lihat Website / Prototipe →
+                    </a>
+                  ) : (
+                    <div
+                      style={{
+                        display: 'block',
+                        textAlign: 'center',
+                        padding: '10px',
+                        background: 'rgba(255,255,255,.03)',
+                        border: '1px solid rgba(255,255,255,.06)',
+                        borderRadius: '10px',
+                        color: '#3f3f46',
+                        fontSize: '13px',
+                        fontWeight: 600,
+                      }}>
+                      Coming Soon
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
       </section>
 
-      <div className="divider reveal">
-        <div className="d-dot" />
-        <div className="d-dot" />
-        <div className="d-dot" />
-      </div>
-
       {/* ── KONTAK ── */}
-      <section id="kontak" style={{ paddingBottom: '100px' }}>
-        <p className="section-tag reveal">Hubungi Saya</p>
-        <h2
-          className="reveal d1"
-          style={{
-            fontSize: 'clamp(26px,4vw,34px)',
-            fontWeight: 800,
-            color: '#fff',
-            marginBottom: '6px',
-            letterSpacing: '-.02em',
-          }}>
-          Mari Berkolaborasi
-        </h2>
-        <p
-          className="reveal d2"
-          style={{ color: '#3f3f46', fontSize: '13px', marginBottom: '32px' }}>
-          Isi form — pesan langsung terkirim ke email saya.
-        </p>
+      <section
+        id="kontak"
+        style={{
+          paddingBottom: '100px',
+          display: 'flex', // Gunakan Flexbox
+          flexDirection: 'column', // Susun elemen ke bawah
+          alignItems: 'center', // Mengetengahkan secara horizontal
+          textAlign: 'center', // Mengetengahkan teks di dalamnya
+        }}>
+        <div className="reveal">
+          <p className="section-tag" style={{ justifyContent: 'center' }}>
+            Hubungi Saya
+          </p>
+          <h2
+            className="d1"
+            style={{
+              fontSize: 'clamp(26px,4vw,34px)',
+              fontWeight: 800,
+              color: '#fff',
+              marginBottom: '6px',
+              letterSpacing: '-.02em',
+            }}>
+            Mari Berkolaborasi
+          </h2>
+          <p
+            className="d2"
+            style={{
+              color: '#3f3f46',
+              fontSize: '13px',
+              marginBottom: '32px',
+            }}>
+            Isi form — pesan langsung terkirim ke email saya.
+          </p>
+        </div>
 
         <form
           action="https://formsubmit.co/ardrasakhi390@gmail.com"
           method="POST"
           autoComplete="off"
-          style={{ maxWidth: '520px' }}
+          style={{
+            width: '100%',
+            maxWidth: '520px',
+            textAlign: 'left', // Menjaga teks input dan label tetap rata kiri agar rapi
+          }}
           className="reveal d2">
           <div
             style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
