@@ -499,16 +499,7 @@ body {
   gap: 16px;
   flex-wrap: wrap;
 }
-.stat-card {
-  flex: 1;
-  min-width: 120px;
-  padding: 20px;
-  background: rgba(124, 58, 237, 0.08);
-  border: 1px solid rgba(124, 58, 237, 0.2);
-  border-radius: 14px;
-  text-align: center;
-  transition: all 0.25s;
-}
+
 .stat-card:hover {
   background: rgba(124, 58, 237, 0.12);
   border-color: rgba(124, 58, 237, 0.4);
@@ -1323,4 +1314,46 @@ section {
   --glow: rgba(124, 58, 237, 0.08);
   --grid-line: rgba(139, 92, 246, 0.04);
   --input-bg: rgba(0, 0, 0, 0.02);
+}
+
+/* ========================================
+   SOCIAL LINKS
+   ======================================== */
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 30px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.social-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.social-icon:hover {
+  transform: translateY(-5px);
+  background: #7c3aed;
+  color: white;
+  border-color: #7c3aed;
+  box-shadow: 0 8px 20px rgba(124, 58, 237, 0.3);
+}
+
+.social-icon svg {
+  transition: transform 0.2s;
+}
+
+.social-icon:hover svg {
+  transform: scale(1.1);
 }
