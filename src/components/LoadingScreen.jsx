@@ -14,7 +14,7 @@ export default function LoadingScreen({ onDone }) {
           setTimeout(onDone, 300);
           return 100;
         }
-        return prev + 1.4;
+        return prev + 2.5;
       });
     }, 22);
     return () => clearInterval(interval);
@@ -66,27 +66,19 @@ export default function LoadingScreen({ onDone }) {
         }}
       />
 
-      {/* Logo / Monogram */}
-      <div
+      <img
+        src="./assets/skhii.png" // ganti link foto kamu
+        alt="Profile"
         style={{
-          width: 72,
-          height: 72,
-          borderRadius: 20,
-          background: 'linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          fontSize: 28,
-          fontWeight: 900,
-          color: '#fff',
+          width: 80,
+          height: 80,
+          borderRadius: 50,
+          objectFit: 'cover',
           marginBottom: 28,
           boxShadow: '0 0 40px rgba(124,58,237,0.45)',
-          letterSpacing: '-0.03em',
-          position: 'relative',
-          zIndex: 1,
-        }}>
-        SA
-      </div>
+          border: '2px solid rgba(124,58,237,0.3)',
+        }}
+      />
 
       {/* Name */}
       <h1

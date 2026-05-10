@@ -496,7 +496,9 @@ export default function App() {
             <p className="section-tag center">Hubungi Saya</p>
             <h2 className="section-title-center d1">Mari Berkolaborasi</h2>
             <p className="kontak-sub d2">
-              Isi form — pesan langsung terkirim ke email saya.
+              Isi form — pesan langsung terkirim ke email saya{' '}
+              <span style={{ color: '#c4b5fd' }}>ardrasakhi390@gmail.com</span>{' '}
+              {/* ungu sangat muda */}
             </p>
           </div>
           <form
@@ -526,7 +528,7 @@ export default function App() {
               style={{ display: 'none' }}
             />
             <div className="form-group">
-              <label>Nama / Samaran</label>
+              <label>Nama Anda </label>
               <input
                 type="text"
                 name="name"
@@ -536,7 +538,7 @@ export default function App() {
               />
             </div>
             <div className="form-group">
-              <label>Email (opsional)</label>
+              <label>Email</label>
               <input
                 type="email"
                 name="email"
@@ -592,7 +594,7 @@ export default function App() {
       </h2>
       <div className="social-links reveal d3">
         <a
-          href="https://www.linkedin.com/in/sakhi-ardra-handaru-832043306/"
+          href="https://www.linkedin.com/in/sakhiardra"
           className="social-icon"
           target="_blank"
           rel="noopener noreferrer"
@@ -603,7 +605,7 @@ export default function App() {
         </a>
 
         <a
-          href="https://github.com/SakhiArdra"
+          href="https://github.com/skirdrax"
           className="social-icon"
           target="_blank"
           rel="noopener noreferrer"
@@ -625,7 +627,7 @@ export default function App() {
         </a>
 
         <a
-          href="https://www.instagram.com/sakhiardra_/"
+          href="https://www.instagram.com/skhiii_adrr"
           className="social-icon"
           target="_blank"
           rel="noopener noreferrer"
