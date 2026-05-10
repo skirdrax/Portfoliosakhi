@@ -15,7 +15,7 @@ const MAGANG = [
     lokasi: 'WFH Tangerang, Office Jakarta',
     periode: 'Mei 2025 — Agustus 2025',
     deskripsi:
-      'mengoptimasi performa SEO website perusahaan, meningkatkan peringkat di hasil pencarian Google, dan meningkatkan visibilitas online untuk menarik lebih banyak pelanggan potensial dan pengunjung.',
+      'mengoptimasi performa SEO website perusahaan, meningkatkan peringkat di hasil pencarian Google, dan meningkatkan visibilitas online untuk menarik lebih banyak pelanggan potensial dan pembeli.',
     tech: ['Google Analytics', 'Ahrefs', 'Spreedsheet', 'WordPress'],
     logo: '/assets/groperti.png', // ganti dengan logo perusahaan
   },
