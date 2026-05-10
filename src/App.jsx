@@ -452,7 +452,7 @@ export default function App() {
             <div>
               <div className="badge reveal">
                 <span className="badge-dot" />
-                Portfolio Sakhi Ardra Handaruu
+                Portfolio Sakhi Ardra Handaru
               </div>
               <h1 className="hero-name reveal d1">
                 Hai, Saya
