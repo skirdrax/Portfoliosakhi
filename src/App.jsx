@@ -1,7 +1,23 @@
 import DataImage from '../data';
 import { listTools, listProyek } from '../data';
 import { useEffect, useState } from 'react';
-import './App.css'; // Import file CSS terpisah
+import './App.css';
+
+const FULL_TEXT = 'Sakhi Ardra';
+
+const MAGANG = [
+  {
+    id: 1,
+    posisi: 'Web Developer Intern',
+    perusahaan: 'Contoh Perusahaan',
+    lokasi: 'Indramayu, Jawa Barat',
+    periode: 'Jan 2025 — Mar 2025',
+    deskripsi:
+      'Mengembangkan fitur front-end menggunakan React JS dan Tailwind CSS, berkolaborasi dengan tim menggunakan Git, serta melakukan optimasi performa halaman web.',
+    tech: ['React JS', 'Tailwind CSS', 'Git', 'REST API'],
+    logo: '/assets/polindra.png', // ganti dengan logo perusahaan
+  },
+];
 
 function useScrollReveal(dependency) {
   useEffect(() => {
@@ -69,9 +85,6 @@ export default function App() {
   const [darkMode, setDarkMode] = useState(true);
   const [displayText, setDisplayText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
-  const fullText = 'Sakhi Ardra';
-
-  // Modal states
   const [showModal, setShowModal] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
   const [isSuccess, setIsSuccess] = useState(false);
@@ -79,10 +92,10 @@ export default function App() {
   useScrollReveal(filter);
   useCursor();
 
-  // Typing effect
+  // ✅ Fix: FULL_TEXT sebagai konstanta di luar komponen, tidak perlu di deps
   useEffect(() => {
     let timeout;
-    if (!isDeleting && displayText === fullText) {
+    if (!isDeleting && displayText === FULL_TEXT) {
       timeout = setTimeout(() => setIsDeleting(true), 2000);
     } else if (isDeleting && displayText === '') {
       setIsDeleting(false);
@@ -90,71 +103,53 @@ export default function App() {
       timeout = setTimeout(
         () => {
           setDisplayText((prev) =>
-            isDeleting ? prev.slice(0, -1) : fullText.slice(0, prev.length + 1),
+            isDeleting
+              ? prev.slice(0, -1)
+              : FULL_TEXT.slice(0, prev.length + 1),
           );
         },
         isDeleting ? 80 : 120,
       );
     }
     return () => clearTimeout(timeout);
-  }, [displayText, isDeleting, fullText]);
+  }, [displayText, isDeleting]);
 
-  // Update body background and theme
+  // ✅ Fix: CSS variables diset lewat data-theme attribute, bukan object t
   useEffect(() => {
     document.body.style.background = darkMode ? '#09090b' : '#f4f4f9';
     document.body.setAttribute('data-theme', darkMode ? 'dark' : 'light');
+    // dispatch event buat Navbar
+    window.dispatchEvent(new CustomEvent('themeChange', { detail: darkMode }));
   }, [darkMode]);
 
-  const t = darkMode
-    ? {
-        bg: '#09090b',
-        bgCard: 'rgba(255,255,255,.025)',
-        bgCardHover: 'rgba(124,58,237,.07)',
-        textPrimary: '#fff',
-        textSecondary: '#a1a1aa',
-        textMuted: '#3f3f46',
-        border: 'rgba(255,255,255,.08)',
-        borderLight: 'rgba(255,255,255,.07)',
-        glow: 'rgba(124,58,237,.15)',
-        gridLine: 'rgba(139,92,246,.065)',
-        inputBg: 'rgba(255,255,255,.03)',
-      }
-    : {
-        bg: '#f4f4f9',
-        bgCard: 'rgba(0,0,0,.02)',
-        bgCardHover: 'rgba(124,58,237,.05)',
-        textPrimary: '#18181b',
-        textSecondary: '#52525b',
-        textMuted: '#a1a1aa',
-        border: 'rgba(0,0,0,.08)',
-        borderLight: 'rgba(0,0,0,.05)',
-        glow: 'rgba(124,58,237,.08)',
-        gridLine: 'rgba(139,92,246,.04)',
-        inputBg: 'rgba(0,0,0,.02)',
-      };
-
-  // Apply CSS variables for theme
-  useEffect(() => {
-    const root = document.documentElement;
-    root.style.setProperty('--bg', t.bg);
-    root.style.setProperty('--bg-card', t.bgCard);
-    root.style.setProperty('--text-primary', t.textPrimary);
-    root.style.setProperty('--text-secondary', t.textSecondary);
-    root.style.setProperty('--text-muted', t.textMuted);
-    root.style.setProperty('--border', t.border);
-    root.style.setProperty('--border-light', t.borderLight);
-    root.style.setProperty('--glow', t.glow);
-    root.style.setProperty('--grid-line', t.gridLine);
-    root.style.setProperty('--input-bg', t.inputBg);
-  }, [t]);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+    fetch(form.action, { method: 'POST', body: formData })
+      .then((r) => r.json())
+      .then((data) => {
+        setIsSuccess(data.success);
+        setModalMessage(
+          data.success
+            ? 'Pesan berhasil terkirim! Terima kasih, saya akan membalas segera.'
+            : 'Gagal mengirim pesan. Silakan coba lagi.',
+        );
+        setShowModal(true);
+        if (data.success) form.reset();
+      })
+      .catch(() => {
+        setIsSuccess(false);
+        setModalMessage('Terjadi kesalahan jaringan. Silakan coba lagi nanti.');
+        setShowModal(true);
+      });
+  };
 
   return (
     <>
-      {/* Cursor */}
       <div id="cur-dot" />
       <div id="cur-ring" />
 
-      {/* Theme Toggle */}
       <button
         className="theme-toggle"
         onClick={() => setDarkMode(!darkMode)}
@@ -206,7 +201,7 @@ export default function App() {
               <h1 className="hero-name reveal d1">
                 Hai, Saya
                 <br />
-                <span className="accent">{displayText || fullText}</span>
+                <span className="accent">{displayText || FULL_TEXT}</span>
                 <span className="cursor-blink" />
               </h1>
               <p className="hero-desc reveal d2">
@@ -264,7 +259,6 @@ export default function App() {
         <section id="tentang">
           <p className="section-tag reveal">Tentang Saya</p>
           <h2 className="section-title reveal d1">Profil Singkat</h2>
-
           <div className="about-card reveal d2">
             <p className="about-text">
               Hi! Saya <strong>Sakhi Ardra Handaru</strong>, Mahasiswa aktif D4
@@ -328,6 +322,85 @@ export default function App() {
             </div>
           </div>
 
+          {/* ── PENGALAMAN MAGANG ── */}
+          <div className="magang-section">
+            <p className="section-tag reveal">Pengalaman</p>
+            <h3 className="tools-title reveal d1">Pengalaman Magang</h3>
+            <p className="tools-sub reveal d2">
+              Pengalaman kerja nyata di dunia industri.
+            </p>
+
+            <div className="magang-list">
+              {MAGANG.map((m, i) => (
+                <div
+                  key={m.id}
+                  className={`magang-card reveal d${(i % 3) + 1}`}>
+                  {/* Timeline dot */}
+                  <div className="magang-timeline">
+                    <div className="timeline-dot" />
+                    {i < MAGANG.length - 1 && <div className="timeline-line" />}
+                  </div>
+
+                  <div className="magang-body">
+                    {/* Header */}
+                    <div className="magang-header">
+                      <div className="magang-logo">
+                        <img src={m.logo} alt={m.perusahaan} />
+                      </div>
+                      <div className="magang-info">
+                        <h4 className="magang-posisi">{m.posisi}</h4>
+                        <p className="magang-perusahaan">{m.perusahaan}</p>
+                        <div className="magang-meta">
+                          <span className="magang-periode">
+                            <svg
+                              width="11"
+                              height="11"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2">
+                              <rect x="3" y="4" width="18" height="18" rx="2" />
+                              <line x1="16" y1="2" x2="16" y2="6" />
+                              <line x1="8" y1="2" x2="8" y2="6" />
+                              <line x1="3" y1="10" x2="21" y2="10" />
+                            </svg>
+                            {m.periode}
+                          </span>
+                          <span className="magang-lokasi">
+                            <svg
+                              width="11"
+                              height="11"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2">
+                              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                              <circle cx="12" cy="10" r="3" />
+                            </svg>
+                            {m.lokasi}
+                          </span>
+                        </div>
+                      </div>
+                      <span className="magang-badge">Magang</span>
+                    </div>
+
+                    {/* Deskripsi */}
+                    <p className="magang-desk">{m.deskripsi}</p>
+
+                    {/* Tech */}
+                    <div className="magang-tech">
+                      {m.tech.map((t, idx) => (
+                        <span key={idx} className="tag-chip">
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
           {/* Tools */}
           <div className="tools-section">
             <p className="section-tag reveal">Tech Stack</p>
@@ -361,7 +434,6 @@ export default function App() {
         <section id="proyek">
           <p className="section-tag reveal">Portofolio</p>
           <h2 className="section-title reveal d1">Proyek Pilihan</h2>
-
           <div className="filter-wrapper reveal d2">
             {['Semua', 'Website', 'UI/UX', 'Mobile'].map((cat) => (
               <button
@@ -373,7 +445,6 @@ export default function App() {
               </button>
             ))}
           </div>
-
           <div className="proyek-grid">
             {listProyek
               .filter((p) => filter === 'Semua' || p.kategori === filter)
@@ -420,51 +491,16 @@ export default function App() {
         <section id="kontak" className="kontak-section">
           <div className="reveal">
             <p className="section-tag center">Hubungi Saya</p>
-            <h2 className="section-title-center reveal d1">
-              Mari Berkolaborasi
-            </h2>
-            <p className="kontak-sub reveal d2">
+            <h2 className="section-title-center d1">Mari Berkolaborasi</h2>
+            <p className="kontak-sub d2">
               Isi form — pesan langsung terkirim ke email saya.
             </p>
           </div>
-
           <form
-            id="contactForm"
             action="https://api.web3forms.com/submit"
             method="POST"
             className="contact-form reveal d2"
-            onSubmit={(e) => {
-              e.preventDefault();
-              const form = e.target;
-              const formData = new FormData(form);
-              fetch(form.action, {
-                method: 'POST',
-                body: formData,
-              })
-                .then((response) => response.json())
-                .then((data) => {
-                  if (data.success) {
-                    setIsSuccess(true);
-                    setModalMessage(
-                      'Pesan Anda berhasil terkirim! Terima kasih, saya akan membalas segera.',
-                    );
-                    setShowModal(true);
-                    form.reset();
-                  } else {
-                    setIsSuccess(false);
-                    setModalMessage('Gagal mengirim pesan. Silakan coba lagi.');
-                    setShowModal(true);
-                  }
-                })
-                .catch((error) => {
-                  console.error('Error:', error);
-                  setIsSuccess(false);
-                  setModalMessage(
-                    'Terjadi kesalahan jaringan. Silakan coba lagi nanti.',
-                  );
-                  setShowModal(true);
-                });
-            }}>
+            onSubmit={handleSubmit}>
             <input
               type="hidden"
               name="access_key"
@@ -486,7 +522,6 @@ export default function App() {
               name="botcheck"
               style={{ display: 'none' }}
             />
-
             <div className="form-group">
               <label>Nama / Samaran</label>
               <input
@@ -502,7 +537,7 @@ export default function App() {
               <input
                 type="email"
                 name="email"
-                placeholder="email@contoh.com (supaya saya bisa balas)"
+                placeholder="email@contoh.com"
                 className="contact-input"
               />
             </div>
@@ -523,7 +558,7 @@ export default function App() {
         </section>
       </div>
 
-      {/* Modal Popup */}
+      {/* Modal */}
       {showModal && (
         <div className="modal-overlay" onClick={() => setShowModal(false)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
