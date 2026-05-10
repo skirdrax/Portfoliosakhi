@@ -9,14 +9,15 @@ const FULL_TEXT = 'Sakhi Ardra';
 const MAGANG = [
   {
     id: 1,
-    posisi: 'Web Developer Intern',
-    perusahaan: 'Contoh Perusahaan',
-    lokasi: 'Indramayu, Jawa Barat',
-    periode: 'Jan 2025 — Mar 2025',
+    href: 'https://www.groperti.com/', // ← TAMBAHKAN INI
+    posisi: 'Web Developer - Search Engine Optimization Intern',
+    perusahaan: 'PT Groperti Indonesia',
+    lokasi: 'WFH Tangerang, Office Jakarta',
+    periode: 'Mei 2025 — Agustus 2025',
     deskripsi:
-      'Mengembangkan fitur front-end menggunakan React JS dan Tailwind CSS, berkolaborasi dengan tim menggunakan Git, serta melakukan optimasi performa halaman web.',
-    tech: ['React JS', 'Tailwind CSS', 'Git', 'REST API'],
-    logo: '/assets/polindra.png', // ganti dengan logo perusahaan
+      'mengoptimasi performa SEO website perusahaan, meningkatkan peringkat di hasil pencarian Google, dan meningkatkan visibilitas online untuk menarik lebih banyak pelanggan potensial.',
+    tech: ['Google Analytics', 'Ahrefs', 'Spreedsheet', 'WordPress'],
+    logo: '/assets/groperti.png', // ganti dengan logo perusahaan
   },
 ];
 
@@ -352,7 +353,18 @@ export default function App() {
                       </div>
                       <div className="magang-info">
                         <h4 className="magang-posisi">{m.posisi}</h4>
-                        <p className="magang-perusahaan">{m.perusahaan}</p>
+                        {/* PERUSAHAAN BISA DIKLIK */}
+                        <a
+                          href={m.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{ textDecoration: 'none' }}>
+                          <p
+                            className="magang-perusahaan"
+                            style={{ cursor: 'pointer' }}>
+                            {m.perusahaan} ↗
+                          </p>
+                        </a>
                         <div className="magang-meta">
                           <span className="magang-periode">
                             <svg
@@ -398,6 +410,34 @@ export default function App() {
                         </span>
                       ))}
                     </div>
+
+                    {/* TOMBOL LINK KE WEBSITE */}
+                    <a
+                      href={m.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="magang-link"
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '6px',
+                        marginTop: '16px',
+                        fontSize: '12px',
+                        fontWeight: 600,
+                        color: '#a78bfa',
+                        textDecoration: 'none',
+                        transition: 'all 0.2s',
+                      }}
+                      onMouseEnter={(e) => {
+                        e.target.style.color = '#7c3aed';
+                        e.target.style.gap = '10px';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.color = '#a78bfa';
+                        e.target.style.gap = '6px';
+                      }}>
+                      Kunjungi Website Perusahaan →
+                    </a>
                   </div>
                 </div>
               ))}
