@@ -1,6 +1,7 @@
 import DataImage from '../data';
 import { listTools, listProyek } from '../data';
 import { useEffect, useState } from 'react';
+import './App.css'; // Import file CSS terpisah
 
 function useScrollReveal(dependency) {
   useEffect(() => {
@@ -98,9 +99,10 @@ export default function App() {
     return () => clearTimeout(timeout);
   }, [displayText, isDeleting, fullText]);
 
-  // Update body background
+  // Update body background and theme
   useEffect(() => {
     document.body.style.background = darkMode ? '#09090b' : '#f4f4f9';
+    document.body.setAttribute('data-theme', darkMode ? 'dark' : 'light');
   }, [darkMode]);
 
   const t = darkMode
@@ -131,271 +133,23 @@ export default function App() {
         inputBg: 'rgba(0,0,0,.02)',
       };
 
+  // Apply CSS variables for theme
+  useEffect(() => {
+    const root = document.documentElement;
+    root.style.setProperty('--bg', t.bg);
+    root.style.setProperty('--bg-card', t.bgCard);
+    root.style.setProperty('--text-primary', t.textPrimary);
+    root.style.setProperty('--text-secondary', t.textSecondary);
+    root.style.setProperty('--text-muted', t.textMuted);
+    root.style.setProperty('--border', t.border);
+    root.style.setProperty('--border-light', t.borderLight);
+    root.style.setProperty('--glow', t.glow);
+    root.style.setProperty('--grid-line', t.gridLine);
+    root.style.setProperty('--input-bg', t.inputBg);
+  }, [t]);
+
   return (
     <>
-      <style>{`
-        *,*::before,*::after { cursor: none !important; }
-        body { background: ${t.bg}; overflow-x: hidden; transition: background .3s; }
-
-        #cur-dot { position:fixed;width:8px;height:8px;background:#a78bfa;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:opacity .2s; }
-        #cur-dot.hide { opacity:0 }
-        #cur-ring { position:fixed;width:38px;height:38px;border:1.5px solid rgba(167,139,250,.5);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .25s,height .25s,border-color .25s; }
-        #cur-ring.big { width:58px;height:58px;border-color:rgba(167,139,250,.85) }
-        .modal-overlay,
-        .modal-overlay * {
-          cursor: auto !important;
-        }
-        .modal-close {
-          cursor: pointer !important;
-        }
-
-        @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-14px)} }
-        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-        @keyframes shimmer { from{background-position:-500px 0} to{background-position:500px 0} }
-        @keyframes gridMove { from{background-position:0 0} to{background-position:40px 40px} }
-        @keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(124,58,237,.4)} 70%{box-shadow:0 0 0 10px rgba(124,58,237,0)} 100%{box-shadow:0 0 0 0 rgba(124,58,237,0)} }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes slideUp { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-
-        .reveal { opacity:0;transform:translateY(28px);transition:opacity .65s cubic-bezier(.22,1,.36,1),transform .65s cubic-bezier(.22,1,.36,1) }
-        .reveal.revealed { opacity:1;transform:none }
-        .d1{transition-delay:.07s} .d2{transition-delay:.14s} .d3{transition-delay:.21s} .d4{transition-delay:.28s}
-
-        .grid-bg { position:absolute;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(${t.gridLine} 1px,transparent 1px),linear-gradient(90deg,${t.gridLine} 1px,transparent 1px);background-size:40px 40px;animation:gridMove 10s linear infinite;mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,black 30%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,black 30%,transparent 100%); }
-        .glow { position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:700px;height:280px;background:radial-gradient(ellipse at center,${t.glow} 0%,transparent 65%);pointer-events:none;z-index:0; }
-
-        .hero-name { font-size:clamp(44px,7vw,70px);font-weight:800;line-height:1.04;letter-spacing:-.035em;margin-bottom:20px;color:${t.textPrimary}; }
-        .accent { background:linear-gradient(130deg,#c4b5fd 0%,#7c3aed 45%,#a78bfa 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
-        .cursor-blink { display:inline-block;width:3px;height:.88em;background:#7c3aed;margin-left:3px;vertical-align:-1px;animation:blink 1.1s step-end infinite; }
-        .badge { display:inline-flex;align-items:center;gap:8px;background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.25);padding:7px 16px;border-radius:999px;margin-bottom:28px;font-size:13px;color:#c4b5fd; }
-        .badge-dot { width:7px;height:7px;background:#7c3aed;border-radius:50%;flex-shrink:0;animation:pulse 2s infinite; }
-
-        /* Theme toggle */
-        .theme-toggle { position:fixed;top:100px;right:20px;width:44px;height:44px;border-radius:50%;background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.3);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;z-index:9997;transition:all .3s;cursor:pointer; }
-        .theme-toggle:hover { background:rgba(124,58,237,.28);transform:scale(1.07); }
-        @media(max-width:768px){ .theme-toggle{top:auto;bottom:80px;right:16px} }
-
-        /* Modal Popup */
-        .modal-overlay {
-          position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background: rgba(0,0,0,0.7);
-          backdrop-filter: blur(4px);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          z-index: 10000;
-          animation: fadeIn 0.2s ease;
-        }
-        .modal-content {
-          background: ${darkMode ? '#1f1f2e' : '#ffffff'};
-          border-radius: 20px;
-          padding: 32px;
-          max-width: 400px;
-          width: 90%;
-          text-align: center;
-          box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-          animation: slideUp 0.3s ease;
-          border: 1px solid ${darkMode ? 'rgba(255,255,255,.1)' : 'rgba(0,0,0,.1)'};
-        }
-        .modal-icon {
-          width: 64px;
-          height: 64px;
-          margin: 0 auto 20px;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 32px;
-        }
-        .modal-icon.success {
-          background: rgba(34,197,94,0.15);
-          color: #22c55e;
-        }
-        .modal-icon.error {
-          background: rgba(239,68,68,0.15);
-          color: #ef4444;
-        }
-        .modal-title {
-          font-size: 24px;
-          font-weight: 700;
-          margin-bottom: 12px;
-          color: ${darkMode ? '#fff' : '#18181b'};
-        }
-        .modal-message {
-          font-size: 14px;
-          color: ${darkMode ? '#a1a1aa' : '#52525b'};
-          margin-bottom: 24px;
-          line-height: 1.6;
-        }
-        .modal-close {
-          background: #7c3aed;
-          color: white;
-          border: none;
-          padding: 10px 24px;
-          border-radius: 10px;
-          font-weight: 600;
-          cursor: pointer;
-          transition: all 0.2s;
-        }
-        .modal-close:hover {
-          background: #6d28d9;
-          transform: scale(1.02);
-        }
-
-        //4 hover
-        .filter-btn {
-        padding: 8px 20px;
-        border-radius: 99px;
-        font-size: 13px;
-        font-weight: 600;
-        transition: all 0.25s ease;
-        border: 1px solid;
-        cursor: pointer;
-      }
-
-      .filter-btn:hover {
-        transform: translateY(-2px);
-        background: rgba(124, 58, 237, 0.15) !important;
-        border-color: rgba(124, 58, 237, 0.5) !important;
-        color: ${t.textPrimary} !important;
-      }
-
-      /* Active/selected state */
-      .filter-btn.active {
-        background: #7c3aed !important;
-        border-color: #7c3aed !important;
-        color: #fff !important;
-      } 
-
-      /* Filter Button Styles */
-      .filter-wrapper {
-        display: flex;
-        gap: 12px;
-        margin-bottom: 32px;
-        flex-wrap: wrap;
-        margin-top: 20px;
-        justify-content: center;
-      }
-
-      .filter-btn {
-        padding: 10px 28px;
-        border-radius: 40px;
-        font-size: 13px;
-        font-weight: 600;
-        transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-        border: 1.5px solid;
-        cursor: pointer;
-        position: relative;
-        overflow: hidden;
-        backdrop-filter: blur(4px);
-        letter-spacing: 0.3px;
-      }
-
-      .filter-btn::before {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 0;
-        height: 0;
-        border-radius: 50%;
-        background: rgba(124, 58, 237, 0.2);
-        transform: translate(-50%, -50%);
-        transition: width 0.5s, height 0.5s;
-      }
-
-      .filter-btn:hover::before {
-        width: 200px;
-        height: 200px;
-      }
-
-      .filter-btn:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 8px 20px rgba(124, 58, 237, 0.25);
-      }
-
-      .filter-btn.active {
-        background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%);
-        border-color: transparent;
-        color: white;
-        box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
-      }
-
-      .filter-btn.active:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 8px 25px rgba(124, 58, 237, 0.5);
-      }
-
-      .filter-btn:active {
-        transform: translateY(0px);
-      }
-        .btn-p { display:inline-flex;align-items:center;gap:8px;background:#7c3aed;color:#fff;padding:13px 28px;border-radius:10px;font-weight:700;font-size:14px;letter-spacing:.02em;text-decoration:none;position:relative;overflow:hidden;transition:background .2s,transform .18s,box-shadow .2s;cursor:pointer; }
-        .btn-p::after { content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.13),transparent);transition:left .4s; }
-        .btn-p:hover::after { left:150% }
-        .btn-p:hover { background:#6d28d9;transform:translateY(-2px);box-shadow:0 10px 28px rgba(109,40,217,.4) }
-
-        .btn-g { display:inline-flex;align-items:center;gap:8px;background:transparent;padding:13px 24px;border-radius:10px;font-weight:600;font-size:14px;border:1px solid ${t.border};text-decoration:none;transition:all .2s;color:${t.textSecondary};cursor:pointer; }
-        .btn-g:hover { background:rgba(124,58,237,.1);border-color:rgba(124,58,237,.3);transform:translateY(-2px);color:${t.textPrimary}; }
-
-        .img-wrap { display:inline-block;position:relative;animation:float 7s ease-in-out infinite; }
-        .img-wrap::before { content:'';position:absolute;inset:-2px;border-radius:24px;z-index:-1;background:linear-gradient(135deg,rgba(124,58,237,.55),rgba(167,139,250,.2) 50%,transparent); }
-        .corner { position:absolute;width:55px;height:55px;border-color:rgba(124,58,237,.5);border-style:solid }
-        .tl { top:-8px;left:-8px;border-width:2px 0 0 2px;border-radius:4px 0 0 0 }
-        .br { bottom:-8px;right:-8px;border-width:0 2px 2px 0;border-radius:0 0 4px 0 }
-        .hero-img { width:100%;max-width:370px;border-radius:22px;display:block;filter:brightness(.95) contrast(1.05) }
-
-        .section-tag { display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#7c3aed;margin-bottom:14px; }
-        .section-tag::before { content:'';display:block;width:18px;height:1.5px;background:#7c3aed;border-radius:2px }
-
-        .shimmer { height:1px;margin:80px 0;background:linear-gradient(90deg,transparent,rgba(124,58,237,.5) 40%,rgba(167,139,250,.9) 50%,rgba(124,58,237,.5) 60%,transparent);background-size:500px 100%;animation:shimmer 2.8s infinite; }
-
-        .about-card { background:${t.bgCard};border:1px solid ${t.border};border-radius:20px;padding:36px;position:relative;overflow:hidden;transition:border-color .3s; }
-        .about-card::before { content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(124,58,237,.6),transparent); }
-        .about-card:hover { border-color:rgba(124,58,237,.4) }
-
-        .stat-card:hover { background:rgba(124,58,237,.12);border-color:rgba(124,58,237,.4);transform:translateY(-3px) }
-        .stat-n { font-size:38px;font-weight:800;line-height:1;color:${t.textPrimary}; }
-        .stat-n span { color:#7c3aed }
-
-        .edu-card { display:flex;align-items:center;gap:18px;padding:20px 22px;background:${t.bgCard};border:1px solid ${t.borderLight};border-left:3px solid rgba(124,58,237,.5);border-radius:0 14px 14px 0;text-decoration:none;color:inherit;transition:all .25s; }
-        .edu-card:hover { background:${t.bgCardHover};border-left-color:#7c3aed;transform:translateX(5px) }
-        .edu-logo { width:50px;height:50px;flex-shrink:0;background:#fff;border-radius:9px;padding:7px;display:flex;align-items:center;justify-content:center }
-
-        .divider { display:flex;align-items:center;gap:14px;margin:80px 0 }
-        .divider::before,.divider::after { content:'';flex:1;height:1px;background:${t.border} }
-        .d-dot { width:5px;height:5px;background:rgba(124,58,237,.5);border-radius:50% }
-
-        .tool-card { background:${t.bgCard};border:1px solid ${t.borderLight};border-radius:12px;padding:14px 15px;display:flex;align-items:center;gap:12px;position:relative;overflow:hidden;transition:all .22s cubic-bezier(.22,1,.36,1);cursor:pointer; }
-        .tool-card::after { content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(124,58,237,.09) 0%,transparent 55%);opacity:0;transition:opacity .3s; }
-        .tool-card:hover { border-color:rgba(124,58,237,.4);transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.2) }
-        .tool-card:hover::after { opacity:1 }
-        .tool-img { width:38px;height:38px;object-fit:contain;background:rgba(255,255,255,.08);border-radius:8px;padding:6px;flex-shrink:0;position:relative;z-index:1 }
-
-        .proyek-card { background:${t.bgCard};border:1px solid ${t.borderLight};border-radius:18px;overflow:hidden;position:relative;transition:all .3s cubic-bezier(.22,1,.36,1);cursor:pointer; }
-        .proyek-card::before { content:'';position:absolute;inset:0;pointer-events:none;z-index:1;background:linear-gradient(135deg,rgba(124,58,237,.08),transparent 55%);opacity:0;transition:opacity .3s; }
-        .proyek-card:hover { border-color:rgba(124,58,237,.45);transform:translateY(-6px);box-shadow:0 24px 48px rgba(0,0,0,.3),0 0 0 1px rgba(124,58,237,.2) }
-        .proyek-card:hover::before { opacity:1 }
-        .pimg-wrap { overflow:hidden;position:relative }
-        .pimg-wrap::after { content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.7) 0%,transparent 55%) }
-        .proyek-card img { width:100%;height:185px;object-fit:cover;display:block;transition:transform .5s cubic-bezier(.22,1,.36,1) }
-        .proyek-card:hover img { transform:scale(1.07) }
-        .tag-chip { font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:rgba(124,58,237,.15);color:#a78bfa;border:1px solid rgba(124,58,237,.25);padding:3px 9px;border-radius:999px }
-
-        .contact-input { width:100%;box-sizing:border-box;background:${t.inputBg};border:1px solid ${t.borderLight};border-radius:12px;padding:13px 16px;font-size:14px;outline:none;font-family:inherit;transition:border-color .2s,background .2s,box-shadow .2s;color:${t.textPrimary}; }
-        .contact-input:focus { border-color:rgba(124,58,237,.6);background:rgba(124,58,237,.05);box-shadow:0 0 0 3px rgba(124,58,237,.12) }
-        .contact-input::placeholder { color:${darkMode ? 'rgba(255,255,255,.2)' : 'rgba(0,0,0,.2)'} }
-        .send-btn { width:100%;padding:14px;background:#7c3aed;color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:700;letter-spacing:.02em;transition:all .2s;position:relative;overflow:hidden;cursor:pointer; }
-        .send-btn:hover { background:#6d28d9;transform:translateY(-2px);box-shadow:0 12px 30px rgba(109,40,217,.45) }
-
-        .container { max-width:1200px;margin:0 auto;padding:0 24px; }
-        section { padding:60px 0;position:relative; }
-        @media(max-width:768px){ .container{padding:0 16px} section{padding:40px 0} .about-card{padding:24px} }
-      `}</style>
-
       {/* Cursor */}
       <div id="cur-dot" />
       <div id="cur-ring" />
@@ -438,12 +192,7 @@ export default function App() {
 
       <div className="container">
         {/* ── HERO ── */}
-        <section
-          style={{
-            paddingTop: '100px',
-            paddingBottom: '40px',
-            overflow: 'hidden',
-          }}>
+        <section className="hero-section">
           <div className="grid-bg" />
           <div className="glow" />
           <div
@@ -460,21 +209,11 @@ export default function App() {
                 <span className="accent">{displayText || fullText}</span>
                 <span className="cursor-blink" />
               </h1>
-              <p
-                className="reveal d2"
-                style={{
-                  color: t.textSecondary,
-                  fontSize: '15px',
-                  lineHeight: '1.85',
-                  marginBottom: '32px',
-                  maxWidth: '430px',
-                }}>
+              <p className="hero-desc reveal d2">
                 Mahasiswa D4 Rekayasa Perangkat Lunak — membangun pengalaman
                 digital yang elegan, efisien, dan berorientasi pada pengguna.
               </p>
-              <div
-                style={{ display: 'flex', gap: '14px', flexWrap: 'wrap' }}
-                className="reveal d3">
+              <div className="hero-buttons reveal d3">
                 <a
                   href="https://drive.google.com/file/d/1VG8iLlGfUZkEZAesSKNrxbj_mQuLO2tT/view?usp=drive_link"
                   className="btn-p"
@@ -505,9 +244,7 @@ export default function App() {
                 </a>
               </div>
             </div>
-            <div
-              style={{ display: 'flex', justifyContent: 'flex-end' }}
-              className="reveal d2">
+            <div className="hero-image reveal d2">
               <div className="img-wrap">
                 <div className="corner tl" />
                 <div className="corner br" />
@@ -526,71 +263,36 @@ export default function App() {
         {/* ── TENTANG ── */}
         <section id="tentang">
           <p className="section-tag reveal">Tentang Saya</p>
-          <h2
-            className="reveal d1"
-            style={{
-              fontSize: '23px',
-              fontWeight: 800,
-              color: t.textPrimary,
-              marginBottom: '24px',
-              letterSpacing: '-.02em',
-            }}>
-            Profil Singkat
-          </h2>
+          <h2 className="section-title reveal d1">Profil Singkat</h2>
+
           <div className="about-card reveal d2">
-            <p
-              style={{
-                color: t.textSecondary,
-                fontSize: '15px',
-                lineHeight: '1.9',
-                marginBottom: '28px',
-              }}>
-              Hi! Saya{' '}
-              <strong style={{ color: t.textPrimary }}>
-                Sakhi Ardra Handaru
-              </strong>
-              , Mahasiswa aktif D4 Rekayasa Perangkat Lunak, Teknik Informatika,
-              Politeknik Negeri Indramayu. Fokus di Web Development, Database
-              Management, UI/UX Design, SEO, Jaringan Komputer, dan IoT. Siap
-              berkontribusi secara profesional di industri maupun pemerintahan.
+            <p className="about-text">
+              Hi! Saya <strong>Sakhi Ardra Handaru</strong>, Mahasiswa aktif D4
+              Rekayasa Perangkat Lunak, Teknik Informatika, Politeknik Negeri
+              Indramayu. Fokus di Web Development, Database Management, UI/UX
+              Design, SEO, Jaringan Komputer, dan IoT. Siap berkontribusi secara
+              profesional di industri maupun pemerintahan.
             </p>
-            <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+            <div className="stats-wrapper">
               {[
                 ['3 +', 'Proyek Selesai'],
                 ['1 +', 'Tahun Pengalaman'],
               ].map(([n, l], i) => (
-                <div
-                  key={i}
-                  className="stat-card"
-                  style={{ flex: '1', minWidth: '120px' }}>
+                <div key={i} className="stat-card">
                   <p className="stat-n">
                     {n.split('+')[0]}
                     <span>+</span>
                   </p>
-                  <p
-                    style={{
-                      color: t.textMuted,
-                      fontSize: '12px',
-                      marginTop: '6px',
-                    }}>
-                    {l}
-                  </p>
+                  <p className="stat-label">{l}</p>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Pendidikan */}
-          <div style={{ marginTop: '52px' }}>
+          <div className="education-section">
             <p className="section-tag reveal">Pendidikan</p>
-            <div
-              className="reveal d1"
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit,minmax(300px,1fr))',
-                gap: '16px',
-                maxWidth: '900px',
-              }}>
+            <div className="education-grid reveal d1">
               {[
                 {
                   href: 'https://polindra.ac.id/',
@@ -614,38 +316,12 @@ export default function App() {
                   target="_blank"
                   rel="noopener noreferrer">
                   <div className="edu-logo">
-                    <img
-                      src={e.img}
-                      alt={e.name}
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'contain',
-                      }}
-                    />
+                    <img src={e.img} alt={e.name} />
                   </div>
                   <div>
-                    <h4
-                      style={{
-                        color: t.textPrimary,
-                        fontWeight: 700,
-                        fontSize: '14px',
-                        marginBottom: '4px',
-                      }}>
-                      {e.name}
-                    </h4>
-                    <p style={{ color: t.textSecondary, fontSize: '13px' }}>
-                      {e.sub}
-                    </p>
-                    <p
-                      style={{
-                        color: t.textMuted,
-                        fontSize: '11px',
-                        marginTop: '4px',
-                        letterSpacing: '.05em',
-                      }}>
-                      {e.year}
-                    </p>
+                    <h4 className="edu-name">{e.name}</h4>
+                    <p className="edu-sub">{e.sub}</p>
+                    <p className="edu-year">{e.year}</p>
                   </div>
                 </a>
               ))}
@@ -653,51 +329,21 @@ export default function App() {
           </div>
 
           {/* Tools */}
-          <div style={{ marginTop: '56px' }}>
+          <div className="tools-section">
             <p className="section-tag reveal">Tech Stack</p>
-            <h3
-              className="reveal d1"
-              style={{
-                fontSize: '22px',
-                fontWeight: 800,
-                color: t.textPrimary,
-                marginBottom: '6px',
-                letterSpacing: '-.01em',
-              }}>
-              Tools / Framework
-            </h3>
-            <p
-              className="reveal d2"
-              style={{
-                color: t.textMuted,
-                fontSize: '13px',
-                marginBottom: '24px',
-              }}>
+            <h3 className="tools-title reveal d1">Tools / Framework</h3>
+            <p className="tools-sub reveal d2">
               Teknologi & tools untuk web development dan desain.
             </p>
-            <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-3">
+            <div className="tools-grid">
               {listTools.map((tool, i) => (
                 <div
                   key={tool.id}
                   className={`tool-card reveal d${(i % 4) + 1}`}>
                   <img src={tool.gambar} alt={tool.nama} className="tool-img" />
-                  <div style={{ position: 'relative', zIndex: 1 }}>
-                    <p
-                      style={{
-                        color: t.textPrimary,
-                        fontWeight: 600,
-                        fontSize: '13px',
-                      }}>
-                      {tool.nama}
-                    </p>
-                    <p
-                      style={{
-                        color: t.textMuted,
-                        fontSize: '11px',
-                        marginTop: '2px',
-                      }}>
-                      {tool.ket}
-                    </p>
+                  <div>
+                    <p className="tool-name">{tool.nama}</p>
+                    <p className="tool-ket">{tool.ket}</p>
                   </div>
                 </div>
               ))}
@@ -714,52 +360,21 @@ export default function App() {
         {/* ── PROYEK ── */}
         <section id="proyek">
           <p className="section-tag reveal">Portofolio</p>
-          <h2
-            className="reveal d1"
-            style={{
-              fontSize: '28px',
-              fontWeight: 800,
-              color: t.textPrimary,
-              marginBottom: '6px',
-              letterSpacing: '-.02em',
-            }}>
-            Proyek Pilihan
-          </h2>
+          <h2 className="section-title reveal d1">Proyek Pilihan</h2>
 
-          {/* Filter Proyek */}
           <div className="filter-wrapper reveal d2">
             {['Semua', 'Website', 'UI/UX', 'Mobile'].map((cat) => (
               <button
                 key={cat}
                 onClick={() => setFilter(cat)}
-                className={`filter-btn ${filter === cat ? 'active' : ''}`}
-                style={{
-                  background:
-                    filter === cat
-                      ? 'linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%)'
-                      : 'transparent',
-                  borderColor: filter === cat ? 'transparent' : t.borderLight,
-                  color: filter === cat ? '#fff' : t.textSecondary,
-                }}>
+                className={`filter-btn ${filter === cat ? 'active' : ''}`}>
                 {cat}
-                {filter === cat && (
-                  <span
-                    style={{
-                      position: 'absolute',
-                      right: '-4px',
-                      top: '-4px',
-                      width: '10px',
-                      height: '10px',
-                      background: '#22c55e',
-                      borderRadius: '50%',
-                      border: `2px solid ${t.bg}`,
-                    }}
-                  />
-                )}
+                {filter === cat && <span className="active-dot" />}
               </button>
             ))}
           </div>
-          <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
+
+          <div className="proyek-grid">
             {listProyek
               .filter((p) => filter === 'Semua' || p.kategori === filter)
               .map((p, i) => (
@@ -769,50 +384,15 @@ export default function App() {
                   <div className="pimg-wrap">
                     <img src={p.gambar} alt={p.nama} />
                   </div>
-                  <div style={{ padding: '20px' }}>
-                    <div
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                        alignItems: 'center',
-                        marginBottom: '7px',
-                      }}>
-                      <h3
-                        style={{
-                          color: t.textPrimary,
-                          fontWeight: 700,
-                          fontSize: '15px',
-                          margin: 0,
-                        }}>
-                        {p.nama}
-                      </h3>
+                  <div className="proyek-content">
+                    <div className="proyek-header">
+                      <h3 className="proyek-title">{p.nama}</h3>
                       {p.kategori && (
-                        <span
-                          style={{
-                            fontSize: '10px',
-                            color: '#7c3aed',
-                            fontWeight: 700,
-                          }}>
-                          {p.kategori}
-                        </span>
+                        <span className="proyek-kategori">{p.kategori}</span>
                       )}
                     </div>
-                    <p
-                      style={{
-                        color: t.textSecondary,
-                        fontSize: '13px',
-                        lineHeight: 1.7,
-                        marginBottom: '14px',
-                      }}>
-                      {p.desk}
-                    </p>
-                    <div
-                      style={{
-                        display: 'flex',
-                        flexWrap: 'wrap',
-                        gap: '6px',
-                        marginBottom: '18px',
-                      }}>
+                    <p className="proyek-desk">{p.desk}</p>
+                    <div className="proyek-tools">
                       {p.tools.map((tool, idx) => (
                         <span key={idx} className="tag-chip">
                           {tool}
@@ -822,30 +402,13 @@ export default function App() {
                     {p.link ? (
                       <a
                         href={p.link}
-                        className="btn-p"
+                        className="btn-p btn-block"
                         target="_blank"
-                        rel="noopener noreferrer"
-                        style={{
-                          display: 'block',
-                          textAlign: 'center',
-                          width: '100%',
-                        }}>
+                        rel="noopener noreferrer">
                         Lihat Hasil →
                       </a>
                     ) : (
-                      <div
-                        style={{
-                          textAlign: 'center',
-                          padding: '10px',
-                          background: t.inputBg,
-                          border: `1px solid ${t.borderLight}`,
-                          borderRadius: '10px',
-                          color: t.textMuted,
-                          fontSize: '13px',
-                          fontWeight: 600,
-                        }}>
-                        Coming Soon
-                      </div>
+                      <div className="coming-soon">Coming Soon</div>
                     )}
                   </div>
                 </div>
@@ -854,37 +417,13 @@ export default function App() {
         </section>
 
         {/* ── KONTAK ── */}
-        <section
-          id="kontak"
-          style={{
-            paddingBottom: '100px',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            textAlign: 'center',
-          }}>
+        <section id="kontak" className="kontak-section">
           <div className="reveal">
-            <p className="section-tag" style={{ justifyContent: 'center' }}>
-              Hubungi Saya
-            </p>
-            <h2
-              className="d1"
-              style={{
-                fontSize: 'clamp(26px,4vw,34px)',
-                fontWeight: 800,
-                color: t.textPrimary,
-                marginBottom: '6px',
-                letterSpacing: '-.02em',
-              }}>
+            <p className="section-tag center">Hubungi Saya</p>
+            <h2 className="section-title-center reveal d1">
               Mari Berkolaborasi
             </h2>
-            <p
-              className="d2"
-              style={{
-                color: t.textMuted,
-                fontSize: '13px',
-                marginBottom: '32px',
-              }}>
+            <p className="kontak-sub reveal d2">
               Isi form — pesan langsung terkirim ke email saya.
             </p>
           </div>
@@ -893,14 +432,11 @@ export default function App() {
             id="contactForm"
             action="https://api.web3forms.com/submit"
             method="POST"
-            style={{ width: '100%', maxWidth: '520px', textAlign: 'left' }}
-            className="reveal d2"
+            className="contact-form reveal d2"
             onSubmit={(e) => {
               e.preventDefault();
-
               const form = e.target;
               const formData = new FormData(form);
-
               fetch(form.action, {
                 method: 'POST',
                 body: formData,
@@ -951,75 +487,38 @@ export default function App() {
               style={{ display: 'none' }}
             />
 
-            <div
-              style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-              <div>
-                <label
-                  style={{
-                    display: 'block',
-                    color: t.textMuted,
-                    fontSize: '11px',
-                    fontWeight: 700,
-                    letterSpacing: '.1em',
-                    textTransform: 'uppercase',
-                    marginBottom: '8px',
-                  }}>
-                  Nama / Samaran
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Masukkan nama anda"
-                  className="contact-input"
-                  required
-                />
-              </div>
-              <div>
-                <label
-                  style={{
-                    display: 'block',
-                    color: t.textMuted,
-                    fontSize: '11px',
-                    fontWeight: 700,
-                    letterSpacing: '.1em',
-                    textTransform: 'uppercase',
-                    marginBottom: '8px',
-                  }}>
-                  Email (opsional)
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="email@contoh.com (supaya saya bisa balas)"
-                  className="contact-input"
-                />
-              </div>
-              <div>
-                <label
-                  style={{
-                    display: 'block',
-                    color: t.textMuted,
-                    fontSize: '11px',
-                    fontWeight: 700,
-                    letterSpacing: '.1em',
-                    textTransform: 'uppercase',
-                    marginBottom: '8px',
-                  }}>
-                  Pesan
-                </label>
-                <textarea
-                  name="message"
-                  rows="6"
-                  placeholder="Tulis pesanmu di sini..."
-                  className="contact-input"
-                  style={{ resize: 'vertical' }}
-                  required
-                />
-              </div>
-              <button type="submit" className="send-btn">
-                Kirim Pesan →
-              </button>
+            <div className="form-group">
+              <label>Nama / Samaran</label>
+              <input
+                type="text"
+                name="name"
+                placeholder="Masukkan nama anda"
+                className="contact-input"
+                required
+              />
             </div>
+            <div className="form-group">
+              <label>Email (opsional)</label>
+              <input
+                type="email"
+                name="email"
+                placeholder="email@contoh.com (supaya saya bisa balas)"
+                className="contact-input"
+              />
+            </div>
+            <div className="form-group">
+              <label>Pesan</label>
+              <textarea
+                name="message"
+                rows="6"
+                placeholder="Tulis pesanmu di sini..."
+                className="contact-input"
+                required
+              />
+            </div>
+            <button type="submit" className="send-btn">
+              Kirim Pesan →
+            </button>
           </form>
         </section>
       </div>
