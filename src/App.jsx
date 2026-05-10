@@ -480,7 +480,7 @@ export default function App() {
                   className="btn-p"
                   target="_blank"
                   rel="noopener noreferrer">
-                  Lihat CV Saya
+                  Lihat CV Sayazz
                   <svg
                     width="14"
                     height="14"
