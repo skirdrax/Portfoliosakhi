@@ -108,7 +108,7 @@ export default function Navbar() {
             </a>
           ))}
           <a
-            href="https://drive.google.com/file/d/16L5Xd_xS_hw2v3dLRPqq1NhyH2r9euda/view?usp=sharing"
+            href="https://drive.google.com/file/d/16L5Xd_xS_hw2v3dLRPqq1NhyH2r9euda/view?usp=drive_link"
             className="nav-cta"
             style={{ marginTop: '10px', width: 'fit-content' }}
             target="_blank"
