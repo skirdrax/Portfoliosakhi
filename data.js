@@ -155,7 +155,7 @@ export const listProyek = [
     dad: '600',
   },
   {
-    id: 5,
+    id: 6,
     gambar: Proyek6,
     nama: 'cooming soon',
     kategori: 'Website',
