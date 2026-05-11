@@ -529,6 +529,39 @@ export default function App() {
               ))}
           </div>
         </section>
+        {/* ── GITHUB CONTRIBUTION GRAPH ── */}
+        <div className="github-graph-section">
+          <div className="github-graph-wrapper reveal d2">
+            <div className="github-graph-title">
+              <h3>GitHub Contributions</h3>
+            </div>
+
+            <div className="github-graph-stats">
+              <div className="github-stat">
+                <span>📅</span> Last 365 days
+              </div>
+              <div className="github-stat">
+                <span>💚</span> Total contributions
+              </div>
+            </div>
+
+            <img
+              src="https://ghchart.rshah.org/skirdrax"
+              alt="GitHub Contribution Graph"
+              className="github-graph"
+            />
+
+            <div className="github-graph-footer">
+              <span>✨ Contribution graph from GitHub</span>
+              <a
+                href="https://github.com/skirdrax"
+                target="_blank"
+                rel="noopener noreferrer">
+                View my GitHub →
+              </a>
+            </div>
+          </div>
+        </div>
 
         {/* ── KONTAK ── */}
         <section id="kontak" className="kontak-section">
