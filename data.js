@@ -154,4 +154,13 @@ export const listProyek = [
     tools: [],
     dad: '600',
   },
+  {
+    id: 5,
+    gambar: Proyek6,
+    nama: 'cooming soon',
+    kategori: 'Website',
+    desk: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis, laborum!',
+    tools: [],
+    dad: '600',
+  },
 ];
