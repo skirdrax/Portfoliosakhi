@@ -214,7 +214,7 @@ export default function App() {
               </p>
               <div className="hero-buttons reveal d3">
                 <a
-                  href="https://drive.google.com/file/d/1VG8iLlGfUZkEZAesSKNrxbj_mQuLO2tT/view?usp=drive_link"
+                  href="https://drive.google.com/file/d/16L5Xd_xS_hw2v3dLRPqq1NhyH2r9euda/view?usp=sharing"
                   className="btn-p"
                   target="_blank"
                   rel="noopener noreferrer">
