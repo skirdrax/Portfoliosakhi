@@ -144,7 +144,7 @@ export const listProyek = [
     desk: 'Website isi kuis mengetahui skor buzzer Anda dan terdapat peringkat pemain.',
     tools: ['HTML', 'CSS', 'Javascript', 'Spreadsheet'],
     dad: '500',
-    link: 'https://sakhiardra.web.id/2405061_WEBSITE_CICD',
+    link: 'https://sakhiardra.web.id/',
   },
   {
     id: 5,
