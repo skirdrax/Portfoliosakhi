@@ -139,11 +139,12 @@ export const listProyek = [
   {
     id: 4,
     gambar: Proyek4,
-    nama: 'Cooming soon',
+    nama: 'Seberapa Buzzer Anda',
     kategori: 'Website',
-    desk: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis, laborum!',
+    desk: 'Website isi kuis mengetahui skor buzzer Anda dan terdapat peringkat pemain.',
     tools: [],
     dad: '500',
+    link: 'https://sakhiardra.web.id/',
   },
   {
     id: 5,
