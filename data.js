@@ -142,7 +142,7 @@ export const listProyek = [
     nama: 'Seberapa Buzzer Anda',
     kategori: 'Website',
     desk: 'Website isi kuis mengetahui skor buzzer Anda dan terdapat peringkat pemain.',
-    tools: [],
+    tools: ['HTML', 'CSS', 'Javascript', 'Spreadsheet'],
     dad: '500',
     link: 'https://sakhiardra.web.id/',
   },
