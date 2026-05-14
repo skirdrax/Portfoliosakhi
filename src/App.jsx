@@ -660,7 +660,7 @@ export default function App() {
             <h2 className="section-title-center d1">Mari Berkolaborasi</h2>
             <p className="kontak-sub d2">
               Isi form — pesan langsung terkirim ke email saya{' '}
-              <span style={{ color: '#c4b5fd' }}>ardrasakhi390@gmail.com</span>{' '}
+              <span style={{ color: '#3b82f6' }}>ardrasakhi390@gmail.com</span>{' '}
               {/* ungu sangat muda */}
             </p>
           </div>
