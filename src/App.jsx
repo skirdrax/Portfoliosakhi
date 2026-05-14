@@ -592,7 +592,7 @@ export default function App() {
               ))}
           </div>
         </section>
-        {/* ── GITHUB CONTRIBUTION GRAPH ── */}
+        {/* ── GITHUB CONTRIBUTION GRAPH & STREAK ── */}
         <div className="github-graph-section">
           <div className="github-graph-wrapper reveal d2">
             <div className="github-graph-title">
@@ -624,8 +624,27 @@ export default function App() {
               </a>
             </div>
           </div>
-        </div>
 
+          {/* ── GITHUB STREAK STATS ── */}
+          <div
+            className="github-streak-wrapper reveal d2"
+            style={{ marginTop: '24px' }}>
+            <div className="github-streak-title">
+              <h3>🔥 GitHub Streak Stats</h3>
+            </div>
+            <img
+              src="https://github-readme-streak-stats.herokuapp.com/?user=skirdrax&theme=blueberry&hide_border=true&stroke=2563eb&ring=2563eb&fire=3b82f6&currStreakNum=3b82f6&sideNums=3b82f6&currStreakLabel=3b82f6&sideLabels=3b82f6&dates=6e7681&background=0d1117"
+              alt="GitHub Streak Stats"
+              className="github-streak"
+              style={{
+                width: '100%',
+                maxWidth: '100%',
+                height: 'auto',
+                borderRadius: '16px',
+              }}
+            />
+          </div>
+        </div>
         {/* ── KONTAK ── */}
         <section id="kontak" className="kontak-section">
           <div className="reveal">

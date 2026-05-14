@@ -1495,3 +1495,54 @@ section {
 .light .github-graph-wrapper {
   background: rgba(0, 0, 0, 0.01);
 }
+/* ========================================
+   GITHUB STREAK STATS
+   ======================================== */
+.github-streak-wrapper {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 28px;
+  padding: 28px;
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.github-streak-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #2563eb, #3b82f6, #2563eb);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.github-streak-wrapper:hover::before {
+  opacity: 1;
+}
+
+.github-streak-wrapper:hover {
+  border-color: rgba(37, 99, 235, 0.5);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 35px -15px rgba(0, 0, 0, 0.3);
+}
+
+.github-streak-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.github-streak-title h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  letter-spacing: -0.02em;
+}
