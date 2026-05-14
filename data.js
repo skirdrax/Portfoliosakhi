@@ -148,6 +148,7 @@ export const listProyek = [
       'Javascript',
       'Spreadsheet',
       'Google Search Console',
+      'Ahrefs',
     ],
     dad: '500',
     link: 'https://sakhiardra.web.id/',
