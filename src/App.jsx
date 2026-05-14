@@ -22,6 +22,7 @@ const MAGANG = [
       'Spreedsheet',
       'html',
       'css',
+      'javascript',
       'wordpress',
     ],
     logo: '/assets/groperti.png',
