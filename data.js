@@ -8,8 +8,8 @@ export default Image;
 
 import Tools1 from '/assets/tools/vscode.png';
 import Tools2 from '/assets/tools/reactjs.png';
-import Tools3 from '/assets/tools/nextjs.png';
-import Tools4 from '/assets/tools/tailwind.png';
+import Tools3 from '/assets/tools/laravel.png';
+import Tools4 from '/assets/tools/MySQL.png';
 import Tools5 from '/assets/tools/bootstrap.png';
 import Tools6 from '/assets/tools/js.png';
 import Tools7 from '/assets/tools/nodejs.png';
@@ -17,6 +17,7 @@ import Tools8 from '/assets/tools/github.png';
 import Tools9 from '/assets/tools/ai.png';
 import Tools10 from '/assets/tools/canva.png';
 import Tools11 from '/assets/tools/figma.png';
+import Tools12 from '/assets/tools/gsc.webp';
 
 export const listTools = [
   {
@@ -36,15 +37,15 @@ export const listTools = [
   {
     id: 3,
     gambar: Tools3,
-    nama: 'Next JS',
+    nama: 'Laravel',
     ket: 'Framework',
     dad: '300',
   },
   {
     id: 4,
     gambar: Tools4,
-    nama: 'Tailwind CSS',
-    ket: 'Framework',
+    nama: 'MySQL',
+    ket: 'Database',
     dad: '400',
   },
   {
@@ -95,6 +96,13 @@ export const listTools = [
     nama: 'Figma',
     ket: 'Design App',
     dad: '1100',
+  },
+  {
+    id: 12,
+    gambar: Tools12,
+    nama: 'Google Search Console',
+    ket: 'SEO Tool',
+    dad: '1200',
   },
 ];
 
