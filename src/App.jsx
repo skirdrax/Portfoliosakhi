@@ -16,8 +16,15 @@ const MAGANG = [
     periode: 'Mei 2025 — Agustus 2025',
     deskripsi:
       'MAGANG SEMESTER 2 | mengoptimasi performa SEO website perusahaann, meningkatkan peringkat di hasil pencarian Google, dan meningkatkan visibilitas online untuk menarik lebih banyak pelanggan potensial dan pembeli.',
-    tech: ['Google Search Console', 'Ahrefs', 'Spreedsheet', 'WordPress'],
-    logo: '/assets/groperti.png', // ganti dengan logo perusahaan
+    tech: [
+      'Google Search Console',
+      'Ahrefs',
+      'Spreedsheet',
+      'html',
+      'css',
+      'wordpress',
+    ],
+    logo: '/assets/groperti.png',
   },
 ];
 
