@@ -168,6 +168,6 @@ export const listProyek = [
     kategori: 'Website',
     desk: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis, laborum!',
     tools: [],
-    dad: '600',
+    dad: '700',
   },
 ];
