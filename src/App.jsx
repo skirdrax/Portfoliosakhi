@@ -16,7 +16,7 @@ const MAGANG = [
     periode: 'Mei 2025 — Agustus 2025',
     deskripsi:
       'MAGANG SEMESTER 2 | mengoptimasi performa SEO website perusahaann, meningkatkan peringkat di hasil pencarian Google, dan meningkatkan visibilitas online untuk menarik lebih banyak pelanggan potensial dan pembeli.',
-    tech: ['Google Analytics', 'Ahrefs', 'Spreedsheet', 'WordPress'],
+    tech: ['Google Search Console', 'Ahrefs', 'Spreedsheet', 'WordPress'],
     logo: '/assets/groperti.png', // ganti dengan logo perusahaan
   },
 ];
@@ -336,7 +336,7 @@ export default function App() {
             </p>
             <div className="stats-wrapper">
               {[
-                ['4 +', 'Proyek Selesai'],
+                [' +', 'Proyek Selesai'],
                 ['1 +', 'Tahun Pengalaman'],
               ].map(([n, l], i) => (
                 <div key={i} className="stat-card">
