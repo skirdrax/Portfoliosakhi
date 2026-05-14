@@ -45,8 +45,8 @@ export default function LoadingScreen({ onDone }) {
           position: 'absolute',
           inset: 0,
           pointerEvents: 'none',
-          backgroundImage: `linear-gradient(rgba(139,92,246,0.065) 1px, transparent 1px),
-                          linear-gradient(90deg, rgba(139,92,246,0.065) 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(rgba(59,130,246,0.065) 1px, transparent 1px),
+                          linear-gradient(90deg, rgba(59,130,246,0.065) 1px, transparent 1px)`,
           backgroundSize: '40px 40px',
         }}
       />
@@ -61,7 +61,7 @@ export default function LoadingScreen({ onDone }) {
           width: '500px',
           height: '200px',
           background:
-            'radial-gradient(ellipse at center, rgba(124,58,237,0.18) 0%, transparent 70%)',
+            'radial-gradient(ellipse at center, rgba(37,99,235,0.18) 0%, transparent 70%)',
           pointerEvents: 'none',
         }}
       />
@@ -75,8 +75,8 @@ export default function LoadingScreen({ onDone }) {
           borderRadius: 50,
           objectFit: 'cover',
           marginBottom: 28,
-          boxShadow: '0 0 40px rgba(124,58,237,0.45)',
-          border: '2px solid rgba(124,58,237,0.3)',
+          boxShadow: '0 0 40px rgba(37,99,235,0.45)',
+          border: '2px solid rgba(37,99,235,0.3)',
         }}
       />
 
@@ -127,10 +127,10 @@ export default function LoadingScreen({ onDone }) {
             style={{
               height: '100%',
               borderRadius: 99,
-              background: 'linear-gradient(90deg, #7c3aed, #a78bfa)',
+              background: 'linear-gradient(90deg, #2563eb, #3b82f6)',
               width: `${Math.min(progress, 100)}%`,
               transition: 'width 0.1s linear',
-              boxShadow: '0 0 10px rgba(124,58,237,0.6)',
+              boxShadow: '0 0 10px rgba(37,99,235,0.6)',
             }}
           />
         </div>
@@ -144,7 +144,7 @@ export default function LoadingScreen({ onDone }) {
           <span
             style={{
               fontSize: 11,
-              color: '#a78bfa',
+              color: '#3b82f6',
               fontWeight: 600,
               letterSpacing: '0.05em',
             }}>
@@ -178,7 +178,7 @@ export default function LoadingScreen({ onDone }) {
               width: 5,
               height: 5,
               borderRadius: '50%',
-              background: '#7c3aed',
+              background: '#2563eb',
               opacity: phase === i ? 1 : 0.2,
               transition: 'opacity 0.4s',
             }}

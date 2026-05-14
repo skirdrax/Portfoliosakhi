@@ -487,16 +487,16 @@ export default function App() {
                         marginTop: '16px',
                         fontSize: '12px',
                         fontWeight: 600,
-                        color: '#a78bfa',
+                        color: '#2563eb',
                         textDecoration: 'none',
                         transition: 'all 0.2s',
                       }}
                       onMouseEnter={(e) => {
-                        e.target.style.color = '#7c3aed';
+                        e.target.style.color = '#2563eb';
                         e.target.style.gap = '10px';
                       }}
                       onMouseLeave={(e) => {
-                        e.target.style.color = '#a78bfa';
+                        e.target.style.color = '#2563eb';
                         e.target.style.gap = '6px';
                       }}>
                       Kunjungi Website Perusahaan →

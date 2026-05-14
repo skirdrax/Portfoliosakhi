@@ -32,22 +32,21 @@ export default function Footer() {
   return (
     <>
       <style>{`
-        .footer-line{
-          height:1px;
-          background:linear-gradient(90deg,transparent,rgba(124,58,237,.4) 30%,rgba(167,139,250,.6) 50%,rgba(124,58,237,.4) 70%,transparent);
-        }
-        .footer{
-          display:flex;align-items:center;justify-content:space-between;
-          flex-wrap:wrap;gap:14px;padding:28px 0 40px;
-        }
-        .f-logo{font-size:16px;font-weight:800;color:#fff;text-decoration:none;letter-spacing:-.03em}
-        .f-logo span{color:#a78bfa}
-        .f-copy{font-size:12px;color:#3f3f46;letter-spacing:.01em}
-        .social-row{display:flex;align-items:center;gap:16px}
-        .soc{color:#3f3f46;transition:color .2s,transform .2s;display:flex;text-decoration:none}
-        .soc:hover{color:#a78bfa;transform:translateY(-2px)}
-      `}</style>
-
+  .footer-line{
+    height:1px;
+    background:linear-gradient(90deg,transparent,rgba(37,99,235,.4) 30%,rgba(59,130,246,.6) 50%,rgba(37,99,235,.4) 70%,transparent);
+  }
+  .footer{
+    display:flex;align-items:center;justify-content:space-between;
+    flex-wrap:wrap;gap:14px;padding:28px 0 40px;
+  }
+  .f-logo{font-size:16px;font-weight:800;color:#fff;text-decoration:none;letter-spacing:-.03em}
+  .f-logo span{color:#3b82f6}
+  .f-copy{font-size:12px;color:#3f3f46;letter-spacing:.01em}
+  .social-row{display:flex;align-items:center;gap:16px}
+  .soc{color:#3f3f46;transition:color .2s,transform .2s;display:flex;text-decoration:none}
+  .soc:hover{color:#3b82f6;transform:translateY(-2px)}
+`}</style>
       <div className="footer-line" />
       <footer className="footer">
         <a href="#beranda" className="f-logo">
