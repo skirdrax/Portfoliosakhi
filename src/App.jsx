@@ -344,7 +344,7 @@ export default function App() {
             </p>
             <div className="stats-wrapper">
               {[
-                [' +', 'Proyek Selesai'],
+                ['4+', 'Proyek Selesai'],
                 ['1 +', 'Tahun Pengalaman'],
               ].map(([n, l], i) => (
                 <div key={i} className="stat-card">
