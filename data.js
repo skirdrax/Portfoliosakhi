@@ -79,7 +79,7 @@ export const listTools = [
   {
     id: 9,
     gambar: Tools9,
-    nama: 'Ubuntau',
+    nama: 'Ubuntu',
     ket: 'Operating System',
     dad: '900',
   },
