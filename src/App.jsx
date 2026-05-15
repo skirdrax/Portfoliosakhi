@@ -659,8 +659,8 @@ export default function App() {
             <p className="section-tag center">Hubungi Saya</p>
             <h2 className="section-title-center d1">Mari Berkolaborasi</h2>
             <p className="kontak-sub d2">
-              Isi form — pesan langsung terkirim ke email saya.{' '}
-              <span style={{ color: '#3b82f6' }}>ardrasakhi390@gmail.com</span>{' '}
+              Isi form — pesan langsung terkirim ke email saya{' '}
+              <span style={{ color: '#3b82f6' }}>ardrasakhi390@gmail.coms</span>{' '}
               {/* ungu sangat muda */}
             </p>
           </div>
