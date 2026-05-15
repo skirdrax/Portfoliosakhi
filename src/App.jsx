@@ -612,7 +612,7 @@ export default function App() {
                 <span>📅</span> Last 365 days
               </div>
               <div className="github-stat">
-                <span>💚</span> Total contributions
+                <span>💚</span> Total contributionss
               </div>
             </div>
 
