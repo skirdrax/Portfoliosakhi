@@ -14,7 +14,7 @@ import Tools5 from '/assets/tools/bootstrap.png';
 import Tools6 from '/assets/tools/js.png';
 import Tools7 from '/assets/tools/nodejs.png';
 import Tools8 from '/assets/tools/github.png';
-import Tools9 from '/assets/tools/ai.png';
+import Tools9 from '/assets/tools/ubuntu.jpeg';
 import Tools10 from '/assets/tools/canva.png';
 import Tools11 from '/assets/tools/figma.png';
 import Tools12 from '/assets/tools/gsc.webp';
@@ -79,8 +79,8 @@ export const listTools = [
   {
     id: 9,
     gambar: Tools9,
-    nama: 'Adobe Illustrator',
-    ket: 'Design App',
+    nama: 'Ubuntu',
+    ket: 'Operating System',
     dad: '900',
   },
   {
