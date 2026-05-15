@@ -638,7 +638,7 @@ export default function App() {
             className="github-streak-wrapper reveal d2"
             style={{ marginTop: '24px' }}>
             <div className="github-streak-title">
-              <h3>🔥 GitHub Streak Stats</h3>
+              <h3>🔥 GitHub Streak Statss</h3>
             </div>
             <img
               src="https://github-readme-streak-stats.herokuapp.com/?user=skirdrax&theme=blueberry&hide_border=true&stroke=2563eb&ring=2563eb&fire=3b82f6&currStreakNum=3b82f6&sideNums=3b82f6&currStreakLabel=3b82f6&sideLabels=3b82f6&dates=6e7681&background=0d1117"
