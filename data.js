@@ -72,7 +72,7 @@ export const listTools = [
   {
     id: 8,
     gambar: Tools8,
-    nama: 'Github',
+    nama: 'Githusb',
     ket: 'Repository',
     dad: '800',
   },
