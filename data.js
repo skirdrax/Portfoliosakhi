@@ -66,7 +66,7 @@ export const listTools = [
     id: 7,
     gambar: Tools7,
     nama: 'Node JS',
-    ket: 'Javascript Runtime',
+    ket: 'Javascript Runtie',
     dad: '700',
   },
   {
