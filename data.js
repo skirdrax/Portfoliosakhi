@@ -147,7 +147,7 @@ export const listProyek = [
   {
     id: 4,
     gambar: Proyek4,
-    nama: 'Seberapa Buzzer Anda',
+    nama: 'Seberapa Buzzer Kamu?',
     kategori: 'Website',
     desk: 'Website isi kuis mengetahui skor buzzer Anda dan terdapat peringkat pemain.',
     tools: [
