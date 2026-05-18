@@ -701,7 +701,7 @@ export default function App() {
               />
             </div>
             <div className="form-group">
-              <label>Emails</label>
+              <label>Email</label>
               <input
                 type="email"
                 name="email"
