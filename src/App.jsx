@@ -656,9 +656,7 @@ export default function App() {
         {/* ── KONTAK ── */}
         <section id="kontak" className="kontak-section">
           <div className="reveal">
-            <p className="section-tag center">
-              Hubungi Saewegqiuegbsdugadbadbwaudgbdnabdasmndashdoasya
-            </p>
+            <p className="section-tag center">Hubungi Saya</p>
             <h2 className="section-title-center d1">Mari Berkolaborasi</h2>
             <p className="kontak-sub d2">
               Isi form — pesan langsung terkirim ke email saya{' '}
