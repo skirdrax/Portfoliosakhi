@@ -691,7 +691,7 @@ export default function App() {
               style={{ display: 'none' }}
             />
             <div className="form-group">
-              <label>Nama Andaa </label>
+              <label>Nama Anda </label>
               <input
                 type="text"
                 name="name"
