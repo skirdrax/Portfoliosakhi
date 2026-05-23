@@ -695,7 +695,7 @@ export default function App() {
               <input
                 type="text"
                 name="name"
-                placeholder="Masukkan nama anda"
+                placeholder="Masukkan nama anda ya"
                 className="contact-input"
                 required
               />
