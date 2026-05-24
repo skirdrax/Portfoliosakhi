@@ -147,18 +147,12 @@ export const listProyek = [
   {
     id: 4,
     gambar: Proyek4,
-    nama: 'Seberapa Buzzer Kamu?',
+    nama: 'portfolio pribadi',
     kategori: 'Website',
-    desk: 'Website isi kuis mengetahui skor buzzer Anda dan terdapat peringkat pemain.',
-    tools: [
-      'HTML',
-      'CSS',
-      'Javascript',
-      'Spreadsheet',
-      'Google Search Console',
-    ],
+    desk: 'portfolio pribadi yang dibuat menggunakan React JS, dengan tujuan untuk menampilkan informasi tentang diri saya, keahlian, dan proyek-proyek yang telah saya kerjakan.',
+    tools: ['HTML', 'CSS', 'Javascript', 'React JS', 'Google Search Console'],
     dad: '500',
-    link: 'https://sakhiardra.web.id/',
+    link: 'https://sakhiardra.my.id/',
   },
   {
     id: 5,
