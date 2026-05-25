@@ -720,7 +720,7 @@ export default function App() {
               />
             </div>
             <button type="submit" className="send-btn">
-              Kirim Pesanss →
+              Kirim Pesan →
             </button>
           </form>
         </section>
