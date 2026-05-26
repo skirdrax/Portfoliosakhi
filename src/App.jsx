@@ -710,7 +710,7 @@ export default function App() {
               />
             </div>
             <div className="form-group">
-              <label>Pesan nyaaa</label>
+              <label>Pesan</label>
               <textarea
                 name="message"
                 rows="6"
