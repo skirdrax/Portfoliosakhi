@@ -190,13 +190,12 @@ export default function App() {
             height="20"
             viewBox="0 0 24 24"
             fill="none"
-            stroke="#7c3aed"
+            stroke="#3b82f6" /* ← GANTI dari #7c3aed jadi #3b82f6 */
             strokeWidth="2">
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
           </svg>
         )}
       </button>
-
       <div className="container">
         {/* ── HERO ── */}
         <section className="hero-section">
