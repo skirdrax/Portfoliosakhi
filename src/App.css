@@ -16,48 +16,32 @@ body {
 /* ========================================
    CUSTOM CURSOR
    ======================================== */
-/* Hapus custom cursor dot (biar default panah tetap ada) */
-/* Hapus custom cursor dot (biar default panah tetap ada) */
+/* Hanya lingkaran saja, panah tetap default */
 #cur-dot {
   display: none;
 }
 
-/* Lingkaran keren yang mengikuti kursor */
+/* Lingkaran cahaya di sekitar panah */
 #cur-ring {
   position: fixed;
-  width: 40px;
-  height: 40px;
-  border: 2px solid rgba(59, 130, 246, 0.6);
+  width: 35px;
+  height: 35px;
+  border: 1.5px solid rgba(59, 130, 246, 0.5);
   border-radius: 50%;
   pointer-events: none;
   z-index: 9998;
   transform: translate(-50%, -50%);
   transition: all 0.2s ease;
-  backdrop-filter: blur(2px);
+  box-shadow: 0 0 8px rgba(59, 130, 246, 0.3);
 }
 
-/* Saat hover di link/tombol, lingkarannya membesar dan berwarna */
+/* Hover membesar */
 #cur-ring.big {
-  width: 55px;
-  height: 55px;
+  width: 50px;
+  height: 50px;
   border-color: #3b82f6;
-  background: rgba(59, 130, 246, 0.1);
-  box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.6);
 }
-
-/* Pastikan kursor default (panah) tetap muncul */
-* {
-  cursor: auto !important;
-}
-a,
-button,
-.btn-p,
-.btn-g,
-.filter-btn,
-.social-icon {
-  cursor: pointer !important;
-}
-
 /* ========================================
    ANIMATIONS
    ======================================== */
