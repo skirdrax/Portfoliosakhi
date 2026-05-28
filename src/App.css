@@ -16,25 +16,54 @@ body {
 /* ========================================
    CUSTOM CURSOR
    ======================================== */
-/* Hanya lingkaran saja, panah tetap default */
+/* Hanya lingkaran subtle, panah tetap normal */
 #cur-dot {
   display: none;
 }
 
-/* Lingkaran cahaya di sekitar panah */
+/* Lingkaran tipis elegan */
 #cur-ring {
   position: fixed;
-  width: 35px;
-  height: 35px;
-  border: 1.5px solid rgba(59, 130, 246, 0.5);
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(59, 130, 246, 0.4);
   border-radius: 50%;
   pointer-events: none;
   z-index: 9998;
   transform: translate(-50%, -50%);
-  transition: all 0.2s ease;
-  box-shadow: 0 0 8px rgba(59, 130, 246, 0.3);
+  transition:
+    width 0.2s ease,
+    height 0.2s ease,
+    border-color 0.2s;
 }
 
+/* Saat hover di link/tombol - lingkarannya membesar sedikit */
+#cur-ring.big {
+  width: 45px;
+  height: 45px;
+  border-color: rgba(59, 130, 246, 0.7);
+}
+
+/* Pastikan kursor panah default tetap ada */
+* {
+  cursor: auto !important;
+}
+a,
+button,
+.btn-p,
+.btn-g,
+.filter-btn,
+.social-icon,
+.nav-link,
+.logo,
+.edu-card,
+.tool-card,
+.proyek-card,
+.magang-link,
+.send-btn,
+.theme-toggle {
+  cursor: pointer !important;
+}
 /* Hover membesar */
 #cur-ring.big {
   width: 50px;
