@@ -1,28 +1,43 @@
+import { useState } from 'react';
+
 export default function Contact({
   setShowModal,
   setModalMessage,
   setIsSuccess,
 }) {
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Cegah double klik
+    if (isLoading) return;
+
+    setIsLoading(true);
     const form = e.target;
     const formData = new FormData(form);
+
     fetch(form.action, { method: 'POST', body: formData })
       .then((r) => r.json())
       .then((data) => {
         setIsSuccess(data.success);
         setModalMessage(
           data.success
-            ? 'Pesan berhasil terkirim! Terima kasih, saya akan membalas segera.'
-            : 'Gagal mengirim pesan. Silakan coba lagi.',
+            ? ' Pesan berhasil terkirim! Terima kasih, saya akan membalas segera.'
+            : ' Gagal mengirim pesan. Silakan coba lagi.. mungkin salah kata atau gmailnya.',
         );
         setShowModal(true);
         if (data.success) form.reset();
       })
       .catch(() => {
         setIsSuccess(false);
-        setModalMessage('Terjadi kesalahan jaringan. Silakan coba lagi nanti.');
+        setModalMessage(
+          '❌ Terjadi kesalahan jaringan. Silakan coba lagi nanti.',
+        );
         setShowModal(true);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   };
 
@@ -54,6 +69,7 @@ export default function Contact({
         <input type="hidden" name="to_email" value="ardrasakhi390@gmail.com" />
         <input type="hidden" name="from_name" value="Portfolio Website" />
         <input type="checkbox" name="botcheck" style={{ display: 'none' }} />
+
         <div className="form-group">
           <label>Nama Anda</label>
           <input
@@ -62,6 +78,7 @@ export default function Contact({
             placeholder="Masukkan nama anda"
             className="contact-input"
             required
+            disabled={isLoading}
           />
         </div>
         <div className="form-group">
@@ -71,6 +88,7 @@ export default function Contact({
             name="email"
             placeholder="email@contoh.com"
             className="contact-input"
+            disabled={isLoading}
           />
         </div>
         <div className="form-group">
@@ -81,10 +99,19 @@ export default function Contact({
             placeholder="Tulis pesanmu di sini..."
             className="contact-input"
             required
+            disabled={isLoading}
           />
         </div>
-        <button type="submit" className="send-btn">
-          Kirim Pesan
+
+        <button type="submit" className="send-btn" disabled={isLoading}>
+          {isLoading ? (
+            <>
+              <span className="loading-spinner-small"></span>
+              Mengirim...
+            </>
+          ) : (
+            'Kirim Pesan'
+          )}
         </button>
       </form>
     </section>
