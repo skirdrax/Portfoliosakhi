@@ -84,7 +84,7 @@ export default function Contact({
           />
         </div>
         <button type="submit" className="send-btn">
-          Kirim Pesan →
+          Kirim Pesan
         </button>
       </form>
     </section>
