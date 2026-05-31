@@ -1507,6 +1507,127 @@ section {
 .light .github-graph-wrapper {
   background: rgba(0, 0, 0, 0.01);
 }
+
+/* ========================================
+   LOADING SCREEN (LENGKAP)
+   ======================================== */
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #09090b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  gap: 20px;
+}
+
+/* Avatar / Foto Profil */
+.loading-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 40px rgba(37, 99, 235, 0.45);
+  border: 2px solid rgba(37, 99, 235, 0.3);
+}
+
+/* Nama */
+.loading-name {
+  font-size: 22px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.03em;
+  margin-bottom: 6px;
+}
+
+/* Subtitle Portfolio */
+.loading-subtitle {
+  font-size: 12px;
+  color: #52525b;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 48px;
+}
+
+/* Progress bar container */
+.loading-progress-container {
+  width: 260px;
+  position: relative;
+}
+
+/* Progress bar background */
+.loading-progress-bar {
+  width: 100%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 99px;
+  overflow: hidden;
+  margin-bottom: 14px;
+}
+
+/* Progress bar fill */
+.loading-progress-fill {
+  height: 100%;
+  border-radius: 99px;
+  background: linear-gradient(90deg, #2563eb, #3b82f6);
+  width: 0%;
+  transition: width 0.1s linear;
+  box-shadow: 0 0 10px rgba(37, 99, 235, 0.6);
+}
+
+/* Progress status (phase & percentage) */
+.loading-progress-status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.loading-phase {
+  font-size: 11px;
+  color: #3b82f6;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.loading-percentage {
+  font-size: 11px;
+  color: #3f3f46;
+  font-weight: 700;
+  font-family: monospace;
+}
+
+/* Dots di bawah */
+.loading-dots {
+  display: flex;
+  gap: 6px;
+  margin-top: 48px;
+}
+
+.loading-dots span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #2563eb;
+  transition: opacity 0.4s;
+}
+
+.loading-dots span:nth-child(1) {
+  opacity: 1;
+}
+.loading-dots span:nth-child(2) {
+  opacity: 0.2;
+}
+.loading-dots span:nth-child(3) {
+  opacity: 0.2;
+}
+
+/* Animated dots based on phase (bisa diatur via JS inline style) */
+
 /* ========================================
    GITHUB STREAK STATS
    ======================================== */
