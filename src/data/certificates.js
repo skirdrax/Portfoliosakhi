@@ -4,7 +4,7 @@ export const certificates = [
     title: 'Fullstack Web Development',
     issuer: 'Dicoding Indonesia',
     date: '2024',
-    image: '/assets/sertifikat/redhat.png',
+    image: '/assets/sertifikat/serti1.png',
     link: 'https://www.dicoding.com/certificates/xxx',
   },
   {
@@ -12,7 +12,7 @@ export const certificates = [
     title: 'UI/UX Design Fundamentals',
     issuer: 'Google',
     date: '2024',
-    image: '/assets/sertifikat/awscloud.png',
+    image: '/assets/sertifikat/serti2.png',
     link: 'https://skillshop.google.com/certificates/xxx',
   },
   {
@@ -20,7 +20,7 @@ export const certificates = [
     title: 'SEO Specialist',
     issuer: 'Semrush Academy',
     date: '2024',
-    image: '/assets/sertifikat/seo.png',
+    image: '/assets/sertifikat/serti3.png',
     link: 'https://www.semrush.com/certificates/xxx',
   },
   {
@@ -28,7 +28,7 @@ export const certificates = [
     title: 'React Developer',
     issuer: 'Meta',
     date: '2024',
-    image: '/assets/sertifikat/react.png',
+    image: '/assets/sertifikat/serti4.png',
     link: 'https://www.coursera.org/verify/xxx',
   },
   {
@@ -36,7 +36,7 @@ export const certificates = [
     title: 'JavaScript Advanced',
     issuer: 'HackerRank',
     date: '2024',
-    image: '/assets/sertifikat/javascript.png',
+    image: '/assets/sertifikat/serti5.png',
     link: 'https://www.hackerrank.com/certificates/xxx',
   },
   {
@@ -44,7 +44,7 @@ export const certificates = [
     title: 'Database Management',
     issuer: 'Oracle Academy',
     date: '2024',
-    image: '/assets/sertifikat/database.png',
+    image: '/assets/sertifikat/serti6.png',
     link: 'https://academy.oracle.com/certificates/xxx',
   },
 ];
