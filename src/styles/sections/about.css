@@ -1,0 +1,139 @@
+/* ========================================
+   ABOUT CARD & STATS
+   ======================================== */
+
+.about-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 36px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s;
+}
+
+.about-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(37, 99, 235, 0.6),
+    transparent
+  );
+}
+
+.about-card:hover {
+  border-color: rgba(37, 99, 235, 0.4);
+}
+
+.about-text {
+  color: var(--text-secondary);
+  font-size: 15px;
+  line-height: 1.9;
+  margin-bottom: 28px;
+}
+
+.about-text strong {
+  color: var(--text-primary);
+}
+
+/* Stats */
+.stats-wrapper {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.stat-n {
+  font-size: 38px;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--text-primary);
+}
+
+.stat-n span {
+  color: #2563eb;
+}
+
+.stat-label {
+  color: var(--text-muted);
+  font-size: 12px;
+  margin-top: 6px;
+}
+
+/* ========================================
+   EDUCATION
+   ======================================== */
+
+.education-section {
+  margin-top: 52px;
+}
+
+.education-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+  max-width: 900px;
+}
+
+.edu-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 20px 22px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-left: 3px solid rgba(37, 99, 235, 0.5);
+  border-radius: 0 14px 14px 0;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.25s;
+}
+
+.edu-card:hover {
+  background: var(--bg-card-hover);
+  border-left-color: #2563eb;
+  transform: translateX(5px);
+}
+
+.edu-logo {
+  width: 50px;
+  height: 50px;
+  flex-shrink: 0;
+  background: #fff;
+  border-radius: 9px;
+  padding: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edu-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.edu-name {
+  color: var(--text-primary);
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.edu-sub {
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.edu-year {
+  color: var(--text-muted);
+  font-size: 11px;
+  margin-top: 4px;
+  letter-spacing: 0.05em;
+}

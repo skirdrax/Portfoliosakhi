@@ -24,6 +24,14 @@ export default function Hero({ displayText, FULL_TEXT }) {
             Mahasiswa D4 Rekayasa Perangkat Lunak — membangun pengalaman digital
             yang elegan, efisien, dan berorientasi pada pengguna.
           </p>
+
+          {/* OPEN TO WORK BADGE */}
+          <div className="status-badge reveal d2">
+            <span className="status-dot active"></span>
+            <span className="status-label">Open to Work</span>
+            <span className="status-type">• Internship • Full-time</span>
+          </div>
+
           <div className="hero-buttons reveal d3">
             <a
               href="https://drive.google.com/file/d/16L5Xd_xS_hw2v3dLRPqq1NhyH2r9euda/view?usp=drive_link"

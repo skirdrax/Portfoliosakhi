@@ -26,6 +26,7 @@ export default function About() {
           ))}
         </div>
       </div>
+      {/* Pendidikan */}
       <div className="education-section">
         <p className="section-tag reveal">Pendidikan</p>
         <div className="education-grid reveal d1">

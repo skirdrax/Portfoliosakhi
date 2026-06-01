@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import './styles/App.css';
+import './styles/main.css';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import ThemeToggle from './components/layout/ThemeToggle';

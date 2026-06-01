@@ -1,0 +1,26 @@
+/* ========================================
+   MAIN.CSS - Import semua CSS
+   ======================================== */
+
+/* Base */
+@import './base/variables.css';
+
+/* Utils */
+@import './utils/animations.css';
+@import './utils/responsive.css';
+
+/* Components */
+@import './components/buttons.css';
+@import './components/modal.css';
+@import './components/loading.css';
+@import './components/navbar.css';
+@import './components/footer.css';
+
+/* Sections */
+@import './sections/hero.css';
+@import './sections/about.css';
+@import './sections/experience.css';
+@import './sections/tools.css';
+@import './sections/projects.css';
+@import './sections/github-stats.css';
+@import './sections/contact.css';

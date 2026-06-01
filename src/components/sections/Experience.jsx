@@ -13,6 +13,7 @@ export default function Experience() {
           <div key={m.id} className={`magang-card reveal d${(i % 3) + 1}`}>
             <div className="magang-timeline">
               <div className="timeline-dot" />
+              {i < MAGANG.length - 1 && <div className="timeline-line" />}
             </div>
             <div className="magang-body">
               <div className="magang-header">
@@ -48,7 +49,16 @@ export default function Experience() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="magang-link">
-                Kunjungi Website Perusahaan →
+                Kunjungi Website Perusahaan
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2">
+                  <path d="M7 17L17 7M17 7H7M17 7v10" />
+                </svg>
               </a>
             </div>
           </div>

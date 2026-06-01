@@ -1,0 +1,232 @@
+/* ========================================
+   MAGANG / PENGALAMAN
+   ======================================== */
+
+.magang-section {
+  margin-top: 52px;
+}
+
+.magang-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: 860px;
+}
+
+.magang-card {
+  display: flex;
+  gap: 20px;
+  position: relative;
+}
+
+.magang-timeline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  padding-top: 4px;
+}
+
+.timeline-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #2563eb;
+  border: 2px solid var(--bg);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25);
+  flex-shrink: 0;
+  animation: dotPulse 2.5s ease-in-out infinite;
+}
+
+.timeline-line {
+  width: 2px;
+  flex: 1;
+  background: linear-gradient(to bottom, rgba(37, 99, 235, 0.4), transparent);
+  margin-top: 6px;
+  min-height: 40px;
+}
+
+.magang-body {
+  flex: 1;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 16px;
+  padding: 22px 24px;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+  transition:
+    border-color 0.25s,
+    transform 0.25s,
+    box-shadow 0.25s;
+}
+
+.magang-body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #2563eb, transparent);
+}
+
+.magang-body:hover {
+  border-color: rgba(37, 99, 235, 0.35);
+  transform: translateX(4px);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.2);
+}
+
+.magang-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.magang-logo {
+  width: 46px;
+  height: 46px;
+  flex-shrink: 0;
+  background: #fff;
+  border-radius: 10px;
+  padding: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.magang-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.magang-info {
+  flex: 1;
+}
+
+.magang-posisi {
+  color: var(--text-primary);
+  font-weight: 700;
+  font-size: 15px;
+  margin-bottom: 2px;
+}
+
+.magang-perusahaan {
+  color: #3b82f6;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.magang-meta {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.magang-periode,
+.magang-lokasi {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+}
+
+.magang-badge {
+  flex-shrink: 0;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: rgba(37, 99, 235, 0.12);
+  color: #3b82f6;
+  border: 1px solid rgba(37, 99, 235, 0.25);
+  padding: 4px 10px;
+  border-radius: 999px;
+  height: fit-content;
+}
+
+.magang-desk {
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.75;
+  margin-bottom: 14px;
+}
+
+.magang-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+@media (max-width: 600px) {
+  .magang-card {
+    gap: 14px;
+  }
+  .magang-timeline {
+    display: none;
+  }
+  .magang-body {
+    margin-left: 0;
+  }
+  .magang-header {
+    flex-wrap: wrap;
+  }
+}
+
+/* ========================================
+   MAGANG LINK BUTTON - PREMIUM VERSION
+   ======================================== */
+
+.magang-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  padding: 8px 0;
+  position: relative;
+  width: fit-content;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.magang-link svg {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.3s ease;
+}
+
+.magang-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+  transition: width 0.3s ease;
+  border-radius: 2px;
+}
+
+.magang-link:hover {
+  color: #3b82f6;
+  gap: 12px;
+}
+
+.magang-link:hover svg {
+  transform: translateX(4px);
+}
+
+.magang-link:hover::after {
+  width: 100%;
+}
