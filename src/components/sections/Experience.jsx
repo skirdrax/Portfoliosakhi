@@ -4,6 +4,7 @@ import { MAGANG } from '../../data';
 export default function Experience() {
   const [selectedProject, setSelectedProject] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [previewImage, setPreviewImage] = useState(null); // Untuk preview sertifikat
 
   const nextImage = () => {
     if (selectedProject && selectedProject.images) {
@@ -67,47 +68,29 @@ export default function Experience() {
                 ))}
               </div>
 
-              {/* Tombol Lihat Proyek */}
-              <button
-                className="magang-project-btn"
-                onClick={() => {
-                  setSelectedProject(m.project);
-                  setCurrentImageIndex(0);
-                }}>
-                Lihat Proyek Selama Magang
-                <svg
-                  width="14"
-                  height="14"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2">
-                  <path d="M7 17L17 7M17 7H7M17 7v10" />
-                </svg>
-              </button>
-
-              <a
-                href={m.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="magang-link">
-                Kunjungi Website Perusahaan
-                <svg
-                  width="14"
-                  height="14"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2">
-                  <path d="M7 17L17 7M17 7H7M17 7v10" />
-                </svg>
-              </a>
+              <div className="magang-buttons-group">
+                <button
+                  className="magang-project-btn"
+                  onClick={() => {
+                    setSelectedProject(m.project);
+                    setCurrentImageIndex(0);
+                  }}>
+                  📁 Lihat Proyek & Sertifikat
+                </button>
+                <a
+                  href={m.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="magang-link">
+                  Kunjungi Website ↗
+                </a>
+              </div>
             </div>
           </div>
         ))}
       </div>
 
-      {/* Modal Popup Proyek dengan Galeri Gambar */}
+      {/* MODAL PROYEK */}
       {selectedProject && (
         <div
           className="project-modal-overlay"
@@ -121,16 +104,14 @@ export default function Experience() {
               ✕
             </button>
 
-            {/* Galeri Gambar - Maksimal 4 gambar */}
+            {/* Galeri Gambar Proyek */}
             {selectedProject.images && selectedProject.images.length > 0 && (
               <div className="project-modal-gallery">
                 <div className="gallery-main">
                   <img
                     src={selectedProject.images[currentImageIndex]}
-                    alt={`Project ${currentImageIndex + 1}`}
+                    alt="Project"
                   />
-
-                  {/* Tombol prev/next */}
                   {selectedProject.images.length > 1 && (
                     <>
                       <button className="gallery-prev" onClick={prevImage}>
@@ -142,8 +123,6 @@ export default function Experience() {
                     </>
                   )}
                 </div>
-
-                {/* Thumbnail navigasi */}
                 {selectedProject.images.length > 1 && (
                   <div className="gallery-thumbnails">
                     {selectedProject.images.slice(0, 4).map((img, idx) => (
@@ -151,7 +130,7 @@ export default function Experience() {
                         key={idx}
                         className={`thumbnail ${currentImageIndex === idx ? 'active' : ''}`}
                         onClick={() => setCurrentImageIndex(idx)}>
-                        <img src={img} alt={`Thumbnail ${idx + 1}`} />
+                        <img src={img} alt={`Thumb ${idx + 1}`} />
                       </div>
                     ))}
                   </div>
@@ -165,6 +144,7 @@ export default function Experience() {
                 {selectedProject.description}
               </p>
 
+              {/* Hasil Pencapaian */}
               {selectedProject.results && (
                 <div className="project-modal-results">
                   <h4>📊 Hasil & Pencapaian</h4>
@@ -176,6 +156,7 @@ export default function Experience() {
                 </div>
               )}
 
+              {/* Tools yang Digunakan */}
               <div className="project-modal-tech">
                 <h4>🛠 Teknologi & Tools</h4>
                 <div className="tech-tags">
@@ -186,7 +167,53 @@ export default function Experience() {
                   ))}
                 </div>
               </div>
+
+              {/* === SERTIFIKAT GAMBAR (Klik preview besar) === */}
+              {selectedProject.certificates &&
+                selectedProject.certificates.length > 0 && (
+                  <div className="project-modal-certificates">
+                    <h4>🎓 Sertifikat Magang</h4>
+                    <div className="certificates-grid-modal">
+                      {selectedProject.certificates.map((cert) => (
+                        <div
+                          key={cert.id}
+                          className="certificate-card-modal"
+                          onClick={() => setPreviewImage(cert.image)}>
+                          <div className="certificate-image-modal">
+                            <img src={cert.image} alt={cert.title} />
+                            <div className="certificate-overlay-modal">
+                              <span>🔍 Klik untuk preview</span>
+                            </div>
+                          </div>
+                          <div className="certificate-info-modal">
+                            <h5>{cert.title}</h5>
+                            <p>{cert.issuer}</p>
+                            <span>{cert.date}</span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* MODAL PREVIEW GAMBAR SERTIFIKAT (BESAR) */}
+      {previewImage && (
+        <div
+          className="image-preview-overlay"
+          onClick={() => setPreviewImage(null)}>
+          <div
+            className="image-preview-content"
+            onClick={(e) => e.stopPropagation()}>
+            <button
+              className="image-preview-close"
+              onClick={() => setPreviewImage(null)}>
+              ✕
+            </button>
+            <img src={previewImage} alt="Preview Sertifikat" />
           </div>
         </div>
       )}
