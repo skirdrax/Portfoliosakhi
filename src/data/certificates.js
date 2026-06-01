@@ -47,4 +47,12 @@ export const certificates = [
     image: '/assets/sertifikat/serti6.png',
     link: 'https://academy.oracle.com/certificates/xxx',
   },
+  {
+    id: 7,
+    title: 'Database Management',
+    issuer: 'Oracle Academy',
+    date: '2024',
+    image: '/assets/sertifikat/serti7.png',
+    link: 'https://academy.oracle.com/certificates/xxx',
+  },
 ];
