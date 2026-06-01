@@ -75,7 +75,7 @@ export default function Experience() {
                     setSelectedProject(m.project);
                     setCurrentImageIndex(0);
                   }}>
-                  📁 Lihat Proyek & Sertifikat
+                  Lihat Proyek & Sertifikat
                 </button>
                 <a
                   href={m.href}
