@@ -14,6 +14,7 @@ import Modal from './components/ui/Modal';
 import LoadingScreen from './components/ui/LoadingScreen';
 import { useScrollReveal } from './components/hooks/useScrollReveal';
 import { useCursor } from './components/hooks/useCursor';
+import Certificates from './components/sections/Certificates';
 const FULL_TEXT = 'Sakhi Ardra';
 
 export default function App() {
@@ -78,6 +79,7 @@ export default function App() {
           <div className="d-dot" />
         </div>
         <Projects filter={filter} setFilter={setFilter} />
+        <Certificates />
         <GitHubStats />
         <Contact
           setShowModal={setShowModal}
