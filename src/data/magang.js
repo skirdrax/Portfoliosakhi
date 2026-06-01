@@ -18,5 +18,28 @@ export const MAGANG = [
       'wordpress',
     ],
     logo: '/assets/groperti.png',
+    project: {
+      title: 'SEO Optimization Project',
+      description:
+        'Selama magang, saya berhasil meningkatkan peringkat website perusahaan dari halaman 5 ke halaman 1 Google untuk 10+ keyword utama. Mengoptimasi meta tags, struktur URL, dan kecepatan loading website.',
+      results: [
+        'Traffic meningkat 45%',
+        'Keyword ranking naik ke posisi 1-3',
+        'Page speed improved from 65 to 88',
+      ],
+      tech: [
+        'SEO',
+        'Google Analytics',
+        'Ahrefs',
+        'WordPress',
+        'PageSpeed Insights',
+      ],
+      images: [
+        '/assets/projects/seo-project1.jpg',
+        '/assets/projects/seo-project2.jpg',
+        '/assets/projects/seo-project3.jpg',
+        '/assets/projects/seo-project4.jpg',
+      ],
+    },
   },
 ];

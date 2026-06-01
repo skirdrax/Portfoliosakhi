@@ -163,21 +163,6 @@
   gap: 6px;
 }
 
-@media (max-width: 600px) {
-  .magang-card {
-    gap: 14px;
-  }
-  .magang-timeline {
-    display: none;
-  }
-  .magang-body {
-    margin-left: 0;
-  }
-  .magang-header {
-    flex-wrap: wrap;
-  }
-}
-
 /* ========================================
    MAGANG LINK BUTTON - PREMIUM VERSION
    ======================================== */
@@ -229,4 +214,303 @@
 
 .magang-link:hover::after {
   width: 100%;
+}
+
+/* ========================================
+   MAGANG PROJECT BUTTON
+   ======================================== */
+
+.magang-project-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  margin-right: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #10b981;
+  text-decoration: none;
+  background: rgba(16, 185, 129, 0.1);
+  padding: 8px 16px;
+  border-radius: 30px;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.magang-project-btn:hover {
+  background: #10b981;
+  color: white;
+  gap: 12px;
+  transform: translateY(-2px);
+}
+
+/* ========================================
+   PROJECT MODAL POPUP
+   ======================================== */
+
+.project-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10002;
+  padding: 20px;
+}
+
+.project-modal-content {
+  background: var(--bg-card);
+  border-radius: 24px;
+  max-width: 700px;
+  width: 90%;
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+  border: 1px solid var(--border-light);
+  animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.project-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: white;
+  font-size: 24px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  z-index: 10;
+}
+
+.project-modal-close:hover {
+  background: #ef4444;
+  transform: scale(1.05);
+}
+
+/* ========================================
+   PROJECT MODAL GALLERY
+   ======================================== */
+
+.project-modal-gallery {
+  width: 100%;
+  background: #0f0f14;
+  border-radius: 24px 24px 0 0;
+}
+
+.gallery-main {
+  position: relative;
+  height: 280px;
+  overflow: hidden;
+  background: #09090b;
+  border-radius: 24px 24px 0 0;
+}
+
+.gallery-main img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.gallery-prev,
+.gallery-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  border: none;
+  color: white;
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery-prev:hover,
+.gallery-next:hover {
+  background: #2563eb;
+}
+
+.gallery-prev {
+  left: 16px;
+}
+
+.gallery-next {
+  right: 16px;
+}
+
+.gallery-thumbnails {
+  display: flex;
+  gap: 12px;
+  padding: 12px 16px;
+  background: rgba(0, 0, 0, 0.3);
+  overflow-x: auto;
+}
+
+.thumbnail {
+  width: 70px;
+  height: 50px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  opacity: 0.6;
+  border: 2px solid transparent;
+  transition: all 0.2s;
+}
+
+.thumbnail:hover {
+  opacity: 1;
+}
+
+.thumbnail.active {
+  opacity: 1;
+  border-color: #3b82f6;
+}
+
+.thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ========================================
+   PROJECT MODAL BODY
+   ======================================== */
+
+.project-modal-body {
+  padding: 28px;
+}
+
+.project-modal-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+
+.project-modal-desc {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+}
+
+.project-modal-results {
+  margin-bottom: 24px;
+}
+
+.project-modal-results h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: #10b981;
+  margin-bottom: 12px;
+}
+
+.project-modal-results ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.project-modal-results li {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+
+.project-modal-tech h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+@media (max-width: 768px) {
+  .gallery-main {
+    height: 200px;
+  }
+
+  .gallery-prev,
+  .gallery-next {
+    width: 32px;
+    height: 32px;
+    font-size: 18px;
+  }
+
+  .thumbnail {
+    width: 55px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 640px) {
+  .project-modal-body {
+    padding: 20px;
+  }
+
+  .project-modal-title {
+    font-size: 18px;
+  }
+
+  .magang-project-btn {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .magang-card {
+    gap: 14px;
+  }
+
+  .magang-timeline {
+    display: none;
+  }
+
+  .magang-body {
+    margin-left: 0;
+  }
+
+  .magang-header {
+    flex-wrap: wrap;
+  }
 }

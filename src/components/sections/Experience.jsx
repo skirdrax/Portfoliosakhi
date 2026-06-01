@@ -1,6 +1,28 @@
+import { useState } from 'react';
 import { MAGANG } from '../../data';
 
 export default function Experience() {
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const nextImage = () => {
+    if (selectedProject && selectedProject.images) {
+      setCurrentImageIndex(
+        (prev) => (prev + 1) % selectedProject.images.length,
+      );
+    }
+  };
+
+  const prevImage = () => {
+    if (selectedProject && selectedProject.images) {
+      setCurrentImageIndex(
+        (prev) =>
+          (prev - 1 + selectedProject.images.length) %
+          selectedProject.images.length,
+      );
+    }
+  };
+
   return (
     <div className="magang-section">
       <p className="section-tag reveal">Pengalaman</p>
@@ -44,6 +66,26 @@ export default function Experience() {
                   </span>
                 ))}
               </div>
+
+              {/* Tombol Lihat Proyek */}
+              <button
+                className="magang-project-btn"
+                onClick={() => {
+                  setSelectedProject(m.project);
+                  setCurrentImageIndex(0);
+                }}>
+                Lihat Proyek Selama Magang
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2">
+                  <path d="M7 17L17 7M17 7H7M17 7v10" />
+                </svg>
+              </button>
+
               <a
                 href={m.href}
                 target="_blank"
@@ -64,6 +106,90 @@ export default function Experience() {
           </div>
         ))}
       </div>
+
+      {/* Modal Popup Proyek dengan Galeri Gambar */}
+      {selectedProject && (
+        <div
+          className="project-modal-overlay"
+          onClick={() => setSelectedProject(null)}>
+          <div
+            className="project-modal-content"
+            onClick={(e) => e.stopPropagation()}>
+            <button
+              className="project-modal-close"
+              onClick={() => setSelectedProject(null)}>
+              ✕
+            </button>
+
+            {/* Galeri Gambar - Maksimal 4 gambar */}
+            {selectedProject.images && selectedProject.images.length > 0 && (
+              <div className="project-modal-gallery">
+                <div className="gallery-main">
+                  <img
+                    src={selectedProject.images[currentImageIndex]}
+                    alt={`Project ${currentImageIndex + 1}`}
+                  />
+
+                  {/* Tombol prev/next */}
+                  {selectedProject.images.length > 1 && (
+                    <>
+                      <button className="gallery-prev" onClick={prevImage}>
+                        ❮
+                      </button>
+                      <button className="gallery-next" onClick={nextImage}>
+                        ❯
+                      </button>
+                    </>
+                  )}
+                </div>
+
+                {/* Thumbnail navigasi */}
+                {selectedProject.images.length > 1 && (
+                  <div className="gallery-thumbnails">
+                    {selectedProject.images.slice(0, 4).map((img, idx) => (
+                      <div
+                        key={idx}
+                        className={`thumbnail ${currentImageIndex === idx ? 'active' : ''}`}
+                        onClick={() => setCurrentImageIndex(idx)}>
+                        <img src={img} alt={`Thumbnail ${idx + 1}`} />
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+
+            <div className="project-modal-body">
+              <h3 className="project-modal-title">{selectedProject.title}</h3>
+              <p className="project-modal-desc">
+                {selectedProject.description}
+              </p>
+
+              {selectedProject.results && (
+                <div className="project-modal-results">
+                  <h4>📊 Hasil & Pencapaian</h4>
+                  <ul>
+                    {selectedProject.results.map((result, idx) => (
+                      <li key={idx}>{result}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              <div className="project-modal-tech">
+                <h4>🛠 Teknologi & Tools</h4>
+                <div className="tech-tags">
+                  {selectedProject.tech.map((t, idx) => (
+                    <span key={idx} className="tag-chip">
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
