@@ -162,6 +162,7 @@ export const listProyek = [
     desk: 'Aplikasi Pencatat keuangan pribadi yang membantu pengguna mengelola pengeluaran dan pemasukan dengan mudah.',
     tools: ['Flutter', 'Firebase', 'Figma', 'Canva'],
     dad: '600',
+    link: 'https://drive.google.com/drive/folders/1JNprvN24hUdXYlZN9OUHJIXlKQSpjiV6?usp=sharing',
   },
   {
     id: 6,
