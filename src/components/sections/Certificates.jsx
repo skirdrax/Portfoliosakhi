@@ -43,7 +43,7 @@ export default function Certificates() {
                 <img src={cert.image} alt={cert.title} />
                 <div className="certificate-overlay">
                   <span>
-                    🔍 Klik untuk lihat ssssss sss sss ss sss sss sss ss s s
+                    🔍 Klik untuk lihat ssssss sss sss ss sss sss sss ss
                   </span>
                 </div>
               </div>
