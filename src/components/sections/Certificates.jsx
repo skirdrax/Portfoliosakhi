@@ -44,7 +44,6 @@ export default function Certificates() {
                 <div className="certificate-overlay">
                   <span>
                     🔍 Klik untuk lihat ssssss sss sss ss sss sss sss ss s s s s
-                    s
                   </span>
                 </div>
               </div>
