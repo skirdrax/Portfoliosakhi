@@ -45,11 +45,11 @@ export const listProyek = [
   {
     id: 5,
     gambar: Proyek5,
-    nama: 'Coming Soon',
+    nama: 'Pocket Radar App',
     kategori: 'Mobile',
-    desk: 'Proyek sedang dalam pengembangan.',
-    tools: [],
-    link: null,
+    desk: 'Aplikasi Pencatat keuangan pribadi yang membantu pengguna mengelola pengeluaran dan pemasukan dengan mudah.',
+    tools: ['Flutter', 'Firebase', 'Figma', 'Canva'],
+    link: 'https://drive.google.com/drive/folders/1JNprvN24hUdXYlZN9OUHJIXlKQSpjiV6?usp=sharing',
   },
   {
     id: 6,
