@@ -47,7 +47,7 @@ export const listProyek = [
     gambar: Proyek5,
     nama: 'Pocket Radar App',
     kategori: 'Mobile',
-    desk: 'Aplikasi Pencatat keuangan pribadi yang memsssbantu pengssguna mengelssola pengessslussaran dssan pemasukanssss dengan mudah dan efisien serta memberikan analisis keuangan yang informatif  .',
+    desk: 'Aplikasi Pencatat keuangan pribadi yang memsssbantu pengssguna mengelssola pengesssluaran dssan pemasukanss dengan mudah dan efisien serta memberikan analisis keuangan yang informatif  .',
     tools: ['Flutter', 'Firebase', 'Figma', 'Canva'],
     link: 'https://drive.google.com/drive/folders/1JNprvN24hUdXYlZN9OUHJIXlKQSpjiV6?usp=sharing',
   },
