@@ -1,20 +1,47 @@
 import { useState, useEffect } from 'react';
 
 export default function GitHubStats() {
-  const [streakImage, setStreakImage] = useState('');
-  const [loading, setLoading] = useState(true);
+  const [stats, setStats] = useState({
+    publicRepos: 0,
+    followers: 0,
+    following: 0,
+    createdAt: '',
+    updatedAt: '',
+    loading: true,
+    error: false,
+  });
 
   useEffect(() => {
-    // Streak Stats URL dengan timestamp agar tidak cache
-    const streakUrl = `https://github-readme-streak-stats.herokuapp.com/?user=skirdrax&theme=blueberry&hide_border=true&stroke=2563eb&ring=2563eb&fire=3b82f6&currStreakNum=3b82f6&sideNums=3b82f6&currStreakLabel=3b82f6&sideLabels=3b82f6&dates=6e7681&background=0d1117&t=${Date.now()}`;
-    setStreakImage(streakUrl);
-    setLoading(false);
+    fetch('https://api.github.com/users/skirdrax')
+      .then((res) => {
+        if (!res.ok) throw new Error('Gagal mengambil data');
+        return res.json();
+      })
+      .then((data) => {
+        setStats({
+          publicRepos: data.public_repos || 0,
+          followers: data.followers || 0,
+          following: data.following || 0,
+          createdAt: data.created_at
+            ? new Date(data.created_at).toLocaleDateString('id-ID')
+            : '-',
+          updatedAt: data.updated_at
+            ? new Date(data.updated_at).toLocaleDateString('id-ID')
+            : '-',
+          loading: false,
+          error: false,
+        });
+      })
+      .catch((err) => {
+        console.error('Error fetching GitHub stats:', err);
+        setStats((prev) => ({ ...prev, loading: false, error: true }));
+      });
   }, []);
 
   return (
     <div className="github-stats-container">
-      {/* Bagian 1: Contribution Graph (Full Width) */}
-      <div className="github-graph-wrapper reveal d2">
+      {/* Contribution Graph - Tetap pakai ghchart */}
+      <div className="github-graph-wrapper">
         <div className="github-graph-title">
           <h3>📊 GitHub Contributions</h3>
         </div>
@@ -27,9 +54,13 @@ export default function GitHubStats() {
           </div>
         </div>
         <img
-          src="https://ghchart.rshah.org/skirdrax"
+          src={`https://ghchart.rshah.org/skirdrax?t=${Date.now()}`}
           alt="GitHub Contribution Graph"
           className="github-graph"
+          onError={(e) => {
+            e.target.src =
+              'https://via.placeholder.com/800x200/1e293b/3b82f6?text=Contributions+Graph';
+          }}
         />
         <div className="github-graph-footer">
           <a
@@ -41,26 +72,55 @@ export default function GitHubStats() {
         </div>
       </div>
 
-      {/* Bagian 2: 2 Kolom (Streak Stats + Roller Coaster) */}
+      {/* 2 Kolom: Statistik GitHub + Activity */}
       <div className="github-bottom-grid">
-        {/* Kolom Kiri: Streak Stats */}
-        <div className="github-streak-wrapper reveal d2">
+        {/* Kolom Kiri: Statistik GitHub */}
+        <div className="github-streak-wrapper">
           <div className="github-streak-title">
-            <h3>🔥 GitHub Streak Stats</h3>
+            <h3>📊 GitHub Stats</h3>
           </div>
-          {loading ? (
-            <div className="streak-loading">Memuat data streak...</div>
+          {stats.loading ? (
+            <div className="streak-loading">Memuat data statistik...</div>
+          ) : stats.error ? (
+            <div className="streak-error">
+              <p>Gagal memuat data statistik</p>
+              <button
+                onClick={() => window.location.reload()}
+                className="retry-btn">
+                Coba Lagi
+              </button>
+            </div>
           ) : (
-            <img
-              src={streakImage}
-              alt="GitHub Streak Stats"
-              className="github-streak-img"
-              style={{ width: '100%', height: 'auto', borderRadius: '16px' }}
-            />
+            <div className="streak-stats-grid-custom">
+              <div className="streak-card-custom">
+                <div className="streak-icon-custom">📚</div>
+                <div className="streak-value-custom">{stats.publicRepos}</div>
+                <div className="streak-label-custom">Public Repos</div>
+              </div>
+              <div className="streak-card-custom">
+                <div className="streak-icon-custom">👥</div>
+                <div className="streak-value-custom">{stats.followers}</div>
+                <div className="streak-label-custom">Followers</div>
+              </div>
+              <div className="streak-card-custom">
+                <div className="streak-icon-custom">👤</div>
+                <div className="streak-value-custom">{stats.following}</div>
+                <div className="streak-label-custom">Following</div>
+              </div>
+              <div className="streak-card-custom">
+                <div className="streak-icon-custom">📅</div>
+                <div
+                  className="streak-value-custom"
+                  style={{ fontSize: '18px' }}>
+                  {stats.createdAt}
+                </div>
+                <div className="streak-label-custom">Bergabung</div>
+              </div>
+            </div>
           )}
           <div className="github-graph-footer" style={{ marginTop: '16px' }}>
             <a
-              href="https://github.com/skirdrax"
+              href="https://github.com/skirdrax?tab=overview"
               target="_blank"
               rel="noopener noreferrer">
               View detailed stats →
@@ -68,20 +128,27 @@ export default function GitHubStats() {
           </div>
         </div>
 
-        {/* Kolom Kanan: Roller Coaster Graph */}
-        <div className="github-roller-wrapper reveal d2">
+        {/* Kolom Kanan: Aktivitas GitHub */}
+        <div className="github-roller-wrapper">
           <div className="github-roller-title">
-            <h3>📈 GitHub Activity Roller Coaster</h3>
+            <h3>📈 GitHub Activity</h3>
           </div>
-          <img
-            src="https://github-readme-activity-graph.vercel.app/graph?username=skirdrax&theme=react-dark&bg_color=0d1117&color=3b82f6&line=2563eb&point=60a5fa&hide_border=true"
-            alt="GitHub Activity Graph"
-            className="github-roller"
-            style={{ width: '100%', height: 'auto', borderRadius: '16px' }}
-          />
-          <div className="github-graph-footer" style={{ marginTop: '16px' }}>
+          <div className="roller-fallback">
+            <p>
+              Kunjungi GitHub untuk melihat aktivitas lengkap dan grafik
+              kontribusi terbaru:
+            </p>
             <a
               href="https://github.com/skirdrax"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="roller-link">
+              github.com/skirdrax →
+            </a>
+          </div>
+          <div className="github-graph-footer" style={{ marginTop: '16px' }}>
+            <a
+              href="https://github.com/skirdrax?tab=overview"
               target="_blank"
               rel="noopener noreferrer">
               View activity graph →
