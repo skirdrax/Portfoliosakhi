@@ -66,25 +66,47 @@ export default function GitHubStats() {
     };
     streakImg.src = streakUrl;
 
-    // Roller Coaster
-    const rollerUrl = `https://github-readme-activity-graph.vercel.app/graph?username=skirdrax&theme=react-dark&bg_color=0d1117&color=3b82f6&line=2563eb&point=60a5fa&hide_border=true&t=${Date.now()}`;
+    // Roller Coaster - ALTERNATIF API YANG LEBIH STABIL
+    // Opsi 1: Pakai API lain
+    const rollerUrl1 = `https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=skirdrax&theme=github_dark`;
+
+    // Opsi 2: Fallback pakai placeholder
+    const rollerUrl2 =
+      'https://placehold.co/600x200/1e293b/3b82f6?text=Activity+Graph+%28API+Error%29';
+
     const rollerImg = new Image();
     rollerImg.onload = () => {
-      setRollerImage(rollerUrl);
+      setRollerImage(rollerUrl1);
       setRollerLoaded(true);
     };
     rollerImg.onerror = () => {
-      setRollerImage(
-        'https://placehold.co/600x300/1e293b/3b82f6?text=Activity+Graph',
-      );
-      setRollerLoaded(true);
+      // Jika API error, coba API alternatif
+      const rollerImg2 = new Image();
+      rollerImg2.onload = () => {
+        setRollerImage(rollerUrl2);
+        setRollerLoaded(true);
+      };
+      rollerImg2.onerror = () => {
+        setRollerImage(rollerUrl2);
+        setRollerLoaded(true);
+      };
+      rollerImg2.src = rollerUrl2;
     };
-    rollerImg.src = rollerUrl;
+    rollerImg.src = rollerUrl1;
   }, []);
+
+  const monthlyData = [
+    { month: 'Jan', value: 18, width: '15%' },
+    { month: 'Feb', value: 4, width: '4%' },
+    { month: 'Mar', value: 2, width: '2%' },
+    { month: 'Apr', value: 16, width: '12%' },
+    { month: 'Mei', value: 420, width: '85%' },
+    { month: 'Jun', value: 50, width: '30%' },
+  ];
 
   return (
     <div className="github-stats-container">
-      {/* Contribution Graph */}
+      {/* Contribution Graph - Full Width */}
       <div className="github-graph-wrapper">
         <div className="github-graph-title">
           <h3>📊 GitHub Contributions</h3>
@@ -123,7 +145,7 @@ export default function GitHubStats() {
 
       {/* 2 Kolom */}
       <div className="github-bottom-grid">
-        {/* KIRI: Streak + Stats */}
+        {/* KOLOM KIRI */}
         <div className="github-streak-wrapper">
           <div className="github-streak-title">
             <h3>🔥 GitHub Streak & Stats</h3>
@@ -169,7 +191,7 @@ export default function GitHubStats() {
                 <div className="stats-icon-inline">📅</div>
                 <div
                   className="stats-value-inline"
-                  style={{ fontSize: '14px' }}>
+                  style={{ fontSize: '13px' }}>
                   {stats.createdAt}
                 </div>
                 <div className="stats-label-inline">BERGABUNG</div>
@@ -187,14 +209,14 @@ export default function GitHubStats() {
           </div>
         </div>
 
-        {/* KANAN: Roller Coaster */}
+        {/* KOLOM KANAN */}
         <div className="github-roller-wrapper">
           <div className="github-roller-title">
-            <h3>📈 GitHub Activity Roller Coaster</h3>
+            <h3>📈 GitHub Activity</h3>
           </div>
 
           {!rollerLoaded && (
-            <div className="streak-loading">
+            <div className="streak-loading" style={{ padding: '20px' }}>
               <div className="loading-spinner-small"></div>
               <p>Memuat activity graph...</p>
             </div>
@@ -204,9 +226,47 @@ export default function GitHubStats() {
             src={rollerImage}
             alt="Activity Graph"
             className="github-roller"
-            style={{ display: rollerLoaded ? 'block' : 'none' }}
+            style={{
+              display: rollerLoaded ? 'block' : 'none',
+              maxHeight: '160px',
+              width: '100%',
+              objectFit: 'cover',
+            }}
+            onError={(e) => {
+              e.target.src =
+                'https://placehold.co/600x160/1e293b/3b82f6?text=Activity+Graph';
+            }}
           />
-          <div className="github-graph-footer" style={{ marginTop: '16px' }}>
+
+          {/* Monthly Contributions */}
+          <div className="roller-extra-stats">
+            <div className="roller-extra-title">
+              <span>📊 Monthly Contributions</span>
+            </div>
+            <div className="monthly-stats">
+              {monthlyData.map((item) => (
+                <div
+                  key={item.month}
+                  className="month-item"
+                  onClick={() =>
+                    window.open(
+                      `https://github.com/skirdrax?tab=overview`,
+                      '_blank',
+                    )
+                  }>
+                  <span className="month-name">{item.month}</span>
+                  <div className="month-bar-container">
+                    <div
+                      className="month-bar"
+                      style={{ width: item.width }}></div>
+                  </div>
+                  <span className="month-value">{item.value}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="github-graph-footer" style={{ marginTop: '12px' }}>
             <a
               href="https://github.com/skirdrax?tab=overview"
               target="_blank"
