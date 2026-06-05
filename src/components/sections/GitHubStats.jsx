@@ -9,17 +9,17 @@ export default function GitHubStats() {
     loading: true,
     error: false,
   });
+  const [contribImage, setContribImage] = useState('');
+  const [streakImage, setStreakImage] = useState('');
+  const [rollerImage, setRollerImage] = useState('');
+  const [contribLoaded, setContribLoaded] = useState(false);
   const [streakLoaded, setStreakLoaded] = useState(false);
   const [rollerLoaded, setRollerLoaded] = useState(false);
-  const [timeoutError, setTimeoutError] = useState(false);
 
-  // GitHub Stats dari API (cepat)
   useEffect(() => {
+    // GitHub Stats API
     fetch('https://api.github.com/users/skirdrax')
-      .then((res) => {
-        if (!res.ok) throw new Error('Gagal mengambil data');
-        return res.json();
-      })
+      .then((res) => res.json())
       .then((data) => {
         setStats({
           publicRepos: data.public_repos || 0,
@@ -32,30 +32,59 @@ export default function GitHubStats() {
           error: false,
         });
       })
-      .catch((err) => {
-        console.error('Error fetching GitHub stats:', err);
+      .catch(() => {
         setStats((prev) => ({ ...prev, loading: false, error: true }));
       });
+
+    // Contribution Graph
+    const contribUrl = `https://github-contributions-api.deno.dev/skirdrax.svg?t=${Date.now()}`;
+    const contribImg = new Image();
+    contribImg.onload = () => {
+      setContribImage(contribUrl);
+      setContribLoaded(true);
+    };
+    contribImg.onerror = () => {
+      setContribImage(
+        'https://placehold.co/800x200/1e293b/22c55e?text=Contributions+Graph',
+      );
+      setContribLoaded(true);
+    };
+    contribImg.src = contribUrl;
+
+    // Streak Stats
+    const streakUrl = `https://github-readme-streak-stats.herokuapp.com/?user=skirdrax&theme=blueberry&hide_border=true&stroke=2563eb&ring=2563eb&fire=3b82f6&currStreakNum=3b82f6&sideNums=3b82f6&currStreakLabel=3b82f6&sideLabels=3b82f6&dates=6e7681&background=0d1117&t=${Date.now()}`;
+    const streakImg = new Image();
+    streakImg.onload = () => {
+      setStreakImage(streakUrl);
+      setStreakLoaded(true);
+    };
+    streakImg.onerror = () => {
+      setStreakImage(
+        'https://placehold.co/400x150/1e293b/3b82f6?text=Streak+Stats',
+      );
+      setStreakLoaded(true);
+    };
+    streakImg.src = streakUrl;
+
+    // Roller Coaster
+    const rollerUrl = `https://github-readme-activity-graph.vercel.app/graph?username=skirdrax&theme=react-dark&bg_color=0d1117&color=3b82f6&line=2563eb&point=60a5fa&hide_border=true&t=${Date.now()}`;
+    const rollerImg = new Image();
+    rollerImg.onload = () => {
+      setRollerImage(rollerUrl);
+      setRollerLoaded(true);
+    };
+    rollerImg.onerror = () => {
+      setRollerImage(
+        'https://placehold.co/600x300/1e293b/3b82f6?text=Activity+Graph',
+      );
+      setRollerLoaded(true);
+    };
+    rollerImg.src = rollerUrl;
   }, []);
-
-  // Timeout untuk image streak (10 detik)
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (!streakLoaded) {
-        setTimeoutError(true);
-        const fallback = document.getElementById('streak-fallback');
-        if (fallback) fallback.style.display = 'block';
-      }
-    }, 10000);
-    return () => clearTimeout(timer);
-  }, [streakLoaded]);
-
-  const streakImageUrl = `https://github-readme-streak-stats.herokuapp.com/?user=skirdrax&theme=blueberry&hide_border=true&stroke=2563eb&ring=2563eb&fire=3b82f6&currStreakNum=3b82f6&sideNums=3b82f6&currStreakLabel=3b82f6&sideLabels=3b82f6&dates=6e7681&background=0d1117&t=${Date.now()}`;
-  const contribGraphUrl = `https://ghchart.rshah.org/skirdrax?t=${Date.now()}`;
 
   return (
     <div className="github-stats-container">
-      {/* Contribution Graph - Full Width */}
+      {/* Contribution Graph */}
       <div className="github-graph-wrapper">
         <div className="github-graph-title">
           <h3>📊 GitHub Contributions</h3>
@@ -68,14 +97,19 @@ export default function GitHubStats() {
             <span>💚</span> Total contributions
           </div>
         </div>
+
+        {!contribLoaded && (
+          <div className="streak-loading">
+            <div className="loading-spinner-small"></div>
+            <p>Memuat contribution graph...</p>
+          </div>
+        )}
+
         <img
-          src={contribGraphUrl}
-          alt="GitHub Contribution Graph"
+          src={contribImage}
+          alt="GitHub Contributions"
           className="github-graph"
-          onError={(e) => {
-            e.target.src =
-              'https://via.placeholder.com/800x200/1e293b/3b82f6?text=Contributions+Graph';
-          }}
+          style={{ display: contribLoaded ? 'block' : 'none' }}
         />
         <div className="github-graph-footer">
           <a
@@ -89,60 +123,28 @@ export default function GitHubStats() {
 
       {/* 2 Kolom */}
       <div className="github-bottom-grid">
-        {/* KIRI: Streak + 4 Statistik */}
+        {/* KIRI: Streak + Stats */}
         <div className="github-streak-wrapper">
           <div className="github-streak-title">
             <h3>🔥 GitHub Streak & Stats</h3>
           </div>
 
-          {/* Loading indicator untuk streak */}
-          {!streakLoaded && !timeoutError && (
+          {!streakLoaded && (
             <div className="streak-loading">
               <div className="loading-spinner-small"></div>
-              <p>Memuat data streak...</p>
+              <p>Memuat streak stats...</p>
             </div>
           )}
 
-          <div
-            className="streak-image-container"
-            style={{ display: streakLoaded ? 'block' : 'none' }}>
-            <img
-              src={streakImageUrl}
-              alt="GitHub Streak Stats"
-              className="streak-image"
-              onLoad={() => setStreakLoaded(true)}
-              onError={(e) => {
-                e.target.style.display = 'none';
-                const fallback = document.getElementById('streak-fallback');
-                if (fallback) fallback.style.display = 'block';
-              }}
-            />
-          </div>
+          <img
+            src={streakImage}
+            alt="Streak Stats"
+            className="streak-image"
+            style={{ display: streakLoaded ? 'block' : 'none' }}
+          />
 
-          <div
-            id="streak-fallback"
-            className="streak-fallback"
-            style={{ display: 'none' }}>
-            <p>Gagal memuat streak stats</p>
-            <button
-              onClick={() => window.location.reload()}
-              className="retry-btn">
-              Refresh
-            </button>
-          </div>
-
-          {/* 4 Statistik (langsung muncul, cepat) */}
           {stats.loading ? (
             <div className="streak-loading">Memuat data statistik...</div>
-          ) : stats.error ? (
-            <div className="streak-error">
-              <p>Gagal memuat data statistik</p>
-              <button
-                onClick={() => window.location.reload()}
-                className="retry-btn">
-                Coba Lagi
-              </button>
-            </div>
           ) : (
             <div className="stats-grid-inline">
               <div className="stats-item-inline">
@@ -191,7 +193,6 @@ export default function GitHubStats() {
             <h3>📈 GitHub Activity Roller Coaster</h3>
           </div>
 
-          {/* Loading indicator untuk roller */}
           {!rollerLoaded && (
             <div className="streak-loading">
               <div className="loading-spinner-small"></div>
@@ -200,30 +201,11 @@ export default function GitHubStats() {
           )}
 
           <img
-            src={`https://github-readme-activity-graph.vercel.app/graph?username=skirdrax&theme=react-dark&bg_color=0d1117&color=3b82f6&line=2563eb&point=60a5fa&hide_border=true&t=${Date.now()}`}
-            alt="GitHub Activity Graph"
+            src={rollerImage}
+            alt="Activity Graph"
             className="github-roller"
             style={{ display: rollerLoaded ? 'block' : 'none' }}
-            onLoad={() => setRollerLoaded(true)}
-            onError={(e) => {
-              e.target.style.display = 'none';
-              const fallback = document.getElementById('roller-fallback');
-              if (fallback) fallback.style.display = 'block';
-            }}
           />
-          <div
-            id="roller-fallback"
-            className="roller-fallback"
-            style={{ display: 'none' }}>
-            <p>Kunjungi GitHub untuk melihat aktivitas lengkap:</p>
-            <a
-              href="https://github.com/skirdrax"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="roller-link">
-              github.com/skirdrax →
-            </a>
-          </div>
           <div className="github-graph-footer" style={{ marginTop: '16px' }}>
             <a
               href="https://github.com/skirdrax?tab=overview"

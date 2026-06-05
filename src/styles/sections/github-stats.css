@@ -425,4 +425,59 @@
       transform: rotate(360deg);
     }
   }
+  .github-graph,
+  .streak-image,
+  .github-roller {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    background: #0d1117;
+    min-height: 150px;
+    object-fit: cover;
+  }
+  /* Snake animation effect on contribution graph */
+  .github-graph-wrapper {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .github-graph-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(34, 197, 94, 0.15),
+      rgba(34, 197, 94, 0.4),
+      rgba(34, 197, 94, 0.15),
+      transparent
+    );
+    animation: snakeGlow 4s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 1;
+    border-radius: 16px;
+  }
+
+  @keyframes snakeGlow {
+    0% {
+      left: -100%;
+    }
+    100% {
+      left: 100%;
+    }
+  }
+
+  /* Grid hover effect */
+  .github-graph {
+    transition: all 0.3s ease;
+    filter: brightness(1);
+  }
+
+  .github-graph:hover {
+    filter: brightness(1.1);
+  }
 }
