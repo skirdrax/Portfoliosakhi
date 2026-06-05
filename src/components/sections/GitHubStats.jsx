@@ -134,12 +134,8 @@ export default function GitHubStats() {
             <h3>📈 GitHub Activity</h3>
           </div>
           <div className="roller-fallback">
-            <p>
-              Kunjungi GitHub untuk melihat aktivitas lengkap dan grafik
-              kontribusi terbaru:
-            </p>
             <a
-              href="https://github.com/skirdrax"
+              src="https://github-readme-activity-graph.vercel.app/graph?username=skirdrax&theme=github-dark&hide_border=true&area=true"
               target="_blank"
               rel="noopener noreferrer"
               className="roller-link">
