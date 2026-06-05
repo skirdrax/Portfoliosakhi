@@ -9,11 +9,15 @@ export default function GitHubStats() {
     loading: true,
     error: false,
   });
+  const [streakLoaded, setStreakLoaded] = useState(false);
+  const [rollerLoaded, setRollerLoaded] = useState(false);
+  const [timeoutError, setTimeoutError] = useState(false);
 
+  // GitHub Stats dari API (cepat)
   useEffect(() => {
     fetch('https://api.github.com/users/skirdrax')
       .then((res) => {
-        if (!res.ok) throw new Error('Gagal mengambil数据');
+        if (!res.ok) throw new Error('Gagal mengambil data');
         return res.json();
       })
       .then((data) => {
@@ -33,6 +37,18 @@ export default function GitHubStats() {
         setStats((prev) => ({ ...prev, loading: false, error: true }));
       });
   }, []);
+
+  // Timeout untuk image streak (10 detik)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (!streakLoaded) {
+        setTimeoutError(true);
+        const fallback = document.getElementById('streak-fallback');
+        if (fallback) fallback.style.display = 'block';
+      }
+    }, 10000);
+    return () => clearTimeout(timer);
+  }, [streakLoaded]);
 
   const streakImageUrl = `https://github-readme-streak-stats.herokuapp.com/?user=skirdrax&theme=blueberry&hide_border=true&stroke=2563eb&ring=2563eb&fire=3b82f6&currStreakNum=3b82f6&sideNums=3b82f6&currStreakLabel=3b82f6&sideLabels=3b82f6&dates=6e7681&background=0d1117&t=${Date.now()}`;
   const contribGraphUrl = `https://ghchart.rshah.org/skirdrax?t=${Date.now()}`;
@@ -79,25 +95,43 @@ export default function GitHubStats() {
             <h3>🔥 GitHub Streak & Stats</h3>
           </div>
 
-          <div className="streak-image-container">
+          {/* Loading indicator untuk streak */}
+          {!streakLoaded && !timeoutError && (
+            <div className="streak-loading">
+              <div className="loading-spinner-small"></div>
+              <p>Memuat data streak...</p>
+            </div>
+          )}
+
+          <div
+            className="streak-image-container"
+            style={{ display: streakLoaded ? 'block' : 'none' }}>
             <img
               src={streakImageUrl}
               alt="GitHub Streak Stats"
               className="streak-image"
+              onLoad={() => setStreakLoaded(true)}
               onError={(e) => {
                 e.target.style.display = 'none';
                 const fallback = document.getElementById('streak-fallback');
                 if (fallback) fallback.style.display = 'block';
               }}
             />
-            <div
-              id="streak-fallback"
-              className="streak-fallback"
-              style={{ display: 'none' }}>
-              <p>Memuat data streak...</p>
-            </div>
           </div>
 
+          <div
+            id="streak-fallback"
+            className="streak-fallback"
+            style={{ display: 'none' }}>
+            <p>Gagal memuat streak stats</p>
+            <button
+              onClick={() => window.location.reload()}
+              className="retry-btn">
+              Refresh
+            </button>
+          </div>
+
+          {/* 4 Statistik (langsung muncul, cepat) */}
           {stats.loading ? (
             <div className="streak-loading">Memuat data statistik...</div>
           ) : stats.error ? (
@@ -156,10 +190,21 @@ export default function GitHubStats() {
           <div className="github-roller-title">
             <h3>📈 GitHub Activity Roller Coaster</h3>
           </div>
+
+          {/* Loading indicator untuk roller */}
+          {!rollerLoaded && (
+            <div className="streak-loading">
+              <div className="loading-spinner-small"></div>
+              <p>Memuat activity graph...</p>
+            </div>
+          )}
+
           <img
             src={`https://github-readme-activity-graph.vercel.app/graph?username=skirdrax&theme=react-dark&bg_color=0d1117&color=3b82f6&line=2563eb&point=60a5fa&hide_border=true&t=${Date.now()}`}
             alt="GitHub Activity Graph"
             className="github-roller"
+            style={{ display: rollerLoaded ? 'block' : 'none' }}
+            onLoad={() => setRollerLoaded(true)}
             onError={(e) => {
               e.target.style.display = 'none';
               const fallback = document.getElementById('roller-fallback');
