@@ -35,10 +35,10 @@ export const MAGANG = [
         'PageSpeed Insights',
       ],
       images: [
-        '/assets/proyek/proyek1.webp',
-        '/assets/proyek/proyek2.webp',
-        '/assets/proyek/proyek3.webp',
-        '/assets/proyek/proyek4.webp',
+        '/assets/proyek/groperti/1.png',
+        '/assets/proyek/groperti/2.png',
+        '/assets/proyek/groperti/3.png',
+        '/assets/proyek/groperti/4.png',
       ],
       certificates: [
         {
@@ -46,14 +46,14 @@ export const MAGANG = [
           title: 'Sertifikat Magang SEO',
           issuer: 'PT Groperti Indonesia',
           date: 'Agustus 2025',
-          image: '/assets/sertifikat/serti1.png',
+          image: '/assets/sertifikat/groperti/1.png',
         },
         {
           id: 2,
           title: 'Certificate of Completion',
           issuer: 'PT Groperti Indonesia',
           date: 'Agustus 2025',
-          image: '/assets/sertifikat/serti2.png',
+          image: '/assets/sertifikat/groperti/2.png',
         },
       ],
     },
