@@ -13,7 +13,7 @@ export default function GitHubStats() {
   useEffect(() => {
     fetch('https://api.github.com/users/skirdrax')
       .then((res) => {
-        if (!res.ok) throw new Error('Gagal mengambil data');
+        if (!res.ok) throw new Error('Gagal mengambil数据');
         return res.json();
       })
       .then((data) => {
@@ -34,6 +34,9 @@ export default function GitHubStats() {
       });
   }, []);
 
+  const streakImageUrl = `https://github-readme-streak-stats.herokuapp.com/?user=skirdrax&theme=blueberry&hide_border=true&stroke=2563eb&ring=2563eb&fire=3b82f6&currStreakNum=3b82f6&sideNums=3b82f6&currStreakLabel=3b82f6&sideLabels=3b82f6&dates=6e7681&background=0d1117&t=${Date.now()}`;
+  const contribGraphUrl = `https://ghchart.rshah.org/skirdrax?t=${Date.now()}`;
+
   return (
     <div className="github-stats-container">
       {/* Contribution Graph - Full Width */}
@@ -50,7 +53,7 @@ export default function GitHubStats() {
           </div>
         </div>
         <img
-          src={`https://ghchart.rshah.org/skirdrax?t=${Date.now()}`}
+          src={contribGraphUrl}
           alt="GitHub Contribution Graph"
           className="github-graph"
           onError={(e) => {
@@ -68,13 +71,33 @@ export default function GitHubStats() {
         </div>
       </div>
 
-      {/* 2 Kolom: GitHub Stats (Kiri) + Roller Coaster (Kanan) */}
+      {/* 2 Kolom */}
       <div className="github-bottom-grid">
-        {/* KOLOM KIRI: GitHub Stats */}
+        {/* KIRI: Streak + 4 Statistik */}
         <div className="github-streak-wrapper">
           <div className="github-streak-title">
-            <h3>📊 GitHub Stats</h3>
+            <h3>🔥 GitHub Streak & Stats</h3>
           </div>
+
+          <div className="streak-image-container">
+            <img
+              src={streakImageUrl}
+              alt="GitHub Streak Stats"
+              className="streak-image"
+              onError={(e) => {
+                e.target.style.display = 'none';
+                const fallback = document.getElementById('streak-fallback');
+                if (fallback) fallback.style.display = 'block';
+              }}
+            />
+            <div
+              id="streak-fallback"
+              className="streak-fallback"
+              style={{ display: 'none' }}>
+              <p>Memuat data streak...</p>
+            </div>
+          </div>
+
           {stats.loading ? (
             <div className="streak-loading">Memuat data statistik...</div>
           ) : stats.error ? (
@@ -87,33 +110,37 @@ export default function GitHubStats() {
               </button>
             </div>
           ) : (
-            <div className="streak-stats-grid-custom">
-              <div className="streak-card-custom">
-                <div className="streak-icon-custom">📚</div>
-                <div className="streak-value-custom">{stats.publicRepos}</div>
-                <div className="streak-label-custom">Public Repos</div>
+            <div className="stats-grid-inline">
+              <div className="stats-item-inline">
+                <div className="stats-icon-inline">📚</div>
+                <div className="stats-value-inline">{stats.publicRepos}</div>
+                <div className="stats-label-inline">PUBLIC REPOS</div>
               </div>
-              <div className="streak-card-custom">
-                <div className="streak-icon-custom">👥</div>
-                <div className="streak-value-custom">{stats.followers}</div>
-                <div className="streak-label-custom">Followers</div>
+              <div className="stats-divider-inline"></div>
+              <div className="stats-item-inline">
+                <div className="stats-icon-inline">👥</div>
+                <div className="stats-value-inline">{stats.followers}</div>
+                <div className="stats-label-inline">FOLLOWERS</div>
               </div>
-              <div className="streak-card-custom">
-                <div className="streak-icon-custom">👤</div>
-                <div className="streak-value-custom">{stats.following}</div>
-                <div className="streak-label-custom">Following</div>
+              <div className="stats-divider-inline"></div>
+              <div className="stats-item-inline">
+                <div className="stats-icon-inline">👤</div>
+                <div className="stats-value-inline">{stats.following}</div>
+                <div className="stats-label-inline">FOLLOWING</div>
               </div>
-              <div className="streak-card-custom">
-                <div className="streak-icon-custom">📅</div>
+              <div className="stats-divider-inline"></div>
+              <div className="stats-item-inline">
+                <div className="stats-icon-inline">📅</div>
                 <div
-                  className="streak-value-custom"
-                  style={{ fontSize: '18px' }}>
+                  className="stats-value-inline"
+                  style={{ fontSize: '14px' }}>
                   {stats.createdAt}
                 </div>
-                <div className="streak-label-custom">Bergabung</div>
+                <div className="stats-label-inline">BERGABUNG</div>
               </div>
             </div>
           )}
+
           <div className="github-graph-footer" style={{ marginTop: '16px' }}>
             <a
               href="https://github.com/skirdrax?tab=overview"
@@ -124,7 +151,7 @@ export default function GitHubStats() {
           </div>
         </div>
 
-        {/* KOLOM KANAN: Roller Coaster Graph */}
+        {/* KANAN: Roller Coaster */}
         <div className="github-roller-wrapper">
           <div className="github-roller-title">
             <h3>📈 GitHub Activity Roller Coaster</h3>
@@ -135,8 +162,8 @@ export default function GitHubStats() {
             className="github-roller"
             onError={(e) => {
               e.target.style.display = 'none';
-              document.getElementById('roller-fallback').style.display =
-                'block';
+              const fallback = document.getElementById('roller-fallback');
+              if (fallback) fallback.style.display = 'block';
             }}
           />
           <div

@@ -6,6 +6,10 @@
   margin: 40px 0;
 }
 
+/* ========================================
+   CONTRIBUTION GRAPH WRAPPER
+   ======================================== */
+
 .github-graph-wrapper {
   background: var(--bg-card);
   border: 1px solid var(--border-light);
@@ -107,7 +111,10 @@
   color: #2563eb;
 }
 
-/* Grid untuk bottom section (2 kolom) */
+/* ========================================
+   2 KOLOM BOTTOM
+   ======================================== */
+
 .github-bottom-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -115,93 +122,140 @@
 }
 
 /* ========================================
-   GITHUB STATS CARD - PREMIUM VERSION
+   STREAK WRAPPER (KIRI)
    ======================================== */
 
-.streak-stats-grid-custom {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  margin-bottom: 20px;
-}
-
-.streak-card-custom {
-  background: linear-gradient(
-    135deg,
-    rgba(37, 99, 235, 0.08),
-    rgba(59, 130, 246, 0.03)
-  );
-  border: 1px solid rgba(59, 130, 246, 0.2);
-  border-radius: 20px;
-  padding: 24px 12px;
-  text-align: center;
-  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+.github-streak-wrapper {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 28px;
+  padding: 28px;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   position: relative;
   overflow: hidden;
 }
 
-.streak-card-custom::before {
+.github-streak-wrapper::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, #2563eb, #60a5fa, #2563eb);
+  height: 3px;
+  background: linear-gradient(90deg, #2563eb, #3b82f6, #2563eb);
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.4s ease;
 }
 
-.streak-card-custom:hover {
-  transform: translateY(-6px);
-  border-color: #2563eb;
-  box-shadow: 0 15px 30px -12px rgba(37, 99, 235, 0.3);
-}
-
-.streak-card-custom:hover::before {
+.github-streak-wrapper:hover::before {
   opacity: 1;
 }
 
-.streak-icon-custom {
-  font-size: 32px;
-  margin-bottom: 12px;
+.github-streak-wrapper:hover {
+  border-color: rgba(37, 99, 235, 0.5);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 35px -15px rgba(0, 0, 0, 0.3);
+}
+
+.github-streak-title h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* ========================================
+   STREAK IMAGE & STATS INLINE
+   ======================================== */
+
+.streak-image-container {
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.streak-image {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+}
+
+.streak-fallback {
+  text-align: center;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 16px;
+  color: var(--text-muted);
+}
+
+/* 4 Statistik Inline dalam 1 Card */
+.stats-grid-inline {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 20px 0 10px;
+  border-top: 1px solid rgba(59, 130, 246, 0.2);
+  margin-top: 8px;
+}
+
+.stats-item-inline {
+  flex: 1;
+  min-width: 80px;
+  text-align: center;
+  padding: 8px;
+}
+
+.stats-icon-inline {
+  font-size: 24px;
+  margin-bottom: 8px;
   display: inline-block;
-  background: rgba(59, 130, 246, 0.15);
-  width: 56px;
-  height: 56px;
-  line-height: 56px;
+  background: rgba(59, 130, 246, 0.1);
+  width: 45px;
+  height: 45px;
+  line-height: 45px;
   border-radius: 50%;
   transition: all 0.3s ease;
 }
 
-.streak-card-custom:hover .streak-icon-custom {
+.stats-item-inline:hover .stats-icon-inline {
   background: #2563eb;
   transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(37, 99, 235, 0.4);
 }
 
-.streak-value-custom {
-  font-size: 32px;
+.stats-value-inline {
+  font-size: 20px;
   font-weight: 800;
   color: var(--text-primary);
-  margin: 8px 0 4px;
   background: linear-gradient(135deg, #fff, #3b82f6);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-.streak-label-custom {
-  font-size: 11px;
+.stats-label-inline {
+  font-size: 10px;
   font-weight: 600;
   color: #94a3b8;
-  margin-top: 6px;
+  margin-top: 5px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
+.stats-divider-inline {
+  width: 1px;
+  height: 50px;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(59, 130, 246, 0.3),
+    transparent
+  );
+}
+
 /* ========================================
-   ROLLER COASTER WRAPPER
+   ROLLER COASTER WRAPPER (KANAN)
    ======================================== */
 
 .github-roller-wrapper {
@@ -270,7 +324,10 @@
   font-weight: 600;
 }
 
-/* Loading & Error States */
+/* ========================================
+   LOADING & ERROR STATES
+   ======================================== */
+
 .streak-loading {
   text-align: center;
   padding: 40px 20px;
@@ -298,16 +355,14 @@
   transform: translateY(-2px);
 }
 
-/* Responsive */
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+
 @media (max-width: 768px) {
   .github-bottom-grid {
     grid-template-columns: 1fr;
     gap: 20px;
-  }
-
-  .streak-stats-grid-custom {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
   }
 
   .github-graph-stats {
@@ -317,10 +372,27 @@
   }
 }
 
-@media (max-width: 500px) {
-  .streak-stats-grid-custom {
-    grid-template-columns: 1fr;
-    gap: 12px;
+@media (max-width: 640px) {
+  .stats-grid-inline {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .stats-divider-inline {
+    width: 80%;
+    height: 1px;
+    margin: 0 auto;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(59, 130, 246, 0.3),
+      transparent
+    );
+  }
+
+  .stats-item-inline {
+    min-width: auto;
+    width: 100%;
   }
 
   .streak-card-custom {
