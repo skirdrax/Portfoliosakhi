@@ -1,7 +1,36 @@
+import { useState, useEffect } from 'react';
+
 export default function GitHubStats() {
+  const [streakData, setStreakData] = useState({
+    totalContributions: '...',
+    currentStreak: '...',
+    longestStreak: '...',
+  });
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Ambil data streak dari API
+    fetch('https://streak-stats.demolab.com/?user=skirdrax&mode=json')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data && data.contributions) {
+          setStreakData({
+            totalContributions: data.totalContributions || '0',
+            currentStreak: data.currentStreak || '0',
+            longestStreak: data.longestStreak || '0',
+          });
+        }
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error('Error fetching streak data:', error);
+        setLoading(false);
+      });
+  }, []);
+
   return (
     <div className="github-stats-container">
-      {/* Bagian 1: Contribution Graph (Full Width) */}
+      {/* Contribution Graph (Full Width) */}
       <div className="github-graph-wrapper reveal d2">
         <div className="github-graph-title">
           <h3>📊 GitHub Contributions</h3>
@@ -29,33 +58,39 @@ export default function GitHubStats() {
         </div>
       </div>
 
-      {/* Bagian 2: 2 Kolom (Streak Stats + Roller Coaster) */}
+      {/* 2 Kolom */}
       <div className="github-bottom-grid">
-        {/* Kolom Kiri: Streak Stats */}
+        {/* Streak Stats */}
         <div className="github-streak-wrapper reveal d2">
           <div className="github-streak-title">
             <h3>🔥 GitHub Streak Stats</h3>
           </div>
-          <div className="streak-stats-grid">
-            <div className="streak-card">
-              <div className="streak-icon">📊</div>
-              <div className="streak-value">464</div>
-              <div className="streak-label">Total Contributions</div>
-              <div className="streak-period">Dec 12, 2024 - Present</div>
+          {loading ? (
+            <div className="streak-loading">Loading streak data...</div>
+          ) : (
+            <div className="streak-stats-grid">
+              <div className="streak-card">
+                <div className="streak-icon">📊</div>
+                <div className="streak-value">
+                  {streakData.totalContributions}
+                </div>
+                <div className="streak-label">Total Contributions</div>
+                <div className="streak-period">Last 365 days</div>
+              </div>
+              <div className="streak-card">
+                <div className="streak-icon">🔥</div>
+                <div className="streak-value">{streakData.currentStreak}</div>
+                <div className="streak-label">Current Streak</div>
+                <div className="streak-period">days</div>
+              </div>
+              <div className="streak-card">
+                <div className="streak-icon">🏆</div>
+                <div className="streak-value">{streakData.longestStreak}</div>
+                <div className="streak-label">Longest Streak</div>
+                <div className="streak-period">days</div>
+              </div>
             </div>
-            <div className="streak-card">
-              <div className="streak-icon">🔥</div>
-              <div className="streak-value">1</div>
-              <div className="streak-label">Current Streak</div>
-              <div className="streak-period">May 30</div>
-            </div>
-            <div className="streak-card">
-              <div className="streak-icon">🏃‍♂️‍➡️</div>
-              <div className="streak-value">20</div>
-              <div className="streak-label">Longest Streak</div>
-              <div className="streak-period">May 9 - May 28</div>
-            </div>
-          </div>
+          )}
           <div className="github-graph-footer" style={{ marginTop: '16px' }}>
             <a
               href="https://github.com/skirdrax"
@@ -66,7 +101,7 @@ export default function GitHubStats() {
           </div>
         </div>
 
-        {/* Kolom Kanan: Roller Coaster Graph */}
+        {/* Roller Coaster Graph */}
         <div className="github-roller-wrapper reveal d2">
           <div className="github-roller-title">
             <h3>📈 GitHub Activity Roller Coaster</h3>
