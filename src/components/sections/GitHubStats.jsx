@@ -6,7 +6,6 @@ export default function GitHubStats() {
     followers: 0,
     following: 0,
     createdAt: '',
-    updatedAt: '',
     loading: true,
     error: false,
   });
@@ -25,9 +24,6 @@ export default function GitHubStats() {
           createdAt: data.created_at
             ? new Date(data.created_at).toLocaleDateString('id-ID')
             : '-',
-          updatedAt: data.updated_at
-            ? new Date(data.updated_at).toLocaleDateString('id-ID')
-            : '-',
           loading: false,
           error: false,
         });
@@ -40,7 +36,7 @@ export default function GitHubStats() {
 
   return (
     <div className="github-stats-container">
-      {/* Contribution Graph - Tetap pakai ghchart */}
+      {/* Contribution Graph - Full Width */}
       <div className="github-graph-wrapper">
         <div className="github-graph-title">
           <h3>📊 GitHub Contributions</h3>
@@ -72,9 +68,9 @@ export default function GitHubStats() {
         </div>
       </div>
 
-      {/* 2 Kolom: Statistik GitHub + Activity */}
+      {/* 2 Kolom: GitHub Stats (Kiri) + Roller Coaster (Kanan) */}
       <div className="github-bottom-grid">
-        {/* Kolom Kiri: Statistik GitHub */}
+        {/* KOLOM KIRI: GitHub Stats */}
         <div className="github-streak-wrapper">
           <div className="github-streak-title">
             <h3>📊 GitHub Stats</h3>
@@ -128,14 +124,28 @@ export default function GitHubStats() {
           </div>
         </div>
 
-        {/* Kolom Kanan: Aktivitas GitHub */}
+        {/* KOLOM KANAN: Roller Coaster Graph */}
         <div className="github-roller-wrapper">
           <div className="github-roller-title">
-            <h3>📈 GitHub Activity</h3>
+            <h3>📈 GitHub Activity Roller Coaster</h3>
           </div>
-          <div className="roller-fallback">
+          <img
+            src={`https://github-readme-activity-graph.vercel.app/graph?username=skirdrax&theme=react-dark&bg_color=0d1117&color=3b82f6&line=2563eb&point=60a5fa&hide_border=true&t=${Date.now()}`}
+            alt="GitHub Activity Graph"
+            className="github-roller"
+            onError={(e) => {
+              e.target.style.display = 'none';
+              document.getElementById('roller-fallback').style.display =
+                'block';
+            }}
+          />
+          <div
+            id="roller-fallback"
+            className="roller-fallback"
+            style={{ display: 'none' }}>
+            <p>Kunjungi GitHub untuk melihat aktivitas lengkap:</p>
             <a
-              src="https://github-readme-activity-graph.vercel.app/graph?username=skirdrax&theme=github-dark&hide_border=true&area=true"
+              href="https://github.com/skirdrax"
               target="_blank"
               rel="noopener noreferrer"
               className="roller-link">
