@@ -289,7 +289,7 @@ export default function GitHubStats() {
               href="https://github.com/skirdrax?tab=overview"
               target="_blank"
               rel="noopener noreferrer">
-              View activity graphs →
+              View activity graph →
             </a>
           </div>
         </div>
