@@ -45,7 +45,7 @@ export default function GitHubStats() {
     };
     contribImg.onerror = () => {
       setContribImage(
-        'https://placehold.co/800x200/1e293b/22c55e?text=Contributions+Graph',
+        'https://placehold.co/800x200/1e293b/3b82f6?text=Contributions+Graph',
       );
       setContribLoaded(true);
     };
@@ -66,33 +66,47 @@ export default function GitHubStats() {
     };
     streakImg.src = streakUrl;
 
-    // Roller Coaster - ALTERNATIF API YANG LEBIH STABIL
-    // Opsi 1: Pakai API lain
-    const rollerUrl1 = `https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=skirdrax&theme=github_dark`;
+    // Roller Coaster - MULTIPLE FALLBACK API
+    const rollerUrls = [
+      `https://github-readme-activity-graph.vercel.app/graph?username=skirdrax&theme=react-dark&bg_color=0d1117&color=3b82f6&line=2563eb&point=60a5fa&hide_border=true&t=${Date.now()}`,
+      `https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=skirdrax&theme=github_dark&t=${Date.now()}`,
+      `https://ghchart.rshah.org/skirdrax?t=${Date.now()}`,
+    ];
 
-    // Opsi 2: Fallback pakai placeholder
-    const rollerUrl2 =
-      'https://placehold.co/600x200/1e293b/3b82f6?text=Activity+Graph+%28API+Error%29';
+    let currentIndex = 0;
+    let loaded = false;
 
-    const rollerImg = new Image();
-    rollerImg.onload = () => {
-      setRollerImage(rollerUrl1);
-      setRollerLoaded(true);
-    };
-    rollerImg.onerror = () => {
-      // Jika API error, coba API alternatif
-      const rollerImg2 = new Image();
-      rollerImg2.onload = () => {
-        setRollerImage(rollerUrl2);
-        setRollerLoaded(true);
+    const tryLoadRoller = () => {
+      if (currentIndex >= rollerUrls.length || loaded) return;
+
+      const img = new Image();
+      img.onload = () => {
+        if (!loaded) {
+          setRollerImage(rollerUrls[currentIndex]);
+          setRollerLoaded(true);
+          loaded = true;
+        }
       };
-      rollerImg2.onerror = () => {
-        setRollerImage(rollerUrl2);
-        setRollerLoaded(true);
+      img.onerror = () => {
+        currentIndex++;
+        tryLoadRoller();
       };
-      rollerImg2.src = rollerUrl2;
+      img.src = rollerUrls[currentIndex];
     };
-    rollerImg.src = rollerUrl1;
+
+    tryLoadRoller();
+
+    // Timeout fallback
+    const timeout = setTimeout(() => {
+      if (!loaded) {
+        setRollerImage(
+          'https://placehold.co/600x160/1e293b/3b82f6?text=Activity+Graph',
+        );
+        setRollerLoaded(true);
+      }
+    }, 8000);
+
+    return () => clearTimeout(timeout);
   }, []);
 
   const monthlyData = [
@@ -214,6 +228,10 @@ export default function GitHubStats() {
           <div className="github-roller-title">
             <h3>📈 GitHub Activity</h3>
           </div>
+
+          {/* Efek garis bergerak */}
+          <div className="scan-line"></div>
+          <div className="vertical-scan"></div>
 
           {!rollerLoaded && (
             <div className="streak-loading" style={{ padding: '20px' }}>
