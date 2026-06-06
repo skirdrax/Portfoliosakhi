@@ -259,7 +259,7 @@ export default function GitHubStats() {
           {/* Monthly Contributions */}
           <div className="roller-extra-stats">
             <div className="roller-extra-title">
-              <span>📊 Monthly Contributions</span>
+              <span>📊 Monthly Contributions 1 Semester</span>
             </div>
             <div className="monthly-stats">
               {monthlyData.map((item) => (
