@@ -20,7 +20,7 @@ export const listProyek = [
     gambar: Proyek2,
     nama: 'UI/UX Design App Grevora',
     kategori: 'UI/UX',
-    desk: 'Prototipe App sebagai platform mempermudah masyarakat dalam membuang sampah secara benar dan terstruktur.',
+    desk: 'Prototipe App sebagai platform mempermudah masyarakat dalam membuang sampah secara benar dan terstruktur serta memberikan informasi yang relevan.',
     tools: ['Figma', 'Canva', 'Adobe Illustrator'],
     link: 'https://www.figma.com/proto/HsbtvSTWg3iyFG2NZWqKRE/UIUX-Techomfest-KicauMania?node-id=1380-6887&t=jugzztCP01YfoWFL-0&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1380%3A3697',
   },
