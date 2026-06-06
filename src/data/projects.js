@@ -39,7 +39,7 @@ export const listProyek = [
     nama: 'Portfolio Pribadi',
     kategori: 'Website',
     desk: 'Portfolio pribadi yang dibuat menggunakan React JS, menampilkan informasi tentang saya, keahlian, proyek, dan kontak.',
-    tools: ['HTML', 'CSS', 'Javascript', 'React JS', 'Google Search Console'],
+    tools: ['HTML', 'CSS', 'Javascript', 'React JS', 'GSC'],
     link: 'https://sakhiardra.my.id/',
   },
   {
