@@ -236,7 +236,7 @@ export default function GitHubStats() {
           {!rollerLoaded && (
             <div className="streak-loading" style={{ padding: '20px' }}>
               <div className="loading-spinner-small"></div>
-              <p>Memuat actissvity grassssph.sss..</p>
+              <p>Memuat activity grassssph.sss..</p>
             </div>
           )}
 
