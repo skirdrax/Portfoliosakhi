@@ -374,7 +374,7 @@
 }
 
 /* ========================================
-   ROLLER COASTER WRAPPER (KANAN)
+   ROLLER COASTER WRAPPER (KANAN) - DENGAN EFEK GARIS BERGERAK
    ======================================== */
 
 .github-roller-wrapper {
@@ -434,7 +434,97 @@
   border-radius: 2px;
 }
 
-/* EFEK GARIS BERGERAK PADA ROLLER COASTER */
+/* GARIS BERGERAK HORIZONTAL SEPERTI SCAN */
+.github-roller-wrapper .scan-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #3b82f6,
+    #60a5fa,
+    #3b82f6,
+    transparent
+  );
+  animation: scanMove 3s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 3;
+  border-radius: 2px;
+  opacity: 0.8;
+}
+
+@keyframes scanMove {
+  0% {
+    top: 0;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+/* GARIS VERTIKAL BERGERAK */
+.github-roller-wrapper .vertical-scan {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    #3b82f6,
+    #60a5fa,
+    #3b82f6,
+    transparent
+  );
+  animation: verticalScan 4s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 3;
+  border-radius: 2px;
+}
+
+@keyframes verticalScan {
+  0% {
+    left: 0;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
+}
+
+/* EFEK WAVE / GELOMBANG DI BAWAH ROLLER COASTER */
+.github-roller-wrapper::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 30px;
+  background: linear-gradient(180deg, transparent, rgba(59, 130, 246, 0.08));
+  pointer-events: none;
+  z-index: 1;
+  border-radius: 0 0 12px 12px;
+}
+
 .github-roller {
   width: 100%;
   max-height: 160px;
@@ -450,54 +540,6 @@
 .github-roller:hover {
   transform: scale(1.01);
   filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.5));
-}
-
-/* Garis bergerak di atas roller coaster */
-.github-roller-wrapper {
-  position: relative;
-}
-
-.github-roller-wrapper .line-effect {
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    #3b82f6,
-    #60a5fa,
-    #3b82f6,
-    transparent
-  );
-  animation: lineMove 3s ease-in-out infinite;
-  pointer-events: none;
-  z-index: 2;
-  border-radius: 2px;
-}
-
-@keyframes lineMove {
-  0% {
-    left: -100%;
-  }
-  100% {
-    left: 100%;
-  }
-}
-
-/* Gelombang / wave effect pada roller coaster */
-.github-roller-wrapper::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 30px;
-  background: linear-gradient(180deg, transparent, rgba(59, 130, 246, 0.05));
-  pointer-events: none;
-  z-index: 1;
-  border-radius: 0 0 12px 12px;
 }
 
 /* ========================================
@@ -698,202 +740,5 @@
 
   .github-roller {
     max-height: 150px;
-  }
-  /* ========================================
-   ROLLER COASTER WRAPPER (KANAN) - DENGAN EFEK GARIS BERGERAK
-   ======================================== */
-
-  .github-roller-wrapper {
-    background: var(--bg-card);
-    border: 1px solid var(--border-light);
-    border-radius: 28px;
-    padding: 24px;
-    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
-
-  .github-roller-wrapper::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, #1e40af, #3b82f6, #1e40af);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-  }
-
-  .github-roller-wrapper:hover::before {
-    opacity: 1;
-  }
-
-  .github-roller-wrapper:hover {
-    border-color: rgba(59, 130, 246, 0.5);
-    transform: translateY(-6px);
-    box-shadow: 0 20px 35px -15px rgba(0, 0, 0, 0.3);
-  }
-
-  .github-roller-title h3 {
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 16px;
-    text-align: center;
-    position: relative;
-    display: inline-block;
-    width: 100%;
-  }
-
-  .github-roller-title h3::after {
-    content: '';
-    position: absolute;
-    bottom: -6px;
-    left: 35%;
-    width: 30%;
-    height: 2px;
-    background: linear-gradient(90deg, #3b82f6, #60a5fa);
-    border-radius: 2px;
-  }
-
-  /* EFEK GARIS BERGERAK PADA ROLLER COASTER (LINE ANIMATION) */
-  .github-roller {
-    width: 100%;
-    max-height: 160px;
-    object-fit: cover;
-    border-radius: 12px;
-    background: #0d1117;
-    transition:
-      transform 0.2s,
-      filter 0.3s;
-    position: relative;
-  }
-
-  .github-roller:hover {
-    transform: scale(1.01);
-    filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.5));
-  }
-
-  /* GARIS BERGERAK HORIZONTAL SEPERTI SCAN */
-  .github-roller-wrapper .scan-line {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      #3b82f6,
-      #60a5fa,
-      #3b82f6,
-      transparent
-    );
-    animation: scanMove 3s ease-in-out infinite;
-    pointer-events: none;
-    z-index: 3;
-    border-radius: 2px;
-    opacity: 0.8;
-  }
-
-  @keyframes scanMove {
-    0% {
-      top: 0;
-      opacity: 0;
-    }
-    10% {
-      opacity: 1;
-    }
-    90% {
-      opacity: 1;
-    }
-    100% {
-      top: 100%;
-      opacity: 0;
-    }
-  }
-
-  /* GARIS VERTIKAL BERGERAK (ALTERNATIF) */
-  .github-roller-wrapper .vertical-scan {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(
-      180deg,
-      transparent,
-      #3b82f6,
-      #60a5fa,
-      #3b82f6,
-      transparent
-    );
-    animation: verticalScan 4s ease-in-out infinite;
-    pointer-events: none;
-    z-index: 3;
-    border-radius: 2px;
-  }
-
-  @keyframes verticalScan {
-    0% {
-      left: 0;
-      opacity: 0;
-    }
-    10% {
-      opacity: 1;
-    }
-    90% {
-      opacity: 1;
-    }
-    100% {
-      left: 100%;
-      opacity: 0;
-    }
-  }
-
-  /* EFEK WAVE / GELOMBANG DI BAWAH ROLLER COASTER */
-  .github-roller-wrapper::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 30px;
-    background: linear-gradient(180deg, transparent, rgba(59, 130, 246, 0.08));
-    pointer-events: none;
-    z-index: 1;
-    border-radius: 0 0 12px 12px;
-  }
-
-  /* EFEK PULSE RING PADA ROLLER COASTER SAAT HOVER */
-  .github-roller-wrapper:hover .pulse-ring {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 50px;
-    height: 50px;
-    background: radial-gradient(circle, rgba(59, 130, 246, 0.4), transparent);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    animation: pulseRing 1s ease-out infinite;
-    pointer-events: none;
-    z-index: 2;
-  }
-
-  @keyframes pulseRing {
-    0% {
-      width: 0;
-      height: 0;
-      opacity: 0.8;
-    }
-    100% {
-      width: 150px;
-      height: 150px;
-      opacity: 0;
-    }
   }
 }
