@@ -49,7 +49,7 @@ export const certificates = [
   },
   {
     id: 7,
-    title: 'Data analysis with Excel',
+    title: 'Data analysis with Excels',
     issuer: 'Coursera',
     date: '2024',
     image: '/assets/sertifikat/serti7.png',
