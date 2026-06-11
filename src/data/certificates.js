@@ -55,4 +55,12 @@ export const certificates = [
     image: '/assets/sertifikat/serti7.png',
     link: 'https://academy.oracle.com/certificates/xxx',
   },
+  {
+    id: 8,
+    title: 'Konfigurasi dengan RSTP di Mikrotik',
+    issuer: 'ID Networkers',
+    date: '2024',
+    image: '/assets/sertifikat/serti8.png',
+    link: 'https://academy.oracle.com/certificates/xxx',
+  },
 ];
