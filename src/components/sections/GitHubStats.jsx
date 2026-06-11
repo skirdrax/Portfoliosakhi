@@ -115,7 +115,7 @@ export default function GitHubStats() {
     { month: 'Mar', value: 2, width: '2%' },
     { month: 'Apr', value: 16, width: '12%' },
     { month: 'Mei', value: 420, width: '85%' },
-    { month: 'Jun', value: 50, width: '30%' },
+    { month: 'Jun', value: 90, width: '30%' },
   ];
 
   return (
