@@ -42,7 +42,7 @@ export const certificates = [
   {
     id: 6,
     title: 'Dasar AI',
-    issuer: 'Dicoding Indonesias',
+    issuer: 'Dicoding Indonesia',
     date: '2024',
     image: '/assets/sertifikat/serti6.png',
     link: 'https://academy.oracle.com/certificates/xxx',
