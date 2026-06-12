@@ -58,19 +58,9 @@ export default function SocialLinks() {
         <div className="visitor-label">Visitors:</div>
         <div>
           <img
-            src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fwww.sakhiardra.my.id%2F&label=total&countColor=%23263759&style=plastic"
+            src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fwww.sakhiardra.my.id%2F&label=View&countColor=%23263759&style=plastic"
             alt="total visitors"
             className="visitor-badge"
-          />
-        </div>
-        <div>
-          <img
-            src="https://api.visitorbadge.io/api/daily?path=https%3A%2F%2Fwww.sakhiardra.my.id%2F&label=daily&countColor=%23263759&style=plastic"
-            alt="daily visitors"
-            className="visitor-badge"
-            onError={(e) => {
-              e.target.style.display = 'none';
-            }}
           />
         </div>
       </div>
