@@ -55,9 +55,16 @@ export default function SocialLinks() {
 
       {/* VISITOR COUNTER - VERSI GAMBAR LANGSUNG */}
       <div className="visitor-counter">
-        <span className="visitor-icon">👁️</span>
+        <div className="visitor-label">Visitors:</div>
+        <div>
+          <img
+            src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fwww.sakhiardra.my.id%2F&label=total&countColor=%23263759&style=plastic"
+            alt="total visitors"
+            className="visitor-badge"
+          />
+        </div>
         <img
-          src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fwww.sakhiardra.my.id%2F&label=total&countColor=%23263759&style=plastic"
+          src="https://api.visitorbadge.io/api/daily?path=https%3A%2F%2Fwww.sakhiardra.my.id%2F&label=daily&countColor=%23263759&style=plastic"
           alt="visitors"
           className="visitor-badge"
           onError={(e) => {
@@ -65,9 +72,6 @@ export default function SocialLinks() {
             e.target.nextSibling.style.display = 'inline';
           }}
         />
-        <span className="visitor-value" style={{ display: 'none' }}>
-          ?
-        </span>
       </div>
     </>
   );
