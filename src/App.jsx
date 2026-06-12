@@ -1,3 +1,4 @@
+import { Analytics } from '@vercel/analytics/react';
 import { useState, useEffect } from 'react';
 import './styles/main.css';
 import Navbar from './components/layout/Navbar';
@@ -15,6 +16,7 @@ import LoadingScreen from './components/ui/LoadingScreen';
 import { useScrollReveal } from './components/hooks/useScrollReveal';
 import { useCursor } from './components/hooks/useCursor';
 import Certificates from './components/sections/Certificates';
+
 const FULL_TEXT = 'Sakhi Ardra';
 
 export default function App() {
@@ -61,23 +63,34 @@ export default function App() {
 
   return (
     <>
+      {/* Vercel Analytics - PASTI JALAN */}
+      <Analytics />
+
+      {/* Loading Screen */}
       {loading && <LoadingScreen onDone={() => setLoading(false)} />}
+
+      {/* Navbar & Theme */}
       <Navbar />
       <ThemeToggle darkMode={darkMode} setDarkMode={setDarkMode} />
+
+      {/* Custom Cursor */}
       <div id="cur-dot" />
       <div id="cur-ring" />
 
+      {/* Main Content */}
       <div className="container">
         <Hero displayText={displayText} FULL_TEXT={FULL_TEXT} />
         <div className="shimmer" />
         <About />
         <Experience />
         <Tools />
+
         <div className="divider reveal">
           <div className="d-dot" />
           <div className="d-dot" />
           <div className="d-dot" />
         </div>
+
         <Projects filter={filter} setFilter={setFilter} />
         <Certificates />
         <GitHubStats />
@@ -88,6 +101,7 @@ export default function App() {
         />
       </div>
 
+      {/* Footer & Modal */}
       <Footer />
       <Modal
         show={showModal}
