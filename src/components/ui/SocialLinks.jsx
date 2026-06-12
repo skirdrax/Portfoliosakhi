@@ -56,9 +56,8 @@ export default function SocialLinks() {
       {/* VISITOR COUNTER - VERSI GAMBAR LANGSUNG */}
       <div className="visitor-counter">
         <span className="visitor-icon">👁️</span>
-
         <img
-          src="https://api.visitorbadge.io/api/combined?path=https%3A%2F%2Fwww.sakhiardra.my.id%2F&label=total%20visitor&countColor=%23263759&style=plastic"
+          src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fwww.sakhiardra.my.id%2F&label=total&countColor=%23263759&style=plastic"
           alt="visitors"
           className="visitor-badge"
           onError={(e) => {
