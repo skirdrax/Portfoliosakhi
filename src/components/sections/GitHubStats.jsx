@@ -115,7 +115,7 @@ export default function GitHubStats() {
     { month: 'Mar', value: 2, width: '2%' },
     { month: 'Apr', value: 16, width: '12%' },
     { month: 'Mei', value: 420, width: '85%' },
-    { month: 'Jun', value: 90, width: '40%' },
+    { month: 'Jun', value: 120, width: '55%' },
   ];
 
   return (
@@ -259,7 +259,7 @@ export default function GitHubStats() {
           {/* Monthly Contributions */}
           <div className="roller-extra-stats">
             <div className="roller-extra-title">
-              <span>📊 Monthly Contributions 1 Semester</span>
+              <span>📊 Monthly Contributions 1 Semester | scale: 500</span>
             </div>
             <div className="monthly-stats">
               {monthlyData.map((item) => (
