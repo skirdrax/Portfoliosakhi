@@ -13,7 +13,7 @@ export default function About() {
         </p>
         <div className="stats-wrapper">
           {[
-            ['4+', 'Proyek Selesai'],
+            ['5+', 'Proyek Selesai'],
             ['1+', 'Tahun Pengalaman'],
           ].map(([n, l], i) => (
             <div key={i} className="stat-card">
