@@ -27,7 +27,7 @@ export default function Experience() {
   return (
     <div className="magang-section">
       <p className="section-tag reveal">Pengalaman</p>
-      <h3 className="tools-title reveal d1">Pengalaman Magang</h3>
+      <h3 className="tools-title reveal d1">Pengalaman Magang & Kerja</h3>
       <p className="tools-sub reveal d2">
         Pengalaman kerja nyata di dunia industri.
       </p>
