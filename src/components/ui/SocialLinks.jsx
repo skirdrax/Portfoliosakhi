@@ -55,7 +55,7 @@ export default function SocialLinks() {
 
       {/* VISITOR COUNTER */}
       <div className="visitor-counter">
-        <div className="visitor-label">Visitors:</div>
+        <div className="visitor-label">Visitors:sss</div>
         <div>
           <img
             src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fwww.sakhiardra.my.id%2F&label=View&countColor=%23263759&style=plastic"
