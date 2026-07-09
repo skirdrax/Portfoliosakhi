@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import './styles/main.css';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
-import ThemeToggle from './components/layout/ThemeToggle';
 import Hero from './components/sections/Hero';
 import About from './components/sections/About';
 import Experience from './components/sections/Experience';
@@ -21,7 +20,6 @@ const FULL_TEXT = 'Sakhi Ardra';
 
 export default function App() {
   const [filter, setFilter] = useState('Semua');
-  const [darkMode, setDarkMode] = useState(false);
   const [displayText, setDisplayText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -54,24 +52,23 @@ export default function App() {
     return () => clearTimeout(timeout);
   }, [displayText, isDeleting]);
 
-  // Theme effect
+  // Always light mode - NAVBAR TETAP TERANG
   useEffect(() => {
-    document.body.style.background = darkMode ? '#09090b' : '#f4f4f9';
-    document.body.setAttribute('data-theme', darkMode ? 'dark' : 'light');
-    window.dispatchEvent(new CustomEvent('themeChange', { detail: darkMode }));
-  }, [darkMode]);
+    document.body.style.background = '#f0f4ff';
+    document.body.setAttribute('data-theme', 'light');
+    window.dispatchEvent(new CustomEvent('themeChange', { detail: false }));
+  }, []);
 
   return (
     <>
-      {/* Vercel Analytics - PASTI JALAN */}
+      {/* Vercel Analytics */}
       <Analytics />
 
       {/* Loading Screen */}
       {loading && <LoadingScreen onDone={() => setLoading(false)} />}
 
-      {/* Navbar & Theme */}
+      {/* Navbar */}
       <Navbar />
-      <ThemeToggle darkMode={darkMode} setDarkMode={setDarkMode} />
 
       {/* Custom Cursor */}
       <div id="cur-dot" />
