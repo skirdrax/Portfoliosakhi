@@ -52,11 +52,6 @@ export default function ChatBotCohere({ onClose }) {
   ]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
-  const [totalTokens, setTotalTokens] = useState({
-    input: 0,
-    output: 0,
-    total: 0,
-  });
   const messagesEndRef = useRef(null);
 
   // Auto scroll
@@ -91,7 +86,7 @@ Kamu adalah ASISTEN PRIBADI dari Sakhi Ardra Handaru.
 
 TUGASMU:
 Jawab pertanyaan tentang Sakhi berdasarkan DATA di bawah ini.
-Jika ditanya di luar data, katakan "Maaf, saya hanya bisa menjawab tentang Sakhi".
+Jika ditanya di luar data, jawab "diluar konteks sakhi❗".
 
 DATA LENGKAP TENTANG SAKHI:
 ${MY_DATA}
@@ -114,7 +109,6 @@ INSTRUKSI:
 - Gunakan bahasa Indonesia
 - Jika ditanya kontak, berikan email: ardrasakhi390@gmail.com
 `,
-
           message: currentInput,
           chatHistory: messages.map((m) => ({
             role: m.role,
@@ -130,15 +124,6 @@ INSTRUKSI:
         throw new Error(data.message);
       }
 
-      // ✅ UPDATE TOTAL TOKEN
-      if (data.meta?.billed_units) {
-        setTotalTokens((prev) => ({
-          input: prev.input + (data.meta.billed_units.input_tokens || 0),
-          output: prev.output + (data.meta.billed_units.output_tokens || 0),
-          total: prev.total + (data.meta.billed_units.total_tokens || 0),
-        }));
-      }
-
       // ✅ CEK APAKAH PERTANYAAN TENTANG TOKEN
       const isTokenQuery = [
         'token',
@@ -152,9 +137,9 @@ INSTRUKSI:
       if (isTokenQuery) {
         const inputTokens = data.meta?.billed_units?.input_tokens || 0;
         const outputTokens = data.meta?.billed_units?.output_tokens || 0;
-        const totalTokensAll = inputTokens + outputTokens; // ✅ MANUAL JUMLAHIN
+        const totalTokensAll = inputTokens + outputTokens;
 
-        const tokenMsg = `📊 Chat ini: Input ${inputTokens}, Output ${outputTokens}. Total: ${totalTokensAll}. Limit 1000/bulan.`;
+        const tokenMsg = `📊 In ${inputTokens}, Out ${outputTokens}, Tot ${totalTokensAll}. Limit 1000/bln, 20/mnt.`;
 
         setMessages((prev) => [
           ...prev,
