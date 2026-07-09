@@ -48,7 +48,7 @@ export default function ChatBotCohere({ onClose }) {
     {
       role: 'assistant',
       message:
-        '👋 Hai! Saya asisten Sakhi. Tanya apapun tentang Sakhi ya!...jika diluar tentang sakhi maka saya marah 😡',
+        '👋 Hai! Saya asisten Sakhi. Tanya apapun tentang Sakhi ya!\n\n😡 Jika di luar tentang Sakhi, saya tidak mau menjawab!',
     },
   ]);
   const [input, setInput] = useState('');
