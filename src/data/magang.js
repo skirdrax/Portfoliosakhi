@@ -18,6 +18,7 @@ export const MAGANG = [
       'wordpress',
     ],
     logo: '/assets/groperti.png',
+    // DATA PROYEK
     project: {
       title: 'SEO Optimization Project',
       description:
@@ -40,6 +41,7 @@ export const MAGANG = [
         '/assets/proyek/groperti/3.png',
         '/assets/proyek/groperti/4.png',
       ],
+      // SERTIFIKAT ADA DI DALAM PROJECT
       certificates: [
         {
           id: 1,

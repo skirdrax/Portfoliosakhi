@@ -161,13 +161,24 @@
   border-radius: 0px;
 }
 
-/* Project Button - Brutalism Blue */
+/* ========================================
+   BUTTONS GROUP
+   ======================================== */
+
+.magang-buttons-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 16px;
+  align-items: center;
+}
+
+/* Project Button */
 .magang-project-btn {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   margin-top: 12px;
-  margin-right: 12px;
   font-size: 12px;
   font-weight: 700;
   color: var(--accent-blue);
@@ -189,37 +200,12 @@
   box-shadow: 2px 2px 0 0 var(--accent-blue-dark);
 }
 
-/* Cert Button - Brutalism Blue */
-.magang-cert-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--accent-cyan);
-  background: transparent;
-  padding: 8px 16px;
-  border: 2px solid var(--accent-cyan);
-  border-radius: 0px;
-  transition: all 0.08s ease;
-  cursor: pointer;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.magang-cert-btn:hover {
-  background: var(--accent-cyan);
-  color: #ffffff;
-  transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0 0 var(--accent-cyan);
-}
-
-/* Magang Link - Brutalism Blue */
+/* Magang Link */
 .magang-link {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin-top: 16px;
+  margin-top: 12px;
   font-size: 12px;
   font-weight: 700;
   color: var(--accent-blue);
@@ -244,13 +230,221 @@
   transition: none;
 }
 
-/* Buttons Group */
-.magang-buttons-group {
+/* ========================================
+   PROJECT MODAL - POPUP
+   ======================================== */
+
+.project-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10002;
+  padding: 20px;
+}
+
+.project-modal-content {
+  background: var(--bg-card);
+  border: 2px solid var(--border);
+  border-radius: 0px;
+  max-width: 700px;
+  width: 90%;
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 6px 6px 0 0 var(--accent-blue);
+  animation: modalFadeIn 0.15s ease;
+}
+
+.project-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: var(--bg-card);
+  border: 2px solid var(--border);
+  color: var(--text-primary);
+  font-size: 20px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.08s ease;
+}
+
+.project-modal-close:hover {
+  background: var(--accent-blue);
+  color: #ffffff;
+  border-color: var(--accent-blue);
+  transform: translate(2px, 2px);
+}
+
+/* Gallery */
+.project-modal-gallery {
+  width: 100%;
+  background: var(--bg);
+}
+
+.gallery-main {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.gallery-main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Body */
+.project-modal-body {
+  padding: 24px;
+}
+
+.project-modal-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.project-modal-desc {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+
+.project-modal-results {
+  margin-bottom: 20px;
+}
+
+.project-modal-results h4 {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent-blue);
+  margin-bottom: 8px;
+}
+
+.project-modal-results ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.project-modal-results li {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+.project-modal-tech {
+  margin-bottom: 20px;
+}
+
+.project-modal-tech h4 {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.tech-tags {
   display: flex;
   flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* Certificates */
+.project-modal-certificates {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 2px solid var(--border);
+}
+
+.project-modal-certificates h4 {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent-cyan);
+  margin-bottom: 12px;
+}
+
+.certificates-grid-modal {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
   gap: 12px;
-  margin-top: 16px;
-  align-items: center;
+}
+
+.certificate-card-modal {
+  background: var(--bg-card);
+  border: 2px solid var(--border);
+  border-radius: 0px;
+  overflow: hidden;
+  transition: all 0.08s ease;
+}
+
+.certificate-card-modal:hover {
+  border-color: var(--accent-blue);
+  transform: translate(2px, 2px);
+}
+
+.certificate-image-modal {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.certificate-image-modal img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.certificate-info-modal {
+  padding: 10px;
+  text-align: center;
+}
+
+.certificate-info-modal h5 {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.certificate-info-modal p {
+  font-size: 10px;
+  color: var(--accent-blue);
+  margin-bottom: 2px;
+}
+
+.certificate-info-modal span {
+  font-size: 9px;
+  color: var(--text-muted);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .project-modal-content {
+    max-width: 100%;
+    width: 95%;
+  }
+
+  .gallery-main {
+    height: 160px;
+  }
+
+  .certificates-grid-modal {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 600px) {
@@ -266,8 +460,7 @@
   .magang-header {
     flex-wrap: wrap;
   }
-  .magang-project-btn,
-  .magang-cert-btn {
+  .magang-project-btn {
     width: 100%;
     justify-content: center;
   }
