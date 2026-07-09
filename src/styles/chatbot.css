@@ -1,0 +1,198 @@
+/* TOMBOL CHAT */
+.chat-toggle {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 60px;
+  height: 60px;
+  background: #2563eb;
+  color: white;
+  border: 2px solid #1e3a5f;
+  font-size: 28px;
+  box-shadow: 4px 4px 0 rgba(37, 99, 235, 0.3);
+  cursor: pointer;
+  z-index: 999;
+}
+
+/* CONTAINER */
+.chatbot-container {
+  position: fixed;
+  bottom: 100px;
+  right: 24px;
+  width: 380px;
+  max-height: 520px;
+  background: #f0f4ff;
+  border: 2px solid #2563eb;
+  box-shadow: 6px 6px 0 rgba(37, 99, 235, 0.3);
+  display: flex;
+  flex-direction: column;
+  z-index: 999;
+  max-width: calc(100vw - 48px);
+}
+
+/* HEADER */
+.chatbot-header {
+  background: #2563eb;
+  color: white; /* ✅ SUDAH ADA */
+  padding: 12px 16px;
+  border-bottom: 2px solid #1e3a5f;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chatbot-header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.chatbot-avatar {
+  font-size: 24px;
+}
+.chatbot-title {
+  font-weight: 700;
+  font-size: 16px;
+  color: white; /* ✅ TAMBAHKAN INI */
+}
+.chatbot-status {
+  font-size: 11px;
+  opacity: 0.8;
+  display: block;
+  color: rgba(255, 255, 255, 0.8); /* ✅ TAMBAHKAN INI */
+}
+
+.chatbot-close {
+  background: none;
+  border: none;
+  color: white; /* ✅ SUDAH ADA */
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* MESSAGES */
+.chatbot-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+  max-height: 350px;
+  min-height: 200px;
+  background: #f0f4ff; /* ✅ TAMBAHKAN BACKGROUND */
+}
+
+.chat-msg {
+  margin-bottom: 12px;
+  display: flex;
+}
+
+.chat-msg.user {
+  justify-content: flex-end;
+}
+.chat-msg.assistant {
+  justify-content: flex-start;
+}
+
+.chat-bubble {
+  max-width: 85%;
+  padding: 10px 14px;
+  font-size: 14px;
+  line-height: 1.6;
+  word-wrap: break-word;
+}
+
+.chat-msg.user .chat-bubble {
+  background: #2563eb;
+  color: white; /* ✅ SUDAH ADA */
+  border: 2px solid #1e3a5f;
+}
+
+.chat-msg.assistant .chat-bubble {
+  background: white;
+  color: #0f172a; /* ✅ TAMBAHKAN WARNA TEKS GELAP */
+  border: 2px solid #2563eb;
+}
+
+/* TYPING */
+.typing {
+  display: flex;
+  gap: 6px;
+  padding: 10px 14px;
+  background: white;
+  border: 2px solid #2563eb;
+  min-width: 60px;
+}
+
+.typing span {
+  width: 8px;
+  height: 8px;
+  background: #2563eb;
+  display: inline-block;
+  animation: typing 1.4s infinite both;
+}
+
+.typing span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.typing span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typing {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  30% {
+    transform: translateY(-6px);
+    opacity: 1;
+  }
+}
+
+/* INPUT */
+.chatbot-input {
+  display: flex;
+  padding: 8px;
+  border-top: 2px solid #2563eb;
+  gap: 6px;
+  background: #f0f4ff;
+}
+
+.chat-input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 2px solid #2563eb;
+  background: white;
+  font-size: 14px;
+  outline: none;
+  color: #0f172a; /* ✅ TAMBAHKAN WARNA TEKS */
+}
+
+.chat-input::placeholder {
+  color: #94a3b8; /* ✅ TAMBAHKAN WARNA PLACEHOLDER */
+}
+
+.send-btn {
+  padding: 8px 16px;
+  background: #2563eb;
+  color: white; /* ✅ SUDAH ADA */
+  border: 2px solid #1e3a5f;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.send-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* RESPONSIVE */
+@media (max-width: 480px) {
+  .chatbot-container {
+    width: calc(100vw - 32px);
+    right: 16px;
+    bottom: 84px;
+    max-height: 60vh;
+  }
+}

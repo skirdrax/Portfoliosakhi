@@ -15,6 +15,7 @@ import LoadingScreen from './components/ui/LoadingScreen';
 import { useScrollReveal } from './components/hooks/useScrollReveal';
 import { useCursor } from './components/hooks/useCursor';
 import Certificates from './components/sections/Certificates';
+import ChatBotCohere from './components/ChatBotCohere';
 
 const FULL_TEXT = 'Sakhi Ardra';
 
@@ -26,6 +27,7 @@ export default function App() {
   const [modalMessage, setModalMessage] = useState('');
   const [isSuccess, setIsSuccess] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [showChat, setShowChat] = useState(false);
 
   useScrollReveal(filter);
   useCursor();
@@ -106,6 +108,21 @@ export default function App() {
         isSuccess={isSuccess}
         message={modalMessage}
       />
+
+      {/* ============================================
+          TOMBOL CHAT & CHATBOT
+          ============================================ */}
+
+      {/* Tombol Chat */}
+      <button
+        className="chat-toggle"
+        onClick={() => setShowChat(!showChat)}
+        aria-label="Buka chat">
+        💬
+      </button>
+
+      {/* Chatbot */}
+      {showChat && <ChatBotCohere onClose={() => setShowChat(false)} />}
     </>
   );
 }
