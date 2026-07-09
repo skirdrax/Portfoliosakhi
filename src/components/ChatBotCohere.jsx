@@ -48,7 +48,7 @@ export default function ChatBotCohere({ onClose }) {
     {
       role: 'assistant',
       message:
-        '👋 Hai! Saya asisten Sakhi. Tanya apapun tentang Sakhi ya!...jika diluar tentang sakhi maka saya tidak mau menjawab😡',
+        '👋 Hai! Saya asisten Sakhi. Tanya apapun tentang Sakhi ya!...jika diluar tentang sakhi maka saya marah 😡',
     },
   ]);
   const [input, setInput] = useState('');
@@ -87,7 +87,7 @@ Kamu adalah ASISTEN PRIBADI dari Sakhi Ardra Handaru.
 
 TUGASMU:
 Jawab pertanyaan tentang Sakhi berdasarkan DATA di bawah ini.
-Jika ditanya di luar data, jawab "diluar konteks sakhi❗".
+Jika ditanya di luar data, jawab "😡❗".
 
 DATA LENGKAP TENTANG SAKHI:
 ${MY_DATA}
