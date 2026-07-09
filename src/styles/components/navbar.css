@@ -1,6 +1,57 @@
 /* ========================================
-   NAVBAR - Styling sudah di Navbar.jsx (inline style)
+   NAVBAR - BRUTALISM BLUE
    ======================================== */
-/* Navbar menggunakan inline style di komponen Navbar.jsx,
-   jadi tidak perlu CSS tambahan di sini.
-   File ini disediakan untuk kemungkinan custom di masa depan. */
+
+.nav {
+  border-bottom: 2px solid var(--border);
+  background: var(--bg-card);
+}
+
+.nav.on {
+  border-bottom: 2px solid var(--accent-blue);
+  background: var(--bg-card);
+}
+
+.nav-cta {
+  border-radius: 0px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  border: 2px solid var(--accent-blue) !important;
+  color: var(--accent-blue) !important;
+}
+
+.nav-cta:hover {
+  background: var(--accent-blue) !important;
+  color: #ffffff !important;
+  transform: translate(2px, 2px) !important;
+}
+
+.hbg s {
+  background: var(--text-secondary) !important;
+}
+
+.hbg.on s:nth-child(1),
+.hbg.on s:nth-child(3) {
+  background: var(--accent-blue) !important;
+}
+
+.nav-link {
+  color: var(--text-secondary) !important;
+  transition: all 0.08s ease !important;
+}
+
+.nav-link:hover {
+  color: var(--accent-blue) !important;
+}
+
+.nav-link::after {
+  background: var(--accent-blue) !important;
+}
+
+.logo {
+  color: var(--text-primary) !important;
+}
+
+.logo span {
+  color: var(--accent-blue) !important;
+}

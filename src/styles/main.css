@@ -1,5 +1,5 @@
 /* ========================================
-   MAIN.CSS - Import semua CSS
+   MAIN.CSS - BRUTALISM BLUE THEME
    ======================================== */
 
 /* Base */
@@ -15,6 +15,7 @@
 @import './components/loading.css';
 @import './components/navbar.css';
 @import './components/footer.css';
+@import './components/social-links.css';
 
 /* Sections */
 @import './sections/hero.css';
@@ -22,7 +23,6 @@
 @import './sections/experience.css';
 @import './sections/tools.css';
 @import './sections/projects.css';
+@import './sections/certificates.css';
 @import './sections/github-stats.css';
 @import './sections/contact.css';
-@import './sections/certificates.css';
-@import './components/social-links.css';

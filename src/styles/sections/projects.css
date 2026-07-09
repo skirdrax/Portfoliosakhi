@@ -1,10 +1,10 @@
 /* ========================================
-   FILTER BUTTONS & PROYEK CARDS
+   PROJECTS - BRUTALISM BLUE
    ======================================== */
 
 .filter-wrapper {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   margin-bottom: 32px;
   flex-wrap: wrap;
   margin-top: 20px;
@@ -12,82 +12,51 @@
 }
 
 .filter-btn {
-  padding: 10px 28px;
-  border-radius: 40px;
+  padding: 8px 20px;
+  border-radius: 0px;
   font-size: 13px;
   font-weight: 600;
-  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-  border: 1.5px solid;
+  transition: all 0.08s ease;
+  border: 2px solid var(--border);
   cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  backdrop-filter: blur(4px);
-  letter-spacing: 0.3px;
   background: transparent;
-  border-color: var(--border-light);
   color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .filter-btn::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  background: rgba(37, 99, 235, 0.2);
-  transform: translate(-50%, -50%);
-  transition:
-    width 0.5s,
-    height 0.5s;
-}
-
-.filter-btn:hover::before {
-  width: 200px;
-  height: 200px;
+  display: none;
 }
 
 .filter-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
-  background: rgba(37, 99, 235, 0.15) !important;
-  border-color: rgba(37, 99, 235, 0.5) !important;
-  color: var(--text-primary) !important;
+  background: var(--bg-card-hover);
+  color: var(--text-primary);
+  border-color: var(--accent-blue);
+  transform: translate(2px, 2px);
 }
 
 .filter-btn.active {
-  background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
-  border-color: transparent;
-  color: white;
-  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+  background: var(--accent-blue);
+  border-color: var(--accent-blue);
+  color: #ffffff;
 }
 
 .filter-btn.active:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(37, 99, 235, 0.5);
-}
-
-.filter-btn:active {
-  transform: translateY(0px);
+  background: var(--accent-blue-dark);
+  border-color: var(--accent-blue-dark);
+  transform: translate(2px, 2px);
 }
 
 .active-dot {
-  position: absolute;
-  right: -4px;
-  top: -4px;
-  width: 10px;
-  height: 10px;
-  background: #22c55e;
-  border-radius: 50%;
-  border: 2px solid var(--bg);
+  display: none;
 }
 
 /* Proyek Grid */
 .proyek-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 24px;
 }
 
 @media (max-width: 1024px) {
@@ -103,35 +72,22 @@
 
 .proyek-card {
   background: var(--bg-card);
-  border: 1px solid var(--border-light);
-  border-radius: 18px;
+  border: 2px solid var(--border);
+  border-radius: 0px;
   overflow: hidden;
   position: relative;
-  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: all 0.08s ease;
   cursor: pointer;
 }
 
 .proyek-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-  background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), transparent 55%);
-  opacity: 0;
-  transition: opacity 0.3s;
+  display: none;
 }
 
 .proyek-card:hover {
-  border-color: rgba(37, 99, 235, 0.45);
-  transform: translateY(-6px);
-  box-shadow:
-    0 24px 48px rgba(0, 0, 0, 0.3),
-    0 0 0 1px rgba(37, 99, 235, 0.2);
-}
-
-.proyek-card:hover::before {
-  opacity: 1;
+  border-color: var(--accent-blue);
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 0 var(--accent-blue);
 }
 
 .pimg-wrap {
@@ -143,7 +99,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 55%);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.3) 0%, transparent 50%);
 }
 
 .proyek-card img {
@@ -151,11 +107,13 @@
   height: 185px;
   object-fit: cover;
   display: block;
-  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: none;
+  filter: none;
 }
 
 .proyek-card:hover img {
-  transform: scale(1.07);
+  transform: none;
+  filter: brightness(1.02);
 }
 
 .proyek-content {
@@ -178,8 +136,11 @@
 
 .proyek-kategori {
   font-size: 10px;
-  color: #2563eb;
+  color: var(--accent-blue);
   font-weight: 700;
+  text-transform: uppercase;
+  border: 2px solid var(--accent-blue);
+  padding: 2px 8px;
 }
 
 .proyek-desk {
@@ -196,25 +157,14 @@
   margin-bottom: 18px;
 }
 
-.tag-chip {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  background: rgba(37, 99, 235, 0.15);
-  color: #3b82f6;
-  border: 1px solid rgba(37, 99, 235, 0.25);
-  padding: 3px 9px;
-  border-radius: 999px;
-}
-
 .coming-soon {
   text-align: center;
   padding: 10px;
-  background: var(--input-bg);
-  border: 1px solid var(--border-light);
-  border-radius: 10px;
+  background: transparent;
+  border: 2px solid var(--text-muted);
+  border-radius: 0px;
   color: var(--text-muted);
   font-size: 13px;
   font-weight: 600;
+  text-transform: uppercase;
 }

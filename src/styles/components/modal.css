@@ -1,5 +1,5 @@
 /* ========================================
-   MODAL POPUP
+   MODAL - BRUTALISM BLUE
    ======================================== */
 
 .modal-overlay {
@@ -8,53 +8,55 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: none;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 10000;
-  animation: fadeIn 0.2s ease;
+  animation: none;
 }
 
 .modal-content {
   background: var(--bg-card);
-  border-radius: 20px;
+  border-radius: 0px;
   padding: 32px;
   max-width: 400px;
   width: 90%;
   text-align: center;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-  animation: slideUp 0.3s ease;
-  border: 1px solid var(--border-light);
+  box-shadow: 6px 6px 0 0 var(--accent-blue);
+  border: 2px solid var(--border);
+  animation: none;
 }
 
 .modal-icon {
   width: 64px;
   height: 64px;
   margin: 0 auto 20px;
-  border-radius: 50%;
+  border-radius: 0px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 32px;
+  border: 2px solid var(--border);
 }
 
 .modal-icon.success {
-  background: rgba(34, 197, 94, 0.15);
+  background: rgba(34, 197, 94, 0.1);
   color: #22c55e;
 }
 
 .modal-icon.error {
-  background: rgba(239, 68, 68, 0.15);
+  background: rgba(239, 68, 68, 0.1);
   color: #ef4444;
 }
 
 .modal-title {
   font-size: 24px;
-  font-weight: 700;
+  font-weight: 800;
   margin-bottom: 12px;
   color: var(--text-primary);
+  text-transform: uppercase;
 }
 
 .modal-message {
@@ -65,17 +67,20 @@
 }
 
 .modal-close {
-  background: #2563eb;
-  color: white;
-  border: none;
+  background: var(--accent-blue);
+  color: #ffffff;
+  border: 2px solid var(--accent-blue-dark);
   padding: 10px 24px;
-  border-radius: 10px;
-  font-weight: 600;
+  border-radius: 0px;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.08s ease;
+  text-transform: uppercase;
+  box-shadow: 4px 4px 0 0 var(--accent-blue-dark);
 }
 
 .modal-close:hover {
-  background: #1d4ed8;
-  transform: scale(1.02);
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0 0 var(--accent-blue-dark);
+  background: var(--accent-blue-dark);
 }

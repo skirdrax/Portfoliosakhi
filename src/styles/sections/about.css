@@ -1,34 +1,25 @@
 /* ========================================
-   ABOUT CARD & STATS
+   ABOUT & EDUCATION - BRUTALISM BLUE
    ======================================== */
 
 .about-card {
   background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 20px;
+  border: 2px solid var(--border);
+  border-radius: 0px;
   padding: 36px;
   position: relative;
   overflow: hidden;
-  transition: border-color 0.3s;
+  transition: all 0.08s ease;
 }
 
 .about-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(37, 99, 235, 0.6),
-    transparent
-  );
+  display: none;
 }
 
 .about-card:hover {
-  border-color: rgba(37, 99, 235, 0.4);
+  border-color: var(--accent-blue);
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 0 var(--accent-blue);
 }
 
 .about-text {
@@ -39,37 +30,54 @@
 }
 
 .about-text strong {
-  color: var(--text-primary);
+  color: var(--accent-blue);
 }
 
 /* Stats */
 .stats-wrapper {
   display: flex;
-  gap: 16px;
+  gap: 20px;
   flex-wrap: wrap;
 }
 
+.stat-card {
+  flex: 1;
+  min-width: 120px;
+  padding: 24px;
+  background: transparent;
+  border: 2px solid var(--border);
+  border-radius: 0px;
+  text-align: center;
+  transition: all 0.08s ease;
+}
+
+.stat-card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--accent-blue);
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 0 var(--accent-blue);
+}
+
 .stat-n {
-  font-size: 38px;
+  font-size: 48px;
   font-weight: 800;
   line-height: 1;
   color: var(--text-primary);
 }
 
 .stat-n span {
-  color: #2563eb;
+  color: var(--accent-blue);
 }
 
 .stat-label {
   color: var(--text-muted);
   font-size: 12px;
   margin-top: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
-/* ========================================
-   EDUCATION
-   ======================================== */
-
+/* Education */
 .education-section {
   margin-top: 52px;
 }
@@ -77,7 +85,7 @@
 .education-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 16px;
+  gap: 20px;
   max-width: 900px;
 }
 
@@ -86,27 +94,29 @@
   align-items: center;
   gap: 18px;
   padding: 20px 22px;
-  background: var(--bg-card);
-  border: 1px solid var(--border-light);
-  border-left: 3px solid rgba(37, 99, 235, 0.5);
-  border-radius: 0 14px 14px 0;
+  background: transparent;
+  border: 2px solid var(--border);
+  border-left: 6px solid var(--accent-blue);
+  border-radius: 0px;
   text-decoration: none;
   color: inherit;
-  transition: all 0.25s;
+  transition: all 0.08s ease;
 }
 
 .edu-card:hover {
   background: var(--bg-card-hover);
-  border-left-color: #2563eb;
-  transform: translateX(5px);
+  border-color: var(--accent-blue);
+  transform: translate(3px, 0px);
+  box-shadow: 2px 2px 0 0 var(--accent-blue);
 }
 
 .edu-logo {
   width: 50px;
   height: 50px;
   flex-shrink: 0;
-  background: #fff;
-  border-radius: 9px;
+  background: var(--bg-card);
+  border: 2px solid var(--border);
+  border-radius: 0px;
   padding: 7px;
   display: flex;
   align-items: center;

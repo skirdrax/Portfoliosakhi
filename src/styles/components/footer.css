@@ -1,6 +1,42 @@
 /* ========================================
-   FOOTER - Styling sudah di Footer.jsx (inline style)
+   FOOTER - BRUTALISM BLUE
    ======================================== */
-/* Footer menggunakan inline style di komponen Footer.jsx,
-   jadi tidak perlu CSS tambahan di sini.
-   File ini disediakan untuk kemungkinan custom di masa depan. */
+
+.footer-line {
+  height: 2px;
+  background: var(--border);
+}
+
+.footer {
+  border-top: 2px solid var(--border);
+  padding-top: 20px;
+  background: var(--bg-card);
+}
+
+.f-logo {
+  font-weight: 800 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-primary) !important;
+}
+
+.f-logo span {
+  color: var(--accent-blue) !important;
+}
+
+.f-copy {
+  color: var(--text-muted) !important;
+}
+
+.soc {
+  color: var(--text-muted) !important;
+  border: 2px solid transparent;
+  padding: 4px;
+  transition: all 0.08s ease;
+}
+
+.soc:hover {
+  color: var(--accent-blue) !important;
+  border-color: var(--accent-blue);
+  transform: translate(2px, 2px) !important;
+}

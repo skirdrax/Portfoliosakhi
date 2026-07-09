@@ -21,7 +21,7 @@ const FULL_TEXT = 'Sakhi Ardra';
 
 export default function App() {
   const [filter, setFilter] = useState('Semua');
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
   const [displayText, setDisplayText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
   const [showModal, setShowModal] = useState(false);

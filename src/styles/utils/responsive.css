@@ -1,5 +1,5 @@
 /* ========================================
-   CONTAINER & LAYOUT + RESPONSIVE
+   CONTAINER & LAYOUT - BRUTALISM BLUE
    ======================================== */
 
 .container {
@@ -20,12 +20,9 @@ section {
   section {
     padding: 40px 0;
   }
-  .about-card {
-    padding: 24px;
-  }
 }
 
-/* Background Effects */
+/* Grid Background */
 .grid-bg {
   position: absolute;
   inset: 0;
@@ -37,31 +34,27 @@ section {
   background-size: 40px 40px;
   animation: gridMove 10s linear infinite;
   mask-image: radial-gradient(
-    ellipse 90% 70% at 50% 0%,
-    black 30%,
+    ellipse 80% 60% at 50% 30%,
+    black 40%,
     transparent 100%
   );
   -webkit-mask-image: radial-gradient(
-    ellipse 90% 70% at 50% 0%,
-    black 30%,
+    ellipse 80% 60% at 50% 30%,
+    black 40%,
     transparent 100%
   );
 }
 
 .glow {
-  position: absolute;
-  top: -80px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 700px;
-  height: 280px;
-  background: radial-gradient(
-    ellipse at center,
-    var(--glow) 0%,
-    transparent 65%
-  );
-  pointer-events: none;
-  z-index: 0;
+  display: none;
+}
+
+/* Shimmer */
+.shimmer {
+  height: 2px;
+  margin: 80px 0;
+  background: var(--border);
+  animation: none;
 }
 
 /* Divider */
@@ -76,29 +69,13 @@ section {
 .divider::after {
   content: '';
   flex: 1;
-  height: 1px;
+  height: 2px;
   background: var(--border);
 }
 
 .d-dot {
-  width: 5px;
-  height: 5px;
-  background: rgba(37, 99, 235, 0.5);
-  border-radius: 50%;
-}
-
-/* Shimmer */
-.shimmer {
-  height: 1px;
-  margin: 80px 0;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(37, 99, 235, 0.5) 40%,
-    rgba(59, 130, 246, 0.9) 50%,
-    rgba(37, 99, 235, 0.5) 60%,
-    transparent
-  );
-  background-size: 500px 100%;
-  animation: shimmer 2.8s infinite;
+  width: 8px;
+  height: 8px;
+  background: var(--accent-blue);
+  border-radius: 0px;
 }
