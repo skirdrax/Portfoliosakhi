@@ -1,16 +1,18 @@
 import { useState, useEffect } from 'react';
+import { useActiveSection } from '../hooks/useActiveSection';
 
 const links = [
-  { label: 'Beranda', href: '#beranda' },
-  { label: 'Tentang', href: '#tentang' },
-  { label: 'Proyek', href: '#proyek' },
-  { label: 'Kontak', href: '#kontak' },
+  { label: 'Beranda', href: '#beranda', id: 'beranda' },
+  { label: 'Tentang', href: '#tentang', id: 'tentang' },
+  { label: 'Proyek', href: '#proyek', id: 'proyek' },
+  { label: 'Kontak', href: '#kontak', id: 'kontak' },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(true);
+  const activeSection = useActiveSection(links.map((l) => l.id)) || 'beranda';
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -38,12 +40,12 @@ export default function Navbar() {
         .nav-inner { display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: 0 auto; }
         .logo { font-size: 18px; font-weight: 800; color: ${textPrimary}; text-decoration: none; letter-spacing: -.03em; position: relative; }
         .logo span { color: #3b82f6; }
-        .logo::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 100%; height: 1.5px; background: linear-gradient(90deg, #2563eb, transparent); border-radius: 2px; }
         .nav-links { display: flex; align-items: center; gap: 32px; }
         .nav-link { font-size: 13px; font-weight: 500; color: ${textSecondary}; text-decoration: none; padding: 4px 0; position: relative; transition: color .2s; }
         .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1.5px; background: #2563eb; border-radius: 2px; transition: width .25s; }
         .nav-link:hover { color: ${textPrimary}; }
         .nav-link:hover::after { width: 100%; }
+        .nav-link.active::after { width: 100% !important; }
         .nav-cta { font-size: 12px; font-weight: 700; letter-spacing: .04em; color: #3b82f6; text-decoration: none; border: 1px solid rgba(37,99,235,.3); padding: 8px 18px; border-radius: 8px; transition: all .2s; white-space: nowrap; }
         .nav-cta:hover { background: rgba(37,99,235,.1); border-color: rgba(37,99,235,.55); }
         .hbg { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
@@ -65,7 +67,10 @@ export default function Navbar() {
           </a>
           <div className="nav-links">
             {links.map((l) => (
-              <a key={l.href} href={l.href} className="nav-link">
+              <a
+                key={l.href}
+                href={l.href}
+                className={`nav-link ${activeSection === l.id ? 'active' : ''}`}>
                 {l.label}
               </a>
             ))}

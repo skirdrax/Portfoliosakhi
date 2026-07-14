@@ -47,6 +47,12 @@
 .nav-link::after {
   background: var(--accent-blue) !important;
 }
+/* ============================================
+   NAVBAR ACTIVE - GARIS BAWAH SAAT SCROLL
+   ============================================ */
+.nav-link.active::after {
+  width: 100% !important;
+}
 
 .logo {
   color: var(--text-primary) !important;
