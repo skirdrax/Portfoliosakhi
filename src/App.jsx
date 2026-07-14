@@ -21,8 +21,8 @@ const FULL_TEXT = 'Sakhi Ardra';
 
 export default function App() {
   const [filter, setFilter] = useState('Semua');
-  const [displayText, setDisplayText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
+  const [text, setText] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
   const [isSuccess, setIsSuccess] = useState(false);
@@ -35,14 +35,17 @@ export default function App() {
   // Typing effect
   useEffect(() => {
     let timeout;
-    if (!isDeleting && displayText === FULL_TEXT) {
+
+    if (!isDeleting && text === FULL_TEXT) {
+      // pause at full text, then start deleting
       timeout = setTimeout(() => setIsDeleting(true), 2000);
-    } else if (isDeleting && displayText === '') {
+    } else if (isDeleting && text === '') {
+      // finished deleting, start typing again
       setIsDeleting(false);
     } else {
       timeout = setTimeout(
         () => {
-          setDisplayText((prev) =>
+          setText((prev) =>
             isDeleting
               ? prev.slice(0, -1)
               : FULL_TEXT.slice(0, prev.length + 1),
@@ -51,8 +54,9 @@ export default function App() {
         isDeleting ? 80 : 120,
       );
     }
+
     return () => clearTimeout(timeout);
-  }, [displayText, isDeleting]);
+  }, [isDeleting, text]);
 
   // Always light mode - NAVBAR TETAP TERANG
   useEffect(() => {
@@ -78,7 +82,7 @@ export default function App() {
 
       {/* Main Content */}
       <div className="container">
-        <Hero displayText={displayText} FULL_TEXT={FULL_TEXT} />
+        <Hero FULL_TEXT={FULL_TEXT} />
         <div className="shimmer" />
         <About />
         <Experience />

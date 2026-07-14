@@ -27,16 +27,6 @@
   padding-bottom: 2px;
 }
 
-.cursor-blink {
-  display: inline-block;
-  width: 4px;
-  height: 0.88em;
-  background: var(--accent-blue);
-  margin-left: 3px;
-  vertical-align: -1px;
-  animation: blink 1.1s step-end infinite;
-}
-
 .badge {
   display: inline-flex;
   align-items: center;
