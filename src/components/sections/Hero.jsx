@@ -27,7 +27,7 @@ export default function Hero({ displayText, FULL_TEXT }) {
             <span className="cursor-blink" />
           </h1>
           <p className="hero-desc reveal d2">
-            <span className="skill-tag-glow">Web Developer</span>
+            <span className="skill-tag-glow">Web Develosper</span>
             <span className="skill-tag-glow">Mobile Developer</span>
             <span className="skill-tag-glow">Network Server</span>
             <span className="skill-tag-glow">DevOps</span>
