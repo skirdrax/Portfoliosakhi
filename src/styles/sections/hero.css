@@ -3,6 +3,8 @@
    ======================================== */
 
 .hero-section {
+  padding-top: 70px !important;
+  margin-top: 0px !important;
   padding: 100px 0 40px;
   overflow: hidden;
   position: relative;
@@ -23,28 +25,43 @@
   -webkit-background-clip: unset;
   -webkit-text-fill-color: var(--accent-blue);
   background-clip: unset;
-  /* border-bottom: 4px solid var(--accent-blue); */
   padding-bottom: 2px;
 }
+
+/* ============================================
+   SKILL TAGS - MUNCUL SATU-SATU
+   ============================================ */
 .skill-tag-glow {
   display: inline-block;
-  border: 1px solid var(--accent-blue);
-  padding: 4px 14px;
+  border: 2px solid var(--accent-blue);
+  padding: 6px 13px;
   margin: 4px 4px;
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 600;
   color: var(--accent-blue);
   text-transform: uppercase;
-  transition: all 0.3s ease;
+  letter-spacing: 0.05em;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
   cursor: default;
+  opacity: 0;
+  transform: translateY(15px) scale(0.95);
+}
+
+.skill-tag-glow.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
 
 .skill-tag-glow:hover {
   background: var(--accent-blue);
   color: #fff;
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
 }
+
+/* ============================================
+   BADGE
+   ============================================ */
 .badge {
   display: inline-flex;
   align-items: center;

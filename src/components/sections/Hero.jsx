@@ -1,7 +1,31 @@
+import { useState, useEffect } from 'react';
 import SocialLinks from '../ui/SocialLinks';
 import ImageData from '../../data/image';
 
 export default function Hero({ displayText, FULL_TEXT }) {
+  const skills = [
+    'Web Developer',
+    'Mobile Developer',
+    'Network Server',
+    'DevOps',
+    'UI/UX Design',
+    'IoT',
+    'SEO',
+  ];
+
+  // State untuk index skill yang udah muncul
+  const [visibleCount, setVisibleCount] = useState(0);
+
+  // Efek muncul satu-satu setiap 0.3 detik
+  useEffect(() => {
+    if (visibleCount < skills.length) {
+      const timer = setTimeout(() => {
+        setVisibleCount((prev) => prev + 1);
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [visibleCount, skills.length]);
+
   return (
     <section className="hero-section">
       <div className="grid-bg" />
@@ -14,26 +38,30 @@ export default function Hero({ displayText, FULL_TEXT }) {
             <span className="badge-dot" />
             Portfolio Sakhi Ardra Handaru
           </div>
+
           {/* OPEN TO WORK BADGE */}
           <div className="status-badge reveal d2">
             <span className="status-dot active"></span>
             <span className="status-label">Open to Work</span>
             <span className="status-type">• Internship • Full-time</span>
           </div>
+
           <h1 className="hero-name reveal d1">
             Hai, Saya
             <br />
             <span className="accent">{displayText || FULL_TEXT}</span>
             <span className="cursor-blink" />
           </h1>
+
+          {/* SKILL TAGS - MUNCUL SATU-SATU */}
           <p className="hero-desc reveal d2">
-            <span className="skill-tag-glow">Web Developer</span>
-            <span className="skill-tag-glow">Mobile Developer</span>
-            <span className="skill-tag-glow">Network Server</span>
-            <span className="skill-tag-glow">DevOps</span>
-            <span className="skill-tag-glow">UI/UX Design</span>
-            <span className="skill-tag-glow">IoT</span>
-            <span className="skill-tag-glow">SEO</span>
+            {skills.map((skill, i) => (
+              <span
+                key={i}
+                className={`skill-tag-glow ${i < visibleCount ? 'show' : ''}`}>
+                {skill}
+              </span>
+            ))}
           </p>
 
           <div className="hero-buttons reveal d3">
@@ -67,6 +95,7 @@ export default function Hero({ displayText, FULL_TEXT }) {
             </a>
           </div>
         </div>
+
         <div className="hero-image reveal d2">
           <div className="img-wrap">
             <div className="corner tl" />
