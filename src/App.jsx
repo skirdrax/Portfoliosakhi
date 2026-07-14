@@ -17,7 +17,7 @@ import { useCursor } from './components/hooks/useCursor';
 import Certificates from './components/sections/Certificates';
 import ChatBotCohere from './components/ChatBotCohere';
 
-const FULL_TEXT = 'Sakhi Ardra';
+const FULL_TEXT = 'Sakhi Ardra Handaru';
 
 export default function App() {
   const [filter, setFilter] = useState('Semua');

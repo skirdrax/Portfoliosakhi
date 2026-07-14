@@ -14,6 +14,12 @@ export default function Hero({ displayText, FULL_TEXT }) {
             <span className="badge-dot" />
             Portfolio Sakhi Ardra Handaru
           </div>
+          {/* OPEN TO WORK BADGE */}
+          <div className="status-badge reveal d2">
+            <span className="status-dot active"></span>
+            <span className="status-label">Open to Work</span>
+            <span className="status-type">• Internship • Full-time</span>
+          </div>
           <h1 className="hero-name reveal d1">
             Hai, Saya
             <br />
@@ -21,16 +27,14 @@ export default function Hero({ displayText, FULL_TEXT }) {
             <span className="cursor-blink" />
           </h1>
           <p className="hero-desc reveal d2">
-            Mahasiswa D4 Rekayasa Perangkat Lunak — membangun pengalaman digital
-            yang elegan, efisien, dan berorientasi pada pengguna.
+            <span className="skill-tag-glow">Web Developer</span>
+            <span className="skill-tag-glow">Mobile Developer</span>
+            <span className="skill-tag-glow">Network Server</span>
+            <span className="skill-tag-glow">DevOps</span>
+            <span className="skill-tag-glow">UI/UX Design</span>
+            <span className="skill-tag-glow">IoT</span>
+            <span className="skill-tag-glow">SEO</span>
           </p>
-
-          {/* OPEN TO WORK BADGE */}
-          <div className="status-badge reveal d2">
-            <span className="status-dot active"></span>
-            <span className="status-label">Open to Work</span>
-            <span className="status-type">• Internship • Full-time</span>
-          </div>
 
           <div className="hero-buttons reveal d3">
             <a
