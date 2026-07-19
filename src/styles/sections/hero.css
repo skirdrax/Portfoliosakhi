@@ -5,6 +5,7 @@
 .hero-section {
   padding-top: 70px !important;
   margin-top: 0px !important;
+  padding-bottom: 0px !important;
   padding: 100px 0 40px;
   overflow: hidden;
   position: relative;
