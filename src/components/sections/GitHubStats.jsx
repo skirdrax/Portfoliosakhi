@@ -266,12 +266,7 @@ export default function GitHubStats() {
                 <div
                   key={item.month}
                   className="month-item"
-                  onClick={() =>
-                    window.open(
-                      `https://github.com/skirdrax?tab=overview`,
-                      '_blank',
-                    )
-                  }>
+                  style={{ cursor: 'default' }}>
                   <span className="month-name">{item.month}</span>
                   <div className="month-bar-container">
                     <div

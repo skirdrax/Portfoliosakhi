@@ -3,6 +3,28 @@ import { MAGANG } from '../../data';
 
 export default function Experience() {
   const [selectedProject, setSelectedProject] = useState(null);
+  const [galleryIndex, setGalleryIndex] = useState(0);
+  const [selectedCert, setSelectedCert] = useState(null);
+
+  const openProject = (project) => {
+    setSelectedProject(project);
+    setGalleryIndex(0);
+  };
+
+  const closeProject = () => {
+    setSelectedProject(null);
+    setGalleryIndex(0);
+  };
+
+  const nextImage = () => {
+    setGalleryIndex((prev) => (prev + 1) % selectedProject.images.length);
+  };
+
+  const prevImage = () => {
+    setGalleryIndex((prev) =>
+      prev === 0 ? selectedProject.images.length - 1 : prev - 1,
+    );
+  };
 
   return (
     <div className="magang-section">
@@ -52,7 +74,7 @@ export default function Experience() {
                 {/* SATU TOMBOL UNTUK PROYEK & SERTIFIKAT */}
                 <button
                   className="magang-project-btn"
-                  onClick={() => setSelectedProject(m.project)}>
+                  onClick={() => openProject(m.project)}>
                   Lihat Proyek & Sertifikat
                 </button>
 
@@ -61,7 +83,7 @@ export default function Experience() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="magang-link">
-                  Kunjungi Website
+                  Kunjungi Website Perusahaan
                   <svg
                     width="14"
                     height="14"
@@ -78,17 +100,13 @@ export default function Experience() {
         ))}
       </div>
 
-      {/* ===== MODAL POPUP ===== */}
+      {/* ===== MODAL POPUP PROYEK ===== */}
       {selectedProject && (
-        <div
-          className="project-modal-overlay"
-          onClick={() => setSelectedProject(null)}>
+        <div className="project-modal-overlay" onClick={closeProject}>
           <div
             className="project-modal-content"
             onClick={(e) => e.stopPropagation()}>
-            <button
-              className="project-modal-close"
-              onClick={() => setSelectedProject(null)}>
+            <button className="project-modal-close" onClick={closeProject}>
               ✕
             </button>
 
@@ -96,7 +114,39 @@ export default function Experience() {
             {selectedProject.images && selectedProject.images.length > 0 && (
               <div className="project-modal-gallery">
                 <div className="gallery-main">
-                  <img src={selectedProject.images[0]} alt="Project" />
+                  <img
+                    src={selectedProject.images[galleryIndex]}
+                    alt="Project"
+                  />
+
+                  {selectedProject.images.length > 1 && (
+                    <>
+                      <button
+                        type="button"
+                        className="gallery-arrow gallery-arrow-left"
+                        onClick={prevImage}>
+                        ‹
+                      </button>
+                      <button
+                        type="button"
+                        className="gallery-arrow gallery-arrow-right"
+                        onClick={nextImage}>
+                        ›
+                      </button>
+                      <div className="gallery-dots">
+                        {selectedProject.images.map((_, idx) => (
+                          <button
+                            key={idx}
+                            type="button"
+                            className={`gallery-dot ${
+                              idx === galleryIndex ? 'active' : ''
+                            }`}
+                            onClick={() => setGalleryIndex(idx)}
+                          />
+                        ))}
+                      </div>
+                    </>
+                  )}
                 </div>
               </div>
             )}
@@ -136,7 +186,10 @@ export default function Experience() {
                     <h4>Sertifikat Magang</h4>
                     <div className="certificates-grid-modal">
                       {selectedProject.certificates.map((cert) => (
-                        <div key={cert.id} className="certificate-card-modal">
+                        <div
+                          key={cert.id}
+                          className="certificate-card-modal"
+                          onClick={() => setSelectedCert(cert)}>
                           {cert.image && (
                             <div className="certificate-image-modal">
                               <img src={cert.image} alt={cert.title} />
@@ -152,6 +205,35 @@ export default function Experience() {
                     </div>
                   </div>
                 )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ===== MODAL POPUP SERTIFIKAT (LIGHTBOX) ===== */}
+      {selectedCert && (
+        <div
+          className="cert-modal-overlay"
+          onClick={() => setSelectedCert(null)}>
+          <div
+            className="cert-modal-content"
+            onClick={(e) => e.stopPropagation()}>
+            <button
+              className="cert-modal-close"
+              onClick={() => setSelectedCert(null)}>
+              ✕
+            </button>
+            {selectedCert.image && (
+              <img
+                src={selectedCert.image}
+                alt={selectedCert.title}
+                className="cert-modal-image"
+              />
+            )}
+            <div className="cert-modal-info">
+              <h4>{selectedCert.title}</h4>
+              <p>{selectedCert.issuer}</p>
+              <span>{selectedCert.date}</span>
             </div>
           </div>
         </div>
