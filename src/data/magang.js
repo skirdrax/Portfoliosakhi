@@ -29,11 +29,12 @@ export const MAGANG = [
         'Page speed improved from 65 to 88',
       ],
       tech: [
-        'SEO',
+        'HTML',
         'Google Analytics',
+        'Spreadsheet',
         'Ahrefs',
         'WordPress',
-        'PageSpeed Insights',
+        'JAVAScript',
       ],
       images: [
         '/assets/proyek/groperti/1.png',
@@ -60,7 +61,7 @@ export const MAGANG = [
       ],
     },
   },
-  {
+  /*  {
     id: 2,
     href: 'https://www.groperti.com/',
     posisi: 'Network Engineer',
@@ -120,5 +121,5 @@ export const MAGANG = [
         },
       ],
     },
-  },
+  },*/
 ];
