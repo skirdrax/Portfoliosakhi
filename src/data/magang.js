@@ -64,7 +64,7 @@ export const MAGANG = [
     id: 2,
     href: 'https://www.groperti.com/',
     posisi: 'Network Engineer',
-    perusahaan: 'PT Groperti Indonesia',
+    perusahaan: 'PT Groperti Indon4esia',
     lokasi: 'WFH Tangerang, Office Jakarta',
     periode: 'Mei 2025 — Agustus 2025',
     deskripsi:
