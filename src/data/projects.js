@@ -18,7 +18,7 @@ export const listProyek = [
   {
     id: 2,
     gambar: Proyek2,
-    nama: 'UI/UX Design App Grevora',
+    nama: 'Design App Grevora',
     kategori: 'UI/UX',
     desk: 'Prototipe App sebagai platform mempermudah masyarakat dalam membuang sampah secara benar dan terstruktur serta memberikan informasi yang relevan.',
     tools: ['Figma', 'Canva', 'Adobe Illustrator'],
