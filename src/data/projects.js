@@ -27,7 +27,7 @@ export const listProyek = [
   {
     id: 3,
     gambar: Proyek3,
-    nama: 'UI/UX Design App Clean Air ID',
+    nama: 'Design App Clean Air ID',
     kategori: 'UI/UX',
     desk: 'Prototipe Aplikasi Pemantauan Polusi Udara secara real-time untuk meningkatkan kesadaran terhadap kualitas udara.',
     tools: ['Figma', 'Canva', 'Adobe Illustrator'],
