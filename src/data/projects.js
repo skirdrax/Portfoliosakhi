@@ -9,7 +9,7 @@ export const listProyek = [
   {
     id: 1,
     gambar: Proyek1,
-    nama: 'Website SOFTCOMP',
+    nama: 'SOFTCOMP HIMA-RPL',
     kategori: 'Website',
     desk: 'Website resmi dari event Softcomp (Software Competition) yang diselenggarakan oleh HIMA RPL Politeknik Negeri Indramayu.',
     tools: ['HTML', 'CSS', 'Javascript', 'PHP', 'SQL'],
