@@ -21,7 +21,7 @@ SKILL & KEAHLIAN:
 - Python, C++, Git
 
 PENGALAMAN MAGANG:
-- [Nama Perusahaan] sebagai [posisi] ([periode])
+- PT Groperti Indonesia sebagai Web developer SEO mei-agustus 2025
 
 PROYEK YANG PERNAH DIBUAT:
 1. [Nama Proyek 1]: [deskripsi]
