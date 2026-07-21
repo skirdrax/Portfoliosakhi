@@ -215,3 +215,77 @@
   letter-spacing: -0.02em;
   text-align: center;
 }
+
+/* ============================================
+   POPUP KONFIRMASI CV
+   ============================================ */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  padding: 20px;
+}
+
+.popup-content {
+  background: var(--bg-card);
+  border: 2px solid var(--accent-blue);
+  box-shadow: 8px 8px 0 rgba(37, 99, 235, 0.3);
+  padding: 30px 40px;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  animation: slideUp 0.3s ease;
+}
+
+.popup-content h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.popup-content p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+
+.popup-content strong {
+  color: var(--accent-blue);
+  font-size: 24px;
+}
+
+.popup-cancel {
+  background: transparent;
+  border: 2px solid var(--border);
+  color: var(--text-secondary);
+  padding: 8px 24px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.popup-cancel:hover {
+  border-color: var(--accent-blue);
+  color: var(--text-primary);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -16,7 +16,12 @@ export default function Hero({ displayText, FULL_TEXT }) {
   // State untuk index skill yang udah muncul
   const [visibleCount, setVisibleCount] = useState(0);
 
-  // Efek muncul satu-satu setiap 0.3 detik
+  // State untuk popup CV
+  const [showPopup, setShowPopup] = useState(false);
+  const [countdown, setCountdown] = useState(3);
+  const [intervalId, setIntervalId] = useState(null);
+
+  // Efek muncul satu-satu setiap 1 detik
   useEffect(() => {
     if (visibleCount < skills.length) {
       const timer = setTimeout(() => {
@@ -25,6 +30,37 @@ export default function Hero({ displayText, FULL_TEXT }) {
       return () => clearTimeout(timer);
     }
   }, [visibleCount, skills.length]);
+
+  // Handle klik CV
+  const handleCvClick = (e) => {
+    e.preventDefault();
+    setShowPopup(true);
+    setCountdown(3);
+
+    const id = setInterval(() => {
+      setCountdown((prev) => {
+        if (prev <= 1) {
+          clearInterval(id);
+          window.open(
+            'https://drive.google.com/file/d/1O-GQlWVCwO26ITMujxC6bZAkJq90rq5N/view?usp=sharing',
+            '_blank',
+          );
+          setShowPopup(false);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    setIntervalId(id);
+  };
+
+  // Batal
+  const cancelPopup = () => {
+    if (intervalId) clearInterval(intervalId);
+    setShowPopup(false);
+    setCountdown(3);
+  };
 
   return (
     <section className="hero-section">
@@ -59,11 +95,7 @@ export default function Hero({ displayText, FULL_TEXT }) {
           </p>
 
           <div className="hero-buttons reveal d3">
-            <a
-              href="https://drive.google.com/file/d/1O-GQlWVCwO26ITMujxC6bZAkJq90rq5N/view?usp=sharing"
-              className="btn-p"
-              target="_blank"
-              rel="noopener noreferrer">
+            <a href="#" className="btn-p" onClick={handleCvClick}>
               Lihat CV Saya
               <svg
                 width="14"
@@ -103,6 +135,21 @@ export default function Hero({ displayText, FULL_TEXT }) {
         </div>
       </div>
       <SocialLinks />
+
+      {/* ===== POPUP KONFIRMASI CV ===== */}
+      {showPopup && (
+        <div className="popup-overlay" onClick={cancelPopup}>
+          <div className="popup-content" onClick={(e) => e.stopPropagation()}>
+            <h3> Anda akan diarahkan ke Google Drive</h3>
+            <p>
+              Mengalihkan dalam <strong>{countdown}</strong> detik...
+            </p>
+            <button className="popup-cancel" onClick={cancelPopup}>
+              Batal
+            </button>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
