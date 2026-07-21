@@ -140,7 +140,7 @@ export default function Hero({ displayText, FULL_TEXT }) {
       {showPopup && (
         <div className="popup-overlay" onClick={cancelPopup}>
           <div className="popup-content" onClick={(e) => e.stopPropagation()}>
-            <h3> Anda akan diarahkan ke Google Drive</h3>
+            <h3> Aanda akan diarahkan ke Google Drive</h3>
             <p>
               Mengalihkan dalam <strong>{countdown}</strong> detik...
             </p>
