@@ -36,7 +36,7 @@ export default function Hero({ displayText, FULL_TEXT }) {
         <div>
           {/* OPEN TO WORK BADGE */}
           <div className="status-badge reveal d2">
-            <span className="status-type">Open to Work</span>
+            <span className="status-label">Open to Work</span>
             <span className="status-type">• Internship • Full-time</span>
           </div>
 
