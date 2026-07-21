@@ -179,7 +179,7 @@ export default function Navbar() {
       {showPopup && (
         <div className="popup-overlay" onClick={cancelPopup}>
           <div className="popup-content" onClick={(e) => e.stopPropagation()}>
-            <h3> Mengunduh CV...</h3>
+            <h3> ⬇️Mengunduh CV...</h3>
             <p>
               Download akan dimulai dalam <strong>{countdown}</strong> detik...
             </p>
