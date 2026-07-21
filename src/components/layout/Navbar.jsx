@@ -75,7 +75,7 @@ export default function Navbar() {
               </a>
             ))}
             <a
-              href="public/assets/CV/CV_Sakhiardra_port.pdf"
+              href="/assets/CV/CV_Sakhiardra_port.pdf"
               className="nav-cta"
               style={{ marginTop: '10px', width: 'fit-content' }}
               target="_blank"
