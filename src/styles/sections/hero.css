@@ -68,7 +68,7 @@
   align-items: center;
   gap: 8px;
   background: transparent;
-  border: 2px solid var(--border);
+  border: 2px solid var(--accent-blue);
   padding: 6px 16px;
   margin-bottom: 24px;
   font-size: 12px;
@@ -154,7 +154,7 @@
 .status-dot {
   width: 8px;
   height: 8px;
-  background: var(--accent-blue);
+  background: var(--accent-green);
   border-radius: 0px;
   display: inline-block;
   animation: none;
