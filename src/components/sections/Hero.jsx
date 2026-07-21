@@ -60,7 +60,7 @@ export default function Hero({ displayText, FULL_TEXT }) {
 
           <div className="hero-buttons reveal d3">
             <a
-              href="https://drive.google.com/file/d/16L5Xd_xS_hw2v3dLRPqq1NhyH2r9euda/view?usp=drive_link"
+              href="https://drive.google.com/file/d/1O-GQlWVCwO26ITMujxC6bZAkJq90rq5N/view?usp=sharing"
               className="btn-p"
               target="_blank"
               rel="noopener noreferrer">
