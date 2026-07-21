@@ -144,7 +144,7 @@
   align-items: center;
   gap: 12px;
   background: transparent;
-  border: 2px solid var(--accent-green);
+  border: 2px solid var(--accent-blue);
   padding: 6px 14px;
   margin-bottom: 20px;
   margin-left: 5px;
@@ -154,7 +154,7 @@
 .status-dot {
   width: 8px;
   height: 8px;
-  background: var(--accent-green);
+  background: var(--accent-blue);
   border-radius: 0px;
   display: inline-block;
   animation: none;
@@ -163,13 +163,13 @@
 .status-label {
   font-size: 12px;
   font-weight: 600;
-  color: var(--accent-green);
+  color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
 .status-type {
-  font-size: 10px;
+  font-size: 12px;
   color: var(--text-muted);
 }
 

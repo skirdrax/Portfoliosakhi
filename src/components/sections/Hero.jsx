@@ -34,15 +34,11 @@ export default function Hero({ displayText, FULL_TEXT }) {
         className="grid md:grid-cols-2 items-center gap-14"
         style={{ position: 'relative', zIndex: 1 }}>
         <div>
-          <div className="badge reveal">
-            <span className="badge-dot" />
-            Portfolio Sakhi Ardra Handaru
-          </div>
+          <div className="badge reveal">Portfolio Sakhi Ardra Handaru</div>
 
           {/* OPEN TO WORK BADGE */}
           <div className="status-badge reveal d2">
-            <span className="status-dot active"></span>
-            <span className="status-label">Open to Work</span>
+            <span className="status-type">Open to Work</span>
             <span className="status-type">• Internship • Full-time</span>
           </div>
 

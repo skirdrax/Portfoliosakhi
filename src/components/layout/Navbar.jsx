@@ -79,7 +79,7 @@ export default function Navbar() {
               className="nav-cta"
               target="_blank"
               rel="noopener noreferrer">
-              Lihat CV ↗
+              Download CV ↗
             </a>
           </div>
           <button
@@ -107,7 +107,7 @@ export default function Navbar() {
             style={{ marginTop: '10px', width: 'fit-content' }}
             target="_blank"
             rel="noopener noreferrer">
-            Lihat CV ↗
+            Download CV ↗
           </a>
         </div>
       </nav>
