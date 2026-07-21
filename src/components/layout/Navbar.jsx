@@ -75,10 +75,12 @@ export default function Navbar() {
               </a>
             ))}
             <a
-              href="https://drive.google.com/file/d/16L5Xd_xS_hw2v3dLRPqq1NhyH2r9euda/view"
+              href="public/assets/CV/CV_Sakhiardra_port.pdf"
               className="nav-cta"
+              style={{ marginTop: '10px', width: 'fit-content' }}
               target="_blank"
-              rel="noopener noreferrer">
+              rel="noopener noreferrer"
+              download>
               Download CV ↗
             </a>
           </div>
@@ -102,11 +104,12 @@ export default function Navbar() {
             </a>
           ))}
           <a
-            href="https://drive.google.com/uc?export=download&confirm=t&id=16L5Xd_xS_hw2v3dLRPqq1NhyH2r9euda"
+            href="public/assets/CV/CV_Sakhiardra_port.pdf"
             className="nav-cta"
             style={{ marginTop: '10px', width: 'fit-content' }}
             target="_blank"
-            rel="noopener noreferrer">
+            rel="noopener noreferrer"
+            download>
             Download CV ↗
           </a>
         </div>
