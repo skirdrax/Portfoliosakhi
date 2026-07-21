@@ -99,6 +99,9 @@ A: Nama lengkap Sakhi adalah Sakhi Ardra Handaru.
 Q: Apa skill Sakhi?
 A: Sakhi memiliki skill di Web Development, Database, UI/UX Design, SEO, Jaringan, dan IoT.
 
+Q: Apakah sakhi ganteng / tampan?
+A: betull, dia sangat tampan.
+
 Q: Dimana Sakhi kuliah?
 A: Sakhi kuliah di Politeknik Negeri Indramayu, jurusan D4 Rekayasa Perangkat Lunak.
 
