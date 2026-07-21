@@ -14,6 +14,10 @@ export default function Navbar() {
   const [darkMode, setDarkMode] = useState(true);
   const activeSection = useActiveSection(links.map((l) => l.id)) || 'beranda';
 
+  const [showPopup, setShowPopup] = useState(false);
+  const [countdown, setCountdown] = useState(3);
+  const [intervalId, setIntervalId] = useState(null);
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -25,6 +29,39 @@ export default function Navbar() {
     window.addEventListener('themeChange', handler);
     return () => window.removeEventListener('themeChange', handler);
   }, []);
+
+  const handleCvClick = (e) => {
+    e.preventDefault();
+    setShowPopup(true);
+    setCountdown(3);
+
+    const id = setInterval(() => {
+      setCountdown((prev) => {
+        if (prev <= 1) {
+          clearInterval(id);
+
+          // BUAT LINK DOWNLOAD
+          const link = document.createElement('a');
+          link.href = '/assets/CV/CV_Sakhiardra_port.pdf';
+          link.download = 'CV_Sakhiardra_Port.pdf';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+
+          setShowPopup(false);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    setIntervalId(id);
+  };
+  const cancelPopup = () => {
+    if (intervalId) clearInterval(intervalId);
+    setShowPopup(false);
+    setCountdown(3);
+  };
 
   const bg = darkMode ? '#09090b' : '#ffffff';
   const textPrimary = darkMode ? '#fff' : '#18181b';
@@ -59,7 +96,35 @@ export default function Navbar() {
         .mob-link:hover { color: ${textPrimary}; }
         @media (min-width: 640px) { .hbg, .mob-menu { display: none !important; } }
         @media (max-width: 639px) { .nav-links { display: none !important; } .hbg { display: flex !important; } .nav { padding: 16px 20px !important; } .nav.on { padding: 10px 20px !important; } }
+
+        /* POPUP STYLE */
+        .popup-overlay {
+          position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+          background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
+          display: flex; align-items: center; justify-content: center;
+          z-index: 99999; padding: 20px;
+        }
+        .popup-content {
+          background: ${bg}; border: 2px solid #2563eb;
+          box-shadow: 8px 8px 0 rgba(37,99,235,0.3);
+          padding: 30px 40px; max-width: 400px; width: 90%;
+          text-align: center; animation: slideUp 0.3s ease;
+        }
+        .popup-content h3 { font-size: 18px; font-weight: 700; color: ${textPrimary}; margin-bottom: 12px; }
+        .popup-content p { font-size: 14px; color: ${textSecondary}; margin-bottom: 20px; }
+        .popup-content strong { color: #2563eb; font-size: 24px; }
+        .popup-cancel {
+          background: transparent; border: 2px solid ${borderColor};
+          color: ${textSecondary}; padding: 8px 24px; font-size: 13px;
+          font-weight: 600; cursor: pointer; transition: all 0.2s;
+        }
+        .popup-cancel:hover { border-color: #2563eb; color: ${textPrimary}; }
+        @keyframes slideUp {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
       `}</style>
+
       <nav className={`nav ${scrolled ? 'on' : ''}`}>
         <div className="nav-inner">
           <a href="#beranda" className="logo">
@@ -75,12 +140,10 @@ export default function Navbar() {
               </a>
             ))}
             <a
-              href="/assets/CV/CV_Sakhiardra_port.pdf"
+              href="#"
               className="nav-cta"
               style={{ marginTop: '10px', width: 'fit-content' }}
-              target="_blank"
-              rel="noopener noreferrer"
-              download>
+              onClick={handleCvClick}>
               Download CV ↗
             </a>
           </div>
@@ -104,16 +167,28 @@ export default function Navbar() {
             </a>
           ))}
           <a
-            href="/assets/CV/CV_Sakhiardra_port.pdf"
+            href="#"
             className="nav-cta"
             style={{ marginTop: '10px', width: 'fit-content' }}
-            target="_blank"
-            rel="noopener noreferrer"
-            download>
+            onClick={handleCvClick}>
             Download CV ↗
           </a>
         </div>
       </nav>
+
+      {showPopup && (
+        <div className="popup-overlay" onClick={cancelPopup}>
+          <div className="popup-content" onClick={(e) => e.stopPropagation()}>
+            <h3> Mengunduh CV...</h3>
+            <p>
+              Download akan dimulai dalam <strong>{countdown}</strong> detik...
+            </p>
+            <button className="popup-cancel" onClick={cancelPopup}>
+              Batal
+            </button>
+          </div>
+        </div>
+      )}
     </>
   );
 }
