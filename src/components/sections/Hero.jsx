@@ -34,7 +34,7 @@ export default function Hero({ displayText, FULL_TEXT }) {
         className="grid md:grid-cols-2 items-center gap-14"
         style={{ position: 'relative', zIndex: 1 }}>
         <div>
-          <div className="badge reveal">Portfolio Sakhi Ardra Handaru</div>
+          <div className="badge reveal">Portfolio Saya</div>
 
           {/* OPEN TO WORK BADGE */}
           <div className="status-badge reveal d2">
