@@ -26,7 +26,7 @@ export default function About() {
         </p>
         <div className="stats-wrapper">
           {[
-            ['5+', 'Projects Completed'],
+            ['6+', 'Projects Completed'],
             ['1+', 'Years of Experience'],
           ].map(([n, l], i) => (
             <div key={i} className="stat-card">
