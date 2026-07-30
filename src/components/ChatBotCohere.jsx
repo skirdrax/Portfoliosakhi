@@ -96,6 +96,9 @@ CONTOH PERTANYAAN & JAWABAN:
 Q: Siapa nama lengkap Sakhi?
 A: Nama lengkap Sakhi adalah Sakhi Ardra Handaru.
 
+Q: Berapa umur sakhi?
+A: 20 tahun umur sakhi.
+
 Q: Apa skill Sakhi?
 A: Sakhi memiliki skill di Web Development, Database, UI/UX Design, SEO, Jaringan, dan IoT.
 
