@@ -5,9 +5,9 @@ export const MAGANG = [
     posisi: 'Web Developer - Search Engine Optimization Intern',
     perusahaan: 'PT Groperti Indonesia',
     lokasi: 'WFH Tangerang, Office Jakarta',
-    periode: 'Mei 2025 — Agustus 2025',
+    periode: 'May 2025 — August 2025',
     deskripsi:
-      'MAGANG SEMESTER 2 | mengoptimasi performa SEO website perusahaan, meningkatkan peringkat di hasil pencarian Google, dan meningkatkan visibilitas online untuk menarik lebih banyak pelanggan potensial dan pembeli.',
+      'SEMESTER 2 INTERNSHIP | optimizing company website SEO performance, improving rankings in Google search results, and increasing online visibility to attract more potential customers and buyers.',
     tech: [
       'Google Search Console',
       'Ahrefs',
@@ -18,14 +18,14 @@ export const MAGANG = [
       'wordpress',
     ],
     logo: '/assets/groperti.png',
-    // DATA PROYEK
+    // PROJECT DATA
     project: {
       title: 'SEO Optimization Project',
       description:
-        'Selama magang, saya berhasil meningkatkan peringkat website perusahaan dari halaman 5 ke halaman 1 Google untuk 10+ keyword utama. Mengoptimasi meta tags, struktur URL, dan kecepatan loading website.',
+        'During the internship, I successfully improved the company website ranking from page 5 to page 1 on Google for 10+ main keywords. Optimized meta tags, URL structure, and website loading speed.',
       results: [
-        'Traffic meningkat 45%',
-        'Keyword ranking naik ke posisi 1-3',
+        'Traffic increased 45%',
+        'Keyword ranking rose to position 1-3',
         'Page speed improved from 65 to 88',
       ],
       tech: [
@@ -42,20 +42,20 @@ export const MAGANG = [
         '/assets/proyek/groperti/3.png',
         '/assets/proyek/groperti/4.png',
       ],
-      // SERTIFIKAT ADA DI DALAM PROJECT
+      // CERTIFICATES ARE INSIDE THE PROJECT
       certificates: [
         {
           id: 1,
-          title: 'Sertifikat Magang SEO',
+          title: 'SEO Internship Certificate',
           issuer: 'PT Groperti Indonesia',
-          date: 'Agustus 2025',
+          date: 'August 2025',
           image: '/assets/sertifikat/groperti/1.png',
         },
         {
           id: 2,
           title: 'Certificate of Completion',
           issuer: 'PT Groperti Indonesia',
-          date: 'Agustus 2025',
+          date: 'August 2025',
           image: '/assets/sertifikat/groperti/2.png',
         },
       ],
@@ -67,9 +67,9 @@ export const MAGANG = [
     posisi: 'Network Engineer',
     perusahaan: 'PT Groperti Indonesia',
     lokasi: 'WFH Tangerang, Office Jakarta',
-    periode: 'Mei 2025 — Agustus 2025',
+    periode: 'May 2025 — August 2025',
     deskripsi:
-      'MAGANG SEMESTER 2 | mengoptimasi performa SEO website perusahaan, meningkatkan peringkat di hasil pencarian Google, dan meningkatkan visibilitas online untuk menarik lebih banyak pelanggan potensial dan pembeli.',
+      'SEMESTER 2 INTERNSHIP | optimizing company website SEO performance, improving rankings in Google search results, and increasing online visibility to attract more potential customers and buyers.',
     tech: [
       'Google Search Console',
       'Ahrefs',
@@ -80,14 +80,14 @@ export const MAGANG = [
       'wordpress',
     ],
     logo: '/assets/groperti.png',
-    // DATA PROYEK
+    // PROJECT DATA
     project: {
       title: 'SEO Optimization Project',
       description:
-        'Selama magang, saya berhasil meningkatkan peringkat website perusahaan dari halaman 5 ke halaman 1 Google untuk 10+ keyword utama. Mengoptimasi meta tags, struktur URL, dan kecepatan loading website.',
+        'During the internship, I successfully improved the company website ranking from page 5 to page 1 on Google for 10+ main keywords. Optimized meta tags, URL structure, and website loading speed.',
       results: [
-        'Traffic meningkat 45%',
-        'Keyword ranking naik ke posisi 1-3',
+        'Traffic increased 45%',
+        'Keyword ranking rose to position 1-3',
         'Page speed improved from 65 to 88',
       ],
       tech: [
@@ -103,20 +103,20 @@ export const MAGANG = [
         '/assets/proyek/groperti/3.png',
         '/assets/proyek/groperti/4.png',
       ],
-      // SERTIFIKAT ADA DI DALAM PROJECT
+      // CERTIFICATES ARE INSIDE THE PROJECT
       certificates: [
         {
           id: 1,
-          title: 'Sertifikat Magang SEO',
+          title: 'SEO Internship Certificate',
           issuer: 'PT Groperti Indonesia',
-          date: 'Agustus 2025',
+          date: 'August 2025',
           image: '/assets/sertifikat/groperti/1.png',
         },
         {
           id: 2,
           title: 'Certificate of Completion',
           issuer: 'PT Groperti Indonesia',
-          date: 'Agustus 2025',
+          date: 'August 2025',
           image: '/assets/sertifikat/groperti/2.png',
         },
       ],

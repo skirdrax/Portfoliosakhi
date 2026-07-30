@@ -1,34 +1,33 @@
 export default function About() {
   return (
     <section id="tentang">
-      <p className="section-tag reveal">Tentang Saya</p>
-      <h2 className="section-title reveal d1">Profil Singkat</h2>
+      <p className="section-tag reveal">About Me</p>
+      <h2 className="section-title reveal d1">Short Profile</h2>
       <div className="about-card reveal d2">
         <p className="about-text">
-          Hi! Saya <strong>Sakhi Ardra Handaru</strong>, mahasiswa aktif D4
-          Rekayasa Perangkat Lunak di Politeknik Negeri Indramayu dengan
-          semangat tinggi dalam mengembangkan solusi digital yang inovatif dan
-          berdampak. Saya memiliki keahlian di bidang Web Development (React,
-          Laravel, Vite), Database Management (MySQL), UI/UX Design (Figma),
-          SEO, Jaringan Komputer, dan Internet of Things (IoT). Pengalaman
-          magang sebagai Web Developer & SEO Intern di PT Groperti Indonesia
-          mengasah kemampuan teknis dan profesional saya.
+          Hi! I'm <strong>Sakhi Ardra Handaru</strong>, an active D4 Software
+          Engineering student at Politeknik Negeri Indramayu with a strong
+          passion for developing innovative and impactful digital solutions. I
+          have expertise in Web Development (React, Laravel, Vite), Database
+          Management (MySQL), UI/UX Design (Figma), SEO, Computer Networks, and
+          Internet of Things (IoT). My internship experience as a Web Developer
+          & SEO Intern at PT Groperti Indonesia has sharpened my technical and
+          professional skills.
         </p>
 
         <p className="about-text">
-          Saya percaya bahwa teknologi yang baik adalah yang mampu memberikan
-          pengalaman bermakna bagi penggunanya. Karena itu, setiap proyek yang
-          saya kerjakan selalu mengedepankan aspek fungsionalitas, estetika, dan
-          pengalaman pengguna. Saat ini saya terbuka untuk berkontribusi lebih
-          luas — baik melalui magang, proyek kolaboratif, maupun posisi
-          full-time di industri maupun pemerintahan. Saya siap belajar,
-          beradaptasi, dan membawa perubahan nyata melalui solusi digital yang
-          inovatif.
+          I believe that good technology is one that provides a meaningful
+          experience for its users. Therefore, every project I work on always
+          prioritizes functionality, aesthetics, and user experience. Currently,
+          I am open to contributing more broadly — whether through internships,
+          collaborative projects, or full-time positions in both industry and
+          government sectors. I am ready to learn, adapt, and bring real change
+          through innovative digital solutions.
         </p>
         <div className="stats-wrapper">
           {[
-            ['5+', 'Proyek Selesai'],
-            ['1+', 'Tahun Pengalaman'],
+            ['5+', 'Projects Completed'],
+            ['1+', 'Years of Experience'],
           ].map(([n, l], i) => (
             <div key={i} className="stat-card">
               <p className="stat-n">
@@ -40,23 +39,23 @@ export default function About() {
           ))}
         </div>
       </div>
-      {/* Pendidikan */}
+      {/* Education */}
       <div className="education-section">
-        <p className="section-tag reveal">Pendidikan</p>
+        <p className="section-tag reveal">Education</p>
         <div className="education-grid reveal d1">
           {[
             {
               href: 'https://polindra.ac.id/',
               img: '/assets/polindra.png',
               name: 'Politeknik Negeri Indramayu',
-              sub: 'Teknik Informatika · D4 Rekayasa Perangkat Lunak',
-              year: '2024 — SEKARANG',
+              sub: 'Informatics Engineering · D4 Software Engineering',
+              year: '2024 — PRESENT',
             },
             {
               href: 'https://smait.sekolahbunayya.sch.id/',
               img: '/assets/bunayya.png',
               name: 'SMAIT BUNAYYA',
-              sub: 'Ilmu Pengetahuan Alam (IPA)',
+              sub: ' Sciences (IPA)',
               year: '2021 — 2024',
             },
           ].map((e) => (

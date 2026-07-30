@@ -3,8 +3,8 @@ import { listProyek } from '../../data';
 export default function Projects({ filter, setFilter }) {
   return (
     <section id="proyek">
-      <p className="section-tag reveal">Portofolio</p>
-      <h2 className="section-title reveal d1">Proyek Pilihan</h2>
+      <p className="section-tag reveal">Portfolio</p>
+      <h2 className="section-title reveal d1">Other Proyek</h2>
       <div className="filter-wrapper reveal d2">
         {['Semua', 'Website', 'UI/UX', 'Mobile'].map((cat) => (
           <button
@@ -45,7 +45,7 @@ export default function Projects({ filter, setFilter }) {
                     className="btn-p btn-block"
                     target="_blank"
                     rel="noopener noreferrer">
-                    Lihat Hasil →
+                    View Result →
                   </a>
                 ) : (
                   <div className="coming-soon">Coming Soon</div>

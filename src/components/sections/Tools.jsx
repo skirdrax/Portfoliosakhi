@@ -6,7 +6,7 @@ export default function Tools() {
       <p className="section-tag reveal">Tech Stack</p>
       <h3 className="tools-title reveal d1">Tools / Framework</h3>
       <p className="tools-sub reveal d2">
-        Teknologi & tools untuk web development dan desain.
+        Technologies & tools for web development and design.
       </p>
       <div className="tools-grid">
         {listTools.map((tool, i) => (

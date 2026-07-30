@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react';
 import { useActiveSection } from '../hooks/useActiveSection';
 
 const links = [
-  { label: 'Beranda', href: '#beranda', id: 'beranda' },
-  { label: 'Tentang', href: '#tentang', id: 'tentang' },
-  { label: 'Proyek', href: '#proyek', id: 'proyek' },
-  { label: 'Kontak', href: '#kontak', id: 'kontak' },
+  { label: 'Home', href: '#beranda', id: 'beranda' },
+  { label: 'About', href: '#tentang', id: 'tentang' },
+  { label: 'Projects', href: '#proyek', id: 'proyek' },
+  { label: 'Contact', href: '#kontak', id: 'kontak' },
 ];
 
 export default function Navbar() {
@@ -40,7 +40,7 @@ export default function Navbar() {
         if (prev <= 1) {
           clearInterval(id);
 
-          // BUAT LINK DOWNLOAD
+          // CREATE DOWNLOAD LINK
           const link = document.createElement('a');
           link.href = '/assets/CV/CV_Sakhiardra_port.pdf';
           link.download = 'CV_Sakhiardra_Port.pdf';
@@ -179,12 +179,12 @@ export default function Navbar() {
       {showPopup && (
         <div className="popup-overlay" onClick={cancelPopup}>
           <div className="popup-content" onClick={(e) => e.stopPropagation()}>
-            <h3> ⬇️Mengunduh CV...</h3>
+            <h3>⬇️ Downloading CV...</h3>
             <p>
-              Download akan dimulai dalam <strong>{countdown}</strong> detik...
+              Download will start in <strong>{countdown}</strong> seconds...
             </p>
             <button className="popup-cancel" onClick={cancelPopup}>
-              Batal
+              Cancel
             </button>
           </div>
         </div>

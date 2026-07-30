@@ -13,11 +13,11 @@ export default function Certificates() {
   return (
     <section className="certificates-section">
       <div className="certificates-header">
-        <p className="section-tag reveal">Sertifikat</p>
-        <h2 className="section-title reveal d1">Penghargaan & Sertifikasi</h2>
+        <p className="section-tag reveal">Certificates</p>
+        <h2 className="section-title reveal d1">Awards & Certifications</h2>
         <p className="certificates-sub reveal d2">
-          Bukti kompetensi dan pengembangan diri melalui berbagai sertifikasi
-          profesional.
+          Proof of competence and self-development through various professional
+          certifications.
         </p>
       </div>
 
@@ -42,7 +42,7 @@ export default function Certificates() {
               <div className="certificate-image">
                 <img src={cert.image} alt={cert.title} />
                 <div className="certificate-overlay">
-                  <span>🔍 Klik untuk lihat</span>
+                  <span>🔍 Click to view</span>
                 </div>
               </div>
               <div className="certificate-info">
@@ -56,7 +56,7 @@ export default function Certificates() {
                 rel="noopener noreferrer"
                 className="certificate-link"
                 onClick={(e) => e.stopPropagation()}>
-                Verifikasi Sertifikat →
+                Verify Certificate →
               </a>
             </div>
           </SwiperSlide>

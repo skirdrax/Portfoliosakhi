@@ -28,10 +28,10 @@ export default function Experience() {
 
   return (
     <div className="magang-section">
-      <p className="section-tag reveal">Pengalaman</p>
-      <h3 className="tools-title reveal d1">Pengalaman Magang</h3>
+      <p className="section-tag reveal">Experience</p>
+      <h3 className="tools-title reveal d1">Internship Experience</h3>
       <p className="tools-sub reveal d2">
-        Pengalaman kerja nyata di dunia industri.
+        Real work experience in the industry.
       </p>
       <div className="magang-list">
         {[...MAGANG]
@@ -61,7 +61,7 @@ export default function Experience() {
                       <span className="magang-lokasi">{m.lokasi}</span>
                     </div>
                   </div>
-                  <span className="magang-badge">Magang</span>
+                  <span className="magang-badge">Internship</span>
                 </div>
                 <p className="magang-desk">{m.deskripsi}</p>
                 <div className="magang-tech">
@@ -76,7 +76,7 @@ export default function Experience() {
                   <button
                     className="magang-project-btn"
                     onClick={() => openProject(m.project)}>
-                    Lihat Proyek & Sertifikat
+                    View Project & Certificates
                   </button>
 
                   <a
@@ -84,7 +84,7 @@ export default function Experience() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="magang-link">
-                    Kunjungi Website Perusahaan
+                    Visit Company Website
                     <svg
                       width="14"
                       height="14"
@@ -101,7 +101,7 @@ export default function Experience() {
           ))}
       </div>
 
-      {/* ===== MODAL POPUP PROYEK ===== */}
+      {/* ===== PROJECT MODAL POPUP ===== */}
       {selectedProject && (
         <div className="project-modal-overlay" onClick={closeProject}>
           <div
@@ -111,7 +111,7 @@ export default function Experience() {
               ✕
             </button>
 
-            {/* Galeri Gambar Proyek */}
+            {/* Project Image Gallery */}
             {selectedProject.images && selectedProject.images.length > 0 && (
               <div className="project-modal-gallery">
                 <div className="gallery-main">
@@ -160,7 +160,7 @@ export default function Experience() {
 
               {selectedProject.results && (
                 <div className="project-modal-results">
-                  <h4>Hasil & Pencapaian</h4>
+                  <h4>Results & Achievements</h4>
                   <ul>
                     {selectedProject.results.map((result, idx) => (
                       <li key={idx}>{result}</li>
@@ -170,7 +170,7 @@ export default function Experience() {
               )}
 
               <div className="project-modal-tech">
-                <h4>Teknologi & Tools</h4>
+                <h4>Technologies & Tools</h4>
                 <div className="tech-tags">
                   {selectedProject.tech.map((t, idx) => (
                     <span key={idx} className="tag-chip">
@@ -180,11 +180,11 @@ export default function Experience() {
                 </div>
               </div>
 
-              {/* ===== SERTIFIKAT ===== */}
+              {/* ===== CERTIFICATES ===== */}
               {selectedProject.certificates &&
                 selectedProject.certificates.length > 0 && (
                   <div className="project-modal-certificates">
-                    <h4>Sertifikat Magang</h4>
+                    <h4>Internship Certificates</h4>
                     <div className="certificates-grid-modal">
                       {selectedProject.certificates.map((cert) => (
                         <div
@@ -211,7 +211,7 @@ export default function Experience() {
         </div>
       )}
 
-      {/* ===== MODAL POPUP SERTIFIKAT (LIGHTBOX) ===== */}
+      {/* ===== CERTIFICATE LIGHTBOX MODAL ===== */}
       {selectedCert && (
         <div
           className="cert-modal-overlay"

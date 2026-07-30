@@ -10,7 +10,7 @@ export default function Contact({
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Cegah double klik
+    // Prevent double click
     if (isLoading) return;
 
     setIsLoading(true);
@@ -23,17 +23,15 @@ export default function Contact({
         setIsSuccess(data.success);
         setModalMessage(
           data.success
-            ? ' Pesan berhasil terkirim! Terima kasih, saya akan membalas segera.'
-            : ' Gagal mengirim pesan. Silakan coba lagi.. mungkin salah kata atau gmailnya.',
+            ? '✅ Message sent successfully! Thank you, I will reply soon.'
+            : '❌ Failed to send message. Please try again.. maybe wrong word or gmail.',
         );
         setShowModal(true);
         if (data.success) form.reset();
       })
       .catch(() => {
         setIsSuccess(false);
-        setModalMessage(
-          '❌ Terjadi kesalahan jaringan. Silakan coba lagi nanti.',
-        );
+        setModalMessage('❌ Network error occurred. Please try again later.');
         setShowModal(true);
       })
       .finally(() => {
@@ -44,10 +42,10 @@ export default function Contact({
   return (
     <section id="kontak" className="kontak-section">
       <div className="reveal">
-        <p className="section-tag center">Hubungi Saya</p>
-        <h2 className="section-title-center d1">Mari Berkolaborasi</h2>
+        <p className="section-tag center">Contact Me</p>
+        <h2 className="section-title-center d1">Let's Collaborate</h2>
         <p className="kontak-sub d2">
-          Isi form — pesan langsung terkirim ke email saya{' '}
+          Fill the form — messages are sent directly to my email{' '}
           <span style={{ color: '#3b82f6' }}>ardrasakhi390@gmail.com</span>
         </p>
       </div>
@@ -64,18 +62,18 @@ export default function Contact({
         <input
           type="hidden"
           name="subject"
-          value="Pesan Baru dari Portfolio Sakhi Ardra"
+          value="New Message from Sakhi Ardra's Portfolio"
         />
         <input type="hidden" name="to_email" value="ardrasakhi390@gmail.com" />
         <input type="hidden" name="from_name" value="Portfolio Website" />
         <input type="checkbox" name="botcheck" style={{ display: 'none' }} />
 
         <div className="form-group">
-          <label>Nama Anda</label>
+          <label>Your Name</label>
           <input
             type="text"
             name="name"
-            placeholder="Masukkan nama anda"
+            placeholder="Enter your name"
             className="contact-input"
             required
             disabled={isLoading}
@@ -86,17 +84,17 @@ export default function Contact({
           <input
             type="email"
             name="email"
-            placeholder="email@contoh.com"
+            placeholder="email@example.com"
             className="contact-input"
             disabled={isLoading}
           />
         </div>
         <div className="form-group">
-          <label>Pesan</label>
+          <label>Message</label>
           <textarea
             name="message"
             rows="6"
-            placeholder="Tulis pesanmu di sini..."
+            placeholder="Write your message here..."
             className="contact-input"
             required
             disabled={isLoading}
@@ -107,10 +105,10 @@ export default function Contact({
           {isLoading ? (
             <>
               <span className="loading-spinner-small"></span>
-              Mengirim...
+              Sending...
             </>
           ) : (
-            'Kirim Pesan'
+            'Send Message'
           )}
         </button>
       </form>

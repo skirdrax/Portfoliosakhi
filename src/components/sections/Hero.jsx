@@ -13,15 +13,15 @@ export default function Hero({ displayText, FULL_TEXT }) {
     'SEO',
   ];
 
-  // State untuk index skill yang udah muncul
+  // State for skill index that has appeared
   const [visibleCount, setVisibleCount] = useState(0);
 
-  // State untuk popup CV
+  // State for CV popup
   const [showPopup, setShowPopup] = useState(false);
   const [countdown, setCountdown] = useState(3);
   const [intervalId, setIntervalId] = useState(null);
 
-  // Efek muncul satu-satu setiap 1 detik
+  // Effect to show skills one by one every 1 second
   useEffect(() => {
     if (visibleCount < skills.length) {
       const timer = setTimeout(() => {
@@ -31,7 +31,7 @@ export default function Hero({ displayText, FULL_TEXT }) {
     }
   }, [visibleCount, skills.length]);
 
-  // Handle klik CV
+  // Handle CV click
   const handleCvClick = (e) => {
     e.preventDefault();
     setShowPopup(true);
@@ -55,7 +55,7 @@ export default function Hero({ displayText, FULL_TEXT }) {
     setIntervalId(id);
   };
 
-  // Batal
+  // Cancel
   const cancelPopup = () => {
     if (intervalId) clearInterval(intervalId);
     setShowPopup(false);
@@ -77,13 +77,13 @@ export default function Hero({ displayText, FULL_TEXT }) {
           </div>
 
           <h1 className="hero-name reveal d1">
-            Hai, Saya
+            Hi, I'm
             <br />
             <span className="accent">{displayText || FULL_TEXT}</span>
             <span className="cursor-blink" />
           </h1>
 
-          {/* SKILL TAGS - MUNCUL SATU-SATU */}
+          {/* SKILL TAGS - APPEAR ONE BY ONE */}
           <p className="hero-desc reveal d2">
             {skills.map((skill, i) => (
               <span
@@ -96,7 +96,7 @@ export default function Hero({ displayText, FULL_TEXT }) {
 
           <div className="hero-buttons reveal d3">
             <a href="#" className="btn-p" onClick={handleCvClick}>
-              Lihat CV Saya
+              View My CV
               <svg
                 width="14"
                 height="14"
@@ -108,7 +108,7 @@ export default function Hero({ displayText, FULL_TEXT }) {
               </svg>
             </a>
             <a href="#proyek" className="btn-g">
-              Proyek
+              Projects
               <svg
                 width="14"
                 height="14"
@@ -136,16 +136,16 @@ export default function Hero({ displayText, FULL_TEXT }) {
       </div>
       <SocialLinks />
 
-      {/* ===== POPUP KONFIRMASI CV ===== */}
+      {/* ===== CV CONFIRMATION POPUP ===== */}
       {showPopup && (
         <div className="popup-overlay" onClick={cancelPopup}>
           <div className="popup-content" onClick={(e) => e.stopPropagation()}>
-            <h3> Anda akan diarahkan ke Google Drive</h3>
+            <h3> You will be redirected to Google Drive</h3>
             <p>
-              Mengalihkan dalam <strong>{countdown}</strong> detik...
+              Redirecting in <strong>{countdown}</strong> seconds...
             </p>
             <button className="popup-cancel" onClick={cancelPopup}>
-              Batal
+              Cancel
             </button>
           </div>
         </div>
