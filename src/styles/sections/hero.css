@@ -30,7 +30,7 @@
 }
 
 /* ============================================
-   SKILL TAGS - MUNCUL SATU-SATU
+   SKILL TAGS
    ============================================ */
 .skill-tag-glow {
   display: inline-block;
@@ -61,7 +61,7 @@
 }
 
 /* ============================================
-   BADGE
+   BADGE PORTFOLIO
    ============================================ */
 .badge {
   display: inline-flex;
@@ -87,6 +87,9 @@
   animation: none;
 }
 
+/* ============================================
+   HERO DESC
+   ============================================ */
 .hero-desc {
   color: var(--text-secondary);
   font-size: 16px;
@@ -107,18 +110,87 @@
   justify-content: center;
 }
 
+/* ============================================
+   FOTO HERO - BINGKAI BRUTALISM
+   ============================================ */
+
 .img-wrap {
   display: inline-block;
   position: relative;
-  border: 3px solid var(--border);
+  border: 4px solid var(--accent-blue);
+  padding: 8px;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: pointer;
+  background: var(--bg-card);
 }
 
+/* Efek bayangan brutal */
 .img-wrap::before {
-  display: none;
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border: 2px solid var(--border);
+  z-index: -1;
+  transition: all 0.4s ease;
 }
 
-.corner {
-  display: none;
+/* Hover - bingkai membesar dan glow */
+.img-wrap:hover {
+  transform: scale(1.03) translateY(-6px);
+  border-color: #60a5fa;
+  box-shadow: 8px 8px 0 rgba(37, 99, 235, 0.3);
+}
+
+.img-wrap:hover::before {
+  inset: -12px;
+  border-color: var(--accent-blue);
+}
+
+/* Gambar di dalam */
+.img-wrap img {
+  display: block;
+  width: 100%;
+  max-width: 370px;
+  transition: all 0.4s ease;
+  filter: grayscale(0.1);
+}
+
+.img-wrap:hover img {
+  filter: grayscale(0);
+  transform: scale(1.01);
+}
+
+/* Corner dekorasi */
+.img-wrap .corner {
+  display: block;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-color: var(--accent-blue);
+  border-style: solid;
+  border-width: 0;
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+
+.img-wrap .corner.tl {
+  top: -4px;
+  left: -4px;
+  border-top-width: 3px;
+  border-left-width: 3px;
+}
+
+.img-wrap .corner.br {
+  bottom: -4px;
+  right: -4px;
+  border-bottom-width: 3px;
+  border-right-width: 3px;
+}
+
+.img-wrap:hover .corner {
+  opacity: 1;
+  width: 30px;
+  height: 30px;
 }
 
 .hero-img {
@@ -129,7 +201,9 @@
   filter: none;
 }
 
-/* Social Links in Hero */
+/* ============================================
+   SOCIAL LINKS
+   ============================================ */
 .hero-section .social-links {
   display: flex;
   justify-content: center;
@@ -138,7 +212,9 @@
   flex-wrap: wrap;
 }
 
-/* Open to Work Badge */
+/* ============================================
+   OPEN TO WORK BADGE
+   ============================================ */
 .status-badge {
   display: inline-flex;
   align-items: center;
@@ -173,7 +249,9 @@
   color: var(--text-muted);
 }
 
-/* Section Tags */
+/* ============================================
+   SECTION TAGS
+   ============================================ */
 .section-tag {
   display: inline-flex;
   align-items: center;
