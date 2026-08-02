@@ -61,7 +61,7 @@ export default function Hero({ displayText, FULL_TEXT }) {
           <div
             className="status-badge reveal d2"
             data-aos="fade-up"
-            data-aos-delay="1000">
+            data-aos-delay="700">
             <span className="status-label">Open to Work</span>
             <span className="status-type">• Internship • Full-time</span>
           </div>
@@ -69,7 +69,7 @@ export default function Hero({ displayText, FULL_TEXT }) {
           <h1
             className="hero-name reveal d1"
             data-aos="fade-up"
-            data-aos-delay="1100">
+            data-aos-delay="750">
             Hi, I'm
             <br />
             <span className="accent">{displayText || FULL_TEXT}</span>
@@ -80,7 +80,7 @@ export default function Hero({ displayText, FULL_TEXT }) {
           <p
             className="hero-desc reveal d2"
             data-aos="fade-up"
-            data-aos-delay="1200">
+            data-aos-delay="800">
             {skills.map((skill, i) => (
               <span key={i} className="skill-tag-glow show">
                 {skill}
@@ -91,7 +91,7 @@ export default function Hero({ displayText, FULL_TEXT }) {
           <div
             className="hero-buttons reveal d3"
             data-aos="fade-up"
-            data-aos-delay="1300">
+            data-aos-delay="800">
             <a href="#" className="btn-p" onClick={handleCvClick}>
               View My CV
               <svg
@@ -122,7 +122,7 @@ export default function Hero({ displayText, FULL_TEXT }) {
         <div
           className="hero-image reveal d2"
           data-aos="fade-left"
-          data-aos-delay="1200">
+          data-aos-delay="800">
           <div className="img-wrap">
             <div className="corner tl" />
             <div className="corner br" />

@@ -8,9 +8,9 @@ export default function LoadingScreen({ onDone }) {
   useEffect(() => {
     const interval = setInterval(() => {
       setProgress((prev) => {
-        if (prev >= 100) {
+        if (prev >= 70) {
           clearInterval(interval);
-          setTimeout(onDone, 300);
+          setTimeout(onDone, 200);
           return 100;
         }
         return prev + 2.5;
