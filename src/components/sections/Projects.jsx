@@ -3,9 +3,24 @@ import { listProyek } from '../../data';
 export default function Projects({ filter, setFilter }) {
   return (
     <section id="proyek">
-      <p className="section-tag reveal">Portfolio</p>
-      <h2 className="section-title reveal d1">Other Proyek</h2>
-      <div className="filter-wrapper reveal d2">
+      <p
+        className="section-tag reveal"
+        data-aos="fade-right"
+        data-aos-delay="100">
+        Portfolio
+      </p>
+
+      <h2
+        className="section-title reveal d1"
+        data-aos="fade-left"
+        data-aos-delay="200">
+        Other Projects
+      </h2>
+
+      <div
+        className="filter-wrapper reveal d2"
+        data-aos="fade-up"
+        data-aos-delay="300">
         {['Semua', 'Website', 'UI/UX', 'Mobile'].map((cat) => (
           <button
             key={cat}
@@ -16,11 +31,16 @@ export default function Projects({ filter, setFilter }) {
           </button>
         ))}
       </div>
+
       <div className="proyek-grid">
         {listProyek
           .filter((p) => filter === 'Semua' || p.kategori === filter)
           .map((p, i) => (
-            <div key={p.id} className={`proyek-card reveal d${(i % 3) + 1}`}>
+            <div
+              key={p.id}
+              className={`proyek-card reveal d${(i % 3) + 1}`}
+              data-aos="zoom-in"
+              data-aos-delay={300 + i * 120}>
               <div className="pimg-wrap">
                 <img src={p.gambar} alt={p.nama} />
               </div>

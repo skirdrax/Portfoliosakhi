@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import SocialLinks from '../ui/SocialLinks';
 import ImageData from '../../data/image';
 
@@ -13,23 +13,10 @@ export default function Hero({ displayText, FULL_TEXT }) {
     'SEO',
   ];
 
-  // State for skill index that has appeared
-  const [visibleCount, setVisibleCount] = useState(0);
-
   // State for CV popup
   const [showPopup, setShowPopup] = useState(false);
   const [countdown, setCountdown] = useState(3);
   const [intervalId, setIntervalId] = useState(null);
-
-  // Effect to show skills one by one every 1 second
-  useEffect(() => {
-    if (visibleCount < skills.length) {
-      const timer = setTimeout(() => {
-        setVisibleCount((prev) => prev + 1);
-      }, 1000);
-      return () => clearTimeout(timer);
-    }
-  }, [visibleCount, skills.length]);
 
   // Handle CV click
   const handleCvClick = (e) => {
@@ -71,30 +58,40 @@ export default function Hero({ displayText, FULL_TEXT }) {
         style={{ position: 'relative', zIndex: 1 }}>
         <div>
           {/* OPEN TO WORK BADGE */}
-          <div className="status-badge reveal d2">
+          <div
+            className="status-badge reveal d2"
+            data-aos="fade-up"
+            data-aos-delay="1000">
             <span className="status-label">Open to Work</span>
             <span className="status-type">• Internship • Full-time</span>
           </div>
 
-          <h1 className="hero-name reveal d1">
+          <h1
+            className="hero-name reveal d1"
+            data-aos="fade-up"
+            data-aos-delay="1100">
             Hi, I'm
             <br />
             <span className="accent">{displayText || FULL_TEXT}</span>
             <span className="cursor-blink" />
           </h1>
 
-          {/* SKILL TAGS - APPEAR ONE BY ONE */}
-          <p className="hero-desc reveal d2">
+          {/* SKILL TAGS - LANGSUNG SEMUA */}
+          <p
+            className="hero-desc reveal d2"
+            data-aos="fade-up"
+            data-aos-delay="1200">
             {skills.map((skill, i) => (
-              <span
-                key={i}
-                className={`skill-tag-glow ${i < visibleCount ? 'show' : ''}`}>
+              <span key={i} className="skill-tag-glow show">
                 {skill}
               </span>
             ))}
           </p>
 
-          <div className="hero-buttons reveal d3">
+          <div
+            className="hero-buttons reveal d3"
+            data-aos="fade-up"
+            data-aos-delay="1300">
             <a href="#" className="btn-p" onClick={handleCvClick}>
               View My CV
               <svg
@@ -122,7 +119,10 @@ export default function Hero({ displayText, FULL_TEXT }) {
           </div>
         </div>
 
-        <div className="hero-image reveal d2">
+        <div
+          className="hero-image reveal d2"
+          data-aos="fade-left"
+          data-aos-delay="1200">
           <div className="img-wrap">
             <div className="corner tl" />
             <div className="corner br" />
@@ -140,7 +140,7 @@ export default function Hero({ displayText, FULL_TEXT }) {
       {showPopup && (
         <div className="popup-overlay" onClick={cancelPopup}>
           <div className="popup-content" onClick={(e) => e.stopPropagation()}>
-            <h3> You will be redirected to Google Drive</h3>
+            <h3>⏳ You will be redirected to Google Drive</h3>
             <p>
               Redirecting in <strong>{countdown}</strong> seconds...
             </p>

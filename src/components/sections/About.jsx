@@ -1,9 +1,21 @@
 export default function About() {
   return (
     <section id="tentang">
-      <p className="section-tag reveal">About Me</p>
-      <h2 className="section-title reveal d1">Short Profile</h2>
-      <div className="about-card reveal d2">
+      <p className="section-tag reveal" data-aos="fade-up" data-aos-delay="100">
+        About Me
+      </p>
+
+      <h2
+        className="section-title reveal d1"
+        data-aos="fade-up"
+        data-aos-delay="200">
+        Short Profile
+      </h2>
+
+      <div
+        className="about-card reveal d2"
+        data-aos="fade-up"
+        data-aos-delay="300">
         <p className="about-text">
           Hi! I'm <strong>Sakhi Ardra Handaru</strong>, an active D4 Software
           Engineering student at Politeknik Negeri Indramayu with a strong
@@ -24,12 +36,17 @@ export default function About() {
           government sectors. I am ready to learn, adapt, and bring real change
           through innovative digital solutions.
         </p>
+
         <div className="stats-wrapper">
           {[
             ['6+', 'Projects Completed'],
             ['1+', 'Years of Experience'],
           ].map(([n, l], i) => (
-            <div key={i} className="stat-card">
+            <div
+              key={i}
+              className="stat-card"
+              data-aos="fade-up"
+              data-aos-delay={400 + i * 100}>
               <p className="stat-n">
                 {n.split('+')[0]}
                 <span>+</span>
@@ -39,10 +56,20 @@ export default function About() {
           ))}
         </div>
       </div>
+
       {/* Education */}
       <div className="education-section">
-        <p className="section-tag reveal">Education</p>
-        <div className="education-grid reveal d1">
+        <p
+          className="section-tag reveal"
+          data-aos="fade-up"
+          data-aos-delay="100">
+          Education
+        </p>
+
+        <div
+          className="education-grid reveal d1"
+          data-aos="fade-up"
+          data-aos-delay="200">
           {[
             {
               href: 'https://polindra.ac.id/',
@@ -55,16 +82,18 @@ export default function About() {
               href: 'https://smait.sekolahbunayya.sch.id/',
               img: '/assets/bunayya.png',
               name: 'SMAIT BUNAYYA',
-              sub: ' Sciences (IPA)',
+              sub: 'Sciences (IPA)',
               year: '2021 — 2024',
             },
-          ].map((e) => (
+          ].map((e, i) => (
             <a
               key={e.href}
               href={e.href}
               className="edu-card"
               target="_blank"
-              rel="noopener noreferrer">
+              rel="noopener noreferrer"
+              data-aos="fade-up"
+              data-aos-delay={300 + i * 150}>
               <div className="edu-logo">
                 <img src={e.img} alt={e.name} />
               </div>

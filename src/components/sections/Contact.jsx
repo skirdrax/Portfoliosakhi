@@ -42,18 +42,33 @@ export default function Contact({
   return (
     <section id="kontak" className="kontak-section">
       <div className="reveal">
-        <p className="section-tag center">Contact Me</p>
-        <h2 className="section-title-center d1">Let's Collaborate</h2>
-        <p className="kontak-sub d2">
+        <p
+          className="section-tag center"
+          data-aos="fade-up"
+          data-aos-delay="100">
+          Contact Me
+        </p>
+
+        <h2
+          className="section-title-center d1"
+          data-aos="fade-up"
+          data-aos-delay="200">
+          Let's Collaborate
+        </h2>
+
+        <p className="kontak-sub d2" data-aos="fade-up" data-aos-delay="300">
           Fill the form — messages are sent directly to my email{' '}
           <span style={{ color: '#3b82f6' }}>ardrasakhi390@gmail.com</span>
         </p>
       </div>
+
       <form
         action="https://api.web3forms.com/submit"
         method="POST"
         className="contact-form reveal d2"
-        onSubmit={handleSubmit}>
+        onSubmit={handleSubmit}
+        data-aos="fade-up"
+        data-aos-delay="400">
         <input
           type="hidden"
           name="access_key"
@@ -68,7 +83,7 @@ export default function Contact({
         <input type="hidden" name="from_name" value="Portfolio Website" />
         <input type="checkbox" name="botcheck" style={{ display: 'none' }} />
 
-        <div className="form-group">
+        <div className="form-group" data-aos="fade-up" data-aos-delay="500">
           <label>Your Name</label>
           <input
             type="text"
@@ -79,7 +94,8 @@ export default function Contact({
             disabled={isLoading}
           />
         </div>
-        <div className="form-group">
+
+        <div className="form-group" data-aos="fade-up" data-aos-delay="600">
           <label>Email</label>
           <input
             type="email"
@@ -89,7 +105,8 @@ export default function Contact({
             disabled={isLoading}
           />
         </div>
-        <div className="form-group">
+
+        <div className="form-group" data-aos="fade-up" data-aos-delay="700">
           <label>Message</label>
           <textarea
             name="message"
@@ -101,7 +118,12 @@ export default function Contact({
           />
         </div>
 
-        <button type="submit" className="send-btn" disabled={isLoading}>
+        <button
+          type="submit"
+          className="send-btn"
+          disabled={isLoading}
+          data-aos="fade-up"
+          data-aos-delay="800">
           {isLoading ? (
             <>
               <span className="loading-spinner-small"></span>

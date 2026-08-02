@@ -1,5 +1,7 @@
 import { Analytics } from '@vercel/analytics/react';
 import { useState, useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import './styles/main.css';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
@@ -32,15 +34,24 @@ export default function App() {
   useScrollReveal(filter);
   useCursor();
 
+  // AOS INIT
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true,
+      mirror: false,
+      offset: 80,
+    });
+  }, []);
+
   // Typing effect
   useEffect(() => {
     let timeout;
 
     if (!isDeleting && text === FULL_TEXT) {
-      // pause at full text, then start deleting
       timeout = setTimeout(() => setIsDeleting(true), 2000);
     } else if (isDeleting && text === '') {
-      // finished deleting, start typing again
       setIsDeleting(false);
     } else {
       timeout = setTimeout(
@@ -58,29 +69,33 @@ export default function App() {
     return () => clearTimeout(timeout);
   }, [isDeleting, text]);
 
-  // Always light mode - NAVBAR TETAP TERANG
+  // Always light mode
   useEffect(() => {
     document.body.style.background = '#f0f4ff';
     document.body.setAttribute('data-theme', 'light');
     window.dispatchEvent(new CustomEvent('themeChange', { detail: false }));
   }, []);
 
+  // ✅ Handle loading selesai
+  const handleLoadingDone = () => {
+    setLoading(false);
+    // Refresh AOS biar animasi jalan
+    setTimeout(() => {
+      AOS.refresh();
+    }, 100);
+  };
+
   return (
     <>
-      {/* Vercel Analytics */}
       <Analytics />
 
-      {/* Loading Screen */}
-      {loading && <LoadingScreen onDone={() => setLoading(false)} />}
+      {loading && <LoadingScreen onDone={handleLoadingDone} />}
 
-      {/* Navbar */}
       <Navbar />
 
-      {/* Custom Cursor */}
       <div id="cur-dot" />
       <div id="cur-ring" />
 
-      {/* Main Content */}
       <div className="container">
         <Hero FULL_TEXT={FULL_TEXT} />
         <div className="shimmer" />
@@ -104,7 +119,6 @@ export default function App() {
         />
       </div>
 
-      {/* Footer & Modal */}
       <Footer />
       <Modal
         show={showModal}
@@ -113,11 +127,6 @@ export default function App() {
         message={modalMessage}
       />
 
-      {/* ============================================
-          TOMBOL CHAT & CHATBOT
-          ============================================ */}
-
-      {/* Tombol Chat */}
       <button
         className="chat-toggle"
         onClick={() => setShowChat(!showChat)}
@@ -125,7 +134,6 @@ export default function App() {
         💬
       </button>
 
-      {/* Chatbot */}
       {showChat && <ChatBotCohere onClose={() => setShowChat(false)} />}
     </>
   );

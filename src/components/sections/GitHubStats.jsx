@@ -37,7 +37,9 @@ export default function GitHubStats() {
       });
 
     // Contribution Graph
-    const contribUrl = `https://github-contributions-api.deno.dev/skirdrax.svg?t=${Date.now()}`;
+    // Contribution Graph - PAKE YANG STABIL
+    // Contribution Graph - PAKE GHCHART
+    const contribUrl = `https://ghchart.rshah.org/256eb/skirdrax?t=${Date.now()}`;
     const contribImg = new Image();
     contribImg.onload = () => {
       setContribImage(contribUrl);
@@ -121,7 +123,10 @@ export default function GitHubStats() {
   return (
     <div className="github-stats-container">
       {/* Contribution Graph - Full Width */}
-      <div className="github-graph-wrapper">
+      <div
+        className="github-graph-wrapper"
+        data-aos="fade-up"
+        data-aos-delay="100">
         <div className="github-graph-title">
           <h3>📊 GitHub Contributions</h3>
         </div>
@@ -160,7 +165,10 @@ export default function GitHubStats() {
       {/* 2 Kolom */}
       <div className="github-bottom-grid">
         {/* KOLOM KIRI */}
-        <div className="github-streak-wrapper">
+        <div
+          className="github-streak-wrapper"
+          data-aos="fade-right"
+          data-aos-delay="200">
           <div className="github-streak-title">
             <h3>🔥 GitHub Streak & Stats</h3>
           </div>
@@ -224,7 +232,10 @@ export default function GitHubStats() {
         </div>
 
         {/* KOLOM KANAN */}
-        <div className="github-roller-wrapper">
+        <div
+          className="github-roller-wrapper"
+          data-aos="fade-left"
+          data-aos-delay="300">
           <div className="github-roller-title">
             <h3>📈 GitHub Activity</h3>
           </div>
