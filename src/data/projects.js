@@ -58,6 +58,6 @@ export const listProyek = [
     kategori: 'Website',
     desk: 'Alumni association website to view and connect with SMAIT Bunayya alumni distribution.',
     tools: ['React', 'HTML', 'CSS'],
-    link: 'https://ikasmaitbunayya.vercel.app/',
+    link: 'https://ika-smaitbunayya.web.id/',
   },
 ];
