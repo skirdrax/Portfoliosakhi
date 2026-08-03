@@ -6,21 +6,20 @@ export default function Projects({ filter, setFilter }) {
       <p
         className="section-tag reveal"
         data-aos="fade-right"
-        data-aos-delay="100">
+        data-aos-delay="50">
         Portfolio
       </p>
-
       <h2
         className="section-title reveal d1"
         data-aos="fade-left"
-        data-aos-delay="200">
+        data-aos-delay="60">
         Other Projects
       </h2>
 
       <div
         className="filter-wrapper reveal d2"
         data-aos="fade-up"
-        data-aos-delay="300">
+        data-aos-delay="70">
         {['Semua', 'Website', 'UI/UX', 'Mobile'].map((cat) => (
           <button
             key={cat}
@@ -40,7 +39,7 @@ export default function Projects({ filter, setFilter }) {
               key={p.id}
               className={`proyek-card reveal d${(i % 3) + 1}`}
               data-aos="zoom-in"
-              data-aos-delay={300 + i * 120}>
+              data-aos-delay={80 + i * 20}>
               <div className="pimg-wrap">
                 <img src={p.gambar} alt={p.nama} />
               </div>

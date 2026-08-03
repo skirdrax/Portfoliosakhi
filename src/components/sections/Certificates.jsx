@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import { certificates } from '../../data/certificates';
-
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -16,34 +15,32 @@ export default function Certificates() {
         <p
           className="section-tag reveal"
           data-aos="fade-right"
-          data-aos-delay="100">
+          data-aos-delay="50">
           Certificates
         </p>
-
         <h2
           className="section-title reveal d1"
           data-aos="fade-left"
-          data-aos-delay="200">
+          data-aos-delay="60">
           Awards & Certifications
         </h2>
-
         <p
           className="certificates-sub reveal d2"
           data-aos="fade-up"
-          data-aos-delay="300">
+          data-aos-delay="70">
           Proof of competence and self-development through various professional
           certifications.
         </p>
       </div>
 
-      <div data-aos="zoom-in" data-aos-delay="400">
+      <div data-aos="zoom-in" data-aos-delay="80">
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
           spaceBetween={24}
           slidesPerView={1}
           navigation
           pagination={{ clickable: true }}
-          autoplay={{ delay: 1500, disableOnInteraction: false }}
+          autoplay={{ delay: 3500, disableOnInteraction: false }}
           breakpoints={{
             640: { slidesPerView: 2 },
             1024: { slidesPerView: 3 },
@@ -80,7 +77,6 @@ export default function Certificates() {
         </Swiper>
       </div>
 
-      {/* Modal Preview */}
       {selectedImage && (
         <div
           className="cert-modal-overlay"

@@ -31,21 +31,16 @@ export default function Experience() {
       <p
         className="section-tag reveal"
         data-aos="fade-right"
-        data-aos-delay="100">
+        data-aos-delay="50">
         Experience
       </p>
-
       <h3
         className="tools-title reveal d1"
         data-aos="fade-left"
-        data-aos-delay="200">
+        data-aos-delay="60">
         Internship Experience
       </h3>
-
-      <p
-        className="tools-sub reveal d2"
-        data-aos="fade-up"
-        data-aos-delay="300">
+      <p className="tools-sub reveal d2" data-aos="fade-up" data-aos-delay="70">
         Real work experience in the industry.
       </p>
 
@@ -57,7 +52,7 @@ export default function Experience() {
               key={m.id}
               className={`magang-card reveal d${(i % 3) + 1}`}
               data-aos={i % 2 === 0 ? 'fade-right' : 'fade-left'}
-              data-aos-delay={400 + i * 150}>
+              data-aos-delay={80 + i * 20}>
               <div className="magang-timeline">
                 <div className="timeline-dot" />
                 {i < MAGANG.length - 1 && <div className="timeline-line" />}
@@ -98,7 +93,6 @@ export default function Experience() {
                     onClick={() => openProject(m.project)}>
                     View Project & Certificates
                   </button>
-
                   <a
                     href={m.href}
                     target="_blank"
@@ -121,7 +115,6 @@ export default function Experience() {
           ))}
       </div>
 
-      {/* ===== PROJECT MODAL POPUP ===== */}
       {selectedProject && (
         <div className="project-modal-overlay" onClick={closeProject}>
           <div
@@ -130,8 +123,6 @@ export default function Experience() {
             <button className="project-modal-close" onClick={closeProject}>
               ✕
             </button>
-
-            {/* Project Image Gallery */}
             {selectedProject.images && selectedProject.images.length > 0 && (
               <div className="project-modal-gallery">
                 <div className="gallery-main">
@@ -139,7 +130,6 @@ export default function Experience() {
                     src={selectedProject.images[galleryIndex]}
                     alt="Project"
                   />
-
                   {selectedProject.images.length > 1 && (
                     <>
                       <button
@@ -159,9 +149,7 @@ export default function Experience() {
                           <button
                             key={idx}
                             type="button"
-                            className={`gallery-dot ${
-                              idx === galleryIndex ? 'active' : ''
-                            }`}
+                            className={`gallery-dot ${idx === galleryIndex ? 'active' : ''}`}
                             onClick={() => setGalleryIndex(idx)}
                           />
                         ))}
@@ -171,13 +159,11 @@ export default function Experience() {
                 </div>
               </div>
             )}
-
             <div className="project-modal-body">
               <h3 className="project-modal-title">{selectedProject.title}</h3>
               <p className="project-modal-desc">
                 {selectedProject.description}
               </p>
-
               {selectedProject.results && (
                 <div className="project-modal-results">
                   <h4>Results & Achievements</h4>
@@ -188,7 +174,6 @@ export default function Experience() {
                   </ul>
                 </div>
               )}
-
               <div className="project-modal-tech">
                 <h4>Technologies & Tools</h4>
                 <div className="tech-tags">
@@ -199,8 +184,6 @@ export default function Experience() {
                   ))}
                 </div>
               </div>
-
-              {/* ===== CERTIFICATES ===== */}
               {selectedProject.certificates &&
                 selectedProject.certificates.length > 0 && (
                   <div className="project-modal-certificates">
@@ -231,7 +214,6 @@ export default function Experience() {
         </div>
       )}
 
-      {/* ===== CERTIFICATE LIGHTBOX MODAL ===== */}
       {selectedCert && (
         <div
           className="cert-modal-overlay"

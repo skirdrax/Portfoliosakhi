@@ -1,21 +1,19 @@
 export default function About() {
   return (
     <section id="tentang">
-      <p className="section-tag reveal" data-aos="fade-up" data-aos-delay="100">
+      <p className="section-tag reveal" data-aos="fade-up" data-aos-delay="50">
         About Me
       </p>
-
       <h2
         className="section-title reveal d1"
         data-aos="fade-up"
-        data-aos-delay="200">
+        data-aos-delay="60">
         Short Profile
       </h2>
-
       <div
         className="about-card reveal d2"
         data-aos="fade-up"
-        data-aos-delay="300">
+        data-aos-delay="70">
         <p className="about-text">
           Hi! I'm <strong>Sakhi Ardra Handaru</strong>, an active D4 Software
           Engineering student at Politeknik Negeri Indramayu with a strong
@@ -46,7 +44,7 @@ export default function About() {
               key={i}
               className="stat-card"
               data-aos="fade-up"
-              data-aos-delay={400 + i * 100}>
+              data-aos-delay={80 + i * 20}>
               <p className="stat-n">
                 {n.split('+')[0]}
                 <span>+</span>
@@ -57,19 +55,17 @@ export default function About() {
         </div>
       </div>
 
-      {/* Education */}
       <div className="education-section">
         <p
           className="section-tag reveal"
           data-aos="fade-up"
-          data-aos-delay="100">
+          data-aos-delay="50">
           Education
         </p>
-
         <div
           className="education-grid reveal d1"
           data-aos="fade-up"
-          data-aos-delay="200">
+          data-aos-delay="60">
           {[
             {
               href: 'https://polindra.ac.id/',
@@ -93,7 +89,7 @@ export default function About() {
               target="_blank"
               rel="noopener noreferrer"
               data-aos="fade-up"
-              data-aos-delay={300 + i * 150}>
+              data-aos-delay={70 + i * 20}>
               <div className="edu-logo">
                 <img src={e.img} alt={e.name} />
               </div>

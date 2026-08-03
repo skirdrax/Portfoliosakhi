@@ -9,10 +9,7 @@ export default function Contact({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Prevent double click
     if (isLoading) return;
-
     setIsLoading(true);
     const form = e.target;
     const formData = new FormData(form);
@@ -45,18 +42,16 @@ export default function Contact({
         <p
           className="section-tag center"
           data-aos="fade-up"
-          data-aos-delay="100">
+          data-aos-delay="50">
           Contact Me
         </p>
-
         <h2
           className="section-title-center d1"
           data-aos="fade-up"
-          data-aos-delay="200">
+          data-aos-delay="60">
           Let's Collaborate
         </h2>
-
-        <p className="kontak-sub d2" data-aos="fade-up" data-aos-delay="300">
+        <p className="kontak-sub d2" data-aos="fade-up" data-aos-delay="70">
           Fill the form — messages are sent directly to my email{' '}
           <span style={{ color: '#3b82f6' }}>ardrasakhi390@gmail.com</span>
         </p>
@@ -68,7 +63,7 @@ export default function Contact({
         className="contact-form reveal d2"
         onSubmit={handleSubmit}
         data-aos="fade-up"
-        data-aos-delay="400">
+        data-aos-delay="80">
         <input
           type="hidden"
           name="access_key"
@@ -83,7 +78,7 @@ export default function Contact({
         <input type="hidden" name="from_name" value="Portfolio Website" />
         <input type="checkbox" name="botcheck" style={{ display: 'none' }} />
 
-        <div className="form-group" data-aos="fade-up" data-aos-delay="500">
+        <div className="form-group" data-aos="fade-up" data-aos-delay="80">
           <label>Your Name</label>
           <input
             type="text"
@@ -95,7 +90,7 @@ export default function Contact({
           />
         </div>
 
-        <div className="form-group" data-aos="fade-up" data-aos-delay="600">
+        <div className="form-group" data-aos="fade-up" data-aos-delay="90">
           <label>Email</label>
           <input
             type="email"
@@ -106,7 +101,7 @@ export default function Contact({
           />
         </div>
 
-        <div className="form-group" data-aos="fade-up" data-aos-delay="700">
+        <div className="form-group" data-aos="fade-up" data-aos-delay="100">
           <label>Message</label>
           <textarea
             name="message"
@@ -123,7 +118,7 @@ export default function Contact({
           className="send-btn"
           disabled={isLoading}
           data-aos="fade-up"
-          data-aos-delay="800">
+          data-aos-delay="100">
           {isLoading ? (
             <>
               <span className="loading-spinner-small"></span>
