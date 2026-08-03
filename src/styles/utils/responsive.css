@@ -79,3 +79,32 @@ section {
   background: var(--accent-blue);
   border-radius: 0px;
 }
+
+/* ============================================
+   MOBILE FIX (AMAN)
+   ============================================ */
+
+@media (max-width: 480px) {
+  /* biar gak kepanjangan */
+  .skill-tag-glow {
+    font-size: 10px;
+    padding: 4px 10px;
+    margin: 3px;
+  }
+
+  .social-links {
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .visitor-badge {
+    max-width: 200px;
+  }
+
+  .btn-p,
+  .btn-g {
+    font-size: 12px;
+    padding: 10px 18px;
+  }
+}

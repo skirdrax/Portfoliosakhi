@@ -4,3 +4,21 @@
     font-family: 'Poppins', sans-serif;
   }
 }
+/* ============================================
+   FIX GESER KE KANAN (AMAN)
+   ============================================ */
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+.container {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
