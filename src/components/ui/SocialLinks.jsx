@@ -1,7 +1,7 @@
 export default function SocialLinks() {
   return (
     <>
-      <div className="social-links" data-aos="fade-up" data-aos-delay="600">
+      <div className="social-links" data-aos="fade-up" data-aos-delay="200">
         {/* LinkedIn */}
         <a
           href="https://linkedin.com/in/sakhiardra"
@@ -60,7 +60,7 @@ export default function SocialLinks() {
       </div>
 
       {/* Visitor Counter */}
-      <div className="visitor-counter" data-aos="fade-up" data-aos-delay="900">
+      <div className="visitor-counter" data-aos="fade-up" data-aos-delay="400">
         <div className="visitor-label">Visitors:</div>
         <img
           src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fwww.sakhiardra.my.id%2F&label=View&countColor=%23263759&style=plastic"
