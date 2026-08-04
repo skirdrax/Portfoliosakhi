@@ -61,3 +61,36 @@
 .logo span {
   color: var(--accent-blue) !important;
 }
+
+/* ============================================
+   FIX NAVBAR ILANG SAAT SCROLL
+   ============================================ */
+
+.nav {
+  position: fixed !important; /* ← GANTI DARI STICKY KE FIXED */
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 9999 !important; /* ← PASTIIN PALING ATAS */
+  background: var(--bg-card);
+  transition: all 0.3s ease;
+}
+
+/* SAAT SCROLL */
+.nav.on {
+  background: var(--bg-card);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* BIKIN RUANG BUAT NAVBAR */
+body {
+  padding-top: 70px; /* ← SESUAIKAN DENGAN TINGGI NAVBAR */
+}
+
+/* MOBILE */
+@media (max-width: 639px) {
+  body {
+    padding-top: 60px;
+  }
+}

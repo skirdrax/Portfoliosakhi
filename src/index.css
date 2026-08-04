@@ -13,6 +13,9 @@ body {
   overflow-x: hidden;
 }
 
+body {
+  padding-top: 70px; /* BIAR KONTEN GA KETUTUP NAVBAR */
+}
 .container {
   padding-left: 16px;
   padding-right: 16px;
