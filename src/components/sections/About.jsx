@@ -22,7 +22,7 @@ export default function About() {
           Management (MySQL), UI/UX Design (Figma), SEO, Computer Networks, and
           Internet of Things (IoT). My internship experience as a Web Developer
           & SEO Intern at PT Groperti Indonesia has sharpened my technical and
-          professional skills.I am ready to learn, adapt, and bring real change
+          professional skills. I am ready to learn, adapt, and bring real change
           through innovative digital solutions.
         </p>
 
