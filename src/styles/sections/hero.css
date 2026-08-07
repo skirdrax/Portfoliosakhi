@@ -120,34 +120,221 @@
 }
 
 /* ============================================
-   FOTO HERO - BINGKAI BRUTALISM
+   BRUTAL PHOTO — WRAPPER RAMAI
+   ============================================ */
+.brutal-photo {
+  position: relative;
+  width: fit-content;
+  padding: 34px 30px 40px;
+}
+
+/* blok warna offset di belakang, bikin "ramai" dari default */
+.bp-block {
+  position: absolute;
+  border: 3px solid var(--accent-blue);
+  z-index: 0;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.bp-block-1 {
+  inset: 10px 0 0 10px;
+  background: var(--accent-blue);
+  transform: rotate(-3deg);
+}
+
+.bp-block-2 {
+  inset: 0 10px 10px 0;
+  background: transparent;
+  transform: rotate(2.5deg);
+}
+
+.brutal-photo:hover .bp-block-1 {
+  transform: rotate(-6deg) translate(-6px, -4px);
+}
+
+.brutal-photo:hover .bp-block-2 {
+  transform: rotate(5deg) translate(6px, 4px);
+}
+
+/* pola dot halftone di sudut */
+.bp-dots {
+  position: absolute;
+  top: -14px;
+  right: -6px;
+  width: 70px;
+  height: 70px;
+  background-image: radial-gradient(var(--accent-blue) 2px, transparent 2px);
+  background-size: 10px 10px;
+  opacity: 0.55;
+  z-index: 0;
+  transition: transform 0.35s ease;
+}
+
+.brutal-photo:hover .bp-dots {
+  transform: translate(6px, -6px) scale(1.1);
+}
+
+/* crosshair registration marks */
+.bp-mark {
+  position: absolute;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--accent-blue);
+  z-index: 4;
+  user-select: none;
+}
+
+.bp-mark-tl {
+  top: 14px;
+  left: 6px;
+}
+
+.bp-mark-br {
+  bottom: 18px;
+  right: 12px;
+}
+
+/* label tag PORTRAIT */
+.bp-tag {
+  position: absolute;
+  top: -6px;
+  left: 22px;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-card);
+  border: 2px solid var(--accent-blue);
+  padding: 4px 10px;
+  transform: rotate(-2deg);
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease;
+}
+
+.bp-tag span:first-child {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--accent-blue);
+}
+
+.bp-tag-sub {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.brutal-photo:hover .bp-tag {
+  transform: rotate(0deg) translateY(-3px);
+  background: var(--accent-blue);
+}
+
+.brutal-photo:hover .bp-tag span {
+  color: #fff !important;
+}
+
+/* strip tape diagonal */
+.bp-tape {
+  position: absolute;
+  bottom: 16px;
+  left: -14px;
+  width: 90px;
+  height: 22px;
+  background: repeating-linear-gradient(
+    45deg,
+    var(--accent-blue),
+    var(--accent-blue) 6px,
+    transparent 6px,
+    transparent 12px
+  );
+  opacity: 0.5;
+  transform: rotate(-40deg);
+  z-index: 4;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.brutal-photo:hover .bp-tape {
+  transform: rotate(-40deg) translate(-4px, 4px);
+  opacity: 0.85;
+}
+
+/* stempel POW! muncul cuma pas punch */
+.bp-stamp {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 10;
+  font-size: 34px;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  color: #fff;
+  -webkit-text-stroke: 2px var(--accent-blue);
+  transform: translate(-50%, -50%) scale(0) rotate(-15deg);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.brutal-photo.punch .bp-stamp {
+  animation: stampPop 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes stampPop {
+  0% {
+    transform: translate(-50%, -50%) scale(0) rotate(-15deg);
+    opacity: 0;
+  }
+  30% {
+    transform: translate(-50%, -50%) scale(1.3) rotate(-10deg);
+    opacity: 1;
+  }
+  45% {
+    transform: translate(-50%, -50%) scale(1) rotate(-8deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.1) rotate(-8deg);
+    opacity: 0;
+  }
+}
+
+/* ============================================
+   FOTO HERO - BINGKAI BRUTALISM + HOVER/CLICK FX
    ============================================ */
 
 .img-wrap {
   display: inline-block;
   position: relative;
+  z-index: 2;
   border: 4px solid var(--accent-blue);
   padding: 8px;
-  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition:
+    transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+    border-color 0.25s ease;
   cursor: pointer;
   background: var(--bg-card);
+  box-shadow: 6px 6px 0 rgba(37, 99, 235, 0.35);
 }
 
-/* Efek bayangan brutal */
+/* Efek bayangan brutal (default) */
 .img-wrap::before {
   content: '';
   position: absolute;
   inset: -8px;
   border: 2px solid var(--border);
   z-index: -1;
-  transition: all 0.4s ease;
+  transition: all 0.25s ease;
 }
 
-/* Hover - bingkai membesar dan glow */
+/* HOVER — bingkai membesar, shadow keras offset, sedikit skew */
 .img-wrap:hover {
-  transform: scale(1.03) translateY(-6px);
+  transform: translate(-6px, -6px) rotate(-1deg);
   border-color: #60a5fa;
-  box-shadow: 8px 8px 0 rgba(37, 99, 235, 0.3);
+  box-shadow: 14px 14px 0 var(--accent-blue);
 }
 
 .img-wrap:hover::before {
@@ -155,18 +342,20 @@
   border-color: var(--accent-blue);
 }
 
-/* Gambar di dalam */
-.img-wrap img {
+/* Gambar utama */
+.img-wrap img.hero-img {
   display: block;
   width: 100%;
   max-width: 370px;
-  transition: all 0.4s ease;
-  filter: grayscale(0.1);
+  border-radius: 0px;
+  filter: grayscale(0.15);
+  position: relative;
+  z-index: 3;
+  transition: filter 0.25s ease;
 }
 
-.img-wrap:hover img {
+.img-wrap:hover img.hero-img {
   filter: grayscale(0);
-  transform: scale(1.01);
 }
 
 /* Corner dekorasi */
@@ -179,7 +368,8 @@
   border-style: solid;
   border-width: 0;
   opacity: 0;
-  transition: all 0.4s ease;
+  transition: all 0.25s ease;
+  z-index: 4;
 }
 
 .img-wrap .corner.tl {
@@ -202,12 +392,208 @@
   height: 30px;
 }
 
-.hero-img {
+/* Ghost duplikat gambar buat RGB-split / glitch pas hover */
+.img-wrap .ghost-r,
+.img-wrap .ghost-b {
+  position: absolute;
+  inset: 8px;
+  z-index: 1;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.img-wrap .ghost-r img,
+.img-wrap .ghost-b img {
   width: 100%;
-  max-width: 370px;
-  border-radius: 0px;
+  height: 100%;
+  object-fit: cover;
   display: block;
-  filter: none;
+}
+
+.img-wrap .ghost-r {
+  filter: sepia(1) saturate(6) hue-rotate(180deg);
+}
+
+.img-wrap .ghost-b {
+  filter: sepia(1) saturate(6) hue-rotate(300deg);
+}
+
+.img-wrap:hover .ghost-r {
+  opacity: 0.55;
+  transform: translate(4px, 0);
+}
+
+.img-wrap:hover .ghost-b {
+  opacity: 0.55;
+  transform: translate(-4px, 2px);
+}
+
+/* garis scan yang nyapu turun pas hover */
+.img-wrap .scanline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 3px;
+  top: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--accent-blue),
+    transparent
+  );
+  opacity: 0;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.img-wrap:hover .scanline {
+  opacity: 0.9;
+  animation: scanSweep 1.4s linear infinite;
+}
+
+@keyframes scanSweep {
+  0% {
+    top: 0;
+  }
+  100% {
+    top: 100%;
+  }
+}
+
+/* ============================================
+   PUNCH EFFECT — pas diklik
+   ============================================ */
+.img-wrap.punch,
+.brutal-photo.punch .img-wrap {
+  animation: punchShake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+
+.brutal-photo.punch .img-wrap::before {
+  animation: punchFlashBorder 0.5s ease;
+}
+
+.brutal-photo.punch .ghost-r {
+  animation: punchGhostR 0.5s ease;
+}
+
+.brutal-photo.punch .ghost-b {
+  animation: punchGhostB 0.5s ease;
+}
+
+.brutal-photo.punch img.hero-img {
+  animation: punchFlash 0.5s ease;
+}
+
+.brutal-photo.punch .bp-block-1 {
+  animation: punchBlock1 0.5s ease;
+}
+
+.brutal-photo.punch .bp-block-2 {
+  animation: punchBlock2 0.5s ease;
+}
+
+@keyframes punchShake {
+  0% {
+    transform: scale(1) translate(0, 0) rotate(0deg);
+  }
+  15% {
+    transform: scale(0.94) translate(-8px, 4px) rotate(-2deg);
+    box-shadow: -16px 16px 0 var(--accent-blue);
+  }
+  35% {
+    transform: scale(1.04) translate(6px, -4px) rotate(1.5deg);
+    box-shadow: 14px -12px 0 var(--accent-blue);
+  }
+  55% {
+    transform: scale(0.99) translate(-3px, 2px) rotate(-0.5deg);
+    box-shadow: -6px 6px 0 var(--accent-blue);
+  }
+  75% {
+    transform: scale(1.01) translate(2px, -1px) rotate(0.3deg);
+    box-shadow: 6px -4px 0 var(--accent-blue);
+  }
+  100% {
+    transform: scale(1) translate(0, 0) rotate(0deg);
+  }
+}
+
+@keyframes punchFlashBorder {
+  0% {
+    border-color: var(--border);
+  }
+  20% {
+    border-color: #fff;
+    inset: -22px;
+  }
+  100% {
+    border-color: var(--border);
+    inset: -8px;
+  }
+}
+
+@keyframes punchFlash {
+  0%,
+  100% {
+    filter: grayscale(0) brightness(1);
+  }
+  20% {
+    filter: grayscale(0) brightness(1.9) contrast(1.3);
+  }
+}
+
+@keyframes punchGhostR {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+  20% {
+    opacity: 0.9;
+    transform: translate(16px, -8px);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes punchGhostB {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+  20% {
+    opacity: 0.9;
+    transform: translate(-16px, 10px);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes punchBlock1 {
+  0%,
+  100% {
+    transform: rotate(-3deg);
+  }
+  30% {
+    transform: rotate(-10deg) translate(-10px, -8px);
+  }
+}
+
+@keyframes punchBlock2 {
+  0%,
+  100% {
+    transform: rotate(2.5deg);
+  }
+  30% {
+    transform: rotate(9deg) translate(10px, 8px);
+  }
 }
 
 /* ============================================
@@ -378,77 +764,23 @@
 }
 
 /* ============================================
-   LANYARD PHOTO EFFECT
+   RESPONSIVE
    ============================================ */
-.lanyard-wrap {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 40px;
-}
-
-.lanyard-strap {
-  width: 4px;
-  height: 60px;
-  overflow: visible;
-}
-
-.lanyard-strap line {
-  stroke: var(--accent-blue);
-  stroke-width: 5;
-  stroke-linecap: round;
-}
-
-.lanyard-clip {
-  width: 22px;
-  height: 14px;
-  background: var(--accent-blue);
-  border-radius: 3px;
-  margin-top: -4px;
-  box-shadow: inset 0 -3px 4px rgba(0, 0, 0, 0.25);
-}
-
-.lanyard-card {
-  --rot: 0deg;
-  transform-origin: top center;
-  transform: rotate(var(--rot));
-  cursor: grab;
-  touch-action: none;
-  user-select: none;
-  will-change: transform;
-}
-
-.lanyard-card.is-dragging {
-  cursor: grabbing;
-  animation: none !important;
-  transition: none;
-}
-
-.lanyard-card.spring-back {
-  transition: transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-/* idle swing pelan waktu gak di-drag */
-.lanyard-card.idle-swing {
-  animation: idleSwing 4.5s ease-in-out infinite;
-}
-
-@keyframes idleSwing {
-  0%,
-  100% {
-    transform: rotate(-3deg);
-  }
-  50% {
-    transform: rotate(3deg);
-  }
-}
-
 @media (max-width: 768px) {
-  .lanyard-wrap {
-    padding-top: 24px;
+  .brutal-photo {
+    padding: 24px 20px 30px;
   }
-  .lanyard-strap {
-    height: 40px;
+  .bp-dots {
+    width: 46px;
+    height: 46px;
+  }
+  .bp-tag {
+    left: 10px;
+  }
+  .bp-tape {
+    width: 60px;
+  }
+  .bp-stamp {
+    font-size: 24px;
   }
 }
