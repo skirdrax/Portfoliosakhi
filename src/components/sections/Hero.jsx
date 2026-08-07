@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import SocialLinks from '../ui/SocialLinks';
 import ImageData from '../../data/image';
+import { ID } from 'country-flag-icons/react/3x2';
 
 export default function Hero({ displayText, FULL_TEXT }) {
   const skills = [
@@ -65,7 +66,12 @@ export default function Hero({ displayText, FULL_TEXT }) {
             <span className="status-label">Open to Work</span>
             <span className="status-type">• Internship • Full-time</span>
           </div>
-
+          <div className="hero-country" data-aos="fade-up" data-aos-delay="800">
+            <h3 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              Based In Indonesia
+              <ID title="Indonesia" style={{ width: '20px' }} />
+            </h3>
+          </div>
           <h1
             className="hero-name reveal d1"
             data-aos="fade-up"
