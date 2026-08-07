@@ -60,7 +60,7 @@ export default function SocialLinks() {
       </div>
 
       {/* Visitor Counter */}
-      <div className="visitor-counter" data-aos="fade-up" data-aos-delay="50">
+      <div className="visitor-counter">
         <div className="visitor-label">Visitors:</div>
         <img
           src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fwww.sakhiardra.my.id%2F&label=View&countColor=%23263759&style=plastic"
