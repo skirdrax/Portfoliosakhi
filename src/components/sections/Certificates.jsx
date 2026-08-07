@@ -40,7 +40,7 @@ export default function Certificates() {
           slidesPerView={1}
           navigation
           pagination={{ clickable: true }}
-          autoplay={{ delay: 3500, disableOnInteraction: false }}
+          autoplay={{ delay: 1500, disableOnInteraction: false }}
           breakpoints={{
             640: { slidesPerView: 2 },
             1024: { slidesPerView: 3 },
