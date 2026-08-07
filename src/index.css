@@ -25,3 +25,40 @@ img {
   max-width: 100%;
   height: auto;
 }
+
+/* ============================================
+   LATAR BELAKANG SIMPLE
+   ============================================ */
+
+/* 1. GRID HALUS DI LATAR BELAKANG */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(12, 16, 24, 0.03) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.03) 2px, transparent 2px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 2. TITIK-TITIK HALUS (opsional) */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(
+    rgba(37, 99, 235, 0.08) 1px,
+    transparent 1px
+  );
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 3. BIAR KONTEN DI ATAS LATAR */
+#root {
+  position: relative;
+  z-index: 1;
+}
