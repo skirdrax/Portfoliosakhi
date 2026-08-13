@@ -63,7 +63,7 @@
 }
 
 .skill-tag-glow:hover {
-  background: #151414;
+  background: var(--accent-blue);
   color: #fff;
   transform: translateY(-3px) scale(1.05);
   box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);

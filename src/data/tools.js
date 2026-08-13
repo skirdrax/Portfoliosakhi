@@ -14,6 +14,9 @@ import Tools15 from '/assets/tools/postman.png';
 import Tools16 from '/assets/tools/postgre-mysql.png';
 import Tools17 from '/assets/tools/apache.png';
 import Tools18 from '/assets/tools/docker.png';
+import Tools19 from '/assets/tools/next.png';
+import Tools20 from '/assets/tools/postgre.png';
+import Tools21 from '/assets/tools/mysql.png';
 
 export const listTools = [
   { id: 2, gambar: Tools2, nama: 'React JS', ket: 'Framework' },
@@ -31,6 +34,8 @@ export const listTools = [
   { id: 15, gambar: Tools15, nama: 'Postman', ket: 'API Testing' },
   { id: 16, gambar: Tools16, nama: 'MySQL & PostgreSQL', ket: 'Database' },
   { id: 17, gambar: Tools17, nama: 'Apache', ket: 'Web Server' },
-  { id: 18, gambar: Tools18, nama: 'Docker', ket: 'Containerizatin' },
-  //{ id: 19, gambar: Tools19, nama: 'MySQL & PostgreSQL', ket: 'Database' },
+  { id: 18, gambar: Tools18, nama: 'Docker', ket: 'Containerization' },
+  { id: 19, gambar: Tools19, nama: 'Next.js', ket: 'Framework' },
+  { id: 20, gambar: Tools20, nama: 'PostgreSQL', ket: 'Database' },
+  { id: 21, gambar: Tools21, nama: 'MySQL', ket: 'Database' },
 ];

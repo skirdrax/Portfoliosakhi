@@ -23,9 +23,15 @@ export default function Tools() {
       desc: 'Frontend Web library for building UI',
     },
     {
+      name: 'Next JS',
+      icon: '/assets/tools/next.png',
+      desc: 'Frontend Web library for full-stack development',
+    },
+
+    {
       name: 'Laravel',
       icon: '/assets/tools/laravel.png',
-      desc: 'PHP framework for backend',
+      desc: 'PHP framework for backend development',
     },
     {
       name: 'Flutter',
@@ -33,8 +39,13 @@ export default function Tools() {
       desc: 'Mobile app development SDK',
     },
     {
-      name: 'MySQL & PostgreSQL',
-      icon: '/assets/tools/postgre-mysql.png',
+      name: ' PostgreSQL',
+      icon: '/assets/tools/postgre.png',
+      desc: 'Open-source relational database system',
+    },
+    {
+      name: 'MySQL',
+      icon: '/assets/tools/mysql.png',
       desc: 'Open-source relational database system',
     },
   ];
