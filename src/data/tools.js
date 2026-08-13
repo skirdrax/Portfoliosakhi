@@ -12,8 +12,8 @@ import Tools13 from '/assets/tools/aapanel.png';
 import Tools14 from '/assets/tools/arduino.png';
 import Tools15 from '/assets/tools/postman.png';
 import Tools16 from '/assets/tools/postgre-mysql.png';
-//import Tools17 from '/assets/tools/postgre-mysql.png';
-//import Tools18 from '/assets/tools/postgre-mysql.png';
+import Tools17 from '/assets/tools/apache.png';
+import Tools18 from '/assets/tools/docker.png';
 
 export const listTools = [
   { id: 2, gambar: Tools2, nama: 'React JS', ket: 'Framework' },
@@ -30,7 +30,7 @@ export const listTools = [
   { id: 14, gambar: Tools14, nama: 'Arduino', ket: 'IoT Platform' },
   { id: 15, gambar: Tools15, nama: 'Postman', ket: 'API Testing' },
   { id: 16, gambar: Tools16, nama: 'MySQL & PostgreSQL', ket: 'Database' },
-  //{ id: 17, gambar: Tools17, nama: 'Arduino', ket: 'IoT Platform' },
-  //{ id: 18, gambar: Tools18, nama: 'Postman', ket: 'API Testing' },
+  { id: 17, gambar: Tools17, nama: 'Apache', ket: 'Web Server' },
+  { id: 18, gambar: Tools18, nama: 'Docker', ket: 'Containerization' },
   //{ id: 19, gambar: Tools19, nama: 'MySQL & PostgreSQL', ket: 'Database' },
 ];

@@ -12,6 +12,8 @@ export default function Tools() {
     { name: 'Canva', icon: '/assets/tools/canva.png' },
     { name: 'GitHub', icon: '/assets/tools/github.png' },
     { name: 'Postman', icon: '/assets/tools/postman.png' },
+    { name: 'Apache', icon: '/assets/tools/apache.png' },
+    { name: 'Docker', icon: '/assets/tools/docker.png' },
   ];
 
   const techStack = [
