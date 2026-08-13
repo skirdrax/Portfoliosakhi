@@ -31,6 +31,6 @@ export const listTools = [
   { id: 15, gambar: Tools15, nama: 'Postman', ket: 'API Testing' },
   { id: 16, gambar: Tools16, nama: 'MySQL & PostgreSQL', ket: 'Database' },
   { id: 17, gambar: Tools17, nama: 'Apache', ket: 'Web Server' },
-  { id: 18, gambar: Tools18, nama: 'Docker', ket: 'Containerization' },
+  { id: 18, gambar: Tools18, nama: 'Docker', ket: 'Containerizatin' },
   //{ id: 19, gambar: Tools19, nama: 'MySQL & PostgreSQL', ket: 'Database' },
 ];
