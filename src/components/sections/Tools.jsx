@@ -25,7 +25,7 @@ export default function Tools() {
     {
       name: 'Next JS',
       icon: '/assets/tools/next.png',
-      desc: 'Frontend Web library for full-stack development',
+      desc: 'Javascript framework for full-stack development',
     },
 
     {
