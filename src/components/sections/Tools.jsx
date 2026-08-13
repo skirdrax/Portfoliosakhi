@@ -18,7 +18,7 @@ export default function Tools() {
     {
       name: 'React JS',
       icon: '/assets/tools/reactjs.png',
-      desc: 'Frontend  Web library for building UI',
+      desc: 'Frontend Web library for building UI',
     },
     {
       name: 'Laravel',
@@ -39,7 +39,6 @@ export default function Tools() {
 
   return (
     <div className="tools-section">
-      {/* HEADER */}
       <p className="section-tag reveal" data-aos="fade-up" data-aos-delay="50">
         Tools & Skills
       </p>
@@ -53,10 +52,10 @@ export default function Tools() {
         Technologies & tools for web development and design.
       </p>
 
-      {/* ===== MARQUEE SKILLS ===== */}
+      {/* ===== MARQUEE KANAN ===== */}
       <div className="skills-marquee-wrapper">
-        <div className="skills-marquee">
-          {[...skills, ...skills, ...skills].map((skill, i) => (
+        <div className="skills-marquee skills-marquee-right">
+          {[...skills, ...skills].map((skill, i) => (
             <div key={i} className="skill-marquee-item">
               <div className="skill-marquee-card">
                 <img
@@ -71,7 +70,25 @@ export default function Tools() {
         </div>
       </div>
 
-      {/* ===== TECH STACK - DIEM ===== */}
+      {/* ===== MARQUEE KIRI ===== */}
+      <div className="skills-marquee-wrapper">
+        <div className="skills-marquee skills-marquee-left">
+          {[...skills, ...skills].map((skill, i) => (
+            <div key={i} className="skill-marquee-item">
+              <div className="skill-marquee-card">
+                <img
+                  src={skill.icon}
+                  alt={skill.name}
+                  className="skill-marquee-icon"
+                />
+                <span className="skill-marquee-name">{skill.name}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* ===== TECH STACK ===== */}
       <div className="tech-stack-section">
         <h4 className="tech-stack-title">Tech Stack</h4>
         <div className="tech-stack-grid">

@@ -1,5 +1,5 @@
 /* ========================================
-   TOOLS SECTION - BRUTALISM BLUE
+   TOOLS SECTION
    ======================================== */
 
 .tools-section {
@@ -21,51 +21,66 @@
 }
 
 /* ========================================
-   MARQUEE SKILLS - JALAN TERUS
+   MARQUEE SKILLS
    ======================================== */
 
 .skills-marquee-wrapper {
   overflow: hidden;
-  padding: 12px 0;
-  border-top: 2px solid var(--border);
-  border-bottom: 2px solid var(--border);
-  background: #ffffff; /* ← PUTIH */
+  padding: 6px 0;
+  background: transparent;
+  margin-bottom: 4px;
 }
 
 .skills-marquee {
   display: flex;
   width: max-content;
-  animation: marqueeScroll 22s linear infinite;
+  gap: 12px;
+}
+
+/* Kanan → */
+.skills-marquee-right {
+  animation: marqueeRight 25s linear infinite;
+}
+
+/* Kiri ← */
+.skills-marquee-left {
+  animation: marqueeLeft 25s linear infinite;
 }
 
 .skill-marquee-item {
   flex-shrink: 0;
-  padding: 0 20px;
 }
 
 .skill-marquee-card {
   display: flex;
   align-items: center;
   gap: 10px;
-  background: transparent; /* ← GA BORDER */
-  padding: 6px 10px;
-  transition: none; /* ← GA ADA EFEK HOVER */
-  cursor: default;
+  border: 2px solid var(--border);
+  padding: 6px 16px;
+  background: var(--bg-card);
+  transition: all 0.08s ease;
+}
+
+.skill-marquee-card:hover {
+  border-color: var(--accent-blue);
+  transform: translate(2px, 2px);
 }
 
 .skill-marquee-icon {
-  width: 28px;
-  height: 28px;
+  width: 24px;
+  height: 24px;
   object-fit: contain;
 }
 
 .skill-marquee-name {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
   color: var(--text-secondary);
+  white-space: nowrap;
 }
 
-@keyframes marqueeScroll {
+/* ANIMASI */
+@keyframes marqueeRight {
   0% {
     transform: translateX(0);
   }
@@ -74,8 +89,17 @@
   }
 }
 
+@keyframes marqueeLeft {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
 /* ========================================
-   TECH STACK - DIEM
+   TECH STACK
    ======================================== */
 
 .tech-stack-section {
@@ -149,33 +173,29 @@
     max-width: 220px;
     padding: 12px 16px;
   }
-
   .tech-stack-icon {
     width: 30px;
     height: 30px;
   }
-
   .tech-stack-name {
     font-size: 13px;
   }
-
   .tech-stack-desc {
     font-size: 10px;
   }
 }
 
 @media (max-width: 480px) {
-  .skill-marquee-item {
-    padding: 0 12px;
+  .skill-marquee-card {
+    padding: 4px 10px;
+    gap: 6px;
   }
-
   .skill-marquee-icon {
-    width: 22px;
-    height: 22px;
+    width: 20px;
+    height: 20px;
   }
-
   .skill-marquee-name {
-    font-size: 11px;
+    font-size: 10px;
   }
 
   .tech-stack-card {
@@ -186,16 +206,13 @@
     text-align: center;
     gap: 6px;
   }
-
   .tech-stack-icon {
     width: 28px;
     height: 28px;
   }
-
   .tech-stack-name {
     font-size: 12px;
   }
-
   .tech-stack-desc {
     font-size: 10px;
   }
