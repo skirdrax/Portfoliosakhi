@@ -43,12 +43,12 @@
    ============================================ */
 .skill-tag-glow {
   display: inline-block;
-  border: 2px solid var(--accent-blue);
+  border: 2px solid #151414;
   padding: 6px 13px;
   margin: 4px 4px;
   font-size: 12px;
   font-weight: 600;
-  color: var(--accent-blue);
+  color: #151414;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
@@ -63,7 +63,7 @@
 }
 
 .skill-tag-glow:hover {
-  background: var(--accent-blue);
+  background: #151414;
   color: #fff;
   transform: translateY(-3px) scale(1.05);
   box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
