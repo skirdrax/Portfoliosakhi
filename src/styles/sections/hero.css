@@ -212,6 +212,21 @@
     background 0.3s ease;
 }
 
+.bp-tag-2 {
+  position: absolute;
+  top: -20px;
+  left: 180px;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-card);
+  border: 2px solid var(--accent-blue);
+  padding: 4px 10px;
+  transform: rotate(-2deg);
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease;
+}
 .bp-tag span:first-child {
   font-size: 11px;
   font-weight: 800;
@@ -219,7 +234,21 @@
   color: var(--accent-blue);
 }
 
+.bp-tag-2 span:first-child {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--accent-blue);
+}
+
 .bp-tag-sub {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.bp-tag-sub-2 {
   font-size: 9px;
   font-weight: 600;
   letter-spacing: 0.08em;

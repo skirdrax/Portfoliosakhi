@@ -30,6 +30,11 @@ function BrutalPhoto({ src, alt }) {
         <span className="bp-tag-sub">ID / 2026</span>
       </div>
 
+      <div className="bp-tag-2">
+        <span>Do not click this picture!</span>
+        <span className="bp-tag-sub-2">POW!!!!</span>
+      </div>
+
       <div className="img-wrap" onClick={handleClick}>
         <div className="corner tl" />
         <div className="corner br" />
