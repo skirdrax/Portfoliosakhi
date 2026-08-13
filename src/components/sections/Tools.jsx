@@ -5,10 +5,11 @@ export default function Tools() {
     { name: 'JavaScript', icon: '/assets/tools/js.png' },
     { name: 'Python', icon: '/assets/tools/python.png' },
     { name: 'Ubuntu', icon: '/assets/tools/ubuntu.jpeg' },
+    { name: 'aapanel', icon: '/assets/tools/aapanel.png' },
+    { name: 'Arduino', icon: '/assets/tools/arduino.png' },
     { name: 'GSC', icon: '/assets/tools/gsc.webp' },
     { name: 'Figma', icon: '/assets/tools/figma.png' },
     { name: 'Canva', icon: '/assets/tools/canva.png' },
-    { name: 'Git', icon: '/assets/tools/git.png' },
     { name: 'GitHub', icon: '/assets/tools/github.png' },
     { name: 'Postman', icon: '/assets/tools/postman.png' },
   ];
