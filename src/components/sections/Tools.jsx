@@ -3,20 +3,21 @@ export default function Tools() {
     { name: 'HTML', icon: '/assets/tools/html.png' },
     { name: 'CSS', icon: '/assets/tools/css.png' },
     { name: 'JavaScript', icon: '/assets/tools/js.png' },
-    { name: 'Figma', icon: '/assets/tools/figma.png' },
+    { name: 'Python', icon: '/assets/tools/python.png' },
     { name: 'Ubuntu', icon: '/assets/tools/ubuntu.jpeg' },
     { name: 'GSC', icon: '/assets/tools/gsc.webp' },
-    { name: 'VSCode', icon: '/assets/tools/vscode.png' },
+    { name: 'Figma', icon: '/assets/tools/figma.png' },
+    { name: 'Canva', icon: '/assets/tools/canva.png' },
     { name: 'Git', icon: '/assets/tools/git.png' },
-    { name: 'MySql', icon: '/assets/tools/MySQL.png' },
     { name: 'GitHub', icon: '/assets/tools/github.png' },
+    { name: 'Postman', icon: '/assets/tools/postman.png' },
   ];
 
   const techStack = [
     {
       name: 'React JS',
       icon: '/assets/tools/reactjs.png',
-      desc: 'Frontend library for building UI',
+      desc: 'Frontend  Web library for building UI',
     },
     {
       name: 'Laravel',
@@ -29,8 +30,8 @@ export default function Tools() {
       desc: 'Mobile app development SDK',
     },
     {
-      name: 'PostgreSQL',
-      icon: '/assets/tools/postgresql.png',
+      name: 'MySQL & PostgreSQL',
+      icon: '/assets/tools/postgre-mysql.png',
       desc: 'Open-source relational database system',
     },
   ];
@@ -45,7 +46,7 @@ export default function Tools() {
         className="tools-title reveal d1"
         data-aos="fade-up"
         data-aos-delay="60">
-        Tools / Framework
+        Tools / Tech Stack
       </h3>
       <p className="tools-sub reveal d2" data-aos="fade-up" data-aos-delay="70">
         Technologies & tools for web development and design.
