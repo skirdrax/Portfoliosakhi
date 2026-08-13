@@ -43,8 +43,6 @@ function BrutalPhoto({ src, alt }) {
         <span className="scanline" aria-hidden="true" />
       </div>
 
-      <div className="bp-tape" />
-
       <span className="bp-stamp" aria-hidden="true">
         POW!
       </span>
