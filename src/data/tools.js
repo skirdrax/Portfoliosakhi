@@ -1,4 +1,3 @@
-import Tools1 from '/assets/tools/vscode.png';
 import Tools2 from '/assets/tools/reactjs.png';
 import Tools3 from '/assets/tools/laravel.png';
 import Tools4 from '/assets/tools/MySQL.png';
@@ -17,7 +16,7 @@ import Tools16 from '/assets/tools/postman.png';
 import Tools17 from '/assets/tools/postgre-mysql.png';
 
 export const listTools = [
-  { id: 1, gambar: Tools1, nama: 'Visual Studio Code', ket: 'Code Editor' },
+  // ❌ HAPUS Tools1 (vscode.png)
   { id: 2, gambar: Tools2, nama: 'React JS', ket: 'Framework' },
   { id: 3, gambar: Tools3, nama: 'Laravel', ket: 'Framework' },
   { id: 4, gambar: Tools4, nama: 'MySQL', ket: 'Database' },
