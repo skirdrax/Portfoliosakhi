@@ -52,16 +52,9 @@ export default function Tools() {
 
   return (
     <div className="tools-section">
-      <p className="section-tag reveal" data-aos="fade-up" data-aos-delay="50">
-        Tools & Skills
-      </p>
-      <h3
-        className="tools-title reveal d1"
-        data-aos="fade-up"
-        data-aos-delay="60">
-        Tools / Tech Stack
-      </h3>
-      <p className="tools-sub reveal d2" data-aos="fade-up" data-aos-delay="70">
+      <p className="section-tag">Tools & Skills</p>
+      <h3 className="tools-title">Tools / Tech Stack</h3>
+      <p className="tools-sub">
         Technologies & tools for web development and design.
       </p>
 
@@ -104,7 +97,10 @@ export default function Tools() {
       {/* ===== TECH STACK ===== */}
       <div className="tech-stack-section">
         <h4 className="tech-stack-title">Tech Stack</h4>
-        <div className="tech-stack-grid">
+        <div
+          className="tech-stack-grid reveal"
+          data-aos="fade-up"
+          data-aos-delay="50">
           {techStack.map((tech, i) => (
             <div key={i} className="tech-stack-card">
               <img
