@@ -23,7 +23,11 @@ export default function About() {
           Internet of Things (IoT). My internship experience as a Web Developer
           & SEO Intern at PT Groperti Indonesia has sharpened my technical and
           professional skills. I am ready to learn, adapt, and bring real change
-          through innovative digital solutions.
+          through innovative digital solutions in the ever-evolving tech
+          landscape. Let's connect and explore how we can create a better
+          digital future together! and I am open to collaboration, networking,
+          and exciting opportunities in the tech industry. Let's connect and
+          explore how we can create a better digital future together!
         </p>
 
         <div className="stats-wrapper">
