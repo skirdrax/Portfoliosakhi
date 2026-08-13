@@ -18,7 +18,7 @@ export default function Tools() {
     {
       name: 'React JS',
       icon: '/assets/tools/reactjs.png',
-      desc: 'Frontend  Web library for building UI',
+      desc: 'Frontend  Web library for buildinsg UI',
     },
     {
       name: 'Laravel',
