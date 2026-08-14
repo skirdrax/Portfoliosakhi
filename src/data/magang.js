@@ -3,7 +3,7 @@ export const MAGANG = [
     id: 1,
     href: 'https://www.groperti.com/',
     posisi: 'Web Developer - Search Engine Optimization Intern',
-    perusahaan: 'PT Groperti Indonesia',
+    perusahaan: 'PT Sentral Global Properti',
     lokasi: 'WFH Tangerang, Office Jakarta',
     periode: 'May 2025 — August 2025',
     deskripsi:
@@ -47,14 +47,14 @@ export const MAGANG = [
         {
           id: 1,
           title: 'SEO Internship Certificate',
-          issuer: 'PT Groperti Indonesia',
+          issuer: 'PT Sentral Global Properti',
           date: 'August 2025',
           image: '/assets/sertifikat/groperti/1.png',
         },
         {
           id: 2,
           title: 'Certificate of Completion',
-          issuer: 'PT Groperti Indonesia',
+          issuer: 'PT Sentral Global Properti',
           date: 'August 2025',
           image: '/assets/sertifikat/groperti/2.png',
         },
