@@ -42,8 +42,8 @@ export default function Navbar() {
 
           // CREATE DOWNLOAD LINK
           const link = document.createElement('a');
-          link.href = '/assets/CV/CV_Sakhiardra_Port.pdf';
-          link.download = 'CV_Sakhiardra_Port.pdf';
+          link.href = '/assets/CV/CV_SakhiArdra_Port.pdf';
+          link.download = 'CV_SakhiArdra_Port.pdf';
           document.body.appendChild(link);
           link.click();
           document.body.removeChild(link);
