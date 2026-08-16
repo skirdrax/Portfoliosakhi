@@ -42,7 +42,7 @@ export default function Navbar() {
 
           // CREATE DOWNLOAD LINK
           const link = document.createElement('a');
-          link.href = '/assets/CV/CV_Sakhiardra_port.pdf';
+          link.href = '/assets/CV/CV_Sakhiardra_Port.pdf';
           link.download = 'CV_Sakhiardra_Port.pdf';
           document.body.appendChild(link);
           link.click();
@@ -179,7 +179,7 @@ export default function Navbar() {
       {showPopup && (
         <div className="popup-overlay" onClick={cancelPopup}>
           <div className="popup-content" onClick={(e) => e.stopPropagation()}>
-            <h3>⬇️ Downloading CV...</h3>
+            <h3>Downloading CV...</h3>
             <p>
               Download will start in <strong>{countdown}</strong> seconds...
             </p>
