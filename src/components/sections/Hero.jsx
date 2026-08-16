@@ -82,7 +82,7 @@ export default function Hero({ displayText, FULL_TEXT }) {
         if (prev <= 1) {
           clearInterval(id);
           window.open(
-            'https://drive.google.com/file/d/1O-GQlWVCwO26ITMujxC6bZAkJq90rq5N/view?usp=sharing',
+            'https://drive.google.com/file/d/11lnmxdH_GMxtiGpDusohWX64mQSOOwmb/view?usp=drive_link',
             '_blank',
           );
           setShowPopup(false);
