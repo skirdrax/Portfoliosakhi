@@ -19,7 +19,7 @@ export default function LoadingScreen({ onDone }) {
           }, 400);
           return 100;
         }
-        return prev + 2.5;
+        return prev + 3.5;
       });
     }, 8);
     return () => clearInterval(interval);

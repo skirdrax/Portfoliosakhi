@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import SocialLinks from '../ui/SocialLinks';
 import ImageData from '../../data/image';
 
@@ -13,55 +12,26 @@ export default function Hero({ displayText, FULL_TEXT }) {
     'SEO',
   ];
 
-  const [showPopup, setShowPopup] = useState(false);
-  // 🔽 UBAH: dari 3 menjadi 1
-  const [countdown, setCountdown] = useState(3);
-  const [intervalId, setIntervalId] = useState(null);
-
+  // ✅ VIEW CV (BUKAN DOWNLOAD)
   const handleCvClick = (e) => {
     e.preventDefault();
-    setShowPopup(true);
-    // 🔽 UBAH: dari 3 menjadi 1
-    setCountdown(3);
-
-    const id = setInterval(() => {
-      setCountdown((prev) => {
-        if (prev <= 1) {
-          clearInterval(id);
-          window.open(
-            'https://drive.google.com/file/d/11lnmxdH_GMxtiGpDusohWX64mQSOOwmb/view?usp=drive_link',
-            '_blank',
-          );
-          setShowPopup(false);
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
-    setIntervalId(id);
-  };
-
-  const cancelPopup = () => {
-    if (intervalId) clearInterval(intervalId);
-    setShowPopup(false);
-    // 🔽 UBAH: dari 3 menjadi 1
-    setCountdown(1);
+    window.open('/assets/CV/CV_Sakhiardra_port.pdf', '_blank');
   };
 
   return (
     <section className="hero-section">
       <div className="grid-bg" />
       <div className="glow" />
+
       <div className="hero-container">
+        {/* LEFT - TEXT */}
         <div className="hero-left">
-          {/* ✅ STATUS BADGE - 300ms */}
-          <div className="status-badge" data-aos="fade-up" data-aos-delay="100">
+          <div className="status-badge">
             <span className="status-dot"></span>
             <span className="status-label">AVAILABLE FOR WORK</span>
           </div>
 
-          {/* ✅ LOCATION - 350ms */}
-          <p className="hero-location" data-aos="fade-up" data-aos-delay="100">
+          <p className="hero-location">
             Based in Indonesia
             <svg
               width="22"
@@ -77,14 +47,13 @@ export default function Hero({ displayText, FULL_TEXT }) {
             </svg>
           </p>
 
-          {/* ✅ HERO NAME - 400ms */}
-          <h1 className="hero-name" data-aos="fade-up" data-aos-delay="100">
-            Hi, I'm <br />
+          <h1 className="hero-name">
+            Hi, I'm
+            <br />
             <span className="accent">{displayText || FULL_TEXT}</span>
           </h1>
 
-          {/* ✅ SKILLS - 450ms */}
-          <div className="hero-skills" data-aos="fade-up" data-aos-delay="100">
+          <div className="hero-skills">
             {skills.map((skill, i) => (
               <span key={i} className="skill-tag-glow show">
                 {skill}
@@ -92,8 +61,7 @@ export default function Hero({ displayText, FULL_TEXT }) {
             ))}
           </div>
 
-          {/* ✅ BUTTONS - 500ms */}
-          <div className="hero-buttons" data-aos="fade-up" data-aos-delay="100">
+          <div className="hero-buttons">
             <a href="#" className="btn-p" onClick={handleCvClick}>
               View My CV
               <svg
@@ -122,7 +90,7 @@ export default function Hero({ displayText, FULL_TEXT }) {
         </div>
 
         {/* RIGHT - IMAGE */}
-        <div className="hero-right" data-aos="fade-left" data-aos-delay="400">
+        <div className="hero-right">
           <div className="img-wrap">
             <div className="corner tl" />
             <div className="corner br" />
@@ -136,20 +104,6 @@ export default function Hero({ displayText, FULL_TEXT }) {
       </div>
 
       <SocialLinks />
-
-      {showPopup && (
-        <div className="popup-overlay" onClick={cancelPopup}>
-          <div className="popup-content" onClick={(e) => e.stopPropagation()}>
-            <h3>You will be redirected to Google Drive</h3>
-            <p>
-              Redirecting in <strong>{countdown}</strong> seconds...
-            </p>
-            <button className="popup-cancel" onClick={cancelPopup}>
-              Cancel
-            </button>
-          </div>
-        </div>
-      )}
     </section>
   );
 }
