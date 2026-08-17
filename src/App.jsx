@@ -1,6 +1,6 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import './styles/main.css'; // ← TAMBAHKAN INI!
+import './styles/main.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -8,6 +8,7 @@ import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import Modal from './components/ui/Modal';
 import ChatBotCohere from './components/ChatBotCohere';
+import LoadingScreen from './components/ui/LoadingScreen';
 
 // PAGES
 import Home from './pages/Home';
@@ -17,7 +18,6 @@ import Contact from './pages/Contact';
 
 import { useScrollReveal } from './components/hooks/useScrollReveal';
 import { useCursor } from './components/hooks/useCursor';
-import LoadingScreen from './components/ui/LoadingScreen';
 
 const FULL_TEXT = 'Sakhi Ardra Handaru';
 
@@ -27,6 +27,8 @@ export default function App() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [showChat, setShowChat] = useState(false);
   const [loading, setLoading] = useState(true);
+
+  const location = useLocation(); // ← UNTUK SCROLL KE ATAS
 
   useScrollReveal();
   useCursor();
@@ -47,13 +49,19 @@ export default function App() {
     window.dispatchEvent(new CustomEvent('themeChange', { detail: false }));
   }, []);
 
+  // ✅ SCROLL KE ATAS SETIAP PINDAH HALAMAN
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   return (
     <>
-      {' '}
       {loading && <LoadingScreen onDone={() => setLoading(false)} />}
+
       <Navbar />
       <div id="cur-dot" />
       <div id="cur-ring" />
+
       <div className="container">
         <Routes>
           <Route path="/" element={<Home FULL_TEXT={FULL_TEXT} />} />
@@ -71,19 +79,23 @@ export default function App() {
           />
         </Routes>
       </div>
+
       <Footer />
+
       <Modal
         show={showModal}
         onClose={() => setShowModal(false)}
         isSuccess={isSuccess}
         message={modalMessage}
       />
+
       <button
         className="chat-toggle"
         onClick={() => setShowChat(!showChat)}
         aria-label="Buka chat">
         💬
       </button>
+
       {showChat && <ChatBotCohere onClose={() => setShowChat(false)} />}
     </>
   );

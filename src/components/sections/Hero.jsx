@@ -1,5 +1,6 @@
 import SocialLinks from '../ui/SocialLinks';
 import ImageData from '../../data/image';
+import { Link } from 'react-router-dom'; // ← TAMBAHKAN
 
 export default function Hero({ displayText, FULL_TEXT }) {
   const skills = [
@@ -62,6 +63,7 @@ export default function Hero({ displayText, FULL_TEXT }) {
           </div>
 
           <div className="hero-buttons">
+            {/* TOMBOL VIEW CV */}
             <a href="#" className="btn-p" onClick={handleCvClick}>
               View My CV
               <svg
@@ -74,7 +76,9 @@ export default function Hero({ displayText, FULL_TEXT }) {
                 <path d="M7 17L17 7M17 7H7M17 7v10" />
               </svg>
             </a>
-            <a href="/projects" className="btn-g">
+
+            {/* ✅ TOMBOL PROJECTS PAKE LINK */}
+            <Link to="/projects" className="btn-g">
               Projects
               <svg
                 width="14"
@@ -85,7 +89,7 @@ export default function Hero({ displayText, FULL_TEXT }) {
                 strokeWidth="2">
                 <path d="M19 9l-7 7-7-7" />
               </svg>
-            </a>
+            </Link>
           </div>
         </div>
 

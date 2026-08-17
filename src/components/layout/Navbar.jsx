@@ -198,6 +198,11 @@ export default function Navbar() {
           transition: color .2s; 
         }
         .mob-link:hover { color: ${textPrimary}; }
+        .mob-link.active {
+          color: ${textPrimary};
+          font-weight: 700;
+          border-bottom-color: #2563eb;
+        }
 
         @media (min-width: 640px) { .hbg, .mob-menu { display: none !important; } }
         @media (max-width: 639px) { 
@@ -270,7 +275,7 @@ export default function Navbar() {
             <Link
               key={l.href}
               to={l.href}
-              className="mob-link"
+              className={`mob-link ${activeSection === l.id ? 'active' : ''}`}
               onClick={() => setOpen(false)}>
               {l.label}
             </Link>
