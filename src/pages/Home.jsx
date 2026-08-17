@@ -15,33 +15,26 @@ import 'swiper/css/effect-coverflow';
 export default function Home({ FULL_TEXT }) {
   const swiperRef = useRef(null);
 
-  // Penanganan klik instan & presisi
-  const handleSwiperTap = (swiper, e) => {
-    // Abaikan jika user menekan link 'View Details'
+  // Klik langsung pada kartu: responsif di seluruh grid kartu
+  const handleCardClick = (e) => {
+    // Abaikan jika user menekan tombol "View Details"
     if (e.target.closest('.showcase-detail-btn-3d')) return;
 
-    // Jika mengklik kartu samping langsung (bukan slide aktif), fokuskan ke slide tersebut
-    if (
-      swiper.clickedIndex !== undefined &&
-      swiper.clickedIndex !== swiper.activeIndex
-    ) {
-      if (swiper.clickedIndex > swiper.activeIndex) {
-        swiper.slideNext();
-      } else {
-        swiper.slidePrev();
-      }
-      return;
-    }
+    const swiper = swiperRef.current;
+    if (!swiper) return;
 
-    // Jika mengklik area slide tengah, bagi navigasi kiri/kanan berdasarkan posisi kursor
-    const container = swiper.el;
-    if (!container) return;
+    const card = e.currentTarget;
+    const slide = card.closest('.swiper-slide');
+    const isCenterActive = slide?.classList.contains('swiper-slide-active');
 
-    const rect = container.getBoundingClientRect();
+    // 1. Jika kartu samping yang diklik -> Swiper otomatis bawa ke tengah lewat slideToClickedSlide
+    if (!isCenterActive) return;
+
+    // 2. Jika kartu tengah yang diklik -> bagi 50/50 area klik kiri & kanan
+    const rect = card.getBoundingClientRect();
     const clickX = e.clientX - rect.left;
-    const midPoint = rect.width / 2;
 
-    if (clickX > midPoint) {
+    if (clickX > rect.width / 2) {
       swiper.slideNext();
     } else {
       swiper.slidePrev();
@@ -65,9 +58,7 @@ export default function Home({ FULL_TEXT }) {
         <div className="project-showcase-header">
           <p className="section-tag reveal">Project Showcase</p>
           <h2 className="section-title reveal d1">Featured Projects</h2>
-          <p className="showcase-hint">
-            ← Click left / right side to explore →
-          </p>
+          <p className="showcase-hint">← Click left / right side of card →</p>
         </div>
 
         <Swiper
@@ -76,60 +67,46 @@ export default function Home({ FULL_TEXT }) {
           grabCursor={true}
           centeredSlides={true}
           slidesPerView="auto"
-          slideToClickedSlide={false} // Dikontrol lewat onTap agar tidak bentrok dengan loop
-          touchEventsTarget="container"
+          slideToClickedSlide={true}
           preventClicks={false}
           preventClicksPropagation={false}
           touchStartPreventDefault={false}
-          threshold={6}
+          threshold={8}
           coverflowEffect={{
-            rotate: 12,
+            rotate: 20,
             stretch: 0,
-            depth: 140,
-            modifier: 1.1,
+            depth: 100,
+            modifier: 1.2,
             slideShadows: false,
           }}
-          pagination={{
-            clickable: true,
-            dynamicBullets: true,
-          }}
+          pagination={{ clickable: true }}
           autoplay={{
             delay: 4500,
             disableOnInteraction: false,
             pauseOnMouseEnter: true,
           }}
           loop={true}
-          speed={550}
+          speed={500}
           onSwiper={(swiper) => (swiperRef.current = swiper)}
-          onTap={handleSwiperTap}
           breakpoints={{
             640: { slidesPerView: 1 },
-            768: { slidesPerView: 1.8 },
-            1024: { slidesPerView: 2.6 },
+            768: { slidesPerView: 2 },
+            1024: { slidesPerView: 2.5 },
           }}
           className="showcase-swiper-3d">
           {listProyek.map((project) => (
             <SwiperSlide key={project.id}>
               <div
                 className="showcase-card-3d"
+                onClick={handleCardClick}
                 style={{
                   position: 'relative',
                   width: '100%',
                   cursor: 'pointer',
                   userSelect: 'none',
-                  overflow: 'hidden',
                 }}>
                 <div className="showcase-card-image-3d">
-                  <img
-                    src={project.gambar}
-                    alt={project.nama}
-                    loading="lazy"
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                    }}
-                  />
+                  <img src={project.gambar} alt={project.nama} />
                   <div className="showcase-card-overlay">
                     <span className="showcase-kategori-3d">
                       {project.kategori}
@@ -139,38 +116,21 @@ export default function Home({ FULL_TEXT }) {
                     <a
                       href="/projects"
                       className="showcase-detail-btn-3d"
-                      onClick={(e) => e.stopPropagation()}
-                      style={{ position: 'relative', zIndex: 10 }}>
+                      onClick={(e) => e.stopPropagation()}>
                       View Details →
                     </a>
                   </div>
                 </div>
 
-                {/* Indikator Tombol Arah Panah */}
+                {/* Panah dekoratif dengan pointerEvents none agar hover & click kartu tetap 100% mulus */}
                 <div
                   className="showcase-click-left"
-                  style={{
-                    position: 'absolute',
-                    top: '50%',
-                    left: '12px',
-                    transform: 'translateY(-50%)',
-                    pointerEvents: 'none',
-                    userSelect: 'none',
-                    zIndex: 5,
-                  }}>
+                  style={{ pointerEvents: 'none' }}>
                   ‹
                 </div>
                 <div
                   className="showcase-click-right"
-                  style={{
-                    position: 'absolute',
-                    top: '50%',
-                    right: '12px',
-                    transform: 'translateY(-50%)',
-                    pointerEvents: 'none',
-                    userSelect: 'none',
-                    zIndex: 5,
-                  }}>
+                  style={{ pointerEvents: 'none' }}>
                   ›
                 </div>
               </div>
