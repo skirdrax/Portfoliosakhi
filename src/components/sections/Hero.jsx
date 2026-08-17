@@ -59,7 +59,21 @@ export default function Hero({ displayText, FULL_TEXT }) {
             <span className="status-label">AVAILABLE FOR WORK</span>
           </div>
 
-          <p className="hero-location">🇮🇩 Based in Indonesia</p>
+          <p className="hero-location">
+            Based in Indonesia
+            <svg
+              width="22"
+              height="16"
+              viewBox="0 0 22 16"
+              style={{
+                display: 'inline-block',
+                marginLeft: '6px',
+                verticalAlign: 'middle',
+              }}>
+              <rect width="22" height="8" fill="#ee2a3a" />
+              <rect y="8" width="22" height="8" fill="#ffffff" />
+            </svg>
+          </p>
           <h1 className="hero-name">
             Hi, I'm
             <br />
