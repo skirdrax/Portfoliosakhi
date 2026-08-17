@@ -9,7 +9,7 @@ export default function Hero({ displayText, FULL_TEXT }) {
     'Network Server',
     'DevOps',
     'UI/UX Design',
-    'IoT',
+    'Internet Of Things',
     'SEO',
   ];
 
