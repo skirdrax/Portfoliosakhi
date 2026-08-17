@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { Link } from 'react-router-dom'; // ← TAMBAHKAN
 import Hero from '../components/sections/Hero';
 import Experience from '../components/sections/Experience';
 import Tools from '../components/sections/Tools';
@@ -15,9 +16,7 @@ import 'swiper/css/effect-coverflow';
 export default function Home({ FULL_TEXT }) {
   const swiperRef = useRef(null);
 
-  // Klik langsung pada kartu: responsif di seluruh grid kartu
   const handleCardClick = (e) => {
-    // Abaikan jika user menekan tombol "View Details"
     if (e.target.closest('.showcase-detail-btn-3d')) return;
 
     const swiper = swiperRef.current;
@@ -27,10 +26,8 @@ export default function Home({ FULL_TEXT }) {
     const slide = card.closest('.swiper-slide');
     const isCenterActive = slide?.classList.contains('swiper-slide-active');
 
-    // 1. Jika kartu samping yang diklik -> Swiper otomatis bawa ke tengah lewat slideToClickedSlide
     if (!isCenterActive) return;
 
-    // 2. Jika kartu tengah yang diklik -> bagi 50/50 area klik kiri & kanan
     const rect = card.getBoundingClientRect();
     const clickX = e.clientX - rect.left;
 
@@ -113,16 +110,16 @@ export default function Home({ FULL_TEXT }) {
                     </span>
                     <h3>{project.nama}</h3>
                     <p>{project.desk}</p>
-                    <a
-                      href="/projects"
+                    {/* ✅ PAKE LINK BUKAN a */}
+                    <Link
+                      to="/projects"
                       className="showcase-detail-btn-3d"
                       onClick={(e) => e.stopPropagation()}>
                       View Details →
-                    </a>
+                    </Link>
                   </div>
                 </div>
 
-                {/* Panah dekoratif dengan pointerEvents none agar hover & click kartu tetap 100% mulus */}
                 <div
                   className="showcase-click-left"
                   style={{ pointerEvents: 'none' }}>
@@ -139,9 +136,10 @@ export default function Home({ FULL_TEXT }) {
         </Swiper>
 
         <div className="showcase-all-link">
-          <a href="/projects" className="showcase-btn">
+          {/* ✅ PAKE LINK BUKAN a */}
+          <Link to="/projects" className="showcase-btn">
             Explore All Projects →
-          </a>
+          </Link>
         </div>
       </div>
 
