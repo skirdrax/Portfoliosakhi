@@ -1,26 +1,111 @@
 /* ========================================
-   CONTACT SECTION
+   CONTACT - BRUTALISM BLUE
    ======================================== */
 
 #kontak {
   padding: 40px 0 60px;
-  text-align: center;
 }
 
 .kontak-sub {
   color: #475569;
   font-size: 14px;
-  margin-bottom: 24px;
+  margin-bottom: 32px;
+  text-align: center;
 }
 
-.contact-form {
-  max-width: 520px;
+/* ============================================
+   CONTACT CONTAINER - 2 KOLOM
+   ============================================ */
+
+.contact-container {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 48px;
+  max-width: 820px;
   margin: 0 auto;
+  align-items: start;
+}
+
+.contact-header {
+  text-align: center;
+}
+
+/* ============================================
+   KIRI - SOCIAL LINKS VERTIKAL
+   ============================================ */
+
+.contact-social {
+  border: 2px solid #e2e8f0;
+  padding: 28px 24px;
+  background: #ffffff;
+  transition: border-color 0.2s ease;
+}
+
+.contact-social:hover {
+  border-color: #2563eb;
+}
+
+.contact-social-title {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #94a3b8;
+  margin: 0 0 20px 0;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.contact-social-links {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.contact-social-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 12px;
+  text-decoration: none;
+  color: #475569;
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.contact-social-item:hover {
+  color: #0f172a;
+  border-color: #2563eb;
+  background: rgba(37, 99, 235, 0.03);
+  transform: translateX(4px);
+}
+
+.contact-social-item svg {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+}
+
+/* ============================================
+   KANAN - FORM
+   ============================================ */
+
+.contact-form {
+  border: 2px solid #e2e8f0;
+  padding: 28px 32px;
+  background: #ffffff;
+  transition: border-color 0.2s ease;
   text-align: left;
 }
 
+.contact-form:hover {
+  border-color: #2563eb;
+}
+
 .form-group {
-  margin-bottom: 16px;
+  margin-bottom: 18px;
 }
 
 .form-group label {
@@ -28,42 +113,145 @@
   font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   color: #94a3b8;
   margin-bottom: 4px;
 }
 
 .contact-input {
   width: 100%;
-  padding: 12px 16px;
+  padding: 12px 14px;
   border: 2px solid #e2e8f0;
-  background: #fff;
+  background: #ffffff;
   font-size: 14px;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s ease;
   outline: none;
+  color: #0f172a;
+  box-sizing: border-box;
 }
 
 .contact-input:focus {
   border-color: #2563eb;
 }
 
+.contact-input::placeholder {
+  color: #cbd5e1;
+}
+
+.contact-input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 .send-btn {
   width: 100%;
   padding: 14px;
   background: #2563eb;
-  color: #fff;
-  border: none;
+  color: #ffffff;
+  border: 2px solid #0f172a;
   font-size: 14px;
   font-weight: 700;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-.send-btn:hover {
+.send-btn:hover:not(:disabled) {
   background: #1d4ed8;
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 #0f172a;
 }
 
 .send-btn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+  transform: none;
+}
+
+.loading-spinner-small {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+  .contact-container {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 0 16px;
+  }
+
+  .contact-social {
+    order: 2;
+  }
+
+  .contact-form {
+    order: 1;
+  }
+
+  .contact-social-links {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .contact-social-item {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+
+  .contact-social-item:hover {
+    transform: none;
+  }
+
+  .contact-form {
+    padding: 20px;
+  }
+
+  .contact-social {
+    padding: 20px;
+    text-align: center;
+  }
+
+  .contact-social-title {
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-container {
+    padding: 0 8px;
+  }
+
+  .contact-form {
+    padding: 16px;
+  }
+
+  .contact-social-item {
+    font-size: 12px;
+    padding: 6px 10px;
+    gap: 8px;
+  }
+
+  .contact-social-item svg {
+    width: 18px;
+    height: 18px;
+  }
 }
