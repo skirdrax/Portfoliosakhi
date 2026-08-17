@@ -1,123 +1,122 @@
 /* ========================================
-   ABOUT & EDUCATION - BRUTALISM BLUE
+   ABOUT SECTION - BRUTALISM BLUE
    ======================================== */
 
-.about-card {
-  background: var(--bg-card);
-  border: 2px solid var(--border);
-  border-radius: 0px;
-  padding: 36px;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.08s ease;
+#tentang {
+  padding: 40px 0 60px;
 }
 
-.about-card::before {
-  display: none;
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: #2563eb;
+  margin-bottom: 4px;
+}
+
+.section-tag::before {
+  content: '';
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: #2563eb;
+}
+
+.section-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+}
+
+.about-card {
+  border: 2px solid #e2e8f0;
+  padding: 32px;
+  background: #fff;
+  transition: all 0.2s;
 }
 
 .about-card:hover {
-  border-color: var(--accent-blue);
-  transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0 0 var(--accent-blue);
+  border-color: #2563eb;
 }
 
 .about-text {
-  color: var(--text-secondary);
+  color: #475569;
   font-size: 15px;
-  line-height: 1.9;
-  margin-bottom: 28px;
+  line-height: 1.8;
+  margin-bottom: 16px;
 }
 
 .about-text strong {
-  color: var(--accent-blue);
+  color: #0f172a;
 }
 
-/* Stats */
 .stats-wrapper {
   display: flex;
-  gap: 20px;
+  gap: 24px;
   flex-wrap: wrap;
+  margin-top: 16px;
 }
 
 .stat-card {
-  flex: 1;
-  min-width: 120px;
-  padding: 24px;
-  background: transparent;
-  border: 2px solid var(--border);
-  border-radius: 0px;
   text-align: center;
-  transition: all 0.08s ease;
-}
-
-.stat-card:hover {
-  background: var(--bg-card-hover);
-  border-color: var(--accent-blue);
-  transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0 0 var(--accent-blue);
+  padding: 12px 20px;
+  border: 2px solid #e2e8f0;
 }
 
 .stat-n {
-  font-size: 48px;
+  font-size: 32px;
   font-weight: 800;
-  line-height: 1;
-  color: var(--text-primary);
+  color: #0f172a;
 }
 
 .stat-n span {
-  color: var(--accent-blue);
+  color: #2563eb;
 }
 
 .stat-label {
-  color: var(--text-muted);
   font-size: 12px;
-  margin-top: 6px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+  color: #94a3b8;
 }
 
-/* Education */
+/* EDUCATION */
 .education-section {
-  margin-top: 52px;
+  margin-top: 40px;
 }
 
 .education-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-  max-width: 900px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
 }
 
 .edu-card {
   display: flex;
   align-items: center;
-  gap: 18px;
-  padding: 20px 22px;
-  background: transparent;
-  border: 2px solid var(--border);
-  border-left: 6px solid var(--accent-blue);
-  border-radius: 0px;
+  gap: 16px;
+  padding: 16px 20px;
+  border: 2px solid #e2e8f0;
   text-decoration: none;
   color: inherit;
-  transition: all 0.08s ease;
+  transition: all 0.2s;
 }
 
 .edu-card:hover {
-  background: var(--bg-card-hover);
-  border-color: var(--accent-blue);
-  transform: translate(3px, 0px);
-  box-shadow: 2px 2px 0 0 var(--accent-blue);
+  border-color: #2563eb;
+  transform: translateX(4px);
 }
 
 .edu-logo {
-  width: 50px;
-  height: 50px;
+  width: 48px;
+  height: 48px;
   flex-shrink: 0;
-  background: var(--bg-card);
-  border: 2px solid var(--border);
-  border-radius: 0px;
-  padding: 7px;
+  background: #f1f5f9;
+  padding: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -130,20 +129,31 @@
 }
 
 .edu-name {
-  color: var(--text-primary);
   font-weight: 700;
   font-size: 14px;
-  margin-bottom: 4px;
+  color: #0f172a;
 }
 
 .edu-sub {
-  color: var(--text-secondary);
   font-size: 13px;
+  color: #475569;
 }
 
 .edu-year {
-  color: var(--text-muted);
   font-size: 11px;
-  margin-top: 4px;
-  letter-spacing: 0.05em;
+  color: #94a3b8;
+  margin-top: 2px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  #tentang {
+    padding: 30px 0 40px;
+  }
+  .about-card {
+    padding: 20px;
+  }
+  .section-title {
+    font-size: 22px;
+  }
 }

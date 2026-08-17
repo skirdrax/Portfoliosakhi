@@ -1,18 +1,21 @@
 import { useState, useEffect } from 'react';
-import { useActiveSection } from '../hooks/useActiveSection';
+import { Link, useLocation } from 'react-router-dom';
 
 const links = [
-  { label: 'Home', href: '#beranda', id: 'beranda' },
-  { label: 'About', href: '#tentang', id: 'tentang' },
-  { label: 'Projects', href: '#proyek', id: 'proyek' },
-  { label: 'Contact', href: '#kontak', id: 'kontak' },
+  { label: 'Home', href: '/', id: 'home' },
+  { label: 'About', href: '/about', id: 'about' },
+  { label: 'Projects', href: '/projects', id: 'projects' },
+  { label: 'Contact', href: '/contact', id: 'contact' },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(true);
-  const activeSection = useActiveSection(links.map((l) => l.id)) || 'beranda';
+  const location = useLocation();
+
+  const activeSection =
+    location.pathname === '/' ? 'home' : location.pathname.slice(1);
 
   const [showPopup, setShowPopup] = useState(false);
   const [countdown, setCountdown] = useState(3);
@@ -39,15 +42,12 @@ export default function Navbar() {
       setCountdown((prev) => {
         if (prev <= 1) {
           clearInterval(id);
-
-          // CREATE DOWNLOAD LINK
           const link = document.createElement('a');
           link.href = '/assets/CV/CV_Sakhiardra_port.pdf';
-          link.download = 'CV_Sakhiardra_port.pdf';
+          link.download = 'CV_Sakhiardra_Port.pdf';
           document.body.appendChild(link);
           link.click();
           document.body.removeChild(link);
-
           setShowPopup(false);
           return 0;
         }
@@ -57,6 +57,7 @@ export default function Navbar() {
 
     setIntervalId(id);
   };
+
   const cancelPopup = () => {
     if (intervalId) clearInterval(intervalId);
     setShowPopup(false);
@@ -72,32 +73,141 @@ export default function Navbar() {
   return (
     <>
       <style>{`
-        .nav { position: sticky; top: 0; z-index: 200; width: 100%; padding: 20px 24px; box-sizing: border-box; background: ${bg}; transition: all .35s cubic-bezier(.22,1,.36,1); }
-        .nav.on { padding: 12px 24px; border-bottom: 1px solid ${borderColor}; backdrop-filter: blur(20px); }
-        .nav-inner { display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: 0 auto; }
-        .logo { font-size: 18px; font-weight: 800; color: ${textPrimary}; text-decoration: none; letter-spacing: -.03em; position: relative; }
+        .nav { 
+          position: fixed !important; 
+          top: 0 !important; 
+          left: 0 !important;
+          right: 0 !important;
+          width: 100% !important;
+          z-index: 999 !important; 
+          padding: 14px 24px; 
+          box-sizing: border-box; 
+          background: ${bg}; 
+          transition: all .3s ease;
+          border-bottom: 1px solid ${borderColor};
+          backdrop-filter: blur(12px);
+        }
+        .nav.on { 
+          padding: 10px 24px; 
+          border-bottom: 1px solid rgba(37,99,235,0.2);
+          box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+        .nav-inner { 
+          display: flex; 
+          align-items: center; 
+          justify-content: space-between; 
+          max-width: 1200px; 
+          margin: 0 auto; 
+          padding: 0;
+          width: 100%;
+        }
+        .logo { 
+          font-size: 18px; 
+          font-weight: 800; 
+          color: ${textPrimary}; 
+          text-decoration: none; 
+          letter-spacing: -.03em; 
+        }
         .logo span { color: #3b82f6; }
-        .nav-links { display: flex; align-items: center; gap: 32px; }
-        .nav-link { font-size: 13px; font-weight: 500; color: ${textSecondary}; text-decoration: none; padding: 4px 0; position: relative; transition: color .2s; }
-        .nav-link::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1.5px; background: #2563eb; border-radius: 2px; transition: width .25s; }
+        .logo::after { display: none; }
+        .nav-links { 
+          display: flex; 
+          align-items: center; 
+          gap: 32px; 
+        }
+        .nav-link { 
+          font-size: 13px; 
+          font-weight: 500; 
+          color: ${textSecondary}; 
+          text-decoration: none; 
+          padding: 4px 0; 
+          position: relative; 
+          transition: color .2s; 
+        }
+        .nav-link::after { 
+          content: ''; 
+          position: absolute; 
+          bottom: -2px; 
+          left: 0; 
+          width: 0; 
+          height: 2px; 
+          background: #2563eb; 
+          transition: width .25s; 
+        }
         .nav-link:hover { color: ${textPrimary}; }
-        .nav-link:hover::after { width: 100%; }
+        .nav-link:hover::after,
         .nav-link.active::after { width: 100% !important; }
-        .nav-cta { font-size: 12px; font-weight: 700; letter-spacing: .04em; color: #3b82f6; text-decoration: none; border: 1px solid rgba(37,99,235,.3); padding: 8px 18px; border-radius: 8px; transition: all .2s; white-space: nowrap; }
-        .nav-cta:hover { background: rgba(37,99,235,.1); border-color: rgba(37,99,235,.55); }
-        .hbg { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
-        .hbg s { display: block; width: 20px; height: 1.5px; background: ${textSecondary}; border-radius: 2px; transition: all .25s; }
-        .hbg.on s:nth-child(1) { transform: translateY(6.5px) rotate(45deg); background: ${textPrimary}; }
+        .nav-cta { 
+          font-size: 12px; 
+          font-weight: 700; 
+          letter-spacing: .04em; 
+          color: #3b82f6; 
+          text-decoration: none; 
+          border: 1px solid rgba(37,99,235,.3); 
+          padding: 8px 18px; 
+          border-radius: 8px; 
+          transition: all .2s; 
+          white-space: nowrap; 
+        }
+        .nav-cta:hover { 
+          background: rgba(37,99,235,.1); 
+          border-color: rgba(37,99,235,.55); 
+        }
+        .hbg { 
+          display: none; 
+          flex-direction: column; 
+          gap: 5px; 
+          cursor: pointer; 
+          padding: 4px; 
+          background: none; 
+          border: none; 
+        }
+        .hbg s { 
+          display: block; 
+          width: 20px; 
+          height: 2px; 
+          background: ${textSecondary}; 
+          border-radius: 2px; 
+          transition: all .25s; 
+        }
+        .hbg.on s:nth-child(1) { 
+          transform: translateY(7px) rotate(45deg); 
+          background: ${textPrimary}; 
+        }
         .hbg.on s:nth-child(2) { opacity: 0; }
-        .hbg.on s:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); background: ${textPrimary}; }
-        .mob-menu { display: none; flex-direction: column; gap: 2px; padding: 14px 0 20px; border-top: 1px solid ${lineBg}; margin-top: 12px; }
+        .hbg.on s:nth-child(3) { 
+          transform: translateY(-7px) rotate(-45deg); 
+          background: ${textPrimary}; 
+        }
+        .mob-menu { 
+          display: none; 
+          flex-direction: column; 
+          gap: 2px; 
+          padding: 14px 0 20px; 
+          border-top: 1px solid ${lineBg}; 
+          margin-top: 12px; 
+        }
         .mob-menu.on { display: flex; }
-        .mob-link { color: ${textSecondary}; font-size: 15px; font-weight: 500; padding: 11px 2px; text-decoration: none; border-bottom: 1px solid ${lineBg}; transition: color .2s; }
+        .mob-link { 
+          color: ${textSecondary}; 
+          font-size: 15px; 
+          font-weight: 500; 
+          padding: 11px 2px; 
+          text-decoration: none; 
+          border-bottom: 1px solid ${lineBg}; 
+          transition: color .2s; 
+        }
         .mob-link:hover { color: ${textPrimary}; }
-        @media (min-width: 640px) { .hbg, .mob-menu { display: none !important; } }
-        @media (max-width: 639px) { .nav-links { display: none !important; } .hbg { display: flex !important; } .nav { padding: 16px 20px !important; } .nav.on { padding: 10px 20px !important; } }
 
-        /* POPUP STYLE */
+        @media (min-width: 640px) { .hbg, .mob-menu { display: none !important; } }
+        @media (max-width: 639px) { 
+          .nav-links { display: none !important; } 
+          .hbg { display: flex !important; } 
+          .nav { padding: 12px 16px !important; } 
+          .nav.on { padding: 10px 16px !important; } 
+        }
+
+        /* POPUP */
         .popup-overlay {
           position: fixed; top: 0; left: 0; right: 0; bottom: 0;
           background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
@@ -127,26 +237,24 @@ export default function Navbar() {
 
       <nav className={`nav ${scrolled ? 'on' : ''}`}>
         <div className="nav-inner">
-          <a href="#beranda" className="logo">
+          <Link to="/" className="logo">
             sakhi<span>Ardra</span>
-          </a>
+          </Link>
+
           <div className="nav-links">
             {links.map((l) => (
-              <a
+              <Link
                 key={l.href}
-                href={l.href}
+                to={l.href}
                 className={`nav-link ${activeSection === l.id ? 'active' : ''}`}>
                 {l.label}
-              </a>
+              </Link>
             ))}
-            <a
-              href="#"
-              className="nav-cta"
-              style={{ marginTop: '10px', width: 'fit-content' }}
-              onClick={handleCvClick}>
+            <a href="#" className="nav-cta" onClick={handleCvClick}>
               Download CV ↗
             </a>
           </div>
+
           <button
             className={`hbg ${open ? 'on' : ''}`}
             onClick={() => setOpen(!open)}
@@ -156,15 +264,16 @@ export default function Navbar() {
             <s />
           </button>
         </div>
+
         <div className={`mob-menu ${open ? 'on' : ''}`}>
           {links.map((l) => (
-            <a
+            <Link
               key={l.href}
-              href={l.href}
+              to={l.href}
               className="mob-link"
               onClick={() => setOpen(false)}>
               {l.label}
-            </a>
+            </Link>
           ))}
           <a
             href="#"
@@ -179,7 +288,7 @@ export default function Navbar() {
       {showPopup && (
         <div className="popup-overlay" onClick={cancelPopup}>
           <div className="popup-content" onClick={(e) => e.stopPropagation()}>
-            <h3>Downloading CV...</h3>
+            <h3>⬇️ Downloading CV...</h3>
             <p>
               Download will start in <strong>{countdown}</strong> seconds...
             </p>

@@ -1,91 +1,32 @@
 /* ========================================
-   VARIABLES - BRUTALISM BLUE THEME
+   VARIABLES - BRUTALISM BLUE
    ======================================== */
 
 :root {
-  /* Base - Light Mode Only */
-  --bg: #f0f4ff;
-  --bg-card: #ffffff;
-  --bg-card-hover: #e8edf8;
-  --text-primary: #0a0e17;
-  --text-secondary: #334155;
-  --text-muted: #64748b;
-  --border: #bfd4f0;
-  --border-light: #d4e0f5;
-  --input-bg: #f8faff;
-
-  /* Brutalism Blue Accent */
+  /* PRIMARY COLORS */
   --accent-blue: #2563eb;
-  --accent-blue-light: #60a5fa;
   --accent-blue-dark: #1d4ed8;
-  --accent-cyan: #06b6d4;
-  --accent-white: #ffffff;
+  --accent-blue-light: #3b82f6;
   --accent-green: #22c55e;
-  --accent-red: #ef4444;
-}
+  --accent-black: #000000;
 
-/* Dark mode disabled - always light */
-[data-theme='dark'] {
+  /* TEXT COLORS */
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+
+  /* BACKGROUNDS */
   --bg: #f0f4ff;
   --bg-card: #ffffff;
-  --bg-card-hover: #e8edf8;
-  --text-primary: #0a0e17;
-  --text-secondary: #334155;
-  --text-muted: #64748b;
-  --border: #bfd4f0;
-  --border-light: #d4e0f5;
-  --input-bg: #f8faff;
-}
+  --bg-card-hover: rgba(37, 99, 235, 0.05);
 
-/* Reset & Base */
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  cursor: default !important;
-}
+  /* BORDERS */
+  --border: #e2e8f0;
+  --border-light: #f1f5f9;
 
-body {
-  background: var(--bg);
-  overflow-x: hidden;
-  transition: none;
-  font-family:
-    'Inter',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    sans-serif;
-}
+  /* GRID */
+  --grid-line: rgba(37, 99, 235, 0.05);
 
-/* Custom Cursor - Brutalism Blue */
-#cur-dot {
-  display: none;
-}
-
-#cur-ring {
-  display: none;
-}
-
-/* Force cursor for interactive elements */
-a,
-button,
-.btn-p,
-.btn-g,
-.filter-btn,
-.social-icon,
-.nav-link,
-.logo,
-.edu-card,
-.tool-card,
-.proyek-card,
-.magang-link,
-.send-btn,
-.theme-toggle,
-.certificate-card,
-.magang-project-btn,
-.magang-cert-btn {
-  cursor: pointer !important;
+  /* INPUT */
+  --input-bg: #ffffff;
 }

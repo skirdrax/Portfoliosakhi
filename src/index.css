@@ -1,64 +1,423 @@
 @import 'tailwindcss';
+
 @layer base {
   body {
     font-family: 'Poppins', sans-serif;
   }
 }
+
 /* ============================================
-   FIX GESER KE KANAN (AMAN)
+   RESET
    ============================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 html,
 body {
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 body {
-  padding-top: 70px; /* BIAR KONTEN GA KETUTUP NAVBAR */
-}
-.container {
-  padding-left: 16px;
-  padding-right: 16px;
+  background: #f0f4ff;
+  color: #0f172a;
+  padding-top: 70px;
 }
 
-img {
-  max-width: 100%;
-  height: auto;
+#root {
+  position: relative;
+  z-index: 1;
 }
 
 /* ============================================
-   LATAR BELAKANG SIMPLE
+   CONTAINER
    ============================================ */
 
-/* 1. GRID HALUS DI LATAR BELAKANG */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 12px;
+}
+
+/* ============================================
+   SECTION
+   ============================================ */
+
+section {
+  padding: 40px 0;
+  width: 100%;
+}
+
+/* ============================================
+   HERO CONTAINER
+   ============================================ */
+
+.hero-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 12px;
+}
+
+/* ============================================
+   LATAR BELAKANG
+   ============================================ */
+
 body::before {
   content: '';
   position: fixed;
   inset: 0;
   background-image:
-    linear-gradient(rgba(12, 16, 24, 0.03) 2px, transparent 2px),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.03) 2px, transparent 2px);
+    linear-gradient(rgba(37, 99, 235, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37, 99, 235, 0.03) 1px, transparent 1px);
   background-size: 60px 60px;
   pointer-events: none;
   z-index: 0;
 }
 
-/* 2. TITIK-TITIK HALUS (opsional) */
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: radial-gradient(
-    rgba(37, 99, 235, 0.08) 1px,
-    transparent 1px
+/* ============================================
+   SHIMMER
+   ============================================ */
+
+.shimmer {
+  height: 1px;
+  margin: 60px 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(37, 99, 235, 0.2) 40%,
+    rgba(37, 99, 235, 0.4) 50%,
+    rgba(37, 99, 235, 0.2) 60%,
+    transparent
   );
-  background-size: 40px 40px;
-  pointer-events: none;
-  z-index: 0;
 }
 
-/* 3. BIAR KONTEN DI ATAS LATAR */
-#root {
+/* ============================================
+   DIVIDER
+   ============================================ */
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 60px 0;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #e2e8f0;
+}
+
+.d-dot {
+  width: 6px;
+  height: 6px;
+  background: #2563eb;
+  border-radius: 50%;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 8px;
+  }
+  section {
+    padding: 30px 0;
+  }
+  .hero-container {
+    padding: 0 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 4px;
+  }
+}
+
+/* ============================================
+   PROJECT SHOWCASE - KLIK KANAN/KIRI
+   ============================================ */
+
+.project-showcase-section {
+  padding: 40px 0;
+}
+
+.project-showcase-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.showcase-hint {
+  font-size: 12px;
+  color: #94a3b8;
+  margin-top: 4px;
+  opacity: 0.7;
+}
+
+/* SWIPER 3D */
+.showcase-swiper-3d {
+  padding: 30px 0 60px 0;
+  overflow: visible !important;
+}
+
+.showcase-swiper-3d .swiper-slide {
+  width: 380px;
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@media (max-width: 768px) {
+  .showcase-swiper-3d .swiper-slide {
+    width: 280px;
+  }
+}
+
+@media (max-width: 480px) {
+  .showcase-swiper-3d .swiper-slide {
+    width: 220px;
+  }
+}
+
+/* CARD 3D */
+.showcase-card-3d {
+  background: #fff;
+  border: 2px solid #e2e8f0;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  transform-style: preserve-3d;
+  perspective: 1200px;
+  border-radius: 12px;
   position: relative;
-  z-index: 1;
+  cursor: pointer;
+}
+
+.showcase-card-3d::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 12px;
+  padding: 2px;
+  background: linear-gradient(
+    135deg,
+    #2563eb,
+    #3b82f6,
+    #60a5fa,
+    #3b82f6,
+    #2563eb
+  );
+  background-size: 300% 300%;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  animation: borderGlow 4s ease infinite;
+}
+
+@keyframes borderGlow {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.showcase-card-3d:hover::before {
+  opacity: 1;
+}
+
+.showcase-card-3d:hover {
+  border-color: transparent;
+  transform: translateY(-12px) scale(1.02) rotateY(3deg);
+  box-shadow: 0 24px 48px rgba(37, 99, 235, 0.2);
+}
+
+.showcase-card-image-3d {
+  position: relative;
+  overflow: hidden;
+  height: 260px;
+}
+
+.showcase-card-image-3d img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.showcase-card-3d:hover .showcase-card-image-3d img {
+  transform: scale(1.08);
+}
+
+/* OVERLAY */
+.showcase-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(15, 23, 42, 0.85) 0%,
+    rgba(15, 23, 42, 0.15) 50%,
+    transparent 100%
+  );
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  transition: all 0.5s ease;
+  pointer-events: none;
+}
+
+.showcase-card-3d:hover .showcase-card-overlay {
+  background: linear-gradient(
+    to top,
+    rgba(37, 99, 235, 0.85) 0%,
+    rgba(37, 99, 235, 0.2) 50%,
+    transparent 100%
+  );
+}
+
+.showcase-kategori-3d {
+  font-size: 10px;
+  font-weight: 700;
+  color: #fff;
+  text-transform: uppercase;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  padding: 2px 10px;
+  display: inline-block;
+  width: fit-content;
+  margin-bottom: 6px;
+}
+
+.showcase-card-overlay h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 4px 0;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.showcase-card-overlay p {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.5;
+  margin: 0 0 12px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.showcase-detail-btn-3d {
+  display: inline-block;
+  padding: 6px 16px;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  color: #fff;
+  font-weight: 700;
+  font-size: 11px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  width: fit-content;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(4px);
+  pointer-events: auto;
+}
+
+.showcase-detail-btn-3d:hover {
+  background: #fff;
+  color: #2563eb;
+  border-color: #fff;
+}
+
+/* INDIKATOR KLIK KIRI/KANAN */
+.showcase-click-left,
+.showcase-click-right {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 32px;
+  color: rgba(255, 255, 255, 0.3);
+  pointer-events: none;
+  z-index: 2;
+  font-weight: 300;
+  transition: all 0.3s ease;
+  opacity: 0;
+}
+
+.showcase-click-left {
+  left: 12px;
+}
+
+.showcase-click-right {
+  right: 12px;
+}
+
+.showcase-card-3d:hover .showcase-click-left,
+.showcase-card-3d:hover .showcase-click-right {
+  opacity: 1;
+}
+
+.showcase-card-3d:hover .showcase-click-left {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.showcase-card-3d:hover .showcase-click-right {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* PAGINATION */
+.showcase-swiper-3d .swiper-pagination {
+  bottom: 8px !important;
+}
+
+.showcase-swiper-3d .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  border: 2px solid #e2e8f0;
+  background: transparent;
+  opacity: 1;
+  transition: all 0.3s ease;
+  border-radius: 0;
+}
+
+.showcase-swiper-3d .swiper-pagination-bullet-active {
+  background: #2563eb;
+  border-color: #2563eb;
+}
+
+/* ALL LINK */
+.showcase-all-link {
+  text-align: center;
+  margin-top: 24px;
+}
+
+.showcase-btn {
+  display: inline-block;
+  padding: 10px 28px;
+  border: 2px solid #2563eb;
+  color: #2563eb;
+  font-weight: 700;
+  font-size: 13px;
+  text-decoration: none;
+  transition: all 0.2s;
+  background: transparent;
+}
+
+.showcase-btn:hover {
+  background: #2563eb;
+  color: #fff;
+  transform: translateY(-2px);
 }

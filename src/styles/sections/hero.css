@@ -1,628 +1,212 @@
 /* ========================================
-   HERO SECTION - BRUTALISM BLUE
+   HERO SECTION - BRUTALISM BLUE (LEBAR)
    ======================================== */
 
 .hero-section {
-  padding-top: 70px !important;
-  margin-top: 0px !important;
-  padding-bottom: 0px !important;
-  padding: 100px 0 40px;
+  padding: 60px 0 40px;
   overflow: hidden;
   position: relative;
 }
 
-.hero-name {
-  font-size: clamp(45px, 5vw, 55px);
-  font-weight: 800;
-  line-height: 1.04;
-  letter-spacing: -0.035em;
-  margin-bottom: 16px;
-  color: var(--text-primary);
+/* CONTAINER - LEBAR */
+.hero-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* ← 2 KOLOM */
+  gap: 60px;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 1;
 }
 
-.hero-country {
-  font-size: clamp(12px, 2vw, 18px);
-  font-weight: 600;
-  line-height: 1.04;
-  letter-spacing: -0.035em;
-  margin-bottom: 20px;
-  color: #000000;
+/* LEFT - TEKS */
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* RIGHT - FOTO */
+.hero-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ============================================
+   OPEN TO WORK
+   ============================================ */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 2px solid #22c55e;
+  padding: 6px 16px;
+  width: fit-content;
+  background: rgba(34, 197, 94, 0.05);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background: #22c55e;
+  display: inline-block;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.status-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #22c55e;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.status-type {
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+/* ============================================
+   HERO NAME
+   ============================================ */
+.hero-name {
+  font-size: clamp(38px, 5vw, 54px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: #0f172a;
+  margin: 4px 0;
 }
 
 .accent {
-  color: var(--accent-blue);
-  background: none;
-  -webkit-background-clip: unset;
-  -webkit-text-fill-color: var(--accent-blue);
-  background-clip: unset;
-  padding-bottom: 2px;
+  color: #2563eb;
 }
 
 /* ============================================
    SKILL TAGS
    ============================================ */
-.skill-tag-glow {
-  display: inline-block;
-  border: 2px solid #151414;
-  padding: 6px 13px;
-  margin: 4px 4px;
-  font-size: 12px;
-  font-weight: 600;
-  color: #151414;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-  cursor: default;
-  opacity: 0;
-  transform: translateY(15px) scale(0.95);
+.hero-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 8px 0;
 }
 
-.skill-tag-glow.show {
-  opacity: 1;
-  transform: translateY(0) scale(1);
+.skill-tag-glow {
+  display: inline-block;
+  border: 2px solid #2563eb;
+  padding: 6px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #2563eb;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.2s;
+  background: rgba(37, 99, 235, 0.05);
+  cursor: default;
 }
 
 .skill-tag-glow:hover {
-  background: #151414;
+  background: #2563eb;
   color: #fff;
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
+  transform: translateY(-2px);
 }
 
 /* ============================================
-   BADGE PORTFOLIO
+   BUTTONS
    ============================================ */
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: transparent;
-  border: 2px solid var(--accent-blue);
-  padding: 6px 16px;
-  margin-bottom: 24px;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--text-secondary);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
-.badge-dot {
-  width: 8px;
-  height: 8px;
-  background: var(--accent-blue);
-  border-radius: 0px;
-  flex-shrink: 0;
-  animation: none;
-}
-
-/* ============================================
-   HERO DESC
-   ============================================ */
-.hero-desc {
-  color: var(--text-secondary);
-  font-size: 16px;
-  line-height: 1.7;
-  margin-bottom: 28px;
-  max-width: 460px;
-  font-weight: 400;
-}
-
 .hero-buttons {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
+  margin-top: 8px;
 }
 
-.hero-image {
-  display: flex;
-  justify-content: center;
-}
-
-/* ============================================
-   BRUTAL PHOTO — WRAPPER RAMAI
-   ============================================ */
-.brutal-photo {
-  position: relative;
-  width: fit-content;
-  padding: 34px 30px 40px;
-}
-
-/* blok warna offset di belakang, bikin "ramai" dari default */
-.bp-block {
-  position: absolute;
-  border: 3px solid var(--accent-blue);
-  z-index: 0;
-  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.bp-block-1 {
-  inset: 10px 0 0 10px;
-  background: var(--accent-blue);
-  transform: rotate(-3deg);
-}
-
-.bp-block-2 {
-  inset: 0 10px 10px 0;
-  background: transparent;
-  transform: rotate(2.5deg);
-}
-
-.brutal-photo:hover .bp-block-1 {
-  transform: rotate(-6deg) translate(-6px, -4px);
-}
-
-.brutal-photo:hover .bp-block-2 {
-  transform: rotate(5deg) translate(6px, 4px);
-}
-
-/* pola dot halftone di sudut */
-.bp-dots {
-  position: absolute;
-  top: -14px;
-  right: -6px;
-  width: 70px;
-  height: 70px;
-  background-image: radial-gradient(var(--accent-blue) 2px, transparent 2px);
-  background-size: 10px 10px;
-  opacity: 0.55;
-  z-index: 0;
-  transition: transform 0.35s ease;
-}
-
-.brutal-photo:hover .bp-dots {
-  transform: translate(6px, -6px) scale(1.1);
-}
-
-/* crosshair registration marks */
-.bp-mark {
-  position: absolute;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 1;
-  color: var(--accent-blue);
-  z-index: 4;
-  user-select: none;
-}
-
-.bp-mark-tl {
-  top: 14px;
-  left: 6px;
-}
-
-.bp-mark-br {
-  bottom: 18px;
-  right: 12px;
-}
-
-/* label tag PORTRAIT */
-.bp-tag {
-  position: absolute;
-  top: -6px;
-  left: 22px;
-  z-index: 5;
-  display: flex;
-  flex-direction: column;
-  background: var(--bg-card);
-  border: 2px solid var(--accent-blue);
-  padding: 4px 10px;
-  transform: rotate(-2deg);
-  transition:
-    transform 0.3s ease,
-    background 0.3s ease;
-}
-
-.bp-tag-2 {
-  position: absolute;
-  top: -20px;
-  left: 180px;
-  z-index: 5;
-  display: flex;
-  flex-direction: column;
-  background: var(--bg-card);
-  border: 2px solid var(--accent-blue);
-  padding: 4px 10px;
-  transform: rotate(-2deg);
-  transition:
-    transform 0.3s ease,
-    background 0.3s ease;
-}
-.bp-tag span:first-child {
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.1em;
-  color: var(--accent-blue);
-}
-
-.bp-tag-2 span:first-child {
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.1em;
-  color: var(--accent-blue);
-}
-
-.bp-tag-sub {
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  color: var(--text-muted);
-}
-
-.bp-tag-sub-2 {
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  color: var(--text-muted);
-}
-
-.brutal-photo:hover .bp-tag {
-  transform: rotate(0deg) translateY(-3px);
-  background: var(--accent-blue);
-}
-
-.brutal-photo:hover .bp-tag span {
-  color: #fff !important;
-}
-
-/* strip tape diagonal */
-.bp-tape {
-  position: absolute;
-  bottom: 16px;
-  left: -14px;
-  width: 90px;
-  height: 22px;
-  background: repeating-linear-gradient(
-    45deg,
-    var(--accent-blue),
-    var(--accent-blue) 6px,
-    transparent 6px,
-    transparent 12px
-  );
-  opacity: 0.5;
-  transform: rotate(-40deg);
-  z-index: 4;
-  transition:
-    transform 0.3s ease,
-    opacity 0.3s ease;
-}
-
-.brutal-photo:hover .bp-tape {
-  transform: rotate(-40deg) translate(-4px, 4px);
-  opacity: 0.85;
-}
-
-/* stempel POW! muncul cuma pas punch */
-.bp-stamp {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 10;
-  font-size: 34px;
-  font-weight: 900;
-  letter-spacing: 0.02em;
+.btn-p {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #2563eb;
   color: #fff;
-  -webkit-text-stroke: 2px var(--accent-blue);
-  transform: translate(-50%, -50%) scale(0) rotate(-15deg);
-  opacity: 0;
-  pointer-events: none;
+  padding: 12px 28px;
+  font-weight: 700;
+  font-size: 13px;
+  text-decoration: none;
+  border: 2px solid #2563eb;
+  transition: all 0.2s;
+  cursor: pointer;
 }
 
-.brutal-photo.punch .bp-stamp {
-  animation: stampPop 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+.btn-p:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
 }
 
-@keyframes stampPop {
-  0% {
-    transform: translate(-50%, -50%) scale(0) rotate(-15deg);
-    opacity: 0;
-  }
-  30% {
-    transform: translate(-50%, -50%) scale(1.3) rotate(-10deg);
-    opacity: 1;
-  }
-  45% {
-    transform: translate(-50%, -50%) scale(1) rotate(-8deg);
-    opacity: 1;
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(1.1) rotate(-8deg);
-    opacity: 0;
-  }
+.btn-g {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  padding: 12px 24px;
+  font-weight: 600;
+  font-size: 13px;
+  border: 2px solid #e2e8f0;
+  text-decoration: none;
+  color: #475569;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.btn-g:hover {
+  border-color: #2563eb;
+  color: #0f172a;
 }
 
 /* ============================================
-   FOTO HERO - BINGKAI BRUTALISM + HOVER/CLICK FX
+   IMAGE
    ============================================ */
-
 .img-wrap {
   display: inline-block;
   position: relative;
-  z-index: 2;
-  border: 4px solid var(--accent-blue);
-  padding: 8px;
-  transition:
-    transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
-    box-shadow 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
-    border-color 0.25s ease;
-  cursor: pointer;
-  background: var(--bg-card);
-  box-shadow: 6px 6px 0 rgba(37, 99, 235, 0.35);
+  border: 4px solid #2563eb;
+  padding: 6px;
+  background: #fff;
+  box-shadow: 6px 6px 0 rgba(37, 99, 235, 0.25);
+  transition: all 0.2s;
 }
 
-/* Efek bayangan brutal (default) */
-.img-wrap::before {
-  content: '';
-  position: absolute;
-  inset: -8px;
-  border: 2px solid var(--border);
-  z-index: -1;
-  transition: all 0.25s ease;
-}
-
-/* HOVER — bingkai membesar, shadow keras offset, sedikit skew */
 .img-wrap:hover {
-  transform: translate(-6px, -6px) rotate(-1deg);
-  border-color: #60a5fa;
-  box-shadow: 14px 14px 0 var(--accent-blue);
+  transform: translate(-3px, -3px);
+  box-shadow: 10px 10px 0 rgba(37, 99, 235, 0.25);
 }
 
-.img-wrap:hover::before {
-  inset: -12px;
-  border-color: var(--accent-blue);
-}
-
-/* Gambar utama */
-.img-wrap img.hero-img {
+.hero-img {
   display: block;
+  max-width: 350px;
   width: 100%;
-  max-width: 370px;
-  border-radius: 0px;
-  filter: grayscale(0.15);
-  position: relative;
-  z-index: 3;
-  transition: filter 0.25s ease;
+  filter: grayscale(0.05);
+  transition: filter 0.2s;
 }
 
-.img-wrap:hover img.hero-img {
+.img-wrap:hover .hero-img {
   filter: grayscale(0);
 }
 
-/* Corner dekorasi */
-.img-wrap .corner {
-  display: block;
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  border-color: var(--accent-blue);
-  border-style: solid;
-  border-width: 0;
-  opacity: 0;
-  transition: all 0.25s ease;
-  z-index: 4;
-}
-
-.img-wrap .corner.tl {
-  top: -4px;
-  left: -4px;
-  border-top-width: 3px;
-  border-left-width: 3px;
-}
-
-.img-wrap .corner.br {
-  bottom: -4px;
-  right: -4px;
-  border-bottom-width: 3px;
-  border-right-width: 3px;
-}
-
-.img-wrap:hover .corner {
-  opacity: 1;
-  width: 30px;
-  height: 30px;
-}
-
-/* Ghost duplikat gambar buat RGB-split / glitch pas hover */
-.img-wrap .ghost-r,
-.img-wrap .ghost-b {
-  position: absolute;
-  inset: 8px;
-  z-index: 1;
-  opacity: 0;
-  overflow: hidden;
-  pointer-events: none;
-  mix-blend-mode: screen;
-  transition:
-    opacity 0.2s ease,
-    transform 0.2s ease;
-}
-
-.img-wrap .ghost-r img,
-.img-wrap .ghost-b img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.img-wrap .ghost-r {
-  filter: sepia(1) saturate(6) hue-rotate(180deg);
-}
-
-.img-wrap .ghost-b {
-  filter: sepia(1) saturate(6) hue-rotate(300deg);
-}
-
-.img-wrap:hover .ghost-r {
-  opacity: 0.55;
-  transform: translate(4px, 0);
-}
-
-.img-wrap:hover .ghost-b {
-  opacity: 0.55;
-  transform: translate(-4px, 2px);
-}
-
-/* garis scan yang nyapu turun pas hover */
-.img-wrap .scanline {
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 3px;
-  top: 0;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--accent-blue),
-    transparent
-  );
-  opacity: 0;
-  z-index: 5;
-  pointer-events: none;
-}
-
-.img-wrap:hover .scanline {
-  opacity: 0.9;
-  animation: scanSweep 1.4s linear infinite;
-}
-
-@keyframes scanSweep {
-  0% {
-    top: 0;
-  }
-  100% {
-    top: 100%;
-  }
-}
-
-/* ============================================
-   PUNCH EFFECT — pas diklik
-   ============================================ */
-.img-wrap.punch,
-.brutal-photo.punch .img-wrap {
-  animation: punchShake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97);
-}
-
-.brutal-photo.punch .img-wrap::before {
-  animation: punchFlashBorder 0.5s ease;
-}
-
-.brutal-photo.punch .ghost-r {
-  animation: punchGhostR 0.5s ease;
-}
-
-.brutal-photo.punch .ghost-b {
-  animation: punchGhostB 0.5s ease;
-}
-
-.brutal-photo.punch img.hero-img {
-  animation: punchFlash 0.5s ease;
-}
-
-.brutal-photo.punch .bp-block-1 {
-  animation: punchBlock1 0.5s ease;
-}
-
-.brutal-photo.punch .bp-block-2 {
-  animation: punchBlock2 0.5s ease;
-}
-
-@keyframes punchShake {
-  0% {
-    transform: scale(1) translate(0, 0) rotate(0deg);
-  }
-  15% {
-    transform: scale(0.94) translate(-8px, 4px) rotate(-2deg);
-    box-shadow: -16px 16px 0 var(--accent-blue);
-  }
-  35% {
-    transform: scale(1.04) translate(6px, -4px) rotate(1.5deg);
-    box-shadow: 14px -12px 0 var(--accent-blue);
-  }
-  55% {
-    transform: scale(0.99) translate(-3px, 2px) rotate(-0.5deg);
-    box-shadow: -6px 6px 0 var(--accent-blue);
-  }
-  75% {
-    transform: scale(1.01) translate(2px, -1px) rotate(0.3deg);
-    box-shadow: 6px -4px 0 var(--accent-blue);
-  }
-  100% {
-    transform: scale(1) translate(0, 0) rotate(0deg);
-  }
-}
-
-@keyframes punchFlashBorder {
-  0% {
-    border-color: var(--border);
-  }
-  20% {
-    border-color: #fff;
-    inset: -22px;
-  }
-  100% {
-    border-color: var(--border);
-    inset: -8px;
-  }
-}
-
-@keyframes punchFlash {
-  0%,
-  100% {
-    filter: grayscale(0) brightness(1);
-  }
-  20% {
-    filter: grayscale(0) brightness(1.9) contrast(1.3);
-  }
-}
-
-@keyframes punchGhostR {
-  0% {
-    opacity: 0;
-    transform: translate(0, 0);
-  }
-  20% {
-    opacity: 0.9;
-    transform: translate(16px, -8px);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(0, 0);
-  }
-}
-
-@keyframes punchGhostB {
-  0% {
-    opacity: 0;
-    transform: translate(0, 0);
-  }
-  20% {
-    opacity: 0.9;
-    transform: translate(-16px, 10px);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(0, 0);
-  }
-}
-
-@keyframes punchBlock1 {
-  0%,
-  100% {
-    transform: rotate(-3deg);
-  }
-  30% {
-    transform: rotate(-10deg) translate(-10px, -8px);
-  }
-}
-
-@keyframes punchBlock2 {
-  0%,
-  100% {
-    transform: rotate(2.5deg);
-  }
-  30% {
-    transform: rotate(9deg) translate(10px, 8px);
-  }
+.corner {
+  display: none;
 }
 
 /* ============================================
@@ -631,185 +215,67 @@
 .hero-section .social-links {
   display: flex;
   justify-content: center;
-  gap: 14px;
-  margin-top: 40px;
+  gap: 16px;
+  margin-top: 30px;
   flex-wrap: wrap;
 }
 
 /* ============================================
-   OPEN TO WORK BADGE
-   ============================================ */
-.status-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  background: transparent;
-  border: 2px solid var(--accent-blue);
-  padding: 6px 14px;
-  margin-bottom: 20px;
-  margin-left: 5px;
-  width: fit-content;
-}
-
-.status-dot {
-  width: 8px;
-  height: 8px;
-  background: var(--accent-green);
-  border-radius: 0px;
-  display: inline-block;
-  animation: none;
-}
-
-.status-label {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.status-type {
-  font-size: 12px;
-  color: var(--text-muted);
-}
-
-/* ============================================
-   SECTION TAGS
-   ============================================ */
-.section-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  color: var(--accent-blue);
-  margin-bottom: -130px !important;
-}
-
-.section-tag::before {
-  content: '';
-  display: block;
-  width: 18px;
-  height: 2px;
-  background: var(--accent-blue);
-  border-radius: 0px;
-}
-
-.section-tag.center {
-  justify-content: center;
-}
-
-.section-title {
-  font-size: 28px;
-  font-weight: 800;
-  color: var(--text-primary);
-  margin-bottom: 10px;
-  letter-spacing: -0.02em;
-}
-
-.section-title-center {
-  font-size: clamp(26px, 4vw, 34px);
-  font-weight: 800;
-  color: var(--text-primary);
-  margin-bottom: 6px;
-  letter-spacing: -0.02em;
-  text-align: center;
-}
-
-/* ============================================
-   POPUP KONFIRMASI CV
-   ============================================ */
-.popup-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(4px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 99999;
-  padding: 20px;
-}
-
-.popup-content {
-  background: var(--bg-card);
-  border: 2px solid var(--accent-blue);
-  box-shadow: 8px 8px 0 rgba(37, 99, 235, 0.3);
-  padding: 30px 40px;
-  max-width: 400px;
-  width: 90%;
-  text-align: center;
-  animation: slideUp 0.3s ease;
-}
-
-.popup-content h3 {
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin-bottom: 12px;
-}
-
-.popup-content p {
-  font-size: 14px;
-  color: var(--text-secondary);
-  margin-bottom: 20px;
-}
-
-.popup-content strong {
-  color: var(--accent-blue);
-  font-size: 24px;
-}
-
-.popup-cancel {
-  background: transparent;
-  border: 2px solid var(--border);
-  color: var(--text-secondary);
-  padding: 8px 24px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.popup-cancel:hover {
-  border-color: var(--accent-blue);
-  color: var(--text-primary);
-}
-
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ============================================
-   RESPONSIVE
+   RESPONSIVE - TETAP LEBAR DI HP
    ============================================ */
 @media (max-width: 768px) {
-  .brutal-photo {
-    padding: 24px 20px 30px;
+  .hero-container {
+    grid-template-columns: 1fr; /* ← JADI 1 KOLOM DI HP */
+    gap: 30px;
+    text-align: center;
   }
-  .bp-dots {
-    width: 46px;
-    height: 46px;
+
+  .hero-left {
+    align-items: center;
   }
-  .bp-tag {
-    left: 10px;
+
+  .hero-skills {
+    justify-content: center;
   }
-  .bp-tape {
-    width: 60px;
+
+  .hero-buttons {
+    justify-content: center;
   }
-  .bp-stamp {
-    font-size: 24px;
+
+  .status-badge {
+    margin: 0 auto;
+  }
+
+  .hero-img {
+    max-width: 260px;
+  }
+
+  .hero-name {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    padding: 20px 0 10px;
+  }
+
+  .hero-name {
+    font-size: 28px;
+  }
+
+  .skill-tag-glow {
+    font-size: 10px;
+    padding: 4px 12px;
+  }
+
+  .btn-p,
+  .btn-g {
+    font-size: 12px;
+    padding: 10px 18px;
+  }
+
+  .hero-img {
+    max-width: 200px;
   }
 }

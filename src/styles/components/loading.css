@@ -1,126 +1,53 @@
 /* ========================================
-   LOADING SCREEN - BRUTALISM BLUE
+   LOADING SCREEN
    ======================================== */
 
 .loading-screen {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: var(--bg);
+  inset: 0;
+  background: #0f172a;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   z-index: 99999;
-  gap: 20px;
+  gap: 16px;
 }
 
 .loading-avatar {
   width: 80px;
   height: 80px;
-  border-radius: 0px;
-  object-fit: cover;
-  border: 3px solid var(--border);
-  box-shadow: 6px 6px 0 0 var(--border);
+  border-radius: 50%;
+  border: 2px solid var(--accent-blue);
 }
 
 .loading-name {
-  font-size: 32px;
+  color: #fff;
+  font-size: 20px;
   font-weight: 800;
-  color: var(--text-primary);
-  letter-spacing: 0.05em;
 }
 
 .loading-subtitle {
+  color: #94a3b8;
   font-size: 12px;
-  color: var(--text-muted);
-  letter-spacing: 0.15em;
   text-transform: uppercase;
-}
-
-.loading-progress-container {
-  width: 260px;
-  position: relative;
+  letter-spacing: 0.15em;
 }
 
 .loading-progress-bar {
-  width: 100%;
-  height: 4px;
-  background: var(--border-light);
-  border-radius: 0px;
+  width: 200px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.1);
   overflow: hidden;
-  margin-bottom: 14px;
 }
 
 .loading-progress-fill {
   height: 100%;
-  border-radius: 0px;
   background: var(--accent-blue);
-  width: 0%;
   transition: width 0.1s linear;
-  box-shadow: none;
-}
-
-.loading-progress-status {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 .loading-phase {
+  color: var(--accent-blue-light);
   font-size: 11px;
-  color: var(--text-muted);
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-}
-
-.loading-percentage {
-  font-size: 11px;
-  color: var(--text-primary);
-  font-weight: 700;
-  font-family: monospace;
-}
-
-.loading-dots {
-  display: flex;
-  gap: 8px;
-  margin-top: 48px;
-}
-
-.loading-dots span {
-  width: 8px;
-  height: 8px;
-  background: var(--border);
-  border-radius: 0px;
-  transition: opacity 0.1s;
-}
-
-.loading-spinner-small {
-  display: inline-block;
-  width: 24px;
-  height: 24px;
-  border: 2px solid var(--border);
-  border-top-color: var(--accent-blue);
-  border-radius: 0px;
-  animation: spin 0.6s linear infinite;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.send-btn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-  transform: none;
-}
-
-.contact-input:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
 }

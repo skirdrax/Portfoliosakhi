@@ -7,28 +7,19 @@
   align-items: center;
   gap: 8px;
   background: var(--accent-blue);
-  color: #ffffff;
+  color: #fff;
   padding: 12px 28px;
-  border-radius: 0px;
   font-weight: 700;
-  font-size: 14px;
-  letter-spacing: 0.03em;
+  font-size: 13px;
   text-decoration: none;
-  border: 2px solid var(--accent-blue-dark);
-  box-shadow: 4px 4px 0 0 var(--accent-blue-dark);
-  transition: all 0.08s ease;
+  transition: all 0.2s;
+  border: 2px solid var(--accent-blue);
   cursor: pointer;
-  text-transform: uppercase;
 }
 
 .btn-p:hover {
-  transform: translate(3px, 3px);
-  box-shadow: 1px 1px 0 0 var(--accent-blue-dark);
   background: var(--accent-blue-dark);
-}
-
-.btn-p::after {
-  display: none;
+  transform: translateY(-2px);
 }
 
 .btn-g {
@@ -36,66 +27,23 @@
   align-items: center;
   gap: 8px;
   background: transparent;
-  color: var(--text-primary);
-  padding: 12px 28px;
-  border-radius: 0px;
+  padding: 12px 24px;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 13px;
   border: 2px solid var(--border);
   text-decoration: none;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  transition: all 0.08s ease;
+  color: var(--text-secondary);
+  transition: all 0.2s;
   cursor: pointer;
 }
 
 .btn-g:hover {
-  background: var(--accent-blue);
-  color: #ffffff;
   border-color: var(--accent-blue);
-  transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0 0 var(--accent-blue-dark);
+  color: var(--text-primary);
 }
 
 .btn-block {
   display: block;
-  text-align: center;
   width: 100%;
-}
-
-/* Theme Toggle - Brutalism Blue */
-.theme-toggle {
-  position: fixed;
-  top: 100px;
-  right: 20px;
-  width: 44px;
-  height: 44px;
-  border-radius: 0px;
-  background: var(--bg-card);
-  border: 2px solid var(--border);
-  box-shadow: 4px 4px 0 0 var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9997;
-  transition: all 0.08s ease;
-  cursor: pointer;
-}
-
-.theme-toggle:hover {
-  transform: translate(3px, 3px);
-  box-shadow: 1px 1px 0 0 var(--border);
-  background: var(--accent-blue);
-}
-
-.theme-toggle:hover svg {
-  stroke: #ffffff;
-}
-
-@media (max-width: 768px) {
-  .theme-toggle {
-    top: auto;
-    bottom: 80px;
-    right: 16px;
-  }
+  text-align: center;
 }

@@ -1,110 +1,39 @@
 /* ========================================
-   CONTAINER & LAYOUT - BRUTALISM BLUE
+   RESPONSIVE
    ======================================== */
 
-.container {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 24px;
-}
-
-section {
-  padding: 60px 0;
-  position: relative;
-}
-
+/* TABLET */
 @media (max-width: 768px) {
   .container {
     padding: 0 16px;
   }
+
   section {
-    padding: 40px 0;
+    padding: 40px 0 !important;
+  }
+
+  .hero-name {
+    font-size: 32px !important;
   }
 }
 
-/* Grid Background */
-.grid-bg {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  background-image:
-    linear-gradient(var(--grid-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-  background-size: 40px 40px;
-  animation: gridMove 10s linear infinite;
-  mask-image: radial-gradient(
-    ellipse 80% 60% at 50% 30%,
-    black 40%,
-    transparent 100%
-  );
-  -webkit-mask-image: radial-gradient(
-    ellipse 80% 60% at 50% 30%,
-    black 40%,
-    transparent 100%
-  );
-}
-
-.glow {
-  display: none;
-}
-
-/* Shimmer */
-.shimmer {
-  height: 2px;
-  margin: 80px 0;
-  background: var(--border);
-  animation: none;
-}
-
-/* Divider */
-.divider {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin: 80px 0;
-}
-
-.divider::before,
-.divider::after {
-  content: '';
-  flex: 1;
-  height: 2px;
-  background: var(--border);
-}
-
-.d-dot {
-  width: 8px;
-  height: 8px;
-  background: var(--accent-blue);
-  border-radius: 0px;
-}
-
-/* ============================================
-   MOBILE FIX (AMAN)
-   ============================================ */
-
+/* MOBILE */
 @media (max-width: 480px) {
-  /* biar gak kepanjangan */
-  .skill-tag-glow {
-    font-size: 10px;
-    padding: 4px 10px;
-    margin: 3px;
+  .container {
+    padding: 0 12px;
   }
 
-  .social-links {
-    gap: 8px;
-    flex-wrap: wrap;
-    justify-content: center;
+  section {
+    padding: 30px 0 !important;
   }
 
-  .visitor-badge {
-    max-width: 200px;
+  .hero-name {
+    font-size: 28px !important;
   }
 
   .btn-p,
   .btn-g {
-    font-size: 12px;
-    padding: 10px 18px;
+    font-size: 12px !important;
+    padding: 10px 18px !important;
   }
 }

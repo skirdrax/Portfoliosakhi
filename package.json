@@ -17,6 +17,7 @@
     "country-flag-icons": "^1.6.20",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-router-dom": "^7.18.2",
     "swiper": "^12.2.0",
     "tailwindcss": "^4.1.11"
   },

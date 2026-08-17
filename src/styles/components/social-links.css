@@ -1,83 +1,42 @@
-/* ========================================
-   SOCIAL LINKS - BRUTALISM BLUE
-   ======================================== */
+/* ============================================
+   SOCIAL LINKS & VISITOR
+   ============================================ */
 
 .social-links {
   display: flex;
   justify-content: center;
   gap: 16px;
-  margin-top: 30px;
-  margin-bottom: 20px;
   flex-wrap: wrap;
+  margin-bottom: 12px; /* ← JARAK KE VISITOR */
 }
 
 .social-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 0px;
-  background: transparent;
-  border: 2px solid var(--border);
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-secondary);
-  transition: all 0.08s ease;
-  cursor: pointer;
+  border: 2px solid #e2e8f0;
+  color: #475569;
+  transition: all 0.2s;
 }
 
 .social-icon:hover {
-  background: var(--accent-blue);
-  color: #ffffff;
-  border-color: var(--accent-blue);
-  transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0 0 var(--accent-blue-dark);
+  border-color: #2563eb;
+  color: #2563eb;
+  transform: translateY(-2px);
 }
 
-.social-icon svg {
-  transition: none;
-}
-
-.social-icon:hover svg {
-  transform: none;
-}
-
-/* Visitor Counter - Brutalism Blue */
 .visitor-counter {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  margin-top: 16px;
-  margin-bottom: 20px;
-  padding: 8px 20px;
-  background: transparent;
-  border: 2px solid var(--border);
-  border-radius: 0px;
-  width: fit-content;
-  margin-left: auto;
-  margin-right: auto;
-  transition: all 0.08s ease;
-}
-
-.visitor-counter:hover {
-  border-color: var(--accent-blue);
-  transform: translate(2px, 2px);
-}
-
-.visitor-icon {
-  font-size: 16px;
-}
-
-.visitor-label {
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  gap: 8px;
+  font-size: 13px;
+  color: #94a3b8;
 }
 
 .visitor-badge {
-  height: 20px;
-  border-radius: 0px;
-  filter: none;
+  max-width: 200px;
+  height: auto;
 }
