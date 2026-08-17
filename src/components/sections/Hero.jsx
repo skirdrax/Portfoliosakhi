@@ -14,12 +14,14 @@ export default function Hero({ displayText, FULL_TEXT }) {
   ];
 
   const [showPopup, setShowPopup] = useState(false);
+  // 🔽 UBAH: dari 3 menjadi 1
   const [countdown, setCountdown] = useState(3);
   const [intervalId, setIntervalId] = useState(null);
 
   const handleCvClick = (e) => {
     e.preventDefault();
     setShowPopup(true);
+    // 🔽 UBAH: dari 3 menjadi 1
     setCountdown(3);
 
     const id = setInterval(() => {
@@ -27,7 +29,7 @@ export default function Hero({ displayText, FULL_TEXT }) {
         if (prev <= 1) {
           clearInterval(id);
           window.open(
-            'https://drive.google.com/file/d/1O-GQlWVCwO26ITMujxC6bZAkJq90rq5N/view?usp=sharing',
+            'https://drive.google.com/file/d/11lnmxdH_GMxtiGpDusohWX64mQSOOwmb/view?usp=drive_link',
             '_blank',
           );
           setShowPopup(false);
@@ -36,30 +38,30 @@ export default function Hero({ displayText, FULL_TEXT }) {
         return prev - 1;
       });
     }, 1000);
-
     setIntervalId(id);
   };
 
   const cancelPopup = () => {
     if (intervalId) clearInterval(intervalId);
     setShowPopup(false);
-    setCountdown(3);
+    // 🔽 UBAH: dari 3 menjadi 1
+    setCountdown(1);
   };
 
   return (
     <section className="hero-section">
       <div className="grid-bg" />
       <div className="glow" />
-
       <div className="hero-container">
-        {/* LEFT - TEXT */}
         <div className="hero-left">
-          <div className="status-badge">
+          {/* ✅ STATUS BADGE - 300ms */}
+          <div className="status-badge" data-aos="fade-up" data-aos-delay="100">
             <span className="status-dot"></span>
             <span className="status-label">AVAILABLE FOR WORK</span>
           </div>
 
-          <p className="hero-location">
+          {/* ✅ LOCATION - 350ms */}
+          <p className="hero-location" data-aos="fade-up" data-aos-delay="100">
             Based in Indonesia
             <svg
               width="22"
@@ -74,13 +76,15 @@ export default function Hero({ displayText, FULL_TEXT }) {
               <rect y="8" width="22" height="8" fill="#ffffff" />
             </svg>
           </p>
-          <h1 className="hero-name">
-            Hi, I'm
-            <br />
+
+          {/* ✅ HERO NAME - 400ms */}
+          <h1 className="hero-name" data-aos="fade-up" data-aos-delay="100">
+            Hi, I'm <br />
             <span className="accent">{displayText || FULL_TEXT}</span>
           </h1>
 
-          <div className="hero-skills">
+          {/* ✅ SKILLS - 450ms */}
+          <div className="hero-skills" data-aos="fade-up" data-aos-delay="100">
             {skills.map((skill, i) => (
               <span key={i} className="skill-tag-glow show">
                 {skill}
@@ -88,7 +92,8 @@ export default function Hero({ displayText, FULL_TEXT }) {
             ))}
           </div>
 
-          <div className="hero-buttons">
+          {/* ✅ BUTTONS - 500ms */}
+          <div className="hero-buttons" data-aos="fade-up" data-aos-delay="100">
             <a href="#" className="btn-p" onClick={handleCvClick}>
               View My CV
               <svg
@@ -117,7 +122,7 @@ export default function Hero({ displayText, FULL_TEXT }) {
         </div>
 
         {/* RIGHT - IMAGE */}
-        <div className="hero-right">
+        <div className="hero-right" data-aos="fade-left" data-aos-delay="400">
           <div className="img-wrap">
             <div className="corner tl" />
             <div className="corner br" />
@@ -135,7 +140,7 @@ export default function Hero({ displayText, FULL_TEXT }) {
       {showPopup && (
         <div className="popup-overlay" onClick={cancelPopup}>
           <div className="popup-content" onClick={(e) => e.stopPropagation()}>
-            <h3>⏳ You will be redirected to Google Drive</h3>
+            <h3>You will be redirected to Google Drive</h3>
             <p>
               Redirecting in <strong>{countdown}</strong> seconds...
             </p>

@@ -340,3 +340,131 @@
   background: rgba(37, 99, 235, 0.25);
   filter: blur(16px);
 }
+
+/* ============================================
+   BUTTONS - NEO-BRUTALISM BLUE
+   ============================================ */
+.hero-buttons {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+/* TOMBOL UTAMA: VIEW MY CV */
+.btn-p {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #2563eb;
+  color: #ffffff;
+  padding: 12px 24px;
+  font-weight: 800;
+  font-size: 13px;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border: 2px solid #0f172a;
+  border-radius: 0px;
+  box-shadow: 4px 4px 0px #0f172a;
+  transition:
+    transform 0.15s cubic-bezier(0.2, 0, 0, 1),
+    box-shadow 0.15s cubic-bezier(0.2, 0, 0, 1),
+    background-color 0.15s ease;
+  cursor: pointer;
+  user-select: none;
+}
+
+.btn-p:hover {
+  background: #1d4ed8;
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #0f172a;
+}
+
+.btn-p:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px #0f172a;
+}
+
+/* TOMBOL SEKUNDER: PROJECTS */
+.btn-g {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #ffffff;
+  color: #0f172a;
+  padding: 12px 24px;
+  font-weight: 800;
+  font-size: 13px;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border: 2px solid #0f172a;
+  border-radius: 0px;
+  box-shadow: 4px 4px 0px #0f172a;
+  transition:
+    transform 0.15s cubic-bezier(0.2, 0, 0, 1),
+    box-shadow 0.15s cubic-bezier(0.2, 0, 0, 1),
+    background-color 0.15s ease,
+    color 0.15s ease;
+  cursor: pointer;
+  user-select: none;
+}
+
+.btn-g:hover {
+  background: #f8fafc;
+  color: #2563eb;
+  border-color: #0f172a;
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #2563eb;
+}
+
+.btn-g:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px #2563eb;
+}
+
+/* IKON SVG DI DALAM TOMBOL */
+.btn-p svg,
+.btn-g svg {
+  transition: transform 0.2s ease;
+}
+
+.btn-p:hover svg {
+  transform: translate(2px, -2px);
+}
+
+.btn-g:hover svg {
+  transform: translateY(2px);
+}
+
+/* ============================================
+   RESPONSIVE BUTTONS
+   ============================================ */
+@media (max-width: 480px) {
+  .hero-buttons {
+    gap: 10px;
+    width: 100%;
+  }
+
+  .btn-p,
+  .btn-g {
+    flex: 1;
+    justify-content: center;
+    font-size: 11px;
+    padding: 10px 14px;
+    box-shadow: 3px 3px 0px #0f172a;
+  }
+
+  .btn-p:hover,
+  .btn-g:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 4px 4px 0px #0f172a;
+  }
+
+  .btn-p:active,
+  .btn-g:active {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0px #0f172a;
+  }
+}

@@ -288,7 +288,7 @@ export default function Navbar() {
       {showPopup && (
         <div className="popup-overlay" onClick={cancelPopup}>
           <div className="popup-content" onClick={(e) => e.stopPropagation()}>
-            <h3>⬇️ Downloading CV...</h3>
+            <h3>Downloading CV...</h3>
             <p>
               Download will start in <strong>{countdown}</strong> seconds...
             </p>

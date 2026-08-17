@@ -17,6 +17,7 @@ import Contact from './pages/Contact';
 
 import { useScrollReveal } from './components/hooks/useScrollReveal';
 import { useCursor } from './components/hooks/useCursor';
+import LoadingScreen from './components/ui/LoadingScreen';
 
 const FULL_TEXT = 'Sakhi Ardra Handaru';
 
@@ -25,6 +26,7 @@ export default function App() {
   const [modalMessage, setModalMessage] = useState('');
   const [isSuccess, setIsSuccess] = useState(false);
   const [showChat, setShowChat] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useScrollReveal();
   useCursor();
@@ -47,10 +49,11 @@ export default function App() {
 
   return (
     <>
+      {' '}
+      {loading && <LoadingScreen onDone={() => setLoading(false)} />}
       <Navbar />
       <div id="cur-dot" />
       <div id="cur-ring" />
-
       <div className="container">
         <Routes>
           <Route path="/" element={<Home FULL_TEXT={FULL_TEXT} />} />
@@ -68,23 +71,19 @@ export default function App() {
           />
         </Routes>
       </div>
-
       <Footer />
-
       <Modal
         show={showModal}
         onClose={() => setShowModal(false)}
         isSuccess={isSuccess}
         message={modalMessage}
       />
-
       <button
         className="chat-toggle"
         onClick={() => setShowChat(!showChat)}
         aria-label="Buka chat">
         💬
       </button>
-
       {showChat && <ChatBotCohere onClose={() => setShowChat(false)} />}
     </>
   );
