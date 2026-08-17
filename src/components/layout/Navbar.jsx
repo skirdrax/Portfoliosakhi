@@ -5,6 +5,7 @@ const links = [
   { label: 'Home', href: '/', id: 'home' },
   { label: 'About', href: '/about', id: 'about' },
   { label: 'Projects', href: '/projects', id: 'projects' },
+  { label: 'Certificates', href: '/certificates', id: 'certificates' }, // ← TAMBAHKAN
   { label: 'Contact', href: '/contact', id: 'contact' },
 ];
 

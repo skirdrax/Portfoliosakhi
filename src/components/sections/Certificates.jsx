@@ -1,10 +1,5 @@
 import { useState } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import { certificates } from '../../data/certificates';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
 
 export default function Certificates() {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -33,50 +28,37 @@ export default function Certificates() {
         </p>
       </div>
 
-      <div data-aos="zoom-in" data-aos-delay="80">
-        <Swiper
-          modules={[Navigation, Pagination, Autoplay]}
-          spaceBetween={24}
-          slidesPerView={1}
-          navigation
-          pagination={{ clickable: true }}
-          autoplay={{ delay: 1500, disableOnInteraction: false }}
-          breakpoints={{
-            640: { slidesPerView: 2 },
-            1024: { slidesPerView: 3 },
-            1280: { slidesPerView: 4 },
-          }}
-          className="certificates-swiper">
-          {certificates.map((cert) => (
-            <SwiperSlide key={cert.id}>
-              <div
-                className="certificate-card"
-                onClick={() => setSelectedImage(cert.image)}>
-                <div className="certificate-image">
-                  <img src={cert.image} alt={cert.title} />
-                  <div className="certificate-overlay">
-                    <span>🔍 Click to view</span>
-                  </div>
-                </div>
-                <div className="certificate-info">
-                  <h3 className="certificate-title">{cert.title}</h3>
-                  <p className="certificate-issuer">{cert.issuer}</p>
-                  <span className="certificate-date">{cert.date}</span>
-                </div>
-                <a
-                  href={cert.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="certificate-link"
-                  onClick={(e) => e.stopPropagation()}>
-                  Verify Certificate →
-                </a>
+      {/* ✅ GRID 4 KOLOM - BUKAN SLIDE */}
+      <div className="certificates-grid">
+        {certificates.map((cert) => (
+          <div
+            key={cert.id}
+            className="certificate-card"
+            onClick={() => setSelectedImage(cert.image)}>
+            <div className="certificate-image">
+              <img src={cert.image} alt={cert.title} />
+              <div className="certificate-overlay">
+                <span>🔍 Click to view</span>
               </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+            </div>
+            <div className="certificate-info">
+              <h3 className="certificate-title">{cert.title}</h3>
+              <p className="certificate-issuer">{cert.issuer}</p>
+              <span className="certificate-date">{cert.date}</span>
+            </div>
+            <a
+              href={cert.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="certificate-link"
+              onClick={(e) => e.stopPropagation()}>
+              Verify Certificate →
+            </a>
+          </div>
+        ))}
       </div>
 
+      {/* MODAL PREVIEW */}
       {selectedImage && (
         <div
           className="cert-modal-overlay"

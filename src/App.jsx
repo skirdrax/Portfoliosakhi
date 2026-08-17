@@ -15,6 +15,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Projects from './pages/Projects';
 import Contact from './pages/Contact';
+import Certificates from './pages/Certificates';
 
 import { useScrollReveal } from './components/hooks/useScrollReveal';
 import { useCursor } from './components/hooks/useCursor';
@@ -27,6 +28,8 @@ export default function App() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [showChat, setShowChat] = useState(false);
   const [loading, setLoading] = useState(true);
+
+  // DI DALAM <Routes>
 
   const location = useLocation(); // ← UNTUK SCROLL KE ATAS
 
@@ -67,6 +70,7 @@ export default function App() {
           <Route path="/" element={<Home FULL_TEXT={FULL_TEXT} />} />
           <Route path="/about" element={<About />} />
           <Route path="/projects" element={<Projects />} />
+          <Route path="/certificates" element={<Certificates />} />;
           <Route
             path="/contact"
             element={
