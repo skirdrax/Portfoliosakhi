@@ -29,7 +29,7 @@ export default function Certificates() {
       </div>
 
       {/* ✅ GRID 4 KOLOM - BUKAN SLIDE */}
-      <div className="certificates-grid">
+      <div className="certificates-grid" data-aos="fade-up" data-aos-delay="70">
         {certificates.map((cert) => (
           <div
             key={cert.id}

@@ -10,46 +10,63 @@ export default function About() {
         data-aos-delay="60">
         Short Profile
       </h2>
-      <div
-        className="about-card reveal d2"
-        data-aos="fade-up"
-        data-aos-delay="70">
-        <p className="about-text">
-          Hi! I'm <strong>Sakhi Ardra Handaru</strong>, an active D4 Software
-          Engineering student at Politeknik Negeri Indramayu with a strong
-          passion for developing innovative and impactful digital solutions. I
-          have expertise in Web Development (React, Laravel, Vite), Database
-          Management (MySQL), UI/UX Design (Figma), SEO, Computer Networks, and
-          Internet of Things (IoT). My internship experience as a Web Developer
-          & SEO Intern at PT Groperti Indonesia has sharpened my technical and
-          professional skills. I am ready to learn, adapt, and bring real change
-          through innovative digital solutions in the ever-evolving tech
-          landscape. Let's connect and explore how we can create a better
-          digital future together! and I am open to collaboration, networking,
-          and exciting opportunities in the tech industry. Let's connect and
-          explore how we can create a better digital future together!
-        </p>
 
-        <div className="stats-wrapper">
-          {[
-            ['6+', 'Projects Completed'],
-            ['1+', 'Years of Experience'],
-          ].map(([n, l], i) => (
-            <div
-              key={i}
-              className="stat-card"
-              data-aos="fade-up"
-              data-aos-delay={80 + i * 20}>
-              <p className="stat-n">
-                {n.split('+')[0]}
-                <span>+</span>
-              </p>
-              <p className="stat-label">{l}</p>
-            </div>
-          ))}
+      {/* ===== DESKRIPSI KIRI - FOTO KANAN ===== */}
+      <div className="about-container">
+        {/* KIRI - DESKRIPSI */}
+        <div className="about-text-wrapper">
+          <p className="about-text" data-aos="fade" data-aos-delay="60">
+            Hi! I'm <strong>Sakhi Ardra Handaru</strong>, an active Informatics
+            Engineering, D4 Software Engineering student at Politeknik Negeri
+            Indramayu with a strong passion for developing innovative and
+            impactful digital solutions. I have expertise in Web Development
+            (React, Laravel, Vite), Database Management (MySQL), UI/UX Design
+            (Figma), Computer Networks, and Internet of Things (IoT), SEO.
+          </p>
+
+          <p className="about-text" data-aos="fade" data-aos-delay="60">
+            I believe that good technology is one that provides a meaningful
+            experience for its users. Currently, I am open to contributing more
+            broadly — whether through internships, collaborative projects, or
+            full-time positions in both industry and government sectors. I am
+            ready to learn, adapt, and through innovative digital solutions.
+          </p>
+
+          <div className="stats-wrapper">
+            {[
+              ['6+', 'Projects Completed'],
+              ['1+', 'Years of Experience'],
+            ].map(([n, l], i) => (
+              <div
+                key={i}
+                className="stat-card"
+                data-aos="fade-up"
+                data-aos-delay={80 + i * 20}>
+                <p className="stat-n">
+                  {n.split('+')[0]}
+                  <span>+</span>
+                </p>
+                <p className="stat-label">{l}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* KANAN - FOTO */}
+        <div className="about-image-wrapper">
+          <div className="about-img-wrap">
+            <img
+              src="/assets/skhi-about.jpeg"
+              alt="Sakhi Ardra"
+              className="about-img"
+            />
+            <div className="about-img-corner tl"></div>
+            <div className="about-img-corner br"></div>
+          </div>
         </div>
       </div>
 
+      {/* Education */}
       <div className="education-section">
         <p
           className="section-tag reveal"
