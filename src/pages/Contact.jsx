@@ -20,8 +20,8 @@ export default function Contact({
         setIsSuccess(data.success);
         setModalMessage(
           data.success
-            ? '✅ Message sent successfully! Thank you, I will reply soon.'
-            : '❌ Failed to send message. Please try again.. maybe wrong word or gmail.',
+            ? ' Message sent successfully! Thank you, I will reply soon.'
+            : ' Failed to send message. Please try again.. maybe wrong word or gmail.',
         );
         setShowModal(true);
         if (data.success) form.reset();
