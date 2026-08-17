@@ -28,19 +28,13 @@ export default function Experience() {
 
   return (
     <div className="magang-section">
-      <p
-        className="section-tag reveal"
-        data-aos="fade-right"
-        data-aos-delay="50">
+      <p className="section-tag reveal" data-aos="fade-right">
         Experience
       </p>
-      <h3
-        className="tools-title reveal d1"
-        data-aos="fade-left"
-        data-aos-delay="60">
+      <h3 className="tools-title reveal d1" data-aos="fade-left">
         Internship Experience
       </h3>
-      <p className="tools-sub reveal d2" data-aos="fade-up" data-aos-delay="70">
+      <p className="tools-sub reveal d2" data-aos="fade-up">
         Real work experience in the industry.
       </p>
 
@@ -51,8 +45,7 @@ export default function Experience() {
             <div
               key={m.id}
               className={`magang-card reveal d${(i % 3) + 1}`}
-              data-aos={i % 2 === 0 ? 'fade-right' : 'fade-left'}
-              data-aos-delay={80 + i * 20}>
+              data-aos={i % 2 === 0 ? 'fade-right' : 'fade-left'}>
               <div className="magang-timeline">
                 <div className="timeline-dot" />
                 {i < MAGANG.length - 1 && <div className="timeline-line" />}

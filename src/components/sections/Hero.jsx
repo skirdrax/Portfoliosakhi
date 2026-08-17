@@ -9,7 +9,7 @@ export default function Hero({ displayText, FULL_TEXT }) {
     'Network Server',
     'DevOps',
     'UI/UX Design',
-    'Internet Of Things',
+    'Internet OfThings',
     'SEO',
   ];
 
@@ -59,6 +59,7 @@ export default function Hero({ displayText, FULL_TEXT }) {
             <span className="status-label">AVAILABLE FOR WORK</span>
           </div>
 
+          <p className="hero-location">🇮🇩 Based in Indonesia</p>
           <h1 className="hero-name">
             Hi, I'm
             <br />
