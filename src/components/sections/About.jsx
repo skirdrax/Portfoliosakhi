@@ -1,4 +1,8 @@
+import { useState } from 'react';
+
 export default function About() {
+  const [imageLoaded, setImageLoaded] = useState(false);
+
   return (
     <section id="tentang">
       <p className="section-tag reveal" data-aos="fade-up" data-aos-delay="50">
@@ -52,14 +56,26 @@ export default function About() {
           </div>
         </div>
 
-        {/* KANAN - FOTO */}
+        {/* KANAN - FOTO DENGAN LOADING */}
         <div className="about-image-wrapper">
-          <div className="about-img-wrap">
+          <div
+            className="about-img-wrap"
+            data-aos="fade-left"
+            data-aos-delay="60">
+            {/* ✅ LOADING EFFECT */}
+            {!imageLoaded && (
+              <div className="about-img-loading">
+                <div className="about-img-spinner"></div>
+              </div>
+            )}
+
             <img
               src="/assets/skhi-about.jpeg"
               alt="Sakhi Ardra"
-              className="about-img"
+              className={`about-img ${imageLoaded ? 'loaded' : ''}`}
+              onLoad={() => setImageLoaded(true)}
             />
+
             <div className="about-img-corner tl"></div>
             <div className="about-img-corner br"></div>
           </div>
