@@ -298,6 +298,7 @@ export default function Navbar() {
             <p>
               Download will start in <strong>{countdown}</strong> seconds...
             </p>
+            <p>Click cancel below to abort</p>
             <button className="popup-cancel" onClick={cancelPopup}>
               Cancel
             </button>
