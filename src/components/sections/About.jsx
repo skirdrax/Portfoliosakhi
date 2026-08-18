@@ -84,16 +84,10 @@ export default function About() {
 
       {/* Education */}
       <div className="education-section">
-        <p
-          className="section-tag reveal"
-          data-aos="fade-up"
-          data-aos-delay="50">
+        <p className="section-tag reveal" data-aos="fade-up">
           Education
         </p>
-        <div
-          className="education-grid reveal d1"
-          data-aos="fade-up"
-          data-aos-delay="60">
+        <div className="education-grid reveal d1" data-aos="fade-up">
           {[
             {
               href: 'https://polindra.ac.id/',
@@ -109,15 +103,14 @@ export default function About() {
               sub: 'Sciences (IPA)',
               year: '2021 — 2024',
             },
-          ].map((e, i) => (
+          ].map((e) => (
             <a
               key={e.href}
               href={e.href}
               className="edu-card"
               target="_blank"
               rel="noopener noreferrer"
-              data-aos="fade-up"
-              data-aos-delay={70 + i * 20}>
+              data-aos="fade-up">
               <div className="edu-logo">
                 <img src={e.img} alt={e.name} />
               </div>
