@@ -131,7 +131,7 @@ export default function Contact({
           method="POST"
           className="contact-form"
           onSubmit={handleSubmit}
-          data-aos="fade-up"
+          data-aos="fade-left"
           data-aos-delay="80">
           <input
             type="hidden"
