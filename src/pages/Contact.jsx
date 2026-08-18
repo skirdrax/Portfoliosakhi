@@ -60,7 +60,7 @@ export default function Contact({
       {/* ===== CONTACT CONTAINER: KIRI SOCIAL LINKS | KANAN FORM ===== */}
       <div className="contact-container">
         {/* KIRI - SOCIAL LINKS VERTIKAL */}
-        <div className="contact-social">
+        <div className="contact-social" data-aos="fade-right">
           <h4 className="contact-social-title">Connect with me</h4>
           <div className="contact-social-links">
             <a
