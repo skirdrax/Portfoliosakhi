@@ -90,7 +90,7 @@ export default function Contact({
           />
         </div>
 
-        <div className="form-group" data-aos="fade-up" data-aos-delay="90">
+        <div className="form-group" data-aos="fade-left" data-aos-delay="90">
           <label>Email</label>
           <input
             type="email"
@@ -101,7 +101,7 @@ export default function Contact({
           />
         </div>
 
-        <div className="form-group" data-aos="fade-up" data-aos-delay="100">
+        <div className="form-group" data-aos="fade-left" data-aos-delay="100">
           <label>Message</label>
           <textarea
             name="message"
@@ -117,7 +117,7 @@ export default function Contact({
           type="submit"
           className="send-btn"
           disabled={isLoading}
-          data-aos="fade-up"
+          data-aos="fade-left"
           data-aos-delay="100">
           {isLoading ? (
             <>
