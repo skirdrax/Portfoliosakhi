@@ -62,7 +62,7 @@ export default function Contact({
         method="POST"
         className="contact-form reveal d2"
         onSubmit={handleSubmit}
-        data-aos="fade-left"
+        data-aos="fade-up"
         data-aos-delay="80">
         <input
           type="hidden"
@@ -78,7 +78,7 @@ export default function Contact({
         <input type="hidden" name="from_name" value="Portfolio Website" />
         <input type="checkbox" name="botcheck" style={{ display: 'none' }} />
 
-        <div className="form-group" data-aos="fade-up" data-aos-delay="80">
+        <div className="form-group" data-aos="fade-left" data-aos-delay="80">
           <label>Your Name</label>
           <input
             type="text"
