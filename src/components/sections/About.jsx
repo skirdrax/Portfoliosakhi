@@ -19,7 +19,7 @@ export default function About() {
       <div className="about-container">
         {/* KIRI - DESKRIPSI */}
         <div className="about-text-wrapper">
-          <p className="about-text" data-aos="fade" data-aos-delay="60">
+          <p className="about-text" data-aos="fade-right" data-aos-delay="60">
             Hi! I'm <strong>Sakhi Ardra Handaru</strong>, an active Informatics
             Engineering, D4 Software Engineering student at Politeknik Negeri
             Indramayu with a strong passion for developing innovative and
@@ -28,7 +28,7 @@ export default function About() {
             (Figma), Computer Networks, and Internet of Things (IoT), SEO.
           </p>
 
-          <p className="about-text" data-aos="fade" data-aos-delay="60">
+          <p className="about-text" data-aos="fade-right" data-aos-delay="60">
             I believe that good technology is one that provides a meaningful
             experience for its users. Currently, I am open to contributing more
             broadly — whether through internships, collaborative projects, or
