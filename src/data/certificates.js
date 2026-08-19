@@ -18,7 +18,7 @@ export const certificates = [
   {
     id: 3,
     title: 'Microsoft Excel ',
-    issuer: 'Coursera',
+    issuer: 'Courseraa',
     date: '2024',
     image: '/assets/sertifikat/serti3.png',
     link: 'https://www.semrush.com/certificates/xxx',
