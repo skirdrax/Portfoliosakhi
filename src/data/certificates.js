@@ -10,7 +10,7 @@ export const certificates = [
   {
     id: 2,
     title: 'AWS Cloud Practitioner',
-    issuer: 'Dicoding Indonesia',
+    issuer: 'Dicoding Indonesias',
     date: '2024',
     image: '/assets/sertifikat/serti2.png',
     link: 'https://skillshop.google.com/certificates/xxx',
