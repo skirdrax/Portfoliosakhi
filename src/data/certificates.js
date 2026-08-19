@@ -10,7 +10,7 @@ export const certificates = [
   {
     id: 2,
     title: 'AWS Cloud Practitioner',
-    issuer: 'Dicoding Indonesias',
+    issuer: 'Dicoding Indonesia',
     date: '2024',
     image: '/assets/sertifikat/serti2.png',
     link: 'https://skillshop.google.com/certificates/xxx',
@@ -18,7 +18,7 @@ export const certificates = [
   {
     id: 3,
     title: 'Microsoft Excel ',
-    issuer: 'Courseraa',
+    issuer: 'Coursera',
     date: '2024',
     image: '/assets/sertifikat/serti3.png',
     link: 'https://www.semrush.com/certificates/xxx',
