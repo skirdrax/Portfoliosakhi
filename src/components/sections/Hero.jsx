@@ -34,7 +34,6 @@ export default function Hero({ displayText, FULL_TEXT }) {
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
 
-    // Hitung rotasi (max 15 derajat)
     const rotateY = ((x - centerX) / centerX) * 15;
     const rotateX = -((y - centerY) / centerY) * 15;
 
@@ -115,7 +114,7 @@ export default function Hero({ displayText, FULL_TEXT }) {
           </div>
         </div>
 
-        {/* RIGHT - IMAGE IKUT KURSOR */}
+        {/* RIGHT - IMAGE */}
         <div className="hero-right">
           <div
             className="img-wrap"
@@ -133,6 +132,7 @@ export default function Hero({ displayText, FULL_TEXT }) {
               alt="Sakhi Ardra"
               className={`hero-img ${imageLoaded ? 'loaded' : ''}`}
               onLoad={() => setImageLoaded(true)}
+              onError={() => setImageLoaded(true)}
             />
 
             <div className="corner tl" />

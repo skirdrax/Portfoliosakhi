@@ -16,9 +16,7 @@ export default function About() {
         Short Profile
       </h2>
 
-      {/* ===== DESKRIPSI KIRI - FOTO KANAN ===== */}
       <div className="about-container">
-        {/* KIRI - DESKRIPSI */}
         <div className="about-text-wrapper">
           <p className="about-text" data-aos="fade-right" data-aos-delay="60">
             Hi! I'm <strong>Sakhi Ardra Handaru</strong>, an active Informatics
@@ -57,13 +55,11 @@ export default function About() {
           </div>
         </div>
 
-        {/* KANAN - FOTO DENGAN LOADING */}
         <div className="about-image-wrapper">
           <div
             className="about-img-wrap"
             data-aos="fade-left"
             data-aos-delay="60">
-            {/* ✅ LOADING EFFECT */}
             {!imageLoaded && (
               <div className="about-img-loading">
                 <div className="about-img-spinner"></div>
@@ -75,6 +71,7 @@ export default function About() {
               alt="Sakhi Ardra"
               className={`about-img ${imageLoaded ? 'loaded' : ''}`}
               onLoad={() => setImageLoaded(true)}
+              onError={() => setImageLoaded(true)}
             />
 
             <div className="about-img-corner tl"></div>
@@ -82,7 +79,9 @@ export default function About() {
           </div>
         </div>
       </div>
+
       <SocialLinks />
+
       {/* Education */}
       <div className="education-section">
         <p className="section-tag reveal" data-aos="fade-up">
