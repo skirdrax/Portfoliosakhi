@@ -1,7 +1,7 @@
 export const MAGANG = [
   {
     id: 1,
-    href: 'https://www.groperti.com/',
+    href: 'https://partner.groperti.com/',
     posisi: 'Web Developer - Search Engine Optimization Intern',
     perusahaan: 'PT Sentral Global Properti',
     lokasi: 'WFH Tangerang, Office Jakarta',
