@@ -2,7 +2,7 @@ export const MAGANG = [
   {
     id: 1,
     href: 'https://partner.groperti.com/',
-    posisi: 'Web Developer - Search Engine Optimization Intern',
+    posisi: 'Web Developer - Frontend & SEO',
     perusahaan: 'PT Sentral Global Properti',
     lokasi: 'WFH Tangerang, Office Jakarta',
     periode: 'May 2025 — August 2025',
@@ -20,7 +20,7 @@ export const MAGANG = [
     logo: '/assets/groperti.png',
     // PROJECT DATA
     project: {
-      title: 'SEO Optimization Project',
+      title: 'Web Developer - SEO Project',
       description:
         'During the internship, I successfully improved the company website ranking from page 5 to page 1 on Google for 10+ main keywords. Optimized meta tags, URL structure, and website loading speed.',
       results: [
