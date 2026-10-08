@@ -4,15 +4,13 @@ import { listProyek } from '../../data';
 export default function Projects({ filter, setFilter }) {
   const [selectedProject, setSelectedProject] = useState(null);
   const [showAll, setShowAll] = useState(false);
-
-  // ✅ CEK LAYAR DESKTOP ATAU MOBILE - PAKE useEffect
   const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
       setIsDesktop(window.innerWidth >= 641);
     };
-    handleResize(); // panggil pertama kali
+    handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
@@ -20,6 +18,14 @@ export default function Projects({ filter, setFilter }) {
   const filteredProjects = listProyek.filter(
     (p) => filter === 'Semua' || p.kategori === filter,
   );
+
+  // ✅ HITUNG JUMLAH PER KATEGORI
+  const counts = {
+    Semua: listProyek.length,
+    Website: listProyek.filter((p) => p.kategori === 'Website').length,
+    'UI/UX': listProyek.filter((p) => p.kategori === 'UI/UX').length,
+    Mobile: listProyek.filter((p) => p.kategori === 'Mobile').length,
+  };
 
   let displayProjects;
   if (isDesktop) {
@@ -46,7 +52,7 @@ export default function Projects({ filter, setFilter }) {
         Other Projects
       </h2>
 
-      {/* FILTER */}
+      {/* FILTER DENGAN COUNTER */}
       <div
         className="filter-wrapper reveal d2"
         data-aos="fade-up"
@@ -60,7 +66,8 @@ export default function Projects({ filter, setFilter }) {
             }}
             className={`filter-btn ${filter === cat ? 'active' : ''}`}>
             {cat}
-            {filter === cat && <span className="active-dot" />}
+            {/* ✅ COUNTER ANGKA */}
+            <span className="filter-count">{counts[cat]}</span>
           </button>
         ))}
       </div>
@@ -92,7 +99,6 @@ export default function Projects({ filter, setFilter }) {
                 ))}
               </div>
 
-              {/* TOMBOL VIEW DETAILS */}
               <div
                 className="btn-p btn-block"
                 onClick={() => setSelectedProject(p)}
@@ -116,7 +122,7 @@ export default function Projects({ filter, setFilter }) {
         ))}
       </div>
 
-      {/* TOMBOL LIHAT SEMUA - HANYA DI MOBILE & KALAU > 3 PROYEK */}
+      {/* TOMBOL LIHAT SEMUA */}
       {!isDesktop && totalProjects > 3 && (
         <div className="show-all-wrapper">
           {!showAll ? (
@@ -145,12 +151,10 @@ export default function Projects({ filter, setFilter }) {
               ✕
             </button>
 
-            {/* GAMBAR */}
             <div className="project-popup-image">
               <img src={selectedProject.gambar} alt={selectedProject.nama} />
             </div>
 
-            {/* KONTEN */}
             <div className="project-popup-body">
               <h3 className="project-popup-title">{selectedProject.nama}</h3>
               <span className="project-popup-kategori">
@@ -160,7 +164,6 @@ export default function Projects({ filter, setFilter }) {
                 {selectedProject.deskFull || selectedProject.desk}
               </p>
 
-              {/* TOOLS */}
               <div className="project-popup-tools">
                 {selectedProject.tools.map((tool, idx) => (
                   <span key={idx} className="tag-chip">
@@ -169,7 +172,6 @@ export default function Projects({ filter, setFilter }) {
                 ))}
               </div>
 
-              {/* TOMBOL */}
               <div className="project-popup-buttons">
                 {selectedProject.github && (
                   <a

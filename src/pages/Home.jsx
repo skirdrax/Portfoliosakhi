@@ -78,7 +78,7 @@ export default function Home({ FULL_TEXT }) {
           }}
           pagination={{ clickable: true }}
           autoplay={{
-            delay: 4500,
+            delay: 1500,
             disableOnInteraction: false,
             pauseOnMouseEnter: true,
           }}

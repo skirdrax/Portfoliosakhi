@@ -1,8 +1,12 @@
+import { useState, useRef } from 'react';
 import SocialLinks from '../ui/SocialLinks';
 import ImageData from '../../data/image';
-import { Link } from 'react-router-dom'; // ← TAMBAHKAN
+import { Link } from 'react-router-dom';
 
 export default function Hero({ displayText, FULL_TEXT }) {
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const imgWrapRef = useRef(null);
+
   const skills = [
     'Web Developer',
     'Mobile Developer',
@@ -13,10 +17,35 @@ export default function Hero({ displayText, FULL_TEXT }) {
     'SEO',
   ];
 
-  // ✅ VIEW CV (BUKAN DOWNLOAD)
   const handleCvClick = (e) => {
     e.preventDefault();
     window.open('/assets/CV/CV_Sakhiardra_port.pdf', '_blank');
+  };
+
+  // ✅ FOTO IKUT KURSOR
+  const handleMouseMove = (e) => {
+    const card = imgWrapRef.current;
+    if (!card) return;
+
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    // Hitung rotasi (max 15 derajat)
+    const rotateY = ((x - centerX) / centerX) * 15;
+    const rotateX = -((y - centerY) / centerY) * 15;
+
+    card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
+  };
+
+  const handleMouseLeave = () => {
+    const card = imgWrapRef.current;
+    if (!card) return;
+    card.style.transform =
+      'perspective(800px) rotateX(0deg) rotateY(0deg) scale(1)';
   };
 
   return (
@@ -27,11 +56,6 @@ export default function Hero({ displayText, FULL_TEXT }) {
       <div className="hero-container">
         {/* LEFT - TEXT */}
         <div className="hero-left">
-          <div className="status-badge">
-            <span className="status-dot"></span>
-            <span className="status-label">AVAILABLE FOR WORK</span>
-          </div>
-
           <p className="hero-location">
             Based in Indonesia
             <svg
@@ -63,7 +87,6 @@ export default function Hero({ displayText, FULL_TEXT }) {
           </div>
 
           <div className="hero-buttons">
-            {/* TOMBOL VIEW CV */}
             <a href="#" className="btn-p" onClick={handleCvClick}>
               View My CV
               <svg
@@ -77,7 +100,6 @@ export default function Hero({ displayText, FULL_TEXT }) {
               </svg>
             </a>
 
-            {/* ✅ TOMBOL PROJECTS PAKE LINK */}
             <Link to="/projects" className="btn-g">
               Projects
               <svg
@@ -93,16 +115,28 @@ export default function Hero({ displayText, FULL_TEXT }) {
           </div>
         </div>
 
-        {/* RIGHT - IMAGE */}
+        {/* RIGHT - IMAGE IKUT KURSOR */}
         <div className="hero-right">
-          <div className="img-wrap">
-            <div className="corner tl" />
-            <div className="corner br" />
+          <div
+            className="img-wrap"
+            ref={imgWrapRef}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}>
+            {!imageLoaded && (
+              <div className="hero-img-loading">
+                <div className="hero-img-spinner"></div>
+              </div>
+            )}
+
             <img
               src={ImageData.HeroImage}
               alt="Sakhi Ardra"
-              className="hero-img"
+              className={`hero-img ${imageLoaded ? 'loaded' : ''}`}
+              onLoad={() => setImageLoaded(true)}
             />
+
+            <div className="corner tl" />
+            <div className="corner br" />
           </div>
         </div>
       </div>

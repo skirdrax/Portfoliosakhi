@@ -340,8 +340,8 @@
 .about-img-wrap {
   position: relative;
   overflow: hidden;
-  min-height: 200px;
   background: #f1f5f9;
+  /* ❌ HAPUS min-height: 200px; */
 }
 
 .about-img {
@@ -356,15 +356,16 @@
   opacity: 1;
 }
 
-/* LOADING SPINNER */
+/* LOADING SPINNER - OVERLAY DI ATAS FOTO */
 .about-img-loading {
   position: absolute;
   inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f1f5f9;
+  background: rgba(241, 245, 249, 0.9);
   z-index: 1;
+  pointer-events: none;
 }
 
 .about-img-spinner {

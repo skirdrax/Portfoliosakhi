@@ -11,7 +11,7 @@
 /* CONTAINER - LEBAR */
 .hero-container {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* ← 2 KOLOM */
+  grid-template-columns: 1fr 1fr;
   gap: 60px;
   align-items: center;
   max-width: 1200px;
@@ -126,161 +126,7 @@
 }
 
 /* ============================================
-   BUTTONS
-   ============================================ */
-.hero-buttons {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-top: 8px;
-}
-
-.btn-p {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: #2563eb;
-  color: #fff;
-  padding: 12px 28px;
-  font-weight: 700;
-  font-size: 13px;
-  text-decoration: none;
-  border: 2px solid #2563eb;
-  transition: all 0.2s;
-  cursor: pointer;
-}
-
-.btn-p:hover {
-  background: #1d4ed8;
-  transform: translateY(-2px);
-}
-
-.btn-g {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: transparent;
-  padding: 12px 24px;
-  font-weight: 600;
-  font-size: 13px;
-  border: 2px solid #e2e8f0;
-  text-decoration: none;
-  color: #475569;
-  transition: all 0.2s;
-  cursor: pointer;
-}
-
-.btn-g:hover {
-  border-color: #2563eb;
-  color: #0f172a;
-}
-
-/* ============================================
-   IMAGE
-   ============================================ */
-.img-wrap {
-  display: inline-block;
-  position: relative;
-  border: 4px solid #2563eb;
-  padding: 6px;
-  background: #fff;
-  box-shadow: 6px 6px 0 rgba(37, 99, 235, 0.25);
-  transition: all 0.2s;
-}
-
-.img-wrap:hover {
-  transform: translate(-3px, -3px);
-  box-shadow: 10px 10px 0 rgba(37, 99, 235, 0.25);
-}
-
-.hero-img {
-  display: block;
-  max-width: 350px;
-  width: 100%;
-  filter: grayscale(0.05);
-  transition: filter 0.2s;
-}
-
-.img-wrap:hover .hero-img {
-  filter: grayscale(0);
-}
-
-.corner {
-  display: none;
-}
-
-/* ============================================
-   SOCIAL LINKS
-   ============================================ */
-.hero-section .social-links {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  margin-top: 30px;
-  flex-wrap: wrap;
-}
-
-/* ============================================
-   RESPONSIVE - TETAP LEBAR DI HP
-   ============================================ */
-@media (max-width: 768px) {
-  .hero-container {
-    grid-template-columns: 1fr; /* ← JADI 1 KOLOM DI HP */
-    gap: 30px;
-    text-align: center;
-  }
-
-  .hero-left {
-    align-items: center;
-  }
-
-  .hero-skills {
-    justify-content: center;
-  }
-
-  .hero-buttons {
-    justify-content: center;
-  }
-
-  .status-badge {
-    margin: 0 auto;
-  }
-
-  .hero-img {
-    max-width: 260px;
-  }
-
-  .hero-name {
-    font-size: 32px;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero-section {
-    padding: 20px 0 10px;
-  }
-
-  .hero-name {
-    font-size: 28px;
-  }
-
-  .skill-tag-glow {
-    font-size: 10px;
-    padding: 4px 12px;
-  }
-
-  .btn-p,
-  .btn-g {
-    font-size: 12px;
-    padding: 10px 18px;
-  }
-
-  .hero-img {
-    max-width: 200px;
-  }
-}
-/* ============================================
-   FOTO 3D - PERSPECTIVE & ROTATE
+   IMAGE - DENGAN LOADING SPINNER
    ============================================ */
 
 .img-wrap {
@@ -303,19 +149,52 @@
     0 20px 60px rgba(37, 99, 235, 0.15);
 }
 
-/* GAMBAR TETAP NORMAL */
 .hero-img {
   display: block;
   max-width: 350px;
   width: 100%;
   filter: grayscale(0.05);
-  transition: filter 0.4s ease;
+  transition:
+    opacity 0.6s ease,
+    filter 0.4s ease;
   transform: translateZ(10px);
+  opacity: 0;
+}
+
+.hero-img.loaded {
+  opacity: 1;
 }
 
 .img-wrap:hover .hero-img {
   filter: grayscale(0);
   transform: translateZ(20px);
+}
+
+/* ✅ LOADING SPINNER */
+.hero-img-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(241, 245, 249, 0.9);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.hero-img-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #e2e8f0;
+  border-top-color: #2563eb;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* BAYANGAN 3D DI BAWAH */
@@ -339,6 +218,21 @@
   left: 5%;
   background: rgba(37, 99, 235, 0.25);
   filter: blur(16px);
+}
+
+.corner {
+  display: none;
+}
+
+/* ============================================
+   SOCIAL LINKS
+   ============================================ */
+.hero-section .social-links {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 30px;
+  flex-wrap: wrap;
 }
 
 /* ============================================
@@ -439,9 +333,54 @@
 }
 
 /* ============================================
-   RESPONSIVE BUTTONS
+   RESPONSIVE - TETAP LEBAR DI HP
    ============================================ */
+@media (max-width: 768px) {
+  .hero-container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    text-align: center;
+  }
+
+  .hero-left {
+    align-items: center;
+  }
+
+  .hero-skills {
+    justify-content: center;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
+  .status-badge {
+    margin: 0 auto;
+  }
+
+  .hero-img {
+    max-width: 260px;
+  }
+
+  .hero-name {
+    font-size: 32px;
+  }
+}
+
 @media (max-width: 480px) {
+  .hero-section {
+    padding: 20px 0 10px;
+  }
+
+  .hero-name {
+    font-size: 28px;
+  }
+
+  .skill-tag-glow {
+    font-size: 10px;
+    padding: 4px 12px;
+  }
+
   .hero-buttons {
     gap: 10px;
     width: 100%;
@@ -467,4 +406,106 @@
     transform: translate(2px, 2px);
     box-shadow: 1px 1px 0px #0f172a;
   }
+
+  .hero-img {
+    max-width: 200px;
+  }
+}
+/* ============================================
+   FOTO IKUT KURSOR (3D TILT)
+   ============================================ */
+
+.img-wrap {
+  display: inline-block;
+  position: relative;
+  border: 4px solid #2563eb;
+  padding: 6px;
+  background: #fff;
+  box-shadow: 6px 6px 0 rgba(37, 99, 235, 0.25);
+  transition:
+    transform 0.15s ease-out,
+    box-shadow 0.3s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* ❌ HAPUS hover transform yang lama (biar ga bentrok) */
+.img-wrap:hover {
+  box-shadow:
+    10px 10px 0 rgba(37, 99, 235, 0.3),
+    0 20px 60px rgba(37, 99, 235, 0.15);
+}
+
+.hero-img {
+  display: block;
+  max-width: 350px;
+  width: 100%;
+  filter: grayscale(0.05);
+  transition:
+    opacity 0.6s ease,
+    filter 0.4s ease;
+  transform: translateZ(10px);
+  opacity: 0;
+}
+
+.hero-img.loaded {
+  opacity: 1;
+}
+
+.img-wrap:hover .hero-img {
+  filter: grayscale(0);
+}
+
+/* ✅ SPINNER */
+.hero-img-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(241, 245, 249, 0.9);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.hero-img-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #e2e8f0;
+  border-top-color: #2563eb;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* BAYANGAN 3D DI BAWAH */
+.img-wrap::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 10%;
+  width: 80%;
+  height: 20px;
+  background: rgba(37, 99, 235, 0.15);
+  filter: blur(12px);
+  border-radius: 50%;
+  transition: all 0.4s ease;
+  z-index: -1;
+}
+
+.img-wrap:hover::after {
+  bottom: -16px;
+  width: 90%;
+  left: 5%;
+  background: rgba(37, 99, 235, 0.25);
+  filter: blur(16px);
+}
+
+.corner {
+  display: none;
 }

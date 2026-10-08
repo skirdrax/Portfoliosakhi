@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import SocialLinks from '../ui/SocialLinks';
 
 export default function About() {
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -38,8 +39,8 @@ export default function About() {
 
           <div className="stats-wrapper">
             {[
-              ['6+', 'Projects Completed'],
-              ['1+', 'Years of Experience'],
+              ['8+', 'Projects Completed'],
+              ['2+', 'Years of Experience'],
             ].map(([n, l], i) => (
               <div
                 key={i}
@@ -81,7 +82,7 @@ export default function About() {
           </div>
         </div>
       </div>
-
+      <SocialLinks />
       {/* Education */}
       <div className="education-section">
         <p className="section-tag reveal" data-aos="fade-up">

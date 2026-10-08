@@ -5,6 +5,7 @@ import Proyek4 from '/assets/proyek/proyek4.webp';
 import Proyek5 from '/assets/proyek/proyek5.webp';
 import Proyek6 from '/assets/proyek/proyek6.webp';
 import Proyek7 from '/assets/proyek/proyek7.webp';
+import Proyek8 from '/assets/proyek/proyek8.webp';
 
 export const listProyek = [
   {
@@ -34,9 +35,21 @@ export const listProyek = [
     liveDemo:
       'https://drive.google.com/drive/folders/1JNprvN24hUdXYlZN9OUHJIXlKQSpjiV6?usp=sharing',
   },
-
   {
     id: 3,
+    gambar: Proyek8,
+    nama: 'ReRe Petshop - Multiplatform Pet Shop',
+    kategori: 'Website',
+    desk: 'ReRe Petshop is a multiplatform website  shopping experience for pet products and secure checkout.',
+    deskFull:
+      'ReRe Petshop is a multiplatform pet shop website that provides an online shopping experience for pet products, including food, accessories, and health supplies. The site features product listings, shopping cart functionality, and secure checkout.',
+    tools: ['React JS', 'Laravel', 'MySQL', 'Llama'],
+    github: null,
+    figma: null,
+    liveDemo: 'https://rerepetshop.biz.id',
+  },
+  {
+    id: 4,
     gambar: Proyek6,
     nama: 'SMAIT Bunayya Alumni Association',
     kategori: 'Website',
@@ -49,7 +62,7 @@ export const listProyek = [
     liveDemo: 'https://ika-smaitbunayya.web.id/',
   },
   {
-    id: 4,
+    id: 5,
     gambar: Proyek3,
     nama: 'Design App Clean Air ID',
     kategori: 'UI/UX',
@@ -64,7 +77,7 @@ export const listProyek = [
   },
 
   {
-    id: 5,
+    id: 6,
     gambar: Proyek7,
     nama: 'POS Skirdrax Integrated Sheet',
     kategori: 'Website',
@@ -76,19 +89,7 @@ export const listProyek = [
     figma: null,
     liveDemo: 'https://pos-skirdrax.netlify.app',
   },
-  {
-    id: 6,
-    gambar: Proyek4,
-    nama: 'Personal Portfolio',
-    kategori: 'Website',
-    desk: 'Modern personal developer portfolio showcasing skills, projects, and contact info.',
-    deskFull:
-      'This personal portfolio was built using React JS and Vite to showcase information about myself, my skills, projects I have worked on, and contact details. The design carries a sleek and professional Brutalism Blue theme.',
-    tools: ['React JS', 'GSC'],
-    github: 'https://github.com/skirdrax/Portfoliosakhi',
-    figma: null,
-    liveDemo: 'https://sakhiardra.my.id/',
-  },
+
   {
     id: 7,
     gambar: Proyek2,
@@ -102,5 +103,18 @@ export const listProyek = [
     figma:
       'https://www.figma.com/proto/HsbtvSTWg3iyFG2NZWqKRE/UIUX-Techomfest-KicauMania?node-id=1380-6887&t=jugzztCP01YfoWFL-0&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1380%3A3697',
     liveDemo: null,
+  },
+  {
+    id: 8,
+    gambar: Proyek4,
+    nama: 'Personal Portfolio',
+    kategori: 'Website',
+    desk: 'Modern personal developer portfolio showcasing skills, projects, and contact info.',
+    deskFull:
+      'This personal portfolio was built using React JS and Vite to showcase information about myself, my skills, projects I have worked on, and contact details. The design carries a sleek and professional Brutalism Blue theme.',
+    tools: ['React JS', 'GSC'],
+    github: 'https://github.com/skirdrax/Portfoliosakhi',
+    figma: null,
+    liveDemo: 'https://sakhiardra.my.id/',
   },
 ];
