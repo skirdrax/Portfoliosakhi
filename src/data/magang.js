@@ -20,7 +20,7 @@ export const MAGANG = [
     logo: '/assets/groperti.png',
     // PROJECT DATA
     project: {
-      title: 'Web Developer - SEO Project',
+      title: 'Web Developer - Frontend &SEO Project',
       description:
         'During the internship, I successfully improved the company website ranking from page 5 to page 1 on Google for 10+ main keywords. Optimized meta tags, URL structure, and website loading speed.',
       results: [
@@ -35,6 +35,7 @@ export const MAGANG = [
         'Ahrefs',
         'WordPress',
         'JAVAScript',
+        'CSS',
       ],
       images: [
         '/assets/proyek/groperti/1.png',
@@ -46,7 +47,7 @@ export const MAGANG = [
       certificates: [
         {
           id: 1,
-          title: 'SEO Internship Certificate',
+          title: 'Web Developer - Frontend & SEO Internship Certificate',
           issuer: 'PT Sentral Global Properti',
           date: 'August 2025',
           image: '/assets/sertifikat/groperti/1.png',
